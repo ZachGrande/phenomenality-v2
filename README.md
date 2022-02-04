@@ -1,67 +1,70 @@
-<h1 align="center">Be Incredible</h1>
+# Getting Started with Create React App
 
-<h2 align="center"><em>Defeat Syndrome, Be Incredible</em></h2>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<p align="center">group4-in4matix</p>
+## Available Scripts
 
-<h2>Our Mission </h2>
+In the project directory, you can run:
 
-The goal of this application is to address feelings of imposter syndrome that women and minorities can experience in the tech field. To make the widely accepted variants of imposter syndrome seem less categorical, we have associated an Incredibles character with each archetype. 
+### `npm start`
 
-This solution works specifically to address the United Nations 5th Sustainable Development Goal: Gender Equality. Imposter syndrome can limit the opportunites women and minorities are comfortable pursuing in their work environment. 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Features
-* Interactive quiz to assess user's imposter type
-* Visualized results to show cross section of types
-* Real-world stories from successful industry members
-* Tips for how to combat feelings of imposter syndrome
-* Fun Incredibles theme integration
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## Types of Imposter Sydrome
-* The Perfectionist: Violet
-* The Solosit: Dash
-* The Expert: Elastagirl
-* The Superhero: Mr. Incredible
-* The Genius: Edna Mode
+### `npm test`
 
-# GitHub Pages
-The published site can be viewed here: https://uw-info442-au21.github.io/group4-in4matix/
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Group Members
-* Elise Adams
-* Zach Grande
-* Rachel Kinkley
-* Tiffany Tse
-* Valerie Tse
+### `npm run build`
 
-# Development Instructions
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Start Localhost
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-`npm start`
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-`Ctrl + C` to cancel
+### `npm run eject`
 
-## Deploy Build to GitHub Pages
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-`npm run deploy`
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Make a New Branch
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-Do these two steps in sequence to (1) make a new branch and (2) publish it to GitHub.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-`git checkout -b <branch-name>`
+## Learn More
 
-`git push --set-upstream origin <branch-name>`
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Edit the branch as much as you'd like, push/pull freely, then when work is done make a Pull Request on the GitHub site.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Double Checking the New Branch
+### Code Splitting
 
-If you run `git status`, the terminal should say
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-`On branch <branch-name>`  
-`Your branch is up to date with 'origin/<branch-name>'.`
+### Analyzing the Bundle Size
 
-# References
-Parr family photos retrieved from https://www.deviantart.com/arnumdrusk/art/The-Parrs-Incredibles-minimal-305511343.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
