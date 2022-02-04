@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
+describe('text content renders', () => {
+
 test('renders learn react link', () => {
   render(<App />);
   const linkElement = screen.getByText(/learn react/i);
@@ -12,3 +14,4 @@ test('home page has content', () => {
   const headerText = screen.getByText(/and save to reload./);
   expect(headerText).toBeInTheDocument();
 });
+})
