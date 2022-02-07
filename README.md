@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+<h1 align="center">Phenomenality</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2 align="center"><em>Build Your Credibility</em></h2>
 
-## Available Scripts
+<p align="center">Capstone Group 3: Orka</p>
 
-In the project directory, you can run:
+<h2>Our Mission </h2>
 
-### `npm start`
+This application addresses feelings of imposter phenomenon in young professionals who are gender minorities. Users are encouraged to build their credibility bank to build confidence in themselves catalog resume-worthy achievements for easy reference.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This solution works specifically to address the United Nations 5th Sustainable Development Goal: Gender Equality. Imposter phenomenon can limit the opportunites women and minorities are comfortable pursuing in their work environment. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
+* Interactive quiz to assess user's imposter type
+* Visualized results to show cross section of types
+* Real-world stories from successful industry members
+* Tips for how to combat feelings of imposter phenomenon
+* Fun Incredibles theme integration
 
-### `npm test`
+# Project History
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project is inspired by work from Autumn 2021 UW INFO 442: Cooperative Software Development with the same group.
 
-### `npm run build`
+Project Repo: https://github.com/UW-INFO442-AU21/group4-in4matix
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Published Site: https://uw-info442-au21.github.io/group4-in4matix/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Group Members
+* Elise Adams
+* Zach Grande
+* Rachel Kinkley
+* Tiffany Tse
+* Valerie Tse
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Development Instructions
 
-### `npm run eject`
+## Firebase
+This project is hosted on Firebase.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+*Link to follow.*
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Start Localhost
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`npm start`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+`Ctrl + C` to cancel
 
-## Learn More
+## Deploy Build to GitHub Pages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`npm run deploy`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Make a New Branch
 
-### Code Splitting
+Do these two steps in sequence to (1) make a new branch and (2) publish it to GitHub.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`git checkout -b <branch-name>`
 
-### Analyzing the Bundle Size
+`git push --set-upstream origin <branch-name>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Edit the branch as much as you'd like, push/pull freely, then when work is done make a Pull Request on the GitHub site.
 
-### Making a Progressive Web App
+### Double Checking the New Branch
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+If you run `git status`, the terminal should say
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`On branch <branch-name>`  
+`Your branch is up to date with 'origin/<branch-name>'.`
