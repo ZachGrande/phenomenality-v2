@@ -17,9 +17,13 @@ This solution works specifically to address the United Nations 5th Sustainable D
 * Tips for how to combat feelings of imposter phenomenon
 * Fun Incredibles theme integration
 
-# Project History
+# Deployed Product
 
-This project is inspired by work from Autumn 2021 UW INFO 442: Cooperative Software Development with the same group.
+GitHub Pages: https://zachgrande.github.io/Phenomenality/
+
+# Product History
+
+This product is inspired by work from Autumn 2021 UW INFO 442: Cooperative Software Development with the same group.
 
 Project Repo: https://github.com/UW-INFO442-AU21/group4-in4matix
 
@@ -37,7 +41,7 @@ Published Site: https://uw-info442-au21.github.io/group4-in4matix/
 ## Firebase
 This project is hosted on Firebase.
 
-*Link to follow.*
+https://phenomenality-bdf65.web.app/
 
 ## Start Localhost
 
