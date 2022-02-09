@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload. This is a test.
+          Edit <code>src/App.js</code> and save to reload. Test!
         </p>
         <a
           className="App-link"
@@ -17,6 +17,7 @@ function App() {
         >
           Learn React
         </a>
+        <img src="ironman.jpg" alt="iron man"></img>
       </header>
     </div>
   );
