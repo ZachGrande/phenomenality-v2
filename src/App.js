@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import ironman from "./assets/ironman.jpg"
+import seattle from "./assets/seattle.jpg"
 
 function App() {
   return (
@@ -17,8 +19,11 @@ function App() {
         >
           Learn React
         </a>
-        <img src="ironman.jpg" alt="iron man"></img>
+        <img src={ironman} alt="iron man"></img>
       </header>
+      <div style={{backgroundImage: `url(${seattle})`}}>
+        <h1>Test</h1>
+      </div>
     </div>
   );
 }
