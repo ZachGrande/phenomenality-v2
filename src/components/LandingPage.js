@@ -1,9 +1,9 @@
-import './LandingPage.css'
+import '../css/LandingPage.css'
 // import seattle from "./assets/seattle.jpg"
 
 function LandingPage() {
   return(
-    <div class="hero-image">
+    <div className="hero-image">
         <h1>Hello, world!</h1>
     </div>
     // <div style={{backgroundImage: `url(${seattle})`}}>

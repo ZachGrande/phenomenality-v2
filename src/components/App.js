@@ -1,7 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
-import ironman from "./assets/ironman.jpg";
-import seattle from "./assets/seattle.jpg";
+import '../css/App.css';
 import LandingPage from './LandingPage.js';
 import { Helmet } from "react-helmet";
 
