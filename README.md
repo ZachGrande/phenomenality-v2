@@ -62,4 +62,4 @@ Do these two steps in sequence to (1) make a new branch and (2) publish it to Gi
 
 To close a branch, make a Pull Request on the GitHub site.
 
-<a href="https://www.flaticon.com/free-icons/mental-health" title="mental health icons">Mental health icons created by juicy_fish - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/brain" title="brain icons">Brain icons created by Freepik - Flaticon</a>
