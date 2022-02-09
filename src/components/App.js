@@ -1,9 +1,8 @@
 import '../css/App.css';
-// import LandingPage from './LandingPage.js';
 import { Helmet } from 'react-helmet';
 import Navigation from './Navigation.js';
 import { Route, Routes } from 'react-router-dom';
-import LandingPage from './LandingPage.js';
+import Landing from './Landing.js';
 import About from './About.js';
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
       </Helmet>
       <Navigation />
       <Routes>
-        <Route exact={true} path="/" element={<LandingPage />} />
+        <Route exact={true} path="/" element={<Landing />} />
         <Route exact={true} path="/about" element={<About />} />
       </Routes>
     {/* // <div className="App">

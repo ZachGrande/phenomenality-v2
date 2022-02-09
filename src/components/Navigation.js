@@ -1,8 +1,8 @@
-import { Route, Link } from 'react-router-dom';
-import LandingPage from './LandingPage.js';
+import { Link } from 'react-router-dom';
+import Landing from './Landing.js';
 import About from './About.js'
 
-const Navigation = () => {
+function Navigation() {
   return(
     <nav>
       <div className="nav-wrapper">
