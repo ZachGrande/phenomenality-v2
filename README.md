@@ -48,6 +48,10 @@ Published Site: https://uw-info442-au21.github.io/group4-in4matix/
 
 `npm run build`
 
+## Deploy to Firebase
+
+`firebase deploy`
+
 ## Make a New Branch
 
 Do these two steps in sequence to (1) make a new branch and (2) publish it to GitHub.
