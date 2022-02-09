@@ -5,6 +5,7 @@ function LandingPage() {
   return(
     <div className="hero-image">
         <h1>Hello, world!</h1>
+        <p>Hello, world!</p>
     </div>
     // <div style={{backgroundImage: `url(${seattle})`}}>
     //   <p>Hello, world!</p>

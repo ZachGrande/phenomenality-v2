@@ -1,6 +1,10 @@
 import '../css/App.css';
+// import LandingPage from './LandingPage.js';
+import { Helmet } from 'react-helmet';
+import Navigation from './Navigation.js';
+import { Route, Routes } from 'react-router-dom';
 import LandingPage from './LandingPage.js';
-import { Helmet } from "react-helmet";
+import About from './About.js';
 
 function App() {
   return (
@@ -9,7 +13,11 @@ function App() {
         <meta charSet="utf-8" />
         <title>Phenomenality</title>
       </Helmet>
-      <LandingPage />
+      <Navigation />
+      <Routes>
+        <Route exact={true} path="/" element={<LandingPage />} />
+        <Route exact={true} path="/about" element={<About />} />
+      </Routes>
     {/* // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
