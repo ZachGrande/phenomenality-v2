@@ -1,13 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
-import ironman from "./assets/ironman.jpg"
-import seattle from "./assets/seattle.jpg"
-import LandingPage from './LandingPage.js'
+import ironman from "./assets/ironman.jpg";
+import seattle from "./assets/seattle.jpg";
+import LandingPage from './LandingPage.js';
+import { Helmet } from "react-helmet";
 
 function App() {
   return (
-    <LandingPage />
-    // <div className="App">
+    <div className="App">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Phenomenality</title>
+      </Helmet>
+      <LandingPage />
+    {/* // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
     //     <p>
@@ -26,7 +32,8 @@ function App() {
     //   <div style={{backgroundImage: `url(${seattle})`}}>
     //     <h1>Test</h1>
     //   </div>
-    // </div>
+    // </div> */}
+    </div>
   );
 }
 
