@@ -5,16 +5,10 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-const SAMPLE_TASKS = [
-  {id:1, description:'Learned a new Excel skill', complete:true},
-  {id:2, description:'Gave coworker a compliment', complete:false},
-  {id:3, description:'Finished more than planned today', complete:false}
-]
-
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App tasks={SAMPLE_TASKS} />
+      <App />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
