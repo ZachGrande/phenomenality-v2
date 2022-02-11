@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.jumbotron {
+  background-color: blue;
+}
+
+.font-strike {
+  text-decoration: line-through;
+}
