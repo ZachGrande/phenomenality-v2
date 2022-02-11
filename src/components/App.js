@@ -1,9 +1,12 @@
 import '../css/App.css';
-// import LandingPage from './LandingPage.js';
 import { Helmet } from 'react-helmet';
 import Navigation from './Navigation.js';
 import { Route, Routes } from 'react-router-dom';
-import LandingPage from './LandingPage.js';
+import Landing from './Landing.js';
+import Bank from './Bank.js';
+import Questions from './Questions.js';
+import Quiz from './Quiz.js';
+import ImposterInfo from './ImposterInfo.js';
 import About from './About.js';
 
 function App() {
@@ -15,7 +18,11 @@ function App() {
       </Helmet>
       <Navigation />
       <Routes>
-        <Route exact={true} path="/" element={<LandingPage />} />
+        <Route exact={true} path="/" element={<Landing />} />
+        <Route exact={true} path="/bank" element={<Bank />} />
+        <Route exact={true} path="/questions" element={<Questions />} />
+        <Route exact={true} path="/quiz" element={<Quiz />} />
+        <Route exact={true} path="/more-info" element={<ImposterInfo />} />
         <Route exact={true} path="/about" element={<About />} />
       </Routes>
     {/* // <div className="App">

@@ -1,32 +1,46 @@
-import { Route, Link } from 'react-router-dom';
-import LandingPage from './LandingPage.js';
-import About from './About.js'
+import { Link } from 'react-router-dom';
 
-const Navigation = () => {
+function Navigation() {
   return(
     <nav>
-      <div className="nav-wrapper">
-        <ul className="left">
+      <div>
+        <ul>
+          <p>Phenomenality</p>
+          <p>Strengthen Your Mentality</p>
           <li>
-            <Link to={"/"}>
+            <Link to="/">
               <a className="">Home</a>
             </Link>
           </li>
           <li>
-            <Link to={"/about"}>
-              <a className="">About</a>
+            <Link to="/bank">
+              <a>Your Bank</a>
             </Link>
           </li>
+          <li>
+            <Link to="questions">
+              <a>Q&#38;A</a>
+            </Link>
+          </li>
+          <li>
+            <Link to="quiz">
+              <a>Imposter Quiz</a>
+            </Link>
+          </li>
+          <li>
+            <Link to="more-info">
+              <a>More Imposter Information</a>
+            </Link>
+          </li>
+          <li>
+            <Link to="/about">
+              <a className="">About Us</a>
+            </Link>
+          </li>
+          <p>Profile block</p>
         </ul>
       </div>
     </nav>
-    // <nav>
-    //   <ol>
-    //     <li>
-    //       <p>Hello</p>
-    //     </li>
-    //   </ol>
-    // </nav>
   )
 }
 
