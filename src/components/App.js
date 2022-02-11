@@ -9,8 +9,6 @@ import Questions from './Questions.js';
 import Quiz from './Quiz.js';
 import ImposterInfo from './ImposterInfo.js';
 import About from './About.js';
-import TaskList from './Tasks';
-import { AddTaskForm } from './TaskForms';
 
 // function App() {
 export default class App extends React.Component {
@@ -33,38 +31,8 @@ export default class App extends React.Component {
     });
   }
 
-  toggleTask = (taskId) => {
-    this.setState((currState) => {
-      let newUpdatedTasksArray = currState.tasks.map((eachTask) => {
-        let taskCopy = Object.assign({}, eachTask)
-        if (taskCopy.id === taskId) {
-          taskCopy.complete = !taskCopy.complete;
-        }
-        return taskCopy;
-      });
-      return {tasks: newUpdatedTasksArray};
-    })
-  }
-
-  addTask = (newDescription) => {
-    this.setState((currState) => {
-      let newTask = {
-        id: currState.tasks.length+1,
-        description: newDescription,
-        complete: false
-      }
-
-      let newTasksArray = currState.tasks.concat( [newTask] )
-
-      return {tasks: newTasksArray};
-    })
-  }
-
   render() {
     console.log("Rendering app");
-
-    let incompleteArray = this.state.tasks.filter((task) => !task.complete);
-    console.log("Number of incomplete tasks", incompleteArray.length);
 
     return (
       <div className="">
@@ -75,20 +43,12 @@ export default class App extends React.Component {
         <Navigation />
         <Routes>
           <Route exact={true} path="/" element={<Landing />} />
-          <Route exact={true} path="/bank" element={<Bank />} />
+          <Route exact={true} path="/bank" element={<Bank tasks={this.state.tasks} />} />
           <Route exact={true} path="/questions" element={<Questions />} />
           <Route exact={true} path="/quiz" element={<Quiz />} />
           <Route exact={true} path="/more-info" element={<ImposterInfo />} />
           <Route exact={true} path="/about" element={<About />} />
         </Routes>
-
-        <div className="container">
-          <p className="lead" onClick={() => this.addTask("testing")}>
-            Num things I have to do: <strong>{incompleteArray.length}</strong>
-          </p>
-          <TaskList tasks={this.state.tasks} whatToDoWhenClicked={this.toggleTask} />
-          <AddTaskForm howToAdd={this.addTask} />
-        </div>
       {/* // <div className="App">
       //   <header className="App-header">
       //     <img src={logo} className="App-logo" alt="logo" />

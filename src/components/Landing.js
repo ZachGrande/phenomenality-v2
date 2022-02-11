@@ -2,7 +2,7 @@
 
 function Landing() {
   return(
-    <div className="hero-image">
+    <div className="">
         <h1>Landing page!</h1>
     </div>
     )
