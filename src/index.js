@@ -27,13 +27,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 const database = getDatabase(app);
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <App database={database} />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

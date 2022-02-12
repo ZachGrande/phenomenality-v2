@@ -19,10 +19,12 @@ export default class App extends React.Component {
       // tasks: props.tasks
       tasks: []
     }
+
+    this.database = props.database;
   }
 
   componentDidMount() {
-    console.log("Mounted!");
+    console.log("Component mounted!");
 
     fetch('./tasks.json').then((res) => res.json()).then((data) => {
       this.setState((currState) => {
@@ -32,7 +34,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log("Rendering app");
+    console.log("Rendering app...");
 
     return (
       <div className="">
@@ -43,7 +45,7 @@ export default class App extends React.Component {
         <Navigation />
         <Routes>
           <Route exact={true} path="/" element={<Landing />} />
-          <Route exact={true} path="/bank" element={<Bank tasks={this.state.tasks} />} />
+          <Route exact={true} path="/bank" element={<Bank tasks={this.state.tasks} database={this.database} />} />
           <Route exact={true} path="/questions" element={<Questions />} />
           <Route exact={true} path="/quiz" element={<Quiz />} />
           <Route exact={true} path="/more-info" element={<ImposterInfo />} />

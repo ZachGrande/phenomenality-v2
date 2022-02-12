@@ -2,6 +2,8 @@ import React from 'react';
 import TaskList from './Tasks';
 import { AddTaskForm } from './TaskForms';
 
+import { getDatabase, ref, onValue } from 'firebase/database';
+
 export default class Bank extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,8 @@ export default class Bank extends React.Component {
     this.state = {
       tasks: props.tasks
     }
+
+    this.database = props.database;
   }
 
   componentDidMount() {
@@ -19,7 +23,32 @@ export default class Bank extends React.Component {
         return {tasks: data}
       });
     });
+    // this.getUserData();
+    this.testFunction();
   }
+
+  testFunction = () => {
+    const db = getDatabase();
+    const ref1 = ref(db, '/');
+    console.log(ref1);
+    onValue(ref1, (snapshot) => {
+      console.log("in the loop");
+      const data = snapshot.val();
+      console.log(data);
+    });
+  }
+
+  /*getUserData = () => {
+    let ref = this.database.ref('/');
+    ref.on('value', snapshot => {
+      console.log(snapshot.val());
+      const state = snapshot.val();
+      // this.setState(state);
+    }, (errorObject) => {
+      console.log("The read failed: " + errorObject.name);
+    })
+    console.log("Data retrieved!");
+  }*/
 
   toggleTask = (taskId) => {
     this.setState((currState) => {
