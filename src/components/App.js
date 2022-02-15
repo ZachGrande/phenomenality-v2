@@ -9,12 +9,13 @@ import Questions from './Questions.js';
 import Quiz from './Quiz.js';
 import ImposterInfo from './ImposterInfo.js';
 import About from './About.js';
-import config from '../config';
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, get, child } from 'firebase/database';
+import Authentication from './Authentication.js'
+// import app from '../config';
+// import { initializeApp } from "firebase/app";
+// import { getDatabase, ref, onValue, get, child } from 'firebase/database';
 
-const app = initializeApp(config);
-const database = getDatabase(app);
+// const app = initializeApp(config);
+// const database = getDatabase(app);
 
 // function App() {
 export default class App extends React.Component {
@@ -85,6 +86,7 @@ export default class App extends React.Component {
           <Route exact={true} path="/quiz" element={<Quiz />} />
           <Route exact={true} path="/more-info" element={<ImposterInfo />} />
           <Route exact={true} path="/about" element={<About />} />
+          <Route exact={true} path="/authentication" element={<Authentication />} />
         </Routes>
       {/* // <div className="App">
       //   <header className="App-header">

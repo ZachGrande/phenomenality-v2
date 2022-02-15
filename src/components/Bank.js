@@ -2,12 +2,12 @@ import React from 'react';
 import TaskList from './Tasks';
 import { AddTaskForm } from './TaskForms';
 
-import config from '../config';
+import app from '../config';
 
 import { getDatabase, ref, onValue, get, child } from 'firebase/database';
-import { initializeApp } from "firebase/app";
+// import { initializeApp } from "firebase/app";
 
-const app = initializeApp(config);
+// const app = initializeApp(config);
 const database = getDatabase(app);
 
 export default class Bank extends React.Component {
