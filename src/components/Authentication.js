@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 // import { render } from '@testing-library/react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 
 import app from '../config';
 
@@ -13,6 +13,12 @@ function Authentication() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
+  const [user, setUser] = useState({});
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  })
+
   const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(
@@ -23,15 +29,22 @@ function Authentication() {
     } catch (error) {
       console.log("Authentication error", error.message);
     }
-
   };
 
   const login = async () => {
-
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword);
+      console.log(user);
+    } catch (error) {
+      console.log("Authentication error", error.message);
+    }
   };
 
   const logout = async () => {
-
+    await signOut(auth);
   };
 
   return(
@@ -63,7 +76,11 @@ function Authentication() {
             setLoginPassword(event.target.value);
           }}
         />
-        <button>Log In</button>
+        <button onClick={login}>Log In</button>
+        <h4>User Logged In:</h4>
+        {user?.email}
+        <br></br>
+        <button onClick={logout}>Sign Out</button>
     </div>
     )
 }
