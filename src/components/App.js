@@ -9,11 +9,9 @@ import Questions from './Questions.js';
 import Quiz from './Quiz.js';
 import ImposterInfo from './ImposterInfo.js';
 import About from './About.js';
-// import Firebase from 'firebase';
 import config from '../config';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, get, child } from 'firebase/database';
-// import { Firebase } from 'firebase';
 
 const app = initializeApp(config);
 const database = getDatabase(app);

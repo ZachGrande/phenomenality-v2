@@ -24,15 +24,24 @@ export default class Bank extends React.Component {
   componentDidMount() {
     console.log("Mounted bank!");
 
-    fetch('./tasks.json').then((res) => res.json()).then((data) => {
-      this.setState((currState) => {
-        return {tasks: data}
-      });
-    });
+    // fetch('./tasks.json').then((res) => res.json()).then((data) => {
+    //   this.setState((currState) => {
+    //     return {tasks: data}
+    //   });
+    // });
+    console.log("Current state: ", this.state);
     // this.getUserData();
     // this.testFunction();
     // this.readDataOnce()
     this.getUserData();
+    console.log("Current state 2: ", this.state);
+  }
+
+  componentDidUpdate(prevProps) {
+    /*if (this.props.userID !== prevProps.userID) {
+      this.fetchData(this.props.userID);
+    }*/
+    console.log("Current state update: ", this.state);
   }
 
   getUserData = () => {
@@ -41,6 +50,7 @@ export default class Bank extends React.Component {
     get(child(ref1, '/')).then((snapshot) => {
       if(snapshot.exists()) {
         console.log("Snapshot val", snapshot.val());
+        this.setState({tasks: snapshot.val()});
       } else {
         console.log("No data available");
       }
