@@ -9,20 +9,38 @@ import Questions from './Questions.js';
 import Quiz from './Quiz.js';
 import ImposterInfo from './ImposterInfo.js';
 import About from './About.js';
+// import Firebase from 'firebase';
+import config from '../config';
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, onValue, get, child } from 'firebase/database';
+// import { Firebase } from 'firebase';
+
+const app = initializeApp(config);
+const database = getDatabase(app);
 
 // function App() {
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // initializeApp(config);
+
+
+    // const app = initializeApp(config);
+    // this.database = getDatabase(app);
+
     this.state = {
       // tasks: props.tasks
       tasks: []
     }
+
+    // this.database = props.database;
   }
 
   componentDidMount() {
-    console.log("Mounted!");
+    console.log("App Component mounted!");
+
+    // this.getUserData();
 
     fetch('./tasks.json').then((res) => res.json()).then((data) => {
       this.setState((currState) => {
@@ -31,8 +49,28 @@ export default class App extends React.Component {
     });
   }
 
+  // getUserData = () => {
+  //   let ref1 = ref(database, '/');
+  //   // ref1.on('value', snapshot => {
+  //   //   const state = snapshot.val();
+  //   //   console.log(state);
+  //   // })
+
+  //   get(child(ref1, '/')).then((snapshot) => {
+  //     if(snapshot.exists()) {
+  //       console.log("Snapshot val", snapshot.val());
+  //     } else {
+  //       console.log("No data available");
+  //     }
+  //   }).catch((error) => {
+  //     console.error(error);
+  //   })
+
+  //   console.log("DATA RETRIEVED IN APP");
+  // }
+
   render() {
-    console.log("Rendering app");
+    console.log("Rendering app...");
 
     return (
       <div className="">
@@ -43,6 +81,7 @@ export default class App extends React.Component {
         <Navigation />
         <Routes>
           <Route exact={true} path="/" element={<Landing />} />
+          {/* <Route exact={true} path="/bank" element={<Bank tasks={this.state.tasks} database={this.database} />} /> */}
           <Route exact={true} path="/bank" element={<Bank tasks={this.state.tasks} />} />
           <Route exact={true} path="/questions" element={<Questions />} />
           <Route exact={true} path="/quiz" element={<Quiz />} />
