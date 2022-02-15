@@ -2,7 +2,13 @@ import React from 'react';
 import TaskList from './Tasks';
 import { AddTaskForm } from './TaskForms';
 
-import { getDatabase, ref, onValue } from 'firebase/database';
+import config from '../config';
+
+import { getDatabase, ref, onValue, get, child } from 'firebase/database';
+import { initializeApp } from "firebase/app";
+
+const app = initializeApp(config);
+const database = getDatabase(app);
 
 export default class Bank extends React.Component {
   constructor(props) {
@@ -12,11 +18,11 @@ export default class Bank extends React.Component {
       tasks: props.tasks
     }
 
-    this.database = props.database;
+    // this.database = props.database;
   }
 
   componentDidMount() {
-    console.log("Mounted!");
+    console.log("Mounted bank!");
 
     fetch('./tasks.json').then((res) => res.json()).then((data) => {
       this.setState((currState) => {
@@ -24,18 +30,37 @@ export default class Bank extends React.Component {
       });
     });
     // this.getUserData();
-    this.testFunction();
+    // this.testFunction();
+    // this.readDataOnce()
+    this.getUserData();
+  }
+
+  getUserData = () => {
+    let ref1 = ref(database, '/');
+
+    get(child(ref1, '/')).then((snapshot) => {
+      if(snapshot.exists()) {
+        console.log("Snapshot val", snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    })
+
+    console.log("DATA RETRIEVED IN APP");
   }
 
   testFunction = () => {
     const db = getDatabase();
     const ref1 = ref(db, '/');
-    console.log(ref1);
+    console.log("Ref1", ref1);
     onValue(ref1, (snapshot) => {
       console.log("in the loop");
       const data = snapshot.val();
       console.log(data);
     });
+    console.log("Just ran testFunction()");
   }
 
   /*getUserData = () => {
