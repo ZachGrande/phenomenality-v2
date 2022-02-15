@@ -37,6 +37,11 @@ function Navigation() {
               <a className="">About Us</a>
             </Link>
           </li>
+          <li>
+            <Link to="/authentication">
+              <a className="">Sign In</a>
+            </Link>
+          </li>
           <p>Profile block</p>
         </ul>
       </div>

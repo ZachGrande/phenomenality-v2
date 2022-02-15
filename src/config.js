@@ -1,3 +1,5 @@
+import { initializeApp } from "firebase/app";
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const config = {
@@ -11,4 +13,6 @@ const config = {
   measurementId: "G-HP9BTNZ836"
 };
 
-export default config;
+const app = initializeApp(config);
+
+export default app;
