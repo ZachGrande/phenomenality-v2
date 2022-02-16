@@ -1,10 +1,11 @@
 import { React, useState } from 'react';
-// import { render } from '@testing-library/react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getDatabase, ref, set } from 'firebase/database';
 
 import app from '../config';
 
 const auth = getAuth(app);
+const database = getDatabase(app);
 
 function Authentication() {
   const [registerEmail, setRegisterEmail] = useState("");

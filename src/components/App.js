@@ -10,36 +10,19 @@ import Quiz from './Quiz.js';
 import ImposterInfo from './ImposterInfo.js';
 import About from './About.js';
 import Authentication from './Authentication.js'
-// import app from '../config';
-// import { initializeApp } from "firebase/app";
-// import { getDatabase, ref, onValue, get, child } from 'firebase/database';
 
-// const app = initializeApp(config);
-// const database = getDatabase(app);
-
-// function App() {
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
-    // initializeApp(config);
-
-
-    // const app = initializeApp(config);
-    // this.database = getDatabase(app);
 
     this.state = {
       // tasks: props.tasks
       tasks: []
     }
-
-    // this.database = props.database;
   }
 
   componentDidMount() {
     console.log("App Component mounted!");
-
-    // this.getUserData();
 
     fetch('./tasks.json').then((res) => res.json()).then((data) => {
       this.setState((currState) => {
@@ -47,26 +30,6 @@ export default class App extends React.Component {
       });
     });
   }
-
-  // getUserData = () => {
-  //   let ref1 = ref(database, '/');
-  //   // ref1.on('value', snapshot => {
-  //   //   const state = snapshot.val();
-  //   //   console.log(state);
-  //   // })
-
-  //   get(child(ref1, '/')).then((snapshot) => {
-  //     if(snapshot.exists()) {
-  //       console.log("Snapshot val", snapshot.val());
-  //     } else {
-  //       console.log("No data available");
-  //     }
-  //   }).catch((error) => {
-  //     console.error(error);
-  //   })
-
-  //   console.log("DATA RETRIEVED IN APP");
-  // }
 
   render() {
     console.log("Rendering app...");
@@ -80,7 +43,6 @@ export default class App extends React.Component {
         <Navigation />
         <Routes>
           <Route exact={true} path="/" element={<Landing />} />
-          {/* <Route exact={true} path="/bank" element={<Bank tasks={this.state.tasks} database={this.database} />} /> */}
           <Route exact={true} path="/bank" element={<Bank tasks={this.state.tasks} />} />
           <Route exact={true} path="/questions" element={<Questions />} />
           <Route exact={true} path="/quiz" element={<Quiz />} />
@@ -88,29 +50,7 @@ export default class App extends React.Component {
           <Route exact={true} path="/about" element={<About />} />
           <Route exact={true} path="/authentication" element={<Authentication />} />
         </Routes>
-      {/* // <div className="App">
-      //   <header className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <p>
-      //       Edit <code>src/App.js</code> and save to reload. Test!
-      //     </p>
-      //     <a
-      //       className="App-link"
-      //       href="https://reactjs.org"
-      //       target="_blank"
-      //       rel="noopener noreferrer"
-      //     >
-      //       Learn React
-      //     </a>
-      //     <img src={ironman} alt="iron man"></img>
-      //   </header>
-      //   <div style={{backgroundImage: `url(${seattle})`}}>
-      //     <h1>Test</h1>
-      //   </div>
-      // </div> */}
       </div>
     );
   }
 }
-
-// export default App;

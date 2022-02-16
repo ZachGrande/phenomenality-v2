@@ -1,13 +1,10 @@
 import React from 'react';
 import TaskList from './Tasks';
 import { AddTaskForm } from './TaskForms';
+import { getDatabase, ref, onValue, get, child } from 'firebase/database';
 
 import app from '../config';
 
-import { getDatabase, ref, onValue, get, child } from 'firebase/database';
-// import { initializeApp } from "firebase/app";
-
-// const app = initializeApp(config);
 const database = getDatabase(app);
 
 export default class Bank extends React.Component {
@@ -17,22 +14,11 @@ export default class Bank extends React.Component {
     this.state = {
       tasks: props.tasks
     }
-
-    // this.database = props.database;
   }
 
   componentDidMount() {
     console.log("Mounted bank!");
-
-    // fetch('./tasks.json').then((res) => res.json()).then((data) => {
-    //   this.setState((currState) => {
-    //     return {tasks: data}
-    //   });
-    // });
     console.log("Current state: ", this.state);
-    // this.getUserData();
-    // this.testFunction();
-    // this.readDataOnce()
     this.getUserData();
     console.log("Current state 2: ", this.state);
   }
@@ -45,9 +31,9 @@ export default class Bank extends React.Component {
   }
 
   getUserData = () => {
-    let ref1 = ref(database, '/');
+    let dbRef = ref(database, '/');
 
-    get(child(ref1, '/')).then((snapshot) => {
+    get(child(dbRef, '/')).then((snapshot) => {
       if(snapshot.exists()) {
         console.log("Snapshot val", snapshot.val());
         this.setState({tasks: snapshot.val()});
@@ -60,30 +46,6 @@ export default class Bank extends React.Component {
 
     console.log("DATA RETRIEVED IN APP");
   }
-
-  testFunction = () => {
-    const db = getDatabase();
-    const ref1 = ref(db, '/');
-    console.log("Ref1", ref1);
-    onValue(ref1, (snapshot) => {
-      console.log("in the loop");
-      const data = snapshot.val();
-      console.log(data);
-    });
-    console.log("Just ran testFunction()");
-  }
-
-  /*getUserData = () => {
-    let ref = this.database.ref('/');
-    ref.on('value', snapshot => {
-      console.log(snapshot.val());
-      const state = snapshot.val();
-      // this.setState(state);
-    }, (errorObject) => {
-      console.log("The read failed: " + errorObject.name);
-    })
-    console.log("Data retrieved!");
-  }*/
 
   toggleTask = (taskId) => {
     this.setState((currState) => {
@@ -112,7 +74,6 @@ export default class Bank extends React.Component {
     })
   }
 
-
   render() {
     console.log("Rendering Bank...");
 
@@ -130,6 +91,3 @@ export default class Bank extends React.Component {
     )
   }
 }
-
-  
-// export default Bank;
