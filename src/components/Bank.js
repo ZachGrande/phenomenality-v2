@@ -23,29 +23,57 @@ export default class Bank extends React.Component {
     // const [user, setUser] = useState({})
 
     this.state = {
-      tasks: props.tasks
+      tasks: props.tasks,
+      user: {}
     }
+
+    // onAuthStateChanged(auth, (currentUser) => {
+    //   // console.log("inside function, user", currentUser);
+    //   this.state.user = currentUser;
+    //   // this.setState({user: currentUser});
+    // });
   }
+
+  getUserInformation = async () => {
+    onAuthStateChanged(auth, (currentUser) => {
+      // console.log("inside function, user", currentUser);
+      this.state.user = currentUser;
+      // this.setState({user: currentUser});
+    });
+  };
 
   componentDidMount() {
     console.log("Mounted bank!");
-    console.log("Current state: ", this.state);
-    this.getUserData();
-    console.log("Current state 2: ", this.state);
+    this.getUserInformation();
+    console.log("Current user: ", this.state);
+    // console.log("Equality check", this.state.user.uid !== undefined)
+
+    // if (this.state.user.uid !== undefined) {
+      this.getUserData(this.state.user.uid);
+    // }
+
+    // console.log("Current state 2: ", this.state);
+    // onAuthStateChanged(auth, (currentUser) => {
+    //   // console.log("inside function, user", currentUser);
+    //   this.state.user = currentUser;
+    // });
     // console.log("Auth state:", getInstance().getCurrentUser());
-    // console.log("Bank finished loading, here's user", user);
+    // console.log("Bank finished loading, here's user", this.state.user);
   }
 
   componentDidUpdate(prevProps) {
     /*if (this.props.userID !== prevProps.userID) {
       this.fetchData(this.props.userID);
     }*/
-    console.log("Current state update: ", this.state);
+    // console.log("Current state update: ", this.state);
   }
 
-  getUserData = () => {
+  getUserData = (userID) => {
     // let dbRef = ref(database, '/');
+    // console.log("About to access database", this.state);
     let dbRef = ref(database, 'users/o1gF4ZvARde0hABL7hVDUePharg2/data/');
+    console.log("User ID to reach database with:", userID)
+    // let dbRef = ref(database, 'users/' + userID + '/data/');
 
     get(child(dbRef, '/')).then((snapshot) => {
       if(snapshot.exists()) {
@@ -57,8 +85,6 @@ export default class Bank extends React.Component {
     }).catch((error) => {
       console.error(error);
     })
-
-    console.log("DATA RETRIEVED IN APP");
   }
 
   toggleTask = (taskId) => {
