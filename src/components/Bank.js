@@ -1,11 +1,20 @@
 import React from 'react';
+import { useState } from 'react';
 import TaskList from './Tasks';
 import { AddTaskForm } from './TaskForms';
 import { getDatabase, ref, onValue, get, child } from 'firebase/database';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import app from '../config';
 
 const database = getDatabase(app);
+const auth = getAuth(app);
+
+const [user, setUser] = useState({})
+
+onAuthStateChanged(auth, (currentUser) => {
+  setUser(currentUser);
+})
 
 export default class Bank extends React.Component {
   constructor(props) {
@@ -21,6 +30,8 @@ export default class Bank extends React.Component {
     console.log("Current state: ", this.state);
     this.getUserData();
     console.log("Current state 2: ", this.state);
+    // console.log("Auth state:", getInstance().getCurrentUser());
+    console.log("Bank finished loading, here's user", user);
   }
 
   componentDidUpdate(prevProps) {
@@ -31,7 +42,8 @@ export default class Bank extends React.Component {
   }
 
   getUserData = () => {
-    let dbRef = ref(database, '/');
+    // let dbRef = ref(database, '/');
+    let dbRef = ref(database, 'users/o1gF4ZvARde0hABL7hVDUePharg2/data/');
 
     get(child(dbRef, '/')).then((snapshot) => {
       if(snapshot.exists()) {
