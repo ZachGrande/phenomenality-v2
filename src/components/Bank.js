@@ -10,15 +10,17 @@ import app from '../config';
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-const [user, setUser] = useState({})
+// onAuthStateChanged(auth, (currentUser) => {
+//   setUser(currentUser);
+// })
 
-onAuthStateChanged(auth, (currentUser) => {
-  setUser(currentUser);
-})
+// function Bank() {
 
 export default class Bank extends React.Component {
   constructor(props) {
     super(props);
+
+    // const [user, setUser] = useState({})
 
     this.state = {
       tasks: props.tasks
@@ -31,7 +33,7 @@ export default class Bank extends React.Component {
     this.getUserData();
     console.log("Current state 2: ", this.state);
     // console.log("Auth state:", getInstance().getCurrentUser());
-    console.log("Bank finished loading, here's user", user);
+    // console.log("Bank finished loading, here's user", user);
   }
 
   componentDidUpdate(prevProps) {
