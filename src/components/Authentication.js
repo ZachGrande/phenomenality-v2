@@ -26,8 +26,6 @@ function Authentication() {
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
-    const thisRef = ref(database, 'users/' + user.uid);
-    console.log(thisRef);
   })
 
   const register = async () => {
