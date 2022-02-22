@@ -24,21 +24,23 @@ function BankNew(props) {
   
   console.log("Current state:", items);
 
+  // console.log("Loading", loading);
+
   useEffect(() => {
     if (user !== null) {
       setIsLoading(false);
-    } else {
-      setIsLoading(true);
+    // } else {
+      // setIsLoading(true);
     }
   });
 
   useEffect(() => {
-    if (isLoading === false) {
+    if (isLoading !== false) {
       // console.log("User", user.uid);
       const dbRef = ref(database, 'users/' + user.uid + '/data');
       onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
-        console.log(data);
+        // console.log(data);
         if (data === undefined) {
           setItems([]);
           return null;
@@ -48,63 +50,30 @@ function BankNew(props) {
         const newItems = keys.map((key) => {
           const currentItem  = data[key];
           currentItem.key = key;
-          console.log("Current item", key, currentItem);
+          // console.log("Current item", key, currentItem);
           return currentItem;
         })
         console.log("New items!", newItems);
         setItems(newItems);
-        // setItems(data);
-        // updateItems(data);
-        /*console.log(data);
-        if (data !== items) {
-          console.log("About to update state");
-          console.log("Items", items);
-          // setItems(data);
-        }*/
       });
     } else {
       console.log("Did not retrieve user location from database");
     }
   }, []);
 
-  const updateItems = (data) => {
-    setItems(data);
+  if (isLoading) {
+    return (
+      <p>Loading...</p>
+    )
   }
 
-  /*const auth = getAuth(app);
-  const database = getDatabase(app);
-
-  const [user, setUser] = useState();
-  const [items, setItems] = useState();
-
-  useEffect(() => {
-    // const authUnregisterFunction = firebase.auth().onAuthStateChanged((firebaseUser) => {
-    const authUnregisterFunction = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-    })
-    return function cleanup() {
-      authUnregisterFunction();
-    }
-  })*/
-
-  /*useEffect(() => {
-    let isMounted = true;
-    let cancel = false;
-    if (user !== undefined) {
-      console.log("User id", user.id);
-      const dbRef = ref(database, 'users/' + user.id + '/data');
-      // onValue(dbRef, (snapshot) => {
-      dbRef.onValue((snapshot) => {
-        if (cancel) return;
-        const data = snapshot.val();
-        // if (isMounted) { setItems(data)};
-        setItems(data);
-      });
-      return () => { cancel = true };
-    }
-  }, []);*/
-
-  // console.log(items);
+  if (items.length > 0) {
+    return (
+      <div>
+        <p>{items[1].description}</p>
+      </div>
+    )
+  }
 
   return (
     <div>
