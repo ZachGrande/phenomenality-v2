@@ -1,10 +1,19 @@
 import { React, useState } from 'react';
-// import { render } from '@testing-library/react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getDatabase, ref, set } from 'firebase/database';
 
 import app from '../config';
 
 const auth = getAuth(app);
+const database = getDatabase(app);
+
+function createEntryForUserInDatabase(user) {
+  console.log(user);
+  set(ref(database, 'users/' + user.uid), {
+    username: "test",
+    email: user.email
+  });
+}
 
 function Authentication() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -25,7 +34,9 @@ function Authentication() {
         auth,
         registerEmail,
         registerPassword);
-      console.log(user);
+      // console.log(user);
+      // createEntryForUserInDatabase(user);
+      
     } catch (error) {
       console.log("Authentication error", error.message);
     }

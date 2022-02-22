@@ -1,53 +1,81 @@
 import React from 'react';
+import { useState } from 'react';
 import TaskList from './Tasks';
 import { AddTaskForm } from './TaskForms';
+import { getDatabase, ref, onValue, get, child } from 'firebase/database';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 import app from '../config';
 
-import { getDatabase, ref, onValue, get, child } from 'firebase/database';
-// import { initializeApp } from "firebase/app";
-
-// const app = initializeApp(config);
 const database = getDatabase(app);
+const auth = getAuth(app);
+
+// onAuthStateChanged(auth, (currentUser) => {
+//   setUser(currentUser);
+// })
+
+// function Bank() {
 
 export default class Bank extends React.Component {
   constructor(props) {
     super(props);
 
+    // const [user, setUser] = useState({})
+
     this.state = {
-      tasks: props.tasks
+      tasks: props.tasks,
+      user: {}
     }
 
-    // this.database = props.database;
+    // onAuthStateChanged(auth, (currentUser) => {
+    //   // console.log("inside function, user", currentUser);
+    //   this.state.user = currentUser;
+    //   // this.setState({user: currentUser});
+    // });
   }
+
+  getUserInformation = async () => {
+    onAuthStateChanged(auth, (currentUser) => {
+      // console.log("inside function, user", currentUser);
+      this.state.user = currentUser;
+      // this.setState({user: currentUser});
+    });
+  };
 
   componentDidMount() {
     console.log("Mounted bank!");
+    this.getUserInformation();
+    console.log("Current user: ", this.state);
+    // console.log("Equality check", this.state.user.uid !== undefined)
 
-    // fetch('./tasks.json').then((res) => res.json()).then((data) => {
-    //   this.setState((currState) => {
-    //     return {tasks: data}
-    //   });
+    // if (this.state.user.uid !== undefined) {
+      this.getUserData(this.state.user.uid);
+    // }
+
+    // console.log("Current state 2: ", this.state);
+    // onAuthStateChanged(auth, (currentUser) => {
+    //   // console.log("inside function, user", currentUser);
+    //   this.state.user = currentUser;
     // });
-    console.log("Current state: ", this.state);
-    // this.getUserData();
-    // this.testFunction();
-    // this.readDataOnce()
-    this.getUserData();
-    console.log("Current state 2: ", this.state);
+    // console.log("Auth state:", getInstance().getCurrentUser());
+    // console.log("Bank finished loading, here's user", this.state.user);
   }
 
   componentDidUpdate(prevProps) {
     /*if (this.props.userID !== prevProps.userID) {
       this.fetchData(this.props.userID);
     }*/
-    console.log("Current state update: ", this.state);
+    // console.log("Current state update: ", this.state);
   }
 
-  getUserData = () => {
-    let ref1 = ref(database, '/');
+  getUserData = (userID) => {
+    // let dbRef = ref(database, '/');
+    // console.log("About to access database", this.state);
+    let dbRef = ref(database, 'users/o1gF4ZvARde0hABL7hVDUePharg2/data/');
+    console.log("User ID to reach database with:", userID)
+    // let dbRef = ref(database, 'users/' + userID + '/data/');
 
-    get(child(ref1, '/')).then((snapshot) => {
+    get(child(dbRef, '/')).then((snapshot) => {
       if(snapshot.exists()) {
         console.log("Snapshot val", snapshot.val());
         this.setState({tasks: snapshot.val()});
@@ -57,33 +85,7 @@ export default class Bank extends React.Component {
     }).catch((error) => {
       console.error(error);
     })
-
-    console.log("DATA RETRIEVED IN APP");
   }
-
-  testFunction = () => {
-    const db = getDatabase();
-    const ref1 = ref(db, '/');
-    console.log("Ref1", ref1);
-    onValue(ref1, (snapshot) => {
-      console.log("in the loop");
-      const data = snapshot.val();
-      console.log(data);
-    });
-    console.log("Just ran testFunction()");
-  }
-
-  /*getUserData = () => {
-    let ref = this.database.ref('/');
-    ref.on('value', snapshot => {
-      console.log(snapshot.val());
-      const state = snapshot.val();
-      // this.setState(state);
-    }, (errorObject) => {
-      console.log("The read failed: " + errorObject.name);
-    })
-    console.log("Data retrieved!");
-  }*/
 
   toggleTask = (taskId) => {
     this.setState((currState) => {
@@ -112,7 +114,6 @@ export default class Bank extends React.Component {
     })
   }
 
-
   render() {
     console.log("Rendering Bank...");
 
@@ -130,6 +131,3 @@ export default class Bank extends React.Component {
     )
   }
 }
-
-  
-// export default Bank;
