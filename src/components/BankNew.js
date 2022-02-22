@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 // import { auth } from 'firebase';
 import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getDatabase, ref, onValue, get, child } from 'firebase/database';
+import { getDatabase, ref, onValue, get, child, update } from 'firebase/database';
 
 // import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -23,8 +23,10 @@ function BankNew(props) {
   const [user, loading, error] = useAuthState(auth);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [accomplishment, setAccomplishment] = useState();
   
-  console.log("Current state:", items);
+  // console.log("Current state:", items);
 
   // console.log("Loading", loading);
 
@@ -69,11 +71,46 @@ function BankNew(props) {
     )
   }
 
+  const addNewAccomplishment = async () => {
+    let thisAccomplishment = {
+      complete: true,
+      description: accomplishment,
+      id: items.length + 1,
+      key: items.length + ""
+    }
+    setItems(items.push(thisAccomplishment));
+    update(ref(database, 'users/' + user.uid), {
+        data: items
+    });
+  }
+
+  const deleteCard = id => {
+    console.log("Button pushed for card", id);
+    // let newItems = items.filter((item) => {return item;})
+    let newItems = items.filter((currentItem) => {
+      console.log(currentItem.id, id, currentItem.id !== id)
+      return currentItem.id !== id;
+    })
+    setItems(newItems);
+    update(ref(database, 'users/' + user.uid), {
+      data: newItems
+    });
+  }
+
   if (items.length > 0) {
     return (
       <div>
         {/* <p>{items[1].description}</p> */}
-        <CardList items={items} />
+        <CardList items={items} deleteCard={deleteCard} />
+        <h4>Add new accomplishment</h4>
+        <p>**This only works if you are already logged in.**</p>
+        <input
+          placeholder="Today I was able to..."
+          onChange={(event) => {
+            setAccomplishment(event.target.value);
+          }}
+        />
+        <button onClick={addNewAccomplishment}>Add accomplishment</button>
       </div>
     )
   } else if (loading) { // does not work at the moment
