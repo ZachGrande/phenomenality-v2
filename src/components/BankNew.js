@@ -12,6 +12,8 @@ import { getDatabase, ref, onValue, get, child } from 'firebase/database';
 import 'firebase/auth';
 import 'firebase/database';
 
+import CardList from './Card.js';
+
 function BankNew(props) {
   const text = "New bank";
 
@@ -70,16 +72,25 @@ function BankNew(props) {
   if (items.length > 0) {
     return (
       <div>
-        <p>{items[1].description}</p>
+        {/* <p>{items[1].description}</p> */}
+        <CardList items={items} />
       </div>
+    )
+  } else if (loading) { // does not work at the moment
+    return (
+      <p>Loading your card list.</p>
+    )
+    } else {
+    return (
+    <p>You have not added to your credibility bank!</p>
     )
   }
 
-  return (
+  /*return (
     <div>
       <p>{text}</p>
     </div>
-  );
+  );*/
 }
 
 export default BankNew;
