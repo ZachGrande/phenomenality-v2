@@ -27,14 +27,14 @@ ol {
   padding-left: 0px;
 }
 
-.card-list {
+/* .card-list { */
   /* display: flex; GOOD */
   /* width: 600px; GOOD */
   /* justify-content: center; */
   /* justify-content: space-between; */
   /* flex-direction: column; GOOD */
   /* align-content: center; */
-}
+/* } */
 
 .card-list .success {
   background-color: #48BF91;

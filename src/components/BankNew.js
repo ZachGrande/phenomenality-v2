@@ -14,6 +14,7 @@ import 'firebase/auth';
 import 'firebase/database';
 
 import CardList from './Card.js';
+import { map } from '@firebase/util';
 
 function BankNew(props) {
   const text = "New bank";
@@ -47,19 +48,19 @@ function BankNew(props) {
       onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
         // console.log(data);
-        if (data === undefined) {
+        if (data === null) {
           setItems([]);
           return null;
         }
         const keys = Object.keys(data);
-        console.log("Keys", keys);
+        // console.log("Keys", keys);
         const newItems = keys.map((key) => {
           const currentItem  = data[key];
           currentItem.key = key;
           // console.log("Current item", key, currentItem);
           return currentItem;
         })
-        console.log("New items!", newItems);
+        // console.log("New items!", newItems);
         setItems(newItems);
       });
     } else {
@@ -78,31 +79,46 @@ function BankNew(props) {
       complete: true,
       description: accomplishment,
       id: items.length + 1,
-      key: items.length + ""
+      key: items.length + "",
+      status: "question-unanswered"
     }
-    setItems(items.push(thisAccomplishment));
+    let newItems = items.push(thisAccomplishment);
+    newItems = map((currentItem, index = 0, newItems) => {
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
+      return currentItem;
+    })
+    setItems(newItems);
     update(ref(database, 'users/' + user.uid), {
         data: items
     });
   }
 
   const deleteCard = id => {
-    console.log("Button pushed for card", id);
-    // let newItems = items.filter((item) => {return item;})
+    // console.log("Button pushed for card", id);
     let newItems = items.filter((currentItem) => {
-      console.log(currentItem.id, id, currentItem.id !== id)
+      // console.log(currentItem.id, id, currentItem.id !== id)
       return currentItem.id !== id;
     })
+    console.log("Initial new items", newItems);
+    newItems = newItems.map((currentItem, index = 0) => {
+      console.log(currentItem);
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
+      return currentItem;
+    })
     setItems(newItems);
+    console.log("New items", newItems);
     update(ref(database, 'users/' + user.uid), {
       data: newItems
     });
   }
 
-  if (items.length > 0) {
-    return (
+  function entryForm() {
+   return (
       <div>
-        {/* <p>{items[1].description}</p> */}
         <h4>What's something you're proud of?</h4>
         <p><em>This only works if you are already logged in.</em></p>
         <input
@@ -112,6 +128,14 @@ function BankNew(props) {
           }}
         />
         <button onClick={addNewAccomplishment}>Add accomplishment</button>
+      </div>
+    )
+  }
+
+  if (items.length > 0) {
+    return (
+      <div>
+        {entryForm()}
         <h2 className="bank-title">Your Bank</h2>
         <CardList items={items} deleteCard={deleteCard} />
       </div>
@@ -122,7 +146,11 @@ function BankNew(props) {
     )
     } else {
     return (
-    <p>You have not added to your credibility bank!</p>
+      <div>
+        <p>You have not added to your credibility bank!</p>
+        {entryForm()}
+      </div>
+
     )
   }
 
