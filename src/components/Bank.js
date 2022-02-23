@@ -119,6 +119,7 @@ function BankNew(props) {
   function entryForm() {
    return (
       <div>
+        <p>Bank Page</p>
         <h4>What's something you're proud of?</h4>
         <p><em>This only works if you are already logged in.</em></p>
         <input
