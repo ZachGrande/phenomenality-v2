@@ -5,11 +5,11 @@ function Card(props) {
   let thisItem = props.item;
 
   const getClassName = () => {
-    let className = "";
+    let className = "card-item ";
     if (thisItem.status == "success") {
-      className = "green";
+      className += "success";
     } else if (thisItem.status == "question-unanswered") {
-      className = "yellow";
+      className += "question-unanswered";
     }
     return className;
   }
@@ -20,7 +20,7 @@ function Card(props) {
     }
 
     return (
-      <div className="card-item">
+      <div className={getClassName()}>
         <p>{thisItem.id}</p>
         <p>{thisItem.description}</p>
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../css/Bank.css';
 // import firebase from 'firebase/app';
 // import 'firebase/auth';
 // import 'firebase/database';
@@ -102,9 +103,8 @@ function BankNew(props) {
     return (
       <div>
         {/* <p>{items[1].description}</p> */}
-        <CardList items={items} deleteCard={deleteCard} />
-        <h4>Add new accomplishment</h4>
-        <p>**This only works if you are already logged in.**</p>
+        <h4>What's something you're proud of?</h4>
+        <p><em>This only works if you are already logged in.</em></p>
         <input
           placeholder="Today I was able to..."
           onChange={(event) => {
@@ -112,6 +112,8 @@ function BankNew(props) {
           }}
         />
         <button onClick={addNewAccomplishment}>Add accomplishment</button>
+        <h2 className="bank-title">Your Bank</h2>
+        <CardList items={items} deleteCard={deleteCard} />
       </div>
     )
   } else if (loading) { // does not work at the moment
