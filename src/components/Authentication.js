@@ -143,8 +143,8 @@ function Authentication() {
         />
         <button onClick={updateDisplayName}>Update Profile</button>
         <h4>User Logged In:</h4>
-        <p>{user.displayName !== null ? displayName : "You have not set a name"}</p>
-        <p>{user.displayName}</p>
+        {/* <p>{user.displayName !== null ? displayName : "You have not set a name"}</p> */}
+        <p>{user?.displayName}</p>
         {user?.email}
         <br></br>
         <button onClick={logout}>Sign Out</button>

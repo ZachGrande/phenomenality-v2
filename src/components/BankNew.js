@@ -14,6 +14,7 @@ import 'firebase/auth';
 import 'firebase/database';
 
 import CardList from './Card.js';
+import { map } from '@firebase/util';
 
 function BankNew(props) {
   const text = "New bank";
@@ -80,7 +81,14 @@ function BankNew(props) {
       id: items.length + 1,
       key: items.length + ""
     }
-    setItems(items.push(thisAccomplishment));
+    let newItems = items.push(thisAccomplishment);
+    newItems = map((currentItem, index = 0, newItems) => {
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
+      return currentItem;
+    })
+    setItems(newItems);
     update(ref(database, 'users/' + user.uid), {
         data: items
     });
