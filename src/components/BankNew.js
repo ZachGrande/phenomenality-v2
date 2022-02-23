@@ -101,7 +101,16 @@ function BankNew(props) {
       // console.log(currentItem.id, id, currentItem.id !== id)
       return currentItem.id !== id;
     })
+    console.log("Initial new items", newItems);
+    /*newItems = map((currentItem, index = 0, newItems) => {
+      console.log(currentItem);
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
+      return currentItem;
+    })*/
     setItems(newItems);
+    console.log("New items", newItems);
     update(ref(database, 'users/' + user.uid), {
       data: newItems
     });
