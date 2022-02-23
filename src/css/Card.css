@@ -1,0 +1,12 @@
+.card-list p {
+  font-family: Arial;
+}
+
+.card-list .card-item {
+  border-style: solid;
+}
+
+.card-list {
+  display: flex;
+  justify-content: space-between;
+}

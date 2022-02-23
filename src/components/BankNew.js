@@ -25,6 +25,7 @@ function BankNew(props) {
   const [isLoading, setIsLoading] = useState(true);
 
   const [accomplishment, setAccomplishment] = useState();
+  const [status, setStatus] = useState();
   
   // console.log("Current state:", items);
 

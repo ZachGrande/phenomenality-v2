@@ -1,7 +1,18 @@
 import React from 'react';
+import '../css/Card.css';
 
 function Card(props) {
   let thisItem = props.item;
+
+  const getClassName = () => {
+    let className = "";
+    if (thisItem.status == "success") {
+      className = "green";
+    } else if (thisItem.status == "question-unanswered") {
+      className = "yellow";
+    }
+    return className;
+  }
 
   function renderItem() {
     const handleClick = (event) => {
@@ -9,7 +20,7 @@ function Card(props) {
     }
 
     return (
-      <div>
+      <div className="card-item">
         <p>{thisItem.id}</p>
         <p>{thisItem.description}</p>
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
@@ -32,7 +43,7 @@ function CardList(props) {
   })
 
   return (
-    <ol>
+    <ol className="card-list">
       {cardComponents}
     </ol>
   )
