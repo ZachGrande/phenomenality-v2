@@ -27,7 +27,7 @@ function BankNew(props) {
   const [isLoading, setIsLoading] = useState(true);
 
   const [accomplishment, setAccomplishment] = useState();
-  const [status, setStatus] = useState();
+  const [status, setStatus] = useState("success");
   
   // console.log("Current state:", items);
 
@@ -80,7 +80,7 @@ function BankNew(props) {
       description: accomplishment,
       id: items.length + 1,
       key: items.length + "",
-      status: "question-unanswered"
+      status: status
     }
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
@@ -127,6 +127,22 @@ function BankNew(props) {
             setAccomplishment(event.target.value);
           }}
         />
+        <br></br>
+        <input
+          type="radio"
+          value="success"
+          name="status"
+          defaultChecked={status === "success"}
+          onChange={e => setStatus(e.currentTarget.value)}
+        /> Success
+        <br></br>
+        <input
+          type="radio"
+          value="question-unanswered"
+          name="status"
+          onChange={e => setStatus(e.currentTarget.value)}
+        /> Question (Unanswered)
+        <br></br>
         <button onClick={addNewAccomplishment}>Add accomplishment</button>
       </div>
     )
