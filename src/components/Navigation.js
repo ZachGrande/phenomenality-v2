@@ -49,12 +49,11 @@ function Navigation() {
               Sign In
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/bank-new">
-              {/* <a className="">New bank</a> */}
               New bank
             </Link>
-          </li>
+          </li> */}
           <p>Profile block</p>
         </ul>
       </div>
