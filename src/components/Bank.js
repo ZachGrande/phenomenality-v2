@@ -28,6 +28,7 @@ function BankNew(props) {
 
   const [accomplishment, setAccomplishment] = useState();
   const [status, setStatus] = useState("success");
+  const [tags, setTags] = useState([]);
   
   // console.log("Current state:", items);
 
@@ -80,7 +81,8 @@ function BankNew(props) {
       description: accomplishment,
       id: items.length + 1,
       key: items.length + "",
-      status: status
+      status: status,
+      tags: tags
     }
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
@@ -116,6 +118,19 @@ function BankNew(props) {
     });
   }
 
+  const editTag = value => {
+    let newTags = tags;
+    if (!tags.includes(value)) {
+      newTags.push(value)
+    } else {
+      let index = newTags.indexOf(value);
+      if (index > -1) {
+        newTags.splice(index, 1);
+      }
+    }
+    setTags(newTags);
+  }
+
   function entryForm() {
    return (
       <div>
@@ -143,6 +158,22 @@ function BankNew(props) {
           name="status"
           onChange={e => setStatus(e.currentTarget.value)}
         /> Question (Unanswered)
+        <br></br>
+        <p><u>Tags</u></p>
+        <input
+          type="checkbox"
+          value="technical"
+          name="tag"
+          onChange={e => editTag(e.currentTarget.value)}
+        /> Technical
+        <br></br>
+        <input
+          type="checkbox"
+          value="soft skills"
+          name="tag"
+          onChange={e => editTag(e.currentTarget.value)}
+        /> Soft Skills
+        <br></br>
         <br></br>
         <button onClick={addNewAccomplishment}>Add accomplishment</button>
       </div>
