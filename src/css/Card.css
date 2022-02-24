@@ -1,22 +1,18 @@
+.card-list {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .card-list p {
   font-family: Arial;
 }
 
 .card-list .card-item {
-  /* border-style: solid; */
-  /* padding: 0.5em; */
   text-align: center;
   border-radius: 25px;
   padding: 20px;
   margin: 10px;
   box-shadow: 5px 5px 10px black;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* vertical-align: middle; GOOD */
-  /* width: auto; */
-  /* height: 200px; */
-  /* width: 600px; */
   margin: auto;
   width: 60%;
   margin-top: 20px;
@@ -26,15 +22,6 @@
 ol {
   padding-left: 0px;
 }
-
-/* .card-list { */
-  /* display: flex; GOOD */
-  /* width: 600px; GOOD */
-  /* justify-content: center; */
-  /* justify-content: space-between; */
-  /* flex-direction: column; GOOD */
-  /* align-content: center; */
-/* } */
 
 .card-list .success {
   background-color: #48BF91;
