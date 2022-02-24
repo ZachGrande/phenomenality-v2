@@ -14,6 +14,10 @@ function Card(props) {
     return className;
   }
 
+  const tagItems = thisItem.tags.map((tag) =>
+    <li>{tag}</li>
+  );
+
   function renderItem() {
     const handleClick = (event) => {
       props.deleteCard(thisItem.id)
@@ -23,6 +27,7 @@ function Card(props) {
       <div className={getClassName()}>
         <p>{thisItem.id}</p>
         <p>{thisItem.description}</p>
+        <ul>{tagItems}</ul>
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
       </div>
     )

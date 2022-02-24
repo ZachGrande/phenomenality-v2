@@ -82,7 +82,6 @@ function BankNew(props) {
       id: items.length + 1,
       key: items.length + "",
       status: status,
-      // tags: ["technical", "soft skills"]
       tags: tags
     }
     let newItems = items.push(thisAccomplishment);
