@@ -6,16 +6,16 @@ function Card(props) {
 
   const getClassName = () => {
     let className = "card-item ";
-    if (thisItem.status == "success") {
+    if (thisItem.status === "success") {
       className += "success";
-    } else if (thisItem.status == "question-unanswered") {
+    } else if (thisItem.status === "question-unanswered") {
       className += "question-unanswered";
     }
     return className;
   }
 
   const tagItems = thisItem.tags.map((tag) =>
-    <li>{tag}</li>
+    <li key={tag}>{tag}</li>
   );
 
   function renderItem() {
@@ -42,10 +42,17 @@ function Card(props) {
 
 function CardList(props) {
   let items = props.items;
+  let filter = props.filter;
   let cardComponents = items.map((currentItem) => {
     let cardElement = <Card key={currentItem.id} item={currentItem} deleteCard={props.deleteCard} />
-    return cardElement;
+    if (currentItem.tags.includes(filter) || filter === "none") {
+      return cardElement;
+    }
   })
+
+  /*cardComponents = cardComponents.filter((currentCard) => {
+
+  })*/
 
   return (
     <ol className="card-list">
