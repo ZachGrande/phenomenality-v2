@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../css/Bank.css';
 import { useAuthState } from "react-firebase-hooks/auth";
 import app from '../config';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getDatabase, ref, onValue, get, child, update } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, onValue, update } from 'firebase/database';
 
 import 'firebase/auth';
 import 'firebase/database';
@@ -12,12 +12,12 @@ import CardList from './Card.js';
 import { map } from '@firebase/util';
 
 function Bank(props) {
-  const text = "New bank";
 
   const auth = getAuth(app);
   const database = getDatabase(app);
 
-  const [user, loading, error] = useAuthState(auth);
+  // const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -31,7 +31,7 @@ function Bank(props) {
 
   // console.log("Loading", loading);
 
-  console.log("user", user);
+  // console.log("user", user);
 
   useEffect(() => {
     if (user !== null) {
@@ -64,7 +64,7 @@ function Bank(props) {
     // } else {
       // console.log("Did not retrieve user location from database");
     // }
-  }, [isLoading]);
+  }, [isLoading, database, user]);
 
   if (isLoading) {
     return (
@@ -103,16 +103,16 @@ function Bank(props) {
       // console.log(currentItem.id, id, currentItem.id !== id)
       return currentItem.id !== id;
     })
-    console.log("Initial new items", newItems);
+    // console.log("Initial new items", newItems);
     newItems = newItems.map((currentItem, index = 0) => {
-      console.log(currentItem);
+      // console.log(currentItem);
       currentItem.id = index + 1;
       currentItem.key = index + "";
       index = index + 1;
       return currentItem;
     })
     setItems(newItems);
-    console.log("New items", newItems);
+    // console.log("New items", newItems);
     update(ref(database, 'users/' + user.uid), {
       data: newItems
     });

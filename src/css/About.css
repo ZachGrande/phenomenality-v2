@@ -1,15 +1,11 @@
-h1 {
+.about {
   text-align: center;
 }
 
 .member-group {
   display: flex;
   justify-content: space-between;
-  padding: 1em;
-}
-
-.member-group p {
-  text-align: center;
+  padding: 2em;
 }
 
 .member-role {

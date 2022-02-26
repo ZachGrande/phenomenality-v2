@@ -9,7 +9,7 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 
 function createEntryForUserInDatabase(user) {
-  console.log("Setting db for user", user);
+  // console.log("Setting db for user", user);
   set(ref(database, 'users/' + user.uid), {
     email: user.email,
   });
@@ -63,11 +63,12 @@ function Authentication() {
 
   const login = async () => {
     try {
-      const user = await signInWithEmailAndPassword(
+      // const user = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword);
-      console.log(user);
+      // console.log(user);
     } catch (error) {
       console.log("Authentication error", error.message);
     }
@@ -82,8 +83,8 @@ function Authentication() {
     updateProfile(auth.currentUser, {
       displayName: displayName
     }).then(() => {
-      console.log("Profile updated!")
-      console.log("User", user);
+      // console.log("Profile updated!")
+      // console.log("User", user);
       update(ref(database, 'users/' + user.uid), {
         displayName: user.displayName,
       });

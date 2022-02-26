@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/App.css';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Navigation from './Navigation.js';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import Landing from './Landing.js';
@@ -12,18 +12,16 @@ import About from './About.js';
 import Authentication from './Authentication.js';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
-      <div className="">
+      <div className="page-container">
+      <HelmetProvider>
         <Helmet>
           <meta charSet="utf-8" />
           <title>Phenomenality</title>
         </Helmet>
-        <Router>
+        <Router className="content-wrap">
           <Navigation />
           <Routes>
             <Route exact={true} path="/" element={<Landing />} />
@@ -35,6 +33,10 @@ export default class App extends React.Component {
             <Route exact={true} path="/authentication" element={<Authentication />} />
           </Routes>
         </Router>
+        <footer>
+          {/* <p>&copy; 2022 University of Washington - Team Orka</p> */}
+        </footer>
+        </HelmetProvider>
       </div>
     );
   }
