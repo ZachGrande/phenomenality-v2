@@ -16,7 +16,7 @@ import 'firebase/database';
 import CardList from './Card.js';
 import { map } from '@firebase/util';
 
-function BankNew(props) {
+function Bank(props) {
   const text = "New bank";
 
   const auth = getAuth(app);
@@ -232,4 +232,4 @@ function BankNew(props) {
   );*/
 }
 
-export default BankNew;
+export default Bank;
