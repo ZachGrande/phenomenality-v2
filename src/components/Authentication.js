@@ -11,12 +11,24 @@ const database = getDatabase(app);
 function createEntryForUserInDatabase(user) {
   console.log("Setting db for user", user);
   set(ref(database, 'users/' + user.uid), {
-    // displayName: user.displayName,
-    // username: "test",
     email: user.email,
-    // data: []
   });
 }
+
+/*function displayNameBlock(user) {
+  let hasSetDisplayName = "hello"
+  return (
+    <div>
+      <input
+        placeholder="John Appleseed"
+        onChange={(event) => {
+        setDisplayName(event.target.value);
+        }}
+      />
+      <button onClick={updateDisplayName}>Update Profile</button>
+    </div>
+  )
+}*/
 
 function Authentication() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -36,29 +48,6 @@ function Authentication() {
   // button w field for display name
   // when null, show "you haven't told us what to call you!"
   // update profile as an onClick function, from Firebase docs
-
-  /*const register = async () => {
-    try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword)
-      .then(function(user) {
-        // return result.user.updateProfile({
-          console.log("Result", user);
-          return updateProfile(user, {
-          displayName: "Function working!"
-        })
-      }).catch(function(error) {
-        console.log(error);
-      })
-      // console.log(user);
-      createEntryForUserInDatabase(user.user);
-      
-    } catch (error) {
-      console.log("Authentication error", error.message);
-    }
-  };*/
 
   const register = async () => {
     try {
@@ -103,6 +92,23 @@ function Authentication() {
     })
   }
 
+  /*const DisplayNameBlock = () => {
+    let hasUserSetDisplayName  = user?.displayName !== null;
+    console.log(hasUserSetDisplayName);
+    console.log(user?.displayName);
+    return (
+      <div>
+        <input
+          placeholder="John Appleseed"
+          onChange={(event) => {
+          setDisplayName(event.target.value);
+          }}
+        />
+        <button onClick={updateDisplayName}>Update Profile</button>
+      </div>
+    )
+  }*/
+
   return(
     <div>
         <p>Authentication Page</p>
@@ -135,6 +141,8 @@ function Authentication() {
         <button onClick={login}>Log In</button>
         <h4>Update Information</h4>
         <p>**This only works if you are already logged in.**</p>
+        {/* {displayNameBlock} */}
+        {/* <DisplayNameBlock /> */}
         <input
           placeholder="John Appleseed"
           onChange={(event) => {

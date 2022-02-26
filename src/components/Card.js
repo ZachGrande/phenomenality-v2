@@ -14,7 +14,7 @@ function Card(props) {
     return className;
   }
 
-  const tagItems = thisItem.tags.map((tag) =>
+  const tagItems = thisItem.tags?.map((tag) =>
     <li key={tag}>{tag}</li>
   );
 
@@ -45,14 +45,11 @@ function CardList(props) {
   let filter = props.filter;
   let cardComponents = items.map((currentItem) => {
     let cardElement = <Card key={currentItem.id} item={currentItem} deleteCard={props.deleteCard} />
-    if (currentItem.tags.includes(filter) || filter === "none") {
+    if (filter === "none" || currentItem.tags.includes(filter)) {
       return cardElement;
     }
+    return null;
   })
-
-  /*cardComponents = cardComponents.filter((currentCard) => {
-
-  })*/
 
   return (
     <ol className="card-list">

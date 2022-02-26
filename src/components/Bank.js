@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../css/Bank.css';
-// import firebase from 'firebase/app';
-// import 'firebase/auth';
-// import 'firebase/database';
 import { useAuthState } from "react-firebase-hooks/auth";
-// import { auth } from 'firebase';
 import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, get, child, update } from 'firebase/database';
 
-// import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
@@ -94,6 +89,7 @@ function Bank(props) {
       return currentItem;
     })
     setItems(newItems);
+    setTags([]);
     update(ref(database, 'users/' + user.uid), {
         data: items
     });
