@@ -31,18 +31,18 @@ function Bank(props) {
 
   // console.log("Loading", loading);
 
+  console.log("user", user);
+
   useEffect(() => {
     if (user !== null) {
       setIsLoading(false);
-    // } else {
-      // setIsLoading(true);
     }
-  });
+  }, [user]);
 
   useEffect(() => {
-    if (isLoading !== false) {
+    // if (isLoading !== false) {
       // console.log("User", user.uid);
-      const dbRef = ref(database, 'users/' + user.uid + '/data');
+      const dbRef = ref(database, 'users/' + user?.uid + '/data');
       onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
         // console.log(data);
@@ -61,10 +61,10 @@ function Bank(props) {
         // console.log("New items!", newItems);
         setItems(newItems);
       });
-    } else {
-      console.log("Did not retrieve user location from database");
-    }
-  }, []);
+    // } else {
+      // console.log("Did not retrieve user location from database");
+    // }
+  }, [isLoading]);
 
   if (isLoading) {
     return (
@@ -72,7 +72,8 @@ function Bank(props) {
     )
   }
 
-  const addNewAccomplishment = async () => {
+  const addNewAccomplishment = async (event) => {
+    event.preventDefault();
     let thisAccomplishment = {
       complete: true,
       description: accomplishment,
@@ -89,6 +90,7 @@ function Bank(props) {
       return currentItem;
     })
     setItems(newItems);
+    setAccomplishment();
     setTags([]);
     update(ref(database, 'users/' + user.uid), {
         data: items
@@ -133,6 +135,7 @@ function Bank(props) {
    return (
       <div>
         <p>Bank Page</p>
+        <form>
         <h4>What's something you're proud of?</h4>
         <p><em>This only works if you are already logged in.</em></p>
         <input
@@ -174,6 +177,7 @@ function Bank(props) {
         <br></br>
         <br></br>
         <button onClick={addNewAccomplishment}>Add accomplishment</button>
+        </form>
         <br></br>
         <h4>Want to filter by a specific tag?</h4>
         <input
