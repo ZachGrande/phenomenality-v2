@@ -29,6 +29,8 @@ function BankNew(props) {
   const [accomplishment, setAccomplishment] = useState();
   const [status, setStatus] = useState("success");
   const [tags, setTags] = useState([]);
+
+  const [filter, setFilter] = useState("none");
   
   // console.log("Current state:", items);
 
@@ -176,6 +178,27 @@ function BankNew(props) {
         <br></br>
         <br></br>
         <button onClick={addNewAccomplishment}>Add accomplishment</button>
+        <br></br>
+        <h4>Want to filter by a specific tag?</h4>
+        <input
+          type="radio"
+          value="none"
+          name="filter"
+          defaultChecked={true}
+          onChange={e => setFilter(e.currentTarget.value)}
+        /> None
+        <input
+          type="radio"
+          value="technical"
+          name="filter"
+          onChange={e => setFilter(e.currentTarget.value)}
+        /> Technical
+        <input
+          type="radio"
+          value="soft skills"
+          name="filter"
+          onChange={e => setFilter(e.currentTarget.value)}
+        /> Soft Skills
       </div>
     )
   }
@@ -185,7 +208,7 @@ function BankNew(props) {
       <div>
         {entryForm()}
         <h2 className="bank-title">Your Bank</h2>
-        <CardList items={items} deleteCard={deleteCard} />
+        <CardList items={items} deleteCard={deleteCard} filter={filter}/>
       </div>
     )
   } else if (loading) { // does not work at the moment
