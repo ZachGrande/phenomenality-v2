@@ -133,6 +133,10 @@ function Bank(props) {
     setTags(newTags);
   }
 
+  const entriesToShow = items.filter((currentItem) => {
+    return (filter === "none" || currentItem.tags?.includes(filter));
+  });
+
   function entryForm() {
    return (
       <div>
@@ -211,7 +215,7 @@ function Bank(props) {
       <div>
         {entryForm()}
         <h2 className="bank-title">Your Bank</h2>
-        <CardList items={items} deleteCard={deleteCard} filter={filter}/>
+        <CardList items={entriesToShow} deleteCard={deleteCard} filter={filter}/>
       </div>
     )
   } else if (loading) { // does not work at the moment
