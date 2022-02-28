@@ -1,0 +1,13 @@
+.about {
+  text-align: center;
+}
+
+.member-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+.member-role {
+  font-style: italic;
+}
