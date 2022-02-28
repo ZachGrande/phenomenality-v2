@@ -21,7 +21,7 @@ function Bank(props) {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [accomplishment, setAccomplishment] = useState();
+  const [accomplishment, setAccomplishment] = useState("");
   const [status, setStatus] = useState("success");
   const [tags, setTags] = useState([]);
 
@@ -32,6 +32,9 @@ function Bank(props) {
   // console.log("Loading", loading);
 
   // console.log("user", user);
+
+  // console.log("Tags", tags);
+  // console.log("Filtering by", filter);
 
   useEffect(() => {
     if (user !== null) {
@@ -90,8 +93,7 @@ function Bank(props) {
       return currentItem;
     })
     setItems(newItems);
-    setAccomplishment();
-    setTags([]);
+    setAccomplishment("");
     update(ref(database, 'users/' + user.uid), {
         data: items
     });
@@ -140,6 +142,7 @@ function Bank(props) {
         <p><em>This only works if you are already logged in.</em></p>
         <input
           placeholder="Today I was able to..."
+          value={accomplishment}
           onChange={(event) => {
             setAccomplishment(event.target.value);
           }}
