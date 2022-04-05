@@ -3,7 +3,7 @@
 function Landing() {
   return(
     <div className="">
-        <h1>Landing page!!</h1>
+        <h1>Landing page!</h1>
     </div>
     )
   }
