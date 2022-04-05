@@ -19,7 +19,7 @@ export default class App extends React.Component {
       <HelmetProvider>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Phenomenality</title>
+          <title>Phenomenality!</title>
         </Helmet>
         <Router className="content-wrap">
           <Navigation />
