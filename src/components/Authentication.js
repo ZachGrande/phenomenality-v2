@@ -41,6 +41,8 @@ function Authentication() {
 
   const [user, setUser] = useState({});
 
+  const [showSignUp, setShowSignUp] = useState(true);
+
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   })
@@ -91,6 +93,10 @@ function Authentication() {
     }).catch((error) => {
       console.log("Error updating profile", error);
     })
+  }
+
+  const moveToNextStep = () => {
+    setShowSignUp(false);
   }
 
   /*const DisplayNameBlock = () => {
@@ -156,6 +162,16 @@ function Authentication() {
         <p>{user?.displayName}</p>
         {user?.email}
         <br></br>
+        {showSignUp ?
+        <div>
+          <h2>Sign Up Flow</h2>
+          <button onClick={moveToNextStep}>Create Profile</button>
+        </div> :
+        <div>
+          <h2>Log In Flow</h2>
+          <p>Thanks for making an account!</p>
+        </div>}
+        
         <button onClick={logout}>Sign Out</button>
     </div>
     )
