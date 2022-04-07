@@ -20,11 +20,12 @@ function Card(props) {
 
   function renderItem() {
     const handleClick = (event) => {
-      // where does this live?
+      // where does this live? I FOUND IT...Bank.js Line 66
       props.deleteCard(thisItem.id)
     }
 
     // does this seem right ? idk what to do with editCard though
+    // i think it'll probably be in here??
     const handleEdit = (event) => {
       props.editCard(thisItem.id)
     }
@@ -35,7 +36,7 @@ function Card(props) {
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
-        <button onClick={handleEdit}>Edit accomplishment (broken) {thisItem.id}</button>
+        <button onClick={handleEdit}>Edit (broken)</button>
       </div>
     )
   }
