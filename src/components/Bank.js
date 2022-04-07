@@ -62,7 +62,7 @@ function Bank() {
     )
   }
 
-  // I'm assuming the editCard function could go after this ? 
+  // I'm assuming the editCard function could go after this ? eh maybe not
   const deleteCard = id => {
     // console.log("Button pushed for card", id);
     let newItems = items.filter((currentItem) => {

@@ -14,15 +14,13 @@ function Form(props) {
   const [status, setStatus] = useState("success");
   const [tags, setTags] = useState([]);
 
-/* addNewAccomplishment will likely closely matche what i will need to create. 
-  - also reference deleteCard in Bank.js (line 66), this might have similar structure
+/* addNewAccomplishment will help inform what i will need to create. 
+  - also reference deleteCard in Bank.js (line 66), this might have similar structure?
    - a new function will need to be created for users to update this info, right?
-   - click on an edit button and change complete to false (what does complete do?)
-   - users will be able to edit the the description and tags. (I imagine status isn't relevant anymore) 
+        - yes, editCard()
+   - users will be able to edit the the 'description' and 'tags'. (I imagine status isn't relevant anymore) 
         - this information would show up as the starting text in a text boxes that users can then edit as needed 
-   - would the id and key (and maybe complete?) be updated automatically, or is that not relevant?
-   - is there an API for this lol?
-   - where should the edit function live?
+   - where should the edit function live? Bank vs Card ? probably not form right?
    - TO ALL: should the users edit their accomp on a separate page or where the card exists? 
 */
   const addNewAccomplishment = async (event) => { 

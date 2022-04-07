@@ -24,8 +24,7 @@ function Card(props) {
       props.deleteCard(thisItem.id)
     }
 
-    // does this seem right ? idk what to do with editCard though
-    // i think it'll probably be in here??
+    // does this seem right ? idk what to do with editCard though or where it should live
     const handleEdit = (event) => {
       props.editCard(thisItem.id)
     }
