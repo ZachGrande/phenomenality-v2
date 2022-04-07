@@ -90,6 +90,8 @@ function Bank() {
       }
       return currentItem;
     })
+    // would this become a new mini form? yes 
+
     // newItems = newItems.map((currentItem, index = 0) => {
     //   // do these items need to be updated?
     //   // currentItem.id = index + 1;
