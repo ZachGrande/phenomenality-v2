@@ -20,11 +20,9 @@ function Card(props) {
 
   function renderItem() {
     const handleClick = (event) => {
-      // where does this live? I FOUND IT...Bank.js Line 66
       props.deleteCard(thisItem.id)
     }
 
-    // does this seem right ? idk what to do with editCard though or where it should live
     const handleEdit = (event) => {
       props.editCard(thisItem.id)
     }
@@ -50,8 +48,7 @@ function Card(props) {
 function CardList(props) {
   let items = props.items;
   let cardComponents = items.map((currentItem) => {
-    // will something for editCard need to be added? 
-    return <Card key={currentItem.id} item={currentItem} deleteCard={props.deleteCard} />
+    return <Card key={currentItem.id} item={currentItem} deleteCard={props.deleteCard} editCard={props.editCard} />
   })
 
   return (

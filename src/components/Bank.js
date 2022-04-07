@@ -62,7 +62,6 @@ function Bank() {
     )
   }
 
-  // I'm assuming the editCard function could go after this ? eh maybe not
   const deleteCard = id => {
     // console.log("Button pushed for card", id);
     let newItems = items.filter((currentItem) => {
@@ -84,6 +83,28 @@ function Bank() {
     });
   }
 
+  const editCard = id => {
+    let newItems = items.filter((currentItem) => {
+      if (currentItem.id === id) {
+        currentItem.description = "Edit your accomplishment"
+      }
+      return currentItem;
+    })
+    // newItems = newItems.map((currentItem, index = 0) => {
+    //   // do these items need to be updated?
+    //   // currentItem.id = index + 1;
+    //   // currentItem.key = index + "";
+    //   // index = index + 1;
+    //   currentItem.description = 0 // this should be the users input from a new text box entry; 
+    //   currentItem.tags = 0 // this should be any additional tags that are selected ;
+    //   return currentItem;
+    // })
+    setItems(newItems);
+    update(ref(database, 'users/' + user.uid), {
+      data: newItems
+    });
+  }
+
   const entriesToShow = items.filter((currentItem) => {
     return (filter === "none" || currentItem.tags?.includes(filter));
   });
@@ -97,7 +118,7 @@ function Bank() {
                    user={user}
                    setFilter={setFilter}/>
         <h2 className="bank-title">Your Bank</h2>
-        <CardList items={entriesToShow} deleteCard={deleteCard}/>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard}/>
       </div>
     )
   } else if (loading) { // does not work at the moment
