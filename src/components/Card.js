@@ -20,7 +20,13 @@ function Card(props) {
 
   function renderItem() {
     const handleClick = (event) => {
+      // where does this live?
       props.deleteCard(thisItem.id)
+    }
+
+    // does this seem right ? idk what to do with editCard though
+    const handleEdit = (event) => {
+      props.editCard(thisItem.id)
     }
 
     return (
@@ -29,6 +35,7 @@ function Card(props) {
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
+        <button onClick={handleEdit}>Edit accomplishment (broken) {thisItem.id}</button>
       </div>
     )
   }
@@ -43,6 +50,7 @@ function Card(props) {
 function CardList(props) {
   let items = props.items;
   let cardComponents = items.map((currentItem) => {
+    // will something for editCard need to be added? 
     return <Card key={currentItem.id} item={currentItem} deleteCard={props.deleteCard} />
   })
 
