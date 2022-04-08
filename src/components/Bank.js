@@ -86,21 +86,13 @@ function Bank() {
   const editCard = id => {
     let newItems = items.filter((currentItem) => {
       if (currentItem.id === id) {
-        currentItem.description = "Edit your accomplishment"
+        var edit_description = window.prompt("Edit your accomplishment description", currentItem.description);
+        // var edit_tags = window.prompt("Edit your tags"); HOLD OFF FOR TIFF
+        currentItem.description = edit_description;
+        // currentItem.tags = edit_tags; HOLD OFF FOR TIFF 
       }
       return currentItem;
     })
-    // would this become a new mini form? yes 
-
-    // newItems = newItems.map((currentItem, index = 0) => {
-    //   // do these items need to be updated?
-    //   // currentItem.id = index + 1;
-    //   // currentItem.key = index + "";
-    //   // index = index + 1;
-    //   currentItem.description = 0 // this should be the users input from a new text box entry; 
-    //   currentItem.tags = 0 // this should be any additional tags that are selected ;
-    //   return currentItem;
-    // })
     setItems(newItems);
     update(ref(database, 'users/' + user.uid), {
       data: newItems

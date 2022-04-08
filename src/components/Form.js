@@ -14,12 +14,6 @@ function Form(props) {
   const [status, setStatus] = useState("success");
   const [tags, setTags] = useState([]);
 
-/* addNewAccomplishment  
-   - users will be able to edit the the 'description' and 'tags'. (I imagine status isn't relevant anymore) 
-        - this information would show up as the starting text in a text boxes that users can then edit as needed 
-   - where should the edit function live? Bank vs Card ? probably not form right?
-   - TO ALL: should the users edit their accomp on a separate page or where the card exists? 
-*/
   const addNewAccomplishment = async (event) => { 
     event.preventDefault();
     let thisAccomplishment = {
