@@ -31,6 +31,11 @@ function Authentication() {
   const [loginPage, setLoginPage] = useState(true);
   const [firstTimeUser, setFirstTimeUser] = useState(false);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [initials, setInitials] = useState("");
+  const [position, setPosition] = useState("");
+
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
     // setTimeout(() => {
@@ -147,7 +152,32 @@ function Authentication() {
     if (firstTimeUser) {
       return (
         <div className="auth">
-          <h1>Let's finish setting up your profile...</h1>
+          <h1>Build Profile</h1>
+          <h4>First Name</h4>
+          <input
+            placeholder="John"
+            onChange={(event) => {
+              setFirstName(event.target.value);
+            }}
+          />
+          <br />
+          <h4>Last Name</h4>
+          <input
+            placeholder="Smith"
+            onChange={(event) => {
+              setLastName(event.target.value);
+            }}
+          />
+          <br />
+          <h4>What's your current job title?</h4>
+          <input
+            placeholder="Software Engineer"
+            onChange={(event) => {
+              setPosition(event.target.value);
+            }}
+          />
+          <br />
+          <br />
           <button onClick={toggleFirstTimeUser}>I'm done setting up my profile.</button>
         </div>
       )
