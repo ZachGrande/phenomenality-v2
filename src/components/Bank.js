@@ -81,6 +81,22 @@ function Bank() {
     });
   }
 
+  const editCard = id => {
+    let newItems = items.filter((currentItem) => {
+      if (currentItem.id === id) {
+        var edit_description = window.prompt("Edit your accomplishment description", currentItem.description);
+        // var edit_tags = window.prompt("Edit your tags"); HOLD OFF FOR TIFF
+        currentItem.description = edit_description;
+        // currentItem.tags = edit_tags; HOLD OFF FOR TIFF 
+      }
+      return currentItem;
+    })
+    setItems(newItems);
+    update(ref(database, 'users/' + user.uid), {
+      data: newItems
+    });
+  }
+
   const entriesToShow = items.filter((currentItem) => {
     return (filter === "none" || currentItem.tags?.includes(filter));
   });
@@ -94,7 +110,7 @@ function Bank() {
                    user={user}
                    setFilter={setFilter}/>
         <h2 className="bank-title">Your Bank</h2>
-        <CardList items={entriesToShow} deleteCard={deleteCard}/>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard}/>
       </div>
     )
   } else if (loading) { // does not work at the moment

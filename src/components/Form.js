@@ -14,7 +14,7 @@ function Form(props) {
   const [status, setStatus] = useState("success");
   const [tags, setTags] = useState([]);
 
-  const addNewAccomplishment = async (event) => {
+  const addNewAccomplishment = async (event) => { 
     event.preventDefault();
     let thisAccomplishment = {
       complete: true,

@@ -23,12 +23,17 @@ function Card(props) {
       props.deleteCard(thisItem.id)
     }
 
+    const handleEdit = (event) => {
+      props.editCard(thisItem.id)
+    }
+
     return (
       <div className={getClassName()}>
         <p>{thisItem.id}</p>
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
+        <button onClick={handleEdit}>Edit (broken)</button>
       </div>
     )
   }
@@ -43,7 +48,7 @@ function Card(props) {
 function CardList(props) {
   let items = props.items;
   let cardComponents = items.map((currentItem) => {
-    return <Card key={currentItem.id} item={currentItem} deleteCard={props.deleteCard} />
+    return <Card key={currentItem.id} item={currentItem} deleteCard={props.deleteCard} editCard={props.editCard} />
   })
 
   return (
