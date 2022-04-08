@@ -94,12 +94,9 @@ function Authentication() {
     
 
     updateProfile(auth.currentUser, {
-      firstName: firstName,
-      lastName: lastName,
-      initials: initials,
-      position: position
+      displayName: initials
     }).then(() => {
-      update(ref(database, 'users/' + user.uid), {
+      update(ref(database, 'users/' + user.uid + '/user'), {
         firstName: firstName,
         lastName: lastName,
         initials: initials,
@@ -109,6 +106,8 @@ function Authentication() {
       console.log("Error updating profile", error);
     })
   }
+
+  console.log(user);
 
   const toggleLogin = () => {
     setLoginPage(!loginPage);
