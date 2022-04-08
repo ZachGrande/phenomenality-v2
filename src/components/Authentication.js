@@ -41,16 +41,20 @@ function Authentication() {
 
   const [user, setUser] = useState({});
 
+  const [loading, setLoading] = useState(true);
+
+  const [loginPage, setLoginPage] = useState(true);
+
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
+    // setTimeout(() => {
+      setLoading(false);
+    // }, 1000)
   })
-
-  // button w field for display name
-  // when null, show "you haven't told us what to call you!"
-  // update profile as an onClick function, from Firebase docs
 
   const register = async () => {
     try {
+      setLoading(true);
       const user = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
@@ -63,28 +67,25 @@ function Authentication() {
 
   const login = async () => {
     try {
-      // const user = await signInWithEmailAndPassword(
+      setLoading(true);
       await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword);
-      // console.log(user);
     } catch (error) {
       console.log("Authentication error", error.message);
     }
   };
 
   const logout = async () => {
+    setLoading(true);
     await signOut(auth);
   };
 
   const updateDisplayName = async () => {
-
     updateProfile(auth.currentUser, {
       displayName: displayName
     }).then(() => {
-      // console.log("Profile updated!")
-      // console.log("User", user);
       update(ref(database, 'users/' + user.uid), {
         displayName: user.displayName,
       });
@@ -93,26 +94,39 @@ function Authentication() {
     })
   }
 
-  /*const DisplayNameBlock = () => {
-    let hasUserSetDisplayName  = user?.displayName !== null;
-    console.log(hasUserSetDisplayName);
-    console.log(user?.displayName);
-    return (
-      <div>
-        <input
-          placeholder="John Appleseed"
-          onChange={(event) => {
-          setDisplayName(event.target.value);
-          }}
-        />
-        <button onClick={updateDisplayName}>Update Profile</button>
-      </div>
-    )
-  }*/
+  const toggleLogin = () => {
+    setLoginPage(!loginPage);
+  }
 
-  return(
-    <div>
-        <p>Authentication Page</p>
+  if (loading) {
+    return (
+      <h1>LOADING ASSETS</h1>
+    )
+  }
+
+  if (!user) {
+    if (loginPage) {
+      return (
+        <div>
+          <h3>Welcome Back</h3>
+          <input
+            placeholder="Email..."
+            onChange={(event) => {
+              setLoginEmail(event.target.value);
+            }}
+          />
+          <input placeholder="Password..."
+            onChange={(event) => {
+              setLoginPassword(event.target.value);
+            }}
+          />
+          <button onClick={login}>Sign In</button>
+          <p>Don't have an account? <button onClick={toggleLogin}>Register today.</button></p>
+        </div>
+      )
+    } else {
+      return (
+      <div>
         <h3>Register</h3>
         <input
           placeholder="Email..."
@@ -126,24 +140,15 @@ function Authentication() {
           }}
         />
         <button onClick={register}>Create User</button>
-
-        <h3>Log In</h3>
-        <input
-          placeholder="Email..."
-          onChange={(event) => {
-            setLoginEmail(event.target.value);
-          }}
-        />
-        <input placeholder="Password..."
-          onChange={(event) => {
-            setLoginPassword(event.target.value);
-          }}
-        />
-        <button onClick={login}>Log In</button>
+        <p>Already have an account? <button onClick={toggleLogin}>Sign in.</button></p>
+      </div>
+      )
+    }
+  } else {
+    return (
+      <div>
         <h4>Update Information</h4>
-        <p>**This only works if you are already logged in.**</p>
-        {/* {displayNameBlock} */}
-        {/* <DisplayNameBlock /> */}
+        <h4>Want to change your name? Enter it here.</h4>
         <input
           placeholder="John Appleseed"
           onChange={(event) => {
@@ -152,13 +157,14 @@ function Authentication() {
         />
         <button onClick={updateDisplayName}>Update Profile</button>
         <h4>User Logged In:</h4>
-        {/* <p>{user.displayName !== null ? displayName : "You have not set a name"}</p> */}
+        {/* <p>{user.displayName !== null ? user.displayName : "You have not set a name"}</p> */}
         <p>{user?.displayName}</p>
         {user?.email}
         <br></br>
         <button onClick={logout}>Sign Out</button>
-    </div>
+      </div>
     )
+  }
 }
 
 export default Authentication;
