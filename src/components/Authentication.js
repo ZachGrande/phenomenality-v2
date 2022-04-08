@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import '../css/Authentication.css';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
   onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
 import { getDatabase, ref, set, update } from 'firebase/database';
@@ -9,26 +10,10 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 
 function createEntryForUserInDatabase(user) {
-  // console.log("Setting db for user", user);
   set(ref(database, 'users/' + user.uid), {
     email: user.email,
   });
 }
-
-/*function displayNameBlock(user) {
-  let hasSetDisplayName = "hello"
-  return (
-    <div>
-      <input
-        placeholder="John Appleseed"
-        onChange={(event) => {
-        setDisplayName(event.target.value);
-        }}
-      />
-      <button onClick={updateDisplayName}>Update Profile</button>
-    </div>
-  )
-}*/
 
 function Authentication() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -100,14 +85,16 @@ function Authentication() {
 
   if (loading) {
     return (
-      <h1>LOADING ASSETS</h1>
+      <div className="auth">
+        <h1>LOADING ASSETS</h1>
+      </div>
     )
   }
 
   if (!user) {
     if (loginPage) {
       return (
-        <div>
+        <div className="auth">
           <h3>Welcome Back</h3>
           <input
             placeholder="Email..."
@@ -115,18 +102,21 @@ function Authentication() {
               setLoginEmail(event.target.value);
             }}
           />
+          <br />
           <input placeholder="Password..."
             onChange={(event) => {
               setLoginPassword(event.target.value);
             }}
           />
+          <br />
+          <br />
           <button onClick={login}>Sign In</button>
           <p>Don't have an account? <button onClick={toggleLogin}>Register today.</button></p>
         </div>
       )
     } else {
       return (
-      <div>
+      <div className="auth">
         <h3>Register</h3>
         <input
           placeholder="Email..."
@@ -134,11 +124,14 @@ function Authentication() {
             setRegisterEmail(event.target.value);
           }}
         />
+        <br />
         <input placeholder="Password..."
           onChange={(event) => {
             setRegisterPassword(event.target.value);
           }}
         />
+        <br />
+        <br />
         <button onClick={register}>Create User</button>
         <p>Already have an account? <button onClick={toggleLogin}>Sign in.</button></p>
       </div>
@@ -146,7 +139,7 @@ function Authentication() {
     }
   } else {
     return (
-      <div>
+      <div className="auth">
         <h4>Update Information</h4>
         <h4>Want to change your name? Enter it here.</h4>
         <input
@@ -155,6 +148,7 @@ function Authentication() {
             setDisplayName(event.target.value);
           }}
         />
+        <br />
         <button onClick={updateDisplayName}>Update Profile</button>
         <h4>User Logged In:</h4>
         {/* <p>{user.displayName !== null ? user.displayName : "You have not set a name"}</p> */}
