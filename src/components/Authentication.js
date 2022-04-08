@@ -33,7 +33,6 @@ function Authentication() {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [initials, setInitials] = useState("");
   const [position, setPosition] = useState("");
 
   onAuthStateChanged(auth, (currentUser) => {
@@ -80,6 +79,33 @@ function Authentication() {
     }).then(() => {
       update(ref(database, 'users/' + user.uid), {
         displayName: user.displayName,
+      });
+    }).catch((error) => {
+      console.log("Error updating profile", error);
+    })
+  }
+
+  const buildProfile = async () => {
+    setLoading(true);
+    toggleFirstTimeUser();
+
+    const initials = firstName.charAt(0).toUpperCase() +
+                   lastName.charAt(0).toUpperCase();
+    
+
+    updateProfile(auth.currentUser, {
+      // displayName: displayName,
+      firstName: firstName,
+      lastName: lastName,
+      initials: initials,
+      position: position
+    }).then(() => {
+      update(ref(database, 'users/' + user.uid), {
+        // displayName: user.displayName,
+        firstName: firstName,
+        lastName: lastName,
+        initials: initials,
+        position: position
       });
     }).catch((error) => {
       console.log("Error updating profile", error);
@@ -178,7 +204,7 @@ function Authentication() {
           />
           <br />
           <br />
-          <button onClick={toggleFirstTimeUser}>I'm done setting up my profile.</button>
+          <button onClick={buildProfile}>I'm done setting up my profile.</button>
         </div>
       )
     }
