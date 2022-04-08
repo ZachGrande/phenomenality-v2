@@ -14,10 +14,7 @@ function Form(props) {
   const [status, setStatus] = useState("success");
   const [tags, setTags] = useState([]);
 
-/* addNewAccomplishment will help inform what i will need to create. 
-  - also reference deleteCard in Bank.js (line 66), this will likely have similar structure?
-   - a new function will need to be created for users to update this info, right?
-        - yes, editCard()
+/* addNewAccomplishment  
    - users will be able to edit the the 'description' and 'tags'. (I imagine status isn't relevant anymore) 
         - this information would show up as the starting text in a text boxes that users can then edit as needed 
    - where should the edit function live? Bank vs Card ? probably not form right?
