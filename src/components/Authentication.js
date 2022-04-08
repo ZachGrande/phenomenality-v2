@@ -107,8 +107,6 @@ function Authentication() {
     })
   }
 
-  console.log(user);
-
   const toggleLogin = () => {
     setLoginPage(!loginPage);
   }
