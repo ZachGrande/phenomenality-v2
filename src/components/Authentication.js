@@ -29,6 +29,7 @@ function Authentication() {
   const [loading, setLoading] = useState(true);
 
   const [loginPage, setLoginPage] = useState(true);
+  const [firstTimeUser, setFirstTimeUser] = useState(false);
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
@@ -40,6 +41,7 @@ function Authentication() {
   const register = async () => {
     try {
       setLoading(true);
+      setFirstTimeUser(true);
       const user = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
@@ -81,6 +83,10 @@ function Authentication() {
 
   const toggleLogin = () => {
     setLoginPage(!loginPage);
+  }
+
+  const toggleFirstTimeUser = () => {
+    setFirstTimeUser(!firstTimeUser);
   }
 
   if (loading) {
@@ -138,6 +144,14 @@ function Authentication() {
       )
     }
   } else {
+    if (firstTimeUser) {
+      return (
+        <div className="auth">
+          <h1>Let's finish setting up your profile...</h1>
+          <button onClick={toggleFirstTimeUser}>I'm done setting up my profile.</button>
+        </div>
+      )
+    }
     return (
       <div className="auth">
         <h4>Update Information</h4>
