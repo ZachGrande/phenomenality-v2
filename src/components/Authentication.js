@@ -22,7 +22,7 @@ function Authentication() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const [displayName, setDisplayName] = useState("");
+  // const [displayName, setDisplayName] = useState("");
 
   const [user, setUser] = useState({});
 
@@ -73,17 +73,17 @@ function Authentication() {
     await signOut(auth);
   };
 
-  const updateDisplayName = async () => {
-    updateProfile(auth.currentUser, {
-      displayName: displayName
-    }).then(() => {
-      update(ref(database, 'users/' + user.uid), {
-        displayName: user.displayName,
-      });
-    }).catch((error) => {
-      console.log("Error updating profile", error);
-    })
-  }
+  // const updateDisplayName = async () => {
+  //   updateProfile(auth.currentUser, {
+  //     displayName: displayName
+  //   }).then(() => {
+  //     update(ref(database, 'users/' + user.uid), {
+  //       displayName: user.displayName,
+  //     });
+  //   }).catch((error) => {
+  //     console.log("Error updating profile", error);
+  //   })
+  // }
 
   const buildProfile = async () => {
     setLoading(true);
@@ -94,14 +94,12 @@ function Authentication() {
     
 
     updateProfile(auth.currentUser, {
-      // displayName: displayName,
       firstName: firstName,
       lastName: lastName,
       initials: initials,
       position: position
     }).then(() => {
       update(ref(database, 'users/' + user.uid), {
-        // displayName: user.displayName,
         firstName: firstName,
         lastName: lastName,
         initials: initials,
@@ -210,7 +208,10 @@ function Authentication() {
     }
     return (
       <div className="auth">
-        <h4>Update Information</h4>
+        <h2>Welcome back, {firstName}!</h2>
+        <button onClick={toggleFirstTimeUser}>Edit Profile</button>
+        <br />
+        {/* <h4>Update Information</h4>
         <h4>Want to change your name? Enter it here.</h4>
         <input
           placeholder="John Appleseed"
@@ -220,10 +221,10 @@ function Authentication() {
         />
         <br />
         <button onClick={updateDisplayName}>Update Profile</button>
-        <h4>User Logged In:</h4>
+        <h4>User Logged In:</h4> */}
         {/* <p>{user.displayName !== null ? user.displayName : "You have not set a name"}</p> */}
-        <p>{user?.displayName}</p>
-        {user?.email}
+        {/* <p>{user?.displayName}</p>
+        {user?.email} */}
         <br></br>
         <button onClick={logout}>Sign Out</button>
       </div>
