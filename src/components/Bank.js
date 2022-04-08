@@ -23,17 +23,8 @@ function Bank() {
 
   const [filter, setFilter] = useState("none");
 
-  /*useEffect(() => {
-    if (user !== null) {
+  onAuthStateChanged(auth, () => {
       setIsLoading(false);
-    }
-  }, [user]);*/
-
-  onAuthStateChanged(auth, (currentUser) => {
-    // setUser(currentUser);
-    // setTimeout(() => {
-      setIsLoading(false);
-    // }, 1000)
   })
 
   useEffect(() => {
