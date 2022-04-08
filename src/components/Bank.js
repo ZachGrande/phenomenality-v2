@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../css/Bank.css';
 import { useAuthState } from "react-firebase-hooks/auth";
 import app from '../config';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import Form from './Form.js';
 
@@ -23,11 +23,18 @@ function Bank() {
 
   const [filter, setFilter] = useState("none");
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (user !== null) {
       setIsLoading(false);
     }
-  }, [user]);
+  }, [user]);*/
+
+  onAuthStateChanged(auth, (currentUser) => {
+    // setUser(currentUser);
+    // setTimeout(() => {
+      setIsLoading(false);
+    // }, 1000)
+  })
 
   useEffect(() => {
     // if (isLoading !== false) {
