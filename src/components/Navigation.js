@@ -1,6 +1,28 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
+import { getDatabase, ref, set, update, onValue } from 'firebase/database';
+
+import app from '../config';
+
+const auth = getAuth(app);
+const database = getDatabase(app);
 
 function Navigation() {
+
+  const [user, setUser] = useState();
+  const [initials, setInitials] = useState("");
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  })
+
+  useEffect(() => {
+    setInitials(user?.displayName);
+  }, [user])
+
   return(
     <nav>
       <div>
@@ -42,7 +64,8 @@ function Navigation() {
               Sign In
             </Link>
           </li>
-          <p>Profile block</p>
+          {initials ? <p>{initials}</p> : <p>Profile block</p>}
+          {/* <p>Profile block</p> */}
         </ul>
       </div>
     </nav>
