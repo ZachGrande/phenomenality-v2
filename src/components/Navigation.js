@@ -22,7 +22,7 @@ function Navigation() {
   }, [user])
 
   const toggleProfileButton = () => {
-    if (profileButton == leafInactive) {
+    if (profileButton === leafInactive) {
       setProfileButton(leafActive);
     } else {
       setProfileButton(leafInactive);
@@ -65,17 +65,18 @@ function Navigation() {
               About Us
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/authentication">
               Sign In
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/authentication">
               {initials ? <p>{initials}</p> : <img src={profileButton}
                                               onMouseOver={toggleProfileButton}
                                               onMouseLeave={toggleProfileButton}
-                                              width="50"></img>}
+                                              width="50"
+                                              alt="profile"></img>}
             </Link>
           </li>
           {/* <p>Profile block</p> */}
