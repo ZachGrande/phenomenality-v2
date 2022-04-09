@@ -1,8 +1,8 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import '../css/Authentication.css';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
   onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
-import { getDatabase, ref, set, update } from 'firebase/database';
+import { getDatabase, ref, set, update, onValue } from 'firebase/database';
 
 import app from '../config';
 
@@ -34,6 +34,8 @@ function Authentication() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [position, setPosition] = useState("");
+  const [welcomeName, setWelcomeName] = useState(null);
+  const [initials, setInitials] = useState("");
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
@@ -42,9 +44,26 @@ function Authentication() {
     // }, 1000)
   })
 
+  // useEffect(() => {
+  //   setInitials(user?.displayName);
+  // }, [user]);
+
+  useEffect(() => {
+    setLoading(true);
+    const dbRef = ref(database, 'users/' + user?.uid + '/user');
+    onValue(dbRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data?.firstName) {
+        setWelcomeName(data.firstName);
+      }
+
+    });
+  }, [user]);
+
   const register = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
+      // setLoading(true);
       setFirstTimeUser(true);
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -57,8 +76,9 @@ function Authentication() {
   };
 
   const login = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
+      // setLoading(true);
       await signInWithEmailAndPassword(
         auth,
         loginEmail,
@@ -89,17 +109,18 @@ function Authentication() {
     setLoading(true);
     toggleFirstTimeUser();
 
-    const initials = firstName.charAt(0).toUpperCase() +
+    let currentInitials = firstName.charAt(0).toUpperCase() +
                    lastName.charAt(0).toUpperCase();
     
+    // setInitials(currentInitials);
 
     updateProfile(auth.currentUser, {
-      displayName: initials
+      displayName: currentInitials
     }).then(() => {
       update(ref(database, 'users/' + user.uid + '/user'), {
         firstName: firstName,
         lastName: lastName,
-        initials: initials,
+        initials: currentInitials,
         position: position
       });
     }).catch((error) => {
@@ -205,7 +226,10 @@ function Authentication() {
     }
     return (
       <div className="auth">
-        <h2>Welcome back, {firstName}!</h2>
+        {/* {welcomeName ?
+          <h2>Welcome back, {welcomeName}</h2> :
+          <h2></h2>} */}
+        <h2>Welcome back, {welcomeName}!</h2>
         <button onClick={toggleFirstTimeUser}>Edit Profile</button>
         <br />
         {/* <h4>Update Information</h4>
