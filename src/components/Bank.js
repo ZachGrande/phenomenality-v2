@@ -5,6 +5,7 @@ import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import Form from './Form.js';
+import '../css/Popup.css';
 
 import 'firebase/auth';
 import 'firebase/database';
@@ -24,33 +25,33 @@ function Bank() {
   const [filter, setFilter] = useState("none");
 
   onAuthStateChanged(auth, () => {
-      setIsLoading(false);
+    setIsLoading(false);
   })
 
   useEffect(() => {
     // if (isLoading !== false) {
-      // console.log("User", user.uid);
-      const dbRef = ref(database, 'users/' + user?.uid + '/data');
-      onValue(dbRef, (snapshot) => {
-        const data = snapshot.val();
-        // console.log(data);
-        if (data === null) {
-          setItems([]);
-          return null;
-        }
-        const keys = Object.keys(data);
-        // console.log("Keys", keys);
-        const newItems = keys.map((key) => {
-          const currentItem  = data[key];
-          currentItem.key = key;
-          // console.log("Current item", key, currentItem);
-          return currentItem;
-        })
-        // console.log("New items!", newItems);
-        setItems(newItems);
-      });
+    // console.log("User", user.uid);
+    const dbRef = ref(database, 'users/' + user?.uid + '/data');
+    onValue(dbRef, (snapshot) => {
+      const data = snapshot.val();
+      // console.log(data);
+      if (data === null) {
+        setItems([]);
+        return null;
+      }
+      const keys = Object.keys(data);
+      // console.log("Keys", keys);
+      const newItems = keys.map((key) => {
+        const currentItem = data[key];
+        currentItem.key = key;
+        // console.log("Current item", key, currentItem);
+        return currentItem;
+      })
+      // console.log("New items!", newItems);
+      setItems(newItems);
+    });
     // } else {
-      // console.log("Did not retrieve user location from database");
+    // console.log("Did not retrieve user location from database");
     // }
   }, [isLoading, database, user]);
 
@@ -82,12 +83,44 @@ function Bank() {
   }
 
   const editCard = id => {
+    // let newItems = items.filter((currentItem) => {
+    //   if (currentItem.id === id) {
+    //     var edit_description = window.prompt("Edit your accomplishment description", currentItem.description);
+    //     // var edit_tags = window.prompt("Edit your tags"); HOLD OFF FOR TIFF
+    //     currentItem.description = edit_description;
+    //     // currentItem.tags = edit_tags; HOLD OFF FOR TIFF 
+    //   }
+    //   return currentItem;
+    // })
+    // setItems(newItems);
+    // update(ref(database, 'users/' + user.uid), {
+    //   data: newItems
+    // });{
     let newItems = items.filter((currentItem) => {
       if (currentItem.id === id) {
-        var edit_description = window.prompt("Edit your accomplishment description", currentItem.description);
-        // var edit_tags = window.prompt("Edit your tags"); HOLD OFF FOR TIFF
-        currentItem.description = edit_description;
-        // currentItem.tags = edit_tags; HOLD OFF FOR TIFF 
+        <div class="loginPopup">
+          <div class="formPopup" id="popupForm">
+            {/* this might be an important piece? */}
+            <h5>test</h5>
+            <form>
+              <h4>Edit your Accomplishment</h4>
+              <label for="edit_description">
+                <strong>Description</strong>
+              </label>
+              <input type="text" id="edit_description" value={currentItem.description} onChange={e => (currentItem.description = e.currentTarget.value)} name="edit_description"></input>
+              <button type="button" class="btn success" onclick={submitForm()}>Submit</button>
+              <button type="button" class="btn cancel" onclick={closeForm()}>Cancel</button>
+            </form>
+          </div>
+        </div>
+        // I think the error is bc the code below can't access "popupForm"
+        document.getElementById("popupForm").style.display = "block";
+        function submitForm() {
+          document.getElementById("popupForm").style.display = "none";
+        }
+        function closeForm() {
+          document.getElementById("popupForm").style.display = "none";
+        }
       }
       return currentItem;
     })
@@ -105,27 +138,27 @@ function Bank() {
     return (
       <div>
         <Form items={items}
-                   setItems={setItems}
-                   database={database}
-                   user={user}
-                   setFilter={setFilter}/>
+          setItems={setItems}
+          database={database}
+          user={user}
+          setFilter={setFilter} />
         <h2 className="bank-title">Your Bank</h2>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard}/>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
       </div>
     )
   } else if (loading) { // does not work at the moment
     return (
       <p>Loading your card list.</p>
     )
-    } else {
+  } else {
     return (
       <div>
         <p>You have not added to your credibility bank!</p>
         <Form items={items}
-                   setItems={setItems}
-                   database={database}
-                   user={user}
-                   setFilter={setFilter}/>
+          setItems={setItems}
+          database={database}
+          user={user}
+          setFilter={setFilter} />
       </div>
 
     )
