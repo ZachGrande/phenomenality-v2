@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
 
-import '../css/Form.css';
-
 
 function Form(props) {
 
@@ -11,41 +9,6 @@ function Form(props) {
   const setItems = props.setItems;
   const database = props.database;
   const user = props.user;
-  const setFilter = props.setFilter;
-
-  const [input, setInput] = useState('');
-  const [tags, setTags] = useState([]);
-  const [isKeyReleased, setIsKeyReleased] = useState(false);
-  const onChange = (e) => {
-    const { value } = e.target;
-    setInput(value);
-  };
-  const onKeyDown = (e) => {
-    const { key } = e;
-    const trimmedInput = input.trim();
-  
-    if (key === ',' && trimmedInput.length && !tags.includes(trimmedInput)) {
-      e.preventDefault();
-      setTags(prevState => [...prevState, trimmedInput]);
-      setInput('');
-    }
-  
-    if (key === "Backspace" && !input.length && tags.length && isKeyReleased) {
-      const tagsCopy = [...tags];
-      const poppedTag = tagsCopy.pop();
-      e.preventDefault();
-      setTags(tagsCopy);
-      setInput(poppedTag);
-    }
-  
-    setIsKeyReleased(false);
-  };
-  const onKeyUp = () => {
-    setIsKeyReleased(true);
-  }
-  const deleteTag = (index) => {
-    setTags(prevState => prevState.filter((tag, i) => i !== index))
-  }
 
   const [accomplishment, setAccomplishment] = useState("");
   const [status, setStatus] = useState("success");
@@ -139,45 +102,6 @@ function Form(props) {
        <br></br>
        <button onClick={addNewAccomplishment}>Add accomplishment</button>
        </form>
-       <br></br>
-       <h4>Want to filter by a specific tag?</h4>
-       <input
-         type="radio"
-         value="none"
-         name="filter"
-         defaultChecked={true}
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> None
-       <input
-         type="radio"
-         value="technical"
-         name="filter"
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> Technical
-       <input
-         type="radio"
-         value="soft skills"
-         name="filter"
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> Soft Skills
-       <br />
-       <div className="container">
-          {/* {tags.map((tag) => <div className="tag">{tag}</div>)} */}
-          <input
-            value={input}
-            placeholder="Enter a tag"
-            onKeyDown={onKeyDown}
-            onKeyUp={onKeyUp}
-            onChange={onChange}
-          />
-          <br />
-          {tags.map((tag, index) => (
-            <div className="tag">
-              {tag}
-              <button onClick={() => deleteTag(index)}>x</button>
-            </div>
-          ))}
-        </div>
      </div>
    );
 }

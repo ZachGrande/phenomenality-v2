@@ -1,8 +1,7 @@
 .container {
     display: flex;
-    /* overflow: scroll; */
-    width: 100%;
-    max-width: 100%;
+    width: 50%;
+    max-width: 50%;
     padding-left: 14px;
     border: 1px grey solid;
     border-radius: 5px;
