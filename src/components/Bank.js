@@ -24,6 +24,9 @@ function Bank() {
 
   const [filter, setFilter] = useState("none");
 
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const [currentEditId, setCurrentEditId] = useState(-1);
+
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
   })
@@ -83,6 +86,11 @@ function Bank() {
   }
 
   const editCard = id => {
+    setShowEditPopup(true);
+    setCurrentEditId(id);
+  }
+
+  /*const editCardsss = id => {
     // let newItems = items.filter((currentItem) => {
     //   if (currentItem.id === id) {
     //     var edit_description = window.prompt("Edit your accomplishment description", currentItem.description);
@@ -116,44 +124,57 @@ function Bank() {
           <div class="loginPopup">
             <h1>Content</h1>
             <div class="formPopup" id="popupForm">
-              {/* what does this do??*/}
-              <form action="/action_page.php" class="formContainer">
-                <h4>Edit your Accomplishment</h4>
-                <label for="editDescription">
-                  <strong>Description</strong>
-                </label>
-                {/* might need to make sure that this is updating the current/correct description */}
-                <input type="text" id="editDescription" value={oldDescription} onChange={e => (currentItem.description = e.currentTarget.value)} name="editDescription"></input>
-                <button type="button" class="btn success" onClick={submitForm}>Update</button>
-                <button type="button" class="btn cancel" onClick={closeForm}>Cancel</button>
-              </form>
-            </div>
-          </div>
-        )
-      }
-      console.log("button was clicked after if")
+              {/* what does this do??*/
+  //             <form action="/action_page.php" class="formContainer">
+  //               <h4>Edit your Accomplishment</h4>
+  //               <label for="editDescription">
+  //                 <strong>Description</strong>
+  //               </label>
+  //               {/* might need to make sure that this is updating the current/correct description */}
+  //               <input type="text" id="editDescription" value={oldDescription} onChange={e => (currentItem.description = e.currentTarget.value)} name="editDescription"></input>
+  //               <button type="button" class="btn success" onClick={submitForm}>Update</button>
+  //               <button type="button" class="btn cancel" onClick={closeForm}>Cancel</button>
+  //             </form>
+  //           </div>
+  //         </div>
+  //       )
+  //     }
+  //     console.log("button was clicked after if")
 
-      return currentItem;
-    })
-    setItems(newItems);
-    update(ref(database, 'users/' + user.uid), {
-      data: newItems
-    });
-  }
+  //     return currentItem;
+  //   })
+  //   setItems(newItems);
+  //   update(ref(database, 'users/' + user.uid), {
+  //     data: newItems
+  //   });
+  // }
 
-  function submitForm() {
-    document.getElementById("loginPopup").style.display = "none";
-  }
+  // function submitForm() {
+  //   document.getElementById("loginPopup").style.display = "none";
+  // }
 
-  function closeForm() {
-    document.getElementById("loginPopup").style.display = "none";
-  }
+  // function closeForm() {
+  //   document.getElementById("loginPopup").style.display = "none";
+  // }
 
   const entriesToShow = items.filter((currentItem) => {
     return (filter === "none" || currentItem.tags?.includes(filter));
   });
 
-  if (items.length > 0) {
+  if (items.length > 0 && showEditPopup) {
+    return (
+      <div>
+        <Form items={items}
+          setItems={setItems}
+          database={database}
+          user={user}
+          setFilter={setFilter} />
+        <h2 className="bank-title">Your Bank</h2>
+        <h3>Editing card {currentEditId}</h3>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
+      </div>
+    )
+  } else if (items.length > 0) {
     return (
       <div>
         <Form items={items}
