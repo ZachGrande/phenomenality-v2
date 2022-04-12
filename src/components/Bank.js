@@ -166,6 +166,11 @@ function Bank() {
          onChange={e => setFilter(e.currentTarget.value)}
        /> Soft Skills
        <br />
+          {/* <ul>
+            {["Item1", "Item2", "Item3"].map(item =>
+            <li key="{item}">{item}</li>
+            )}
+          </ul> UPDATE THE LIST OF TAGS BASED ON WHAT EXISTS IN SEARCH BAR*/}
        <div className="container">
           {/* {tags.map((tag) => <div className="tag">{tag}</div>)} */}
           <input
