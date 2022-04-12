@@ -153,9 +153,21 @@ function Bank() {
   //   document.getElementById("loginPopup").style.display = "none";
   // }
 
-  // function closeForm() {
-  //   document.getElementById("loginPopup").style.display = "none";
-  // }
+  function closeForm() {
+    console.log("close Form")
+    return (
+      <div>
+        <Form items={items}
+          setItems={setItems}
+          database={database}
+          user={user}
+          setFilter={setFilter} />
+        <h2 className="bank-title">Your Bank</h2>
+        <div className="formPopup" style="display:none" id="popupForm"></div>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
+      </div>
+    )
+  }
 
   const entriesToShow = items.filter((currentItem) => {
     return (filter === "none" || currentItem.tags?.includes(filter));
@@ -171,6 +183,18 @@ function Bank() {
           setFilter={setFilter} />
         <h2 className="bank-title">Your Bank</h2>
         <h3>Editing card {currentEditId}</h3>
+        <div className="formPopup" id="popupForm">
+          <form action="/action_page.php" class="formContainer">
+            <h4>Edit your Accomplishment</h4>
+            <label for="editDescription">
+              <strong>Description</strong>
+            </label>
+            <input type="text" id="editDescription" value="hi :)" name="editDescription"></input>
+            <input type="text" id="editTag" value="~will this even need to be here?~" name="editTags"></input>
+            <button type="button" class="btn update">Update</button>
+            <button type="button" class="btn cancel" onClick={closeForm}>Cancel</button>
+          </form>
+        </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
       </div>
     )

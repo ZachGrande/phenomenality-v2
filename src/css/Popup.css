@@ -2,6 +2,7 @@
     box-sizing: border-box;
   }
   .loginPopup {
+    display: none;
     position: relative;
     text-align: center;
     width: 100%;
@@ -49,4 +50,8 @@
   .formContainer .btn:hover,
   .openButton:hover {
     opacity: 1;
+  }
+
+  .update {
+      color: 579A72;
   }
