@@ -31,25 +31,25 @@
 
 .filter, .what{
   background-color: #FDEDDE;
-  padding: 4vw;
+  padding: 3vw;
   
 }
 
 .welcome, .ipType {
   background-color: #ffffff;
-  padding: 4vw;
+  padding: 3vw;
 }
 
 .landing h1 {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
-  font-size: 4vw;
+  font-size: 4.5vw;
 } 
 
 .landing h2 {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
-  font-size: 3vw;
+  font-size: 4vw;
 }
 
 .landing p1 {
@@ -68,7 +68,6 @@ button {
   border-radius: 12px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
-  
 }
 
 button:hover {
