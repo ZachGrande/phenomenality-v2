@@ -155,34 +155,36 @@ function Bank() {
 
   function closeForm() {
     console.log("close Form clicked")
-    return (
-      <div>
-        <Form items={items}
-          setItems={setItems}
-          database={database}
-          user={user}
-          setFilter={setFilter} />
-        <h2 className="bank-title">Your Bank</h2>
-        <div className="formPopup" style="display:none" id="popupForm"></div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
-      </div>
-    )
+    document.getElementById("popupForm").style.display = "none";
+    // return (
+    //   <div>
+    //     <Form items={items}
+    //       setItems={setItems}
+    //       database={database}
+    //       user={user}
+    //       setFilter={setFilter} />
+    //     <h2 className="bank-title">Your Bank</h2>
+    //     <div className="formPopup" id="popupForm"></div>
+    //     <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
+    //   </div>
+    // )
   }
 
   function submitForm() {
     console.log("submit Form clicked")
-    return (
-      <div>
-        <Form items={items}
-          setItems={setItems}
-          database={database}
-          user={user}
-          setFilter={setFilter} />
-        <h2 className="bank-title">Your Bank</h2>
-        <div className="formPopup" style="display:none" id="popupForm"></div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
-      </div>
-    )
+    document.getElementById("popupForm").style.display = "none";
+    // return (
+    //   <div>
+    //     <Form items={items}
+    //       setItems={setItems}
+    //       database={database}
+    //       user={user}
+    //       setFilter={setFilter} />
+    //     <h2 className="bank-title">Your Bank</h2>
+    //     <div className="formPopup" style="display:none" id="popupForm"></div>
+    //     <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
+    //   </div>
+    // )
   }
 
   const entriesToShow = items.filter((currentItem) => {
@@ -198,14 +200,14 @@ function Bank() {
           user={user}
           setFilter={setFilter} />
         <h2 className="bank-title">Your Bank</h2>
-        <div className="formPopup blurContainer" id="popupForm">
+        <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
             <h4>Edit Accomplishment {currentEditId}</h4>
             <label htmlFor="editDescription">
               <strong>Description</strong>
             </label>
-            {/* Not referencing the correct item, unable to edit value */}
-            <input type="text" id="editDescription" value="hi :)" onChange={e => (items.currentEditId.description = e.currentTarget.value)} name="editDescription"></input>
+            {/* Not referencing the correct item, unable to edit value. also, onChange syntax in general = off */}
+            <input type="text" id="editDescription" value="~edit description~" onChange={e => (items.currentEditId.description = e.currentTarget.value)} name="editDescription"></input>
             <label htmlFor="editTags">
               <strong>Tags</strong>
             </label>
