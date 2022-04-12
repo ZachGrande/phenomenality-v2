@@ -1,13 +1,29 @@
 import surveyJSON from './quiz.json';
+import React, { useEffect, useState } from 'react';
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
+import CanvasJSReact from './assets/canvasjs.react';
+// import './ResultsPage.css';
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 // Tracks the quiz results and updates the state variable created when the user enters or refreshes the page
 function QuizContent(props) {
 
   // syncs with the state variable 
-  const results = props.results;
-  const setResults = props.setResults;
+  // const results = props.results;
+
+  const freshResults = [{"y":0,"indexLabel":"Violet"},
+                        {"y":0,"indexLabel":"Dash"},
+                        {"y":0,"indexLabel":"Mr. Incredible"},
+                        {"y":0,"indexLabel":"Elastigirl"},
+                        {"y":0,"indexLabel":"Edna Mode"},
+                        {"y":0,"indexLabel":"None"}];
+
+  const [results, setResults] = useState(freshResults);
+
+  const [displayResults, setDisplayResults] = useState(false);
+
+  // const setResults = props.setResults;
   
   // style of the quiz (stone = black)
   Survey.StylesManager.applyTheme("stone");
@@ -83,6 +99,8 @@ function QuizContent(props) {
 
     handleResults(); // final step: update state
 
+    setDisplayResults(true);
+
     return currentResults;
   }
 
@@ -94,13 +112,69 @@ function QuizContent(props) {
       console.log("Survey done!");
       var quizResults = convertResults(surveyData, results);
       console.log(quizResults);
-    })
+    });
+
+  
+    function renderChart(results) {
+      // the main variable that sets up the pie chart. allows for results to be exported!
+      const options = {
+        exportEnabled: true,
+        animationEnabled: true,
+        data: [{
+          type: "pie",
+          startAngle: 75,
+          showInLegend: "true",
+          toolTipContent: "{indexLabel} ({name}) {y}%",
+          legendText: "{indexLabel}",
+          indexLabelFontSize: 16,
+          dataPoints: results
+        }]
+      }
     
-  return(
-    <div>
-      <Survey.Survey model={survey} />
-    </div>
-  )
+      // displays the pie chart
+      return(
+        <div>
+          <CanvasJSChart options={options} />
+        </div>
+      )
+    }
+
+    function topResult(results) {
+      // find the name of the top result
+      var topResult = results[0].y;
+      var topName = results[0].indexLabel;
+      for (var i = 0; i < results.length; i++) {
+        if (results[i].y > topResult) {
+          topResult = results[i].y;
+          topName = results[i].indexLabel;
+        }
+      }
+    }
+
+
+
+  if (!displayResults) {
+    return(
+      <div>
+        <Survey.Survey model={survey} />
+      </div>
+    )
+  } else {
+    return(
+      <div className="content">
+        <div className="flex-container">
+          <span className="flex-item top-result">{topResult(results)}</span>
+            <div className="pieChart flex-item">
+              {renderChart(results)}
+            </div>
+
+        </div>
+        <p>DISCLAIMER: This is not medical advice. These results are meant to be used as a general guideline.</p>
+      </div>
+      
+    )
+  }
+  
 }
 
 export default QuizContent;
