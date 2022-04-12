@@ -2,7 +2,7 @@ import surveyJSON from './quiz.json';
 import React, { useEffect, useState } from 'react';
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
-import CanvasJSReact from './assets/canvasjs.react';
+import CanvasJSReact from '../assets/canvasjs.react';
 // import './ResultsPage.css';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
