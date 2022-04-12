@@ -42,7 +42,7 @@ function QuizContent(props) {
     }
 
     // delayed computation until after survey is complete
-    const handleResults = (event) => {
+    const handleResults = () => {
       // create a copy of state and update elements as needed
       // item: the current element of the results array
       // index: the current entry number we are looking at
