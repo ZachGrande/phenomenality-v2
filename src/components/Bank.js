@@ -97,30 +97,46 @@ function Bank() {
     //   data: newItems
     // });{
     let newItems = items.filter((currentItem) => {
+      //  <style type="text/css">
+      //     .formPopup {
+      //       display: none;
+      //       position: fixed;
+      //       left: 45%;
+      //       top: 5%;
+      //       transform: translate(-50%, 5%);
+      //       border: 3px solid #999999;
+      //       z-index: 9;
+      //     }
+      //   </style>
+      var oldDescription = ""
       if (currentItem.id === id) {
+        oldDescription = currentItem.description;
+      }
+      <html>
         <div class="loginPopup">
-          <div class="formPopup" id="popupForm">
-            {/* this might be an important piece? */}
-            <h5>test</h5>
-            <form>
+          <div class="formPopup" id="popupForm" style="display:none">
+            {/* what does this do??*/}
+            <form action="/action_page.php" class="formContainer">
               <h4>Edit your Accomplishment</h4>
-              <label for="edit_description">
+              <label for="editDescription">
                 <strong>Description</strong>
               </label>
-              <input type="text" id="edit_description" value={currentItem.description} onChange={e => (currentItem.description = e.currentTarget.value)} name="edit_description"></input>
-              <button type="button" class="btn success" onclick={submitForm()}>Submit</button>
+              {/* might need to make sure that this is updating the current/correct description */}
+              <input type="text" id="editDescription" value={oldDescription} onChange={e => (currentItem.description = e.currentTarget.value)} name="edit_description"></input>
+              <button type="button" class="btn success" onclick={submitForm()}>Update</button>
               <button type="button" class="btn cancel" onclick={closeForm()}>Cancel</button>
             </form>
           </div>
         </div>
-        // I think the error is bc the code below can't access "popupForm"
-        document.getElementById("popupForm").style.display = "block";
-        function submitForm() {
-          document.getElementById("popupForm").style.display = "none";
-        }
-        function closeForm() {
-          document.getElementById("popupForm").style.display = "none";
-        }
+      </html>
+      // error bc the code below can't access "popupForm"
+      document.getElementById("popupForm").style.display = "block";
+      // not the proper syntax ?
+      function submitForm() {
+        document.getElementById("popupForm").style.display = "none";
+      }
+      function closeForm() {
+        document.getElementById("popupForm").style.display = "none";
       }
       return currentItem;
     })
