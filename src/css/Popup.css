@@ -7,7 +7,7 @@
     width: 100%;
   }
   .formPopup {
-    display: none;
+    display: block;
     position: fixed;
     left: 45%;
     top: 5%;

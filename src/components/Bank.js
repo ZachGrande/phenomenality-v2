@@ -110,40 +110,43 @@ function Bank() {
       //   </style>
       var oldDescription = ""
       if (currentItem.id === id) {
+        console.log("button was clicked with ID", id)
         oldDescription = currentItem.description;
-      }
-      <html>
-        <div class="loginPopup">
-          <div class="formPopup" id="popupForm" style="display:none">
-            {/* what does this do??*/}
-            <form action="/action_page.php" class="formContainer">
-              <h4>Edit your Accomplishment</h4>
-              <label for="editDescription">
-                <strong>Description</strong>
-              </label>
-              {/* might need to make sure that this is updating the current/correct description */}
-              <input type="text" id="editDescription" value={oldDescription} onChange={e => (currentItem.description = e.currentTarget.value)} name="edit_description"></input>
-              <button type="button" class="btn success" onclick={submitForm()}>Update</button>
-              <button type="button" class="btn cancel" onclick={closeForm()}>Cancel</button>
-            </form>
+        return (
+          <div class="loginPopup">
+            <h1>Content</h1>
+            <div class="formPopup" id="popupForm">
+              {/* what does this do??*/}
+              <form action="/action_page.php" class="formContainer">
+                <h4>Edit your Accomplishment</h4>
+                <label for="editDescription">
+                  <strong>Description</strong>
+                </label>
+                {/* might need to make sure that this is updating the current/correct description */}
+                <input type="text" id="editDescription" value={oldDescription} onChange={e => (currentItem.description = e.currentTarget.value)} name="editDescription"></input>
+                <button type="button" class="btn success" onClick={submitForm}>Update</button>
+                <button type="button" class="btn cancel" onClick={closeForm}>Cancel</button>
+              </form>
+            </div>
           </div>
-        </div>
-      </html>
-      // error bc the code below can't access "popupForm"
-      document.getElementById("popupForm").style.display = "block";
-      // not the proper syntax ?
-      function submitForm() {
-        document.getElementById("popupForm").style.display = "none";
+        )
       }
-      function closeForm() {
-        document.getElementById("popupForm").style.display = "none";
-      }
+      console.log("button was clicked after if")
+
       return currentItem;
     })
     setItems(newItems);
     update(ref(database, 'users/' + user.uid), {
       data: newItems
     });
+  }
+
+  function submitForm() {
+    document.getElementById("loginPopup").style.display = "none";
+  }
+
+  function closeForm() {
+    document.getElementById("loginPopup").style.display = "none";
   }
 
   const entriesToShow = items.filter((currentItem) => {
