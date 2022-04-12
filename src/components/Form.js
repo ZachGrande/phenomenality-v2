@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
-import { withContext as ReactTags } from "react-tag-input";
+
+import '../css/Form.css';
+
 
 function Form(props) {
 
@@ -11,33 +13,43 @@ function Form(props) {
   const user = props.user;
   const setFilter = props.setFilter;
 
+  const [input, setInput] = useState('');
+  const [tags, setTags] = useState([]);
+  const [isKeyReleased, setIsKeyReleased] = useState(false);
+  const onChange = (e) => {
+    const { value } = e.target;
+    setInput(value);
+  };
+  const onKeyDown = (e) => {
+    const { key } = e;
+    const trimmedInput = input.trim();
+  
+    if (key === ',' && trimmedInput.length && !tags.includes(trimmedInput)) {
+      e.preventDefault();
+      setTags(prevState => [...prevState, trimmedInput]);
+      setInput('');
+    }
+  
+    if (key === "Backspace" && !input.length && tags.length && isKeyReleased) {
+      const tagsCopy = [...tags];
+      const poppedTag = tagsCopy.pop();
+      e.preventDefault();
+      setTags(tagsCopy);
+      setInput(poppedTag);
+    }
+  
+    setIsKeyReleased(false);
+  };
+  const onKeyUp = () => {
+    setIsKeyReleased(true);
+  }
+  const deleteTag = (index) => {
+    setTags(prevState => prevState.filter((tag, i) => i !== index))
+  }
+
   const [accomplishment, setAccomplishment] = useState("");
   const [status, setStatus] = useState("success");
-  const [tags, setTags] = useState([]);
-
-  const [searchTags, setSearchTags] = useState([]);
-  const KeyCodes = {
-    comma: 188,
-    enter: 13
-  };
-  const delimiters = [KeyCodes.comma, KeyCodes.enter];
-  const handleDelete = i => {
-    setSearchTags(searchTags.filter((tag, index) => index !== i));
-  };
-  const handleAddition = (tag) => {
-    setSearchTags([...searchTags, tag]);
-  };
-  const handleTagClick = index => {
-    console.log('The tag at index ' + index + ' was clicked');
-  };
-  const onClearAll = () => {
-    setSearchTags([]);
-  };
-  const onTagUpdate = (i, newTag) => {
-    const updatedSearchTags = searchTags.slice();
-    updatedSearchTags.splice(i, 1, newTag);
-    setSearchTags(updatedSearchTags);
-  };
+  const [accomplishmentTags, setAccomplishmentTags] = useState([]);
 
   const addNewAccomplishment = async (event) => { 
     event.preventDefault();
@@ -47,10 +59,10 @@ function Form(props) {
       id: items.length + 1,
       key: items.length + "",
       status: status,
-      tags: tags
+      tags: accomplishmentTags
     }
 
-    console.log(tags) //tags spits out array based on order on selection of tag
+    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
     
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
@@ -68,8 +80,8 @@ function Form(props) {
   }
 
   const editTag = value => {
-    let newTags = tags;
-    if (!tags.includes(value)) {
+    let newTags = accomplishmentTags;
+    if (!accomplishmentTags.includes(value)) {
       newTags.push(value)
     } else {
       let index = newTags.indexOf(value);
@@ -77,7 +89,7 @@ function Form(props) {
         newTags.splice(index, 1);
       }
     }
-    setTags(newTags);
+    setAccomplishmentTags(newTags);
   }
 
   return (
@@ -149,20 +161,26 @@ function Form(props) {
          onChange={e => setFilter(e.currentTarget.value)}
        /> Soft Skills
        <br />
-       <div>
-       <ReactTags
-          handleDelete={handleDelete}
-          handleAddition={handleAddition}
-          delimiters={delimiters}
-          handleTagClick={handleTagClick}
-          onClearAll={onClearAll}
-          onTagUpdate={onTagUpdate}
-          placeholder="Search..."
-          tags={searchTags}
-        />
+       <div className="container">
+          {/* {tags.map((tag) => <div className="tag">{tag}</div>)} */}
+          <input
+            value={input}
+            placeholder="Enter a tag"
+            onKeyDown={onKeyDown}
+            onKeyUp={onKeyUp}
+            onChange={onChange}
+          />
+          <br />
+          {tags.map((tag, index) => (
+            <div className="tag">
+              {tag}
+              <button onClick={() => deleteTag(index)}>x</button>
+            </div>
+          ))}
         </div>
      </div>
-   )
- }
+   );
+}
+
 
  export default Form;
