@@ -6,6 +6,10 @@
       display: block
   }
 
+  h3, label {
+      font-family: Playfair Display;
+  }
+
   /* Not currently in use */
   .loginPopup {
     display: none;

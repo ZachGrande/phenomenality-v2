@@ -33,7 +33,7 @@ function Card(props) {
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
-        <button onClick={handleEdit}>Edit (broken)</button>
+        <button onClick={handleEdit}>Edit</button>
       </div>
     )
   }

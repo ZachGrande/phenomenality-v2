@@ -202,15 +202,11 @@ function Bank() {
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
-            <h4>Edit Accomplishment {currentEditId}</h4>
-            <label htmlFor="editDescription">
-              <strong>Description</strong>
-            </label>
+            <h3>Edit Accomplishment {currentEditId}</h3>
+            <label htmlFor="editDescription">Description</label>
             {/* Not referencing the correct item, unable to edit value. also, onChange syntax in general = off */}
             <input type="text" id="editDescription" value="~edit description~" onChange={e => (items.currentEditId.description = e.currentTarget.value)} name="editDescription"></input>
-            <label htmlFor="editTags">
-              <strong>Tags</strong>
-            </label>
+            <label htmlFor="editTags">Tags</label>
             {/* Not referencing the correct item, unable to edit value */}
             <input type="text" id="editTag" value="~will this even need to be here?~" onChange={e => (items.currentEditId.tags = e.currentTarget.value)} name="editTags"></input>
             <button type="button" className="btn" onClick={submitForm}>Update</button>
