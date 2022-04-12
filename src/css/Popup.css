@@ -1,17 +1,20 @@
 * {
     box-sizing: border-box;
   }
+/* Not currently functional */
+  .blurContainer{
+    backdrop-filter: blur(10px); 
+  }
   .loginPopup {
     display: none;
     position: relative;
     text-align: center;
-    width: 100%;
-  }
+    width: 100%;  }
   .formPopup {
     display: block;
     position: fixed;
-    left: 45%;
-    top: 5%;
+    left: 50%;
+    top: 25%;
     transform: translate(-50%, 5%);
     border: 3px solid #999999;
     z-index: 9;
@@ -37,7 +40,7 @@
   .formContainer .btn {
     padding: 12px 20px;
     border: none;
-    background-color: #8ebf42;
+    background-color: #579A72;
     color: #fff;
     cursor: pointer;
     width: 100%;
@@ -45,13 +48,9 @@
     opacity: 0.8;
   }
   .formContainer .cancel {
-    background-color: #cc0000;
+    background-color: #a9a9a9;
   }
   .formContainer .btn:hover,
   .openButton:hover {
     opacity: 1;
-  }
-
-  .update {
-      color: 579A72;
   }

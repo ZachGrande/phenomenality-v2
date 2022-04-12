@@ -154,7 +154,23 @@ function Bank() {
   // }
 
   function closeForm() {
-    console.log("close Form")
+    console.log("close Form clicked")
+    return (
+      <div>
+        <Form items={items}
+          setItems={setItems}
+          database={database}
+          user={user}
+          setFilter={setFilter} />
+        <h2 className="bank-title">Your Bank</h2>
+        <div className="formPopup" style="display:none" id="popupForm"></div>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
+      </div>
+    )
+  }
+
+  function submitForm() {
+    console.log("submit Form clicked")
     return (
       <div>
         <Form items={items}
@@ -182,17 +198,21 @@ function Bank() {
           user={user}
           setFilter={setFilter} />
         <h2 className="bank-title">Your Bank</h2>
-        <h3>Editing card {currentEditId}</h3>
-        <div className="formPopup" id="popupForm">
-          <form action="/action_page.php" class="formContainer">
-            <h4>Edit your Accomplishment</h4>
-            <label for="editDescription">
+        <div className="formPopup blurContainer" id="popupForm">
+          <form action="/action_page.php" className="formContainer">
+            <h4>Edit Accomplishment {currentEditId}</h4>
+            <label htmlFor="editDescription">
               <strong>Description</strong>
             </label>
-            <input type="text" id="editDescription" value="hi :)" name="editDescription"></input>
-            <input type="text" id="editTag" value="~will this even need to be here?~" name="editTags"></input>
-            <button type="button" class="btn update">Update</button>
-            <button type="button" class="btn cancel" onClick={closeForm}>Cancel</button>
+            {/* Not referencing the correct item, unable to edit value */}
+            <input type="text" id="editDescription" value="hi :)" onChange={e => (items.currentEditId.description = e.currentTarget.value)} name="editDescription"></input>
+            <label htmlFor="editTags">
+              <strong>Tags</strong>
+            </label>
+            {/* Not referencing the correct item, unable to edit value */}
+            <input type="text" id="editTag" value="~will this even need to be here?~" onChange={e => (items.currentEditId.tags = e.currentTarget.value)} name="editTags"></input>
+            <button type="button" className="btn" onClick={submitForm}>Update</button>
+            <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
           </form>
         </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
