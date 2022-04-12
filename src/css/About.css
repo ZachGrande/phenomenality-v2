@@ -2,12 +2,37 @@
   text-align: center;
 }
 
+.about h1{
+  font-size: 4vw;
+}
+
 .member-group {
   display: flex;
   justify-content: space-between;
-  padding: 2em;
+  padding: 2vw; 
+  font-weight: bold;
 }
 
+.member-name {
+  font-size: 2vw;
+}
 .member-role {
   font-style: italic;
+  font-weight: 400;
+  font-size: 1.75vw;
+}
+
+.member img {
+  width: 18vw;
+  border-radius: 50%;
+  height: 18vw;
+}
+
+.thanks h2 {
+  font-size: 2.75vw;
+}
+
+.thanks h3 {
+  font-weight: 400;
+  font-size: 2.25vw;
 }
