@@ -17,7 +17,7 @@ function Bank() {
 
   const auth = getAuth(app);
   const database = getDatabase(app);
-  const allTags = ['Technical Skill', 'Soft Skill', 'Kudos', 'Award',
+  const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
    'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
 
   // const [user, loading, error] = useAuthState(auth);
@@ -26,7 +26,7 @@ function Bank() {
   const [isLoading, setIsLoading] = useState(true);
 
   //NEED TO CHANGE FILTER TYPE TO ARRAY ?? 
-  const [filter, setFilter] = useState("none");
+  //const [filter, setFilter] = useState("none");
 
   const [input, setInput] = useState('');
   const [tags, setTags] = useState([]);
@@ -36,7 +36,9 @@ function Bank() {
   };
 
   //want to also add a search enter button ??
-  //add client side verification - warning to tags that doesn't exist in search bar 
+  //use tags to search accomplishments
+  //add client side verification - warning for tags that doesn't exist in search bar or if tag already selected
+  //autocomplete tags
   //add client side verification - must include tag to accomplishment
   const onKeyDown = (e) => {
     const { key } = e;
@@ -45,7 +47,7 @@ function Bank() {
     //only allows users to input tag that exists in allTag array
     if (key === 'Enter' && trimmedInput.length && !tags.includes(trimmedInput)) {
       e.preventDefault();
-      // check whether tags selected exists
+
       if (allTags.map(tag => tag.toLowerCase()).includes(trimmedInput.toLowerCase())) {
         setTags(prevState => [...prevState, trimmedInput]);
         setInput('');
@@ -53,8 +55,11 @@ function Bank() {
     }
 
   };
+
+  //DELETING TAG NO LONGER WORKS
   const deleteTag = (index) => {
     setTags(prevState => prevState.filter((tag, i) => i !== index))
+    console.log("delete tag work?")
   }
 
   onAuthStateChanged(auth, () => {
@@ -133,7 +138,18 @@ function Bank() {
 
   //HERE IS FILTERING METHOD
   const entriesToShow = items.filter((currentItem) => {
-    return (filter === "none" || currentItem.tags?.includes(filter));
+    if(tags.length <= 0) { // handles if no tags are searched 
+      return currentItem;
+    }
+    
+    console.log(currentItem);
+    console.log("accomplishment tags: " + currentItem.tags);
+    console.log("search tags: " + tags);
+    let boolean = currentItem.tags.every(element => { return tags.includes(element)});
+
+    if (boolean) {
+      return currentItem;
+    }
   });
 
   if (items.length > 0) {
@@ -143,10 +159,11 @@ function Bank() {
                    setItems={setItems}
                    database={database}
                    user={user}
-                   setFilter={setFilter}/>
+                  //  setFilter={setFilter}
+                   />
         <h2 className="bank-title">Your Bank</h2>
         <h4>Want to filter by a specific tag?</h4>
-       <input
+       {/* <input
          type="radio"
          value="none"
          name="filter"
@@ -164,7 +181,7 @@ function Bank() {
          value="soft skills"
          name="filter"
          onChange={e => setFilter(e.currentTarget.value)}
-       /> Soft Skills
+       /> Soft Skills */}
        <br />
           {/* <ul>
             {["Item1", "Item2", "Item3"].map(item =>
@@ -202,7 +219,8 @@ function Bank() {
                    setItems={setItems}
                    database={database}
                    user={user}
-                   setFilter={setFilter}/>
+                   //setFilter={setFilter}
+                   />
       </div>
 
     )
