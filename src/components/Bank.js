@@ -102,8 +102,6 @@ function Bank() {
   }
 
   function submitForm() {
-    console.log("submit Form clicked");
-
     let newItems = items.filter((currentItem) => {
       if (currentItem.id === currentEditId) {
         currentItem.description = existingDescription;
@@ -145,9 +143,9 @@ function Bank() {
                    id="editDescription"
                    value={existingDescription}
                    onChange={(event) => {
-                    setExistingDescription(event.target.value);
-                  }}
-                   name="editDescription"></input>
+                     setExistingDescription(event.target.value);
+              }}
+              name="editDescription"></input>
             <button type="button" className="btn" onClick={submitForm}>Update</button>
             <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
           </form>

@@ -2,27 +2,16 @@
     box-sizing: border-box;
   }
 
-  .popupForm {
-      display: block
-  }
-
   h3, label {
       font-family: Playfair Display;
   }
-
-  /* Not currently in use */
-  .loginPopup {
-    display: none;
-    position: relative;
-    text-align: center;
-    width: 100%;  
-}
+  
   .formPopup {
     display: block;
     position: fixed;
     box-shadow: 0 50px 500px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     /* this one doesnt work :( */
-    backdrop-filter: blur(1000px);
+    backdrop-filter: blur(10px);
     left: 50%;
     top: 25%;
     transform: translate(-50%, 5%);
