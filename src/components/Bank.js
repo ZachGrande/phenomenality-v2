@@ -97,12 +97,8 @@ function Bank() {
     setExistingDescription(editItem[0].description);
   }
 
-  var resetCheck = 0
-
   function closeForm() {
-    console.log("close Form clicked");
-    document.getElementById("popupForm").style.display = "none";
-    resetCheck++; 
+    setShowEditPopup(false);
   }
 
   function submitForm() {
@@ -124,24 +120,14 @@ function Bank() {
     update(ref(database, 'users/' + user.uid), {
       data: newItems
     });
-    document.getElementById("popupForm").style.display = "none";
+    setShowEditPopup(false);
   }
-
-  // not in use
-  // function resetEdit() { 
-  //   console.log("reset Edit");
-  //   document.getElementById("popupForm").style.display = "block";
-  // }
 
   const entriesToShow = items.filter((currentItem) => {
     return (filter === "none" || currentItem.tags?.includes(filter));
   });
 
   if (items.length > 0 && showEditPopup) {
-    // if statement not in use
-    // if(resetCheck > 0) { 
-    //   resetEdit();
-    // }
     return (
       <div>
         <Form items={items}
@@ -151,6 +137,7 @@ function Bank() {
           setFilter={setFilter} />
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
+          {/* this is an action for when the enter button is clicked? */}
           <form action="/action_page.php" className="formContainer">
             <h3>Edit Accomplishment {currentEditId}</h3>
             <label htmlFor="editDescription">Description</label>
