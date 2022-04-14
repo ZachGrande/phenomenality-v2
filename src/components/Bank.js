@@ -26,6 +26,8 @@ function Bank() {
 
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(-1);
+  const [existingDescription, setExistingDescription] = useState("");
+  // const [currentItem, setCurrentItem] = useState("");
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -56,7 +58,7 @@ function Bank() {
     // } else {
     // console.log("Did not retrieve user location from database");
     // }
-  }, [isLoading, database, user]);
+  }, [isLoading, database, user /* something here? */]);
 
   if (isLoading) {
     return (
@@ -88,6 +90,18 @@ function Bank() {
   const editCard = id => {
     setShowEditPopup(true);
     setCurrentEditId(id);
+    
+  }
+
+  function getEditItem() { 
+    let editItem = items.filter((currentItem) => {
+      if (currentItem.id === currentEditId) {
+        return currentItem;
+      }
+    });
+    setExistingDescription(editItem.description); 
+    console.log(editItem);
+    // setCurrentItem(editItem);
   }
 
   /*const editCardsss = id => {
@@ -149,42 +163,40 @@ function Bank() {
   //   });
   // }
 
-  // function submitForm() {
-  //   document.getElementById("loginPopup").style.display = "none";
-  // }
+  
+
+  var resetCheck = 0
 
   function closeForm() {
-    console.log("close Form clicked")
+    console.log("close Form clicked");
     document.getElementById("popupForm").style.display = "none";
-    // return (
-    //   <div>
-    //     <Form items={items}
-    //       setItems={setItems}
-    //       database={database}
-    //       user={user}
-    //       setFilter={setFilter} />
-    //     <h2 className="bank-title">Your Bank</h2>
-    //     <div className="formPopup" id="popupForm"></div>
-    //     <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
-    //   </div>
-    // )
+    resetCheck++; 
   }
 
   function submitForm() {
-    console.log("submit Form clicked")
+    console.log("submit Form clicked");
     document.getElementById("popupForm").style.display = "none";
-    // return (
-    //   <div>
-    //     <Form items={items}
-    //       setItems={setItems}
-    //       database={database}
-    //       user={user}
-    //       setFilter={setFilter} />
-    //     <h2 className="bank-title">Your Bank</h2>
-    //     <div className="formPopup" style="display:none" id="popupForm"></div>
-    //     <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
-    //   </div>
-    // )
+  }
+
+  // not in use
+  function resetEdit() { 
+    console.log("reset Edit");
+    document.getElementById("popupForm").style.display = "block";
+  }
+
+  function getEditItem() { 
+    let editItem = items.filter((currentItem) => {
+      if (currentItem.id === currentEditId) {
+        return currentItem;
+      }
+    });
+    setExistingDescription(editItem.description); 
+    console.log(editItem);
+    // setCurrentItem(editItem);
+  }
+
+  const editOnChange = (event) => {
+    // editItem.description = e.currentTarget.value
   }
 
   const entriesToShow = items.filter((currentItem) => {
@@ -192,23 +204,29 @@ function Bank() {
   });
 
   if (items.length > 0 && showEditPopup) {
+    // if statement not in use
+    if(resetCheck > 0) { 
+      resetEdit();
+    }
+    
     return (
       <div>
         <Form items={items}
           setItems={setItems}
           database={database}
           user={user}
+          // currentItem={currentItem} 
           setFilter={setFilter} />
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
             <h3>Edit Accomplishment {currentEditId}</h3>
             <label htmlFor="editDescription">Description</label>
-            {/* Not referencing the correct item, unable to edit value. also, onChange syntax in general = off */}
-            <input type="text" id="editDescription" value="~edit description~" onChange={e => (items.currentEditId.description = e.currentTarget.value)} name="editDescription"></input>
+            {/* Not referencing the correct item. also, onChange syntax in general = off */}
+            <input type="text" id="editDescription" value={"empty"/*currentItem.description*/} onChange={editOnChange} name="editDescription"></input>
             <label htmlFor="editTags">Tags</label>
             {/* Not referencing the correct item, unable to edit value */}
-            <input type="text" id="editTag" value="~will this even need to be here?~" onChange={e => (items.currentEditId.tags = e.currentTarget.value)} name="editTags"></input>
+            <input type="text" id="editTag" value="~wait for tiff/is this needed here?~" /* onChange={e => (editItem.tags = e.currentTarget.value)}*/ name="editTags"></input>
             <button type="button" className="btn" onClick={submitForm}>Update</button>
             <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
           </form>
