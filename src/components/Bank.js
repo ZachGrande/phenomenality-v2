@@ -90,7 +90,12 @@ function Bank() {
   const editCard = id => {
     setShowEditPopup(true);
     setCurrentEditId(id);
-    
+    let editItem = items.filter((currentItem) => {
+      if (currentItem.id === id) {
+        return currentItem;
+      }
+    });
+    setExistingDescription(editItem[0].description);
   }
 
   function getEditItem() { 
@@ -175,6 +180,24 @@ function Bank() {
 
   function submitForm() {
     console.log("submit Form clicked");
+
+    let newItems = items.filter((currentItem) => {
+      if (currentItem.id === currentEditId) {
+        currentItem.description = existingDescription;
+      }
+      return currentItem;
+    })
+    newItems = newItems.map((currentItem, index = 0) => {
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
+      return currentItem;
+    })
+    setItems(newItems);
+    update(ref(database, 'users/' + user.uid), {
+      data: newItems
+    });
+
     document.getElementById("popupForm").style.display = "none";
   }
 
@@ -223,7 +246,13 @@ function Bank() {
             <h3>Edit Accomplishment {currentEditId}</h3>
             <label htmlFor="editDescription">Description</label>
             {/* Not referencing the correct item. also, onChange syntax in general = off */}
-            <input type="text" id="editDescription" value={"empty"/*currentItem.description*/} onChange={editOnChange} name="editDescription"></input>
+            <input type="text"
+                   id="editDescription"
+                   value={existingDescription}
+                   onChange={(event) => {
+                    setExistingDescription(event.target.value);
+                  }}
+                   name="editDescription"></input>
             <label htmlFor="editTags">Tags</label>
             {/* Not referencing the correct item, unable to edit value */}
             <input type="text" id="editTag" value="~wait for tiff/is this needed here?~" /* onChange={e => (editItem.tags = e.currentTarget.value)}*/ name="editTags"></input>
