@@ -27,7 +27,6 @@ function Bank() {
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState("");
-  // const [currentItem, setCurrentItem] = useState("");
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -58,7 +57,7 @@ function Bank() {
     // } else {
     // console.log("Did not retrieve user location from database");
     // }
-  }, [isLoading, database, user /* something here? */]);
+  }, [isLoading, database, user]);
 
   if (isLoading) {
     return (
@@ -98,78 +97,6 @@ function Bank() {
     setExistingDescription(editItem[0].description);
   }
 
-  function getEditItem() { 
-    let editItem = items.filter((currentItem) => {
-      if (currentItem.id === currentEditId) {
-        return currentItem;
-      }
-    });
-    setExistingDescription(editItem.description); 
-    console.log(editItem);
-    // setCurrentItem(editItem);
-  }
-
-  /*const editCardsss = id => {
-    // let newItems = items.filter((currentItem) => {
-    //   if (currentItem.id === id) {
-    //     var edit_description = window.prompt("Edit your accomplishment description", currentItem.description);
-    //     // var edit_tags = window.prompt("Edit your tags"); HOLD OFF FOR TIFF
-    //     currentItem.description = edit_description;
-    //     // currentItem.tags = edit_tags; HOLD OFF FOR TIFF 
-    //   }
-    //   return currentItem;
-    // })
-    // setItems(newItems);
-    // update(ref(database, 'users/' + user.uid), {
-    //   data: newItems
-    // });{
-    let newItems = items.filter((currentItem) => {
-      //  <style type="text/css">
-      //     .formPopup {
-      //       display: none;
-      //       position: fixed;
-      //       left: 45%;
-      //       top: 5%;
-      //       transform: translate(-50%, 5%);
-      //       border: 3px solid #999999;
-      //       z-index: 9;
-      //     }
-      //   </style>
-      var oldDescription = ""
-      if (currentItem.id === id) {
-        console.log("button was clicked with ID", id)
-        oldDescription = currentItem.description;
-        return (
-          <div class="loginPopup">
-            <h1>Content</h1>
-            <div class="formPopup" id="popupForm">
-              {/* what does this do??*/
-  //             <form action="/action_page.php" class="formContainer">
-  //               <h4>Edit your Accomplishment</h4>
-  //               <label for="editDescription">
-  //                 <strong>Description</strong>
-  //               </label>
-  //               {/* might need to make sure that this is updating the current/correct description */}
-  //               <input type="text" id="editDescription" value={oldDescription} onChange={e => (currentItem.description = e.currentTarget.value)} name="editDescription"></input>
-  //               <button type="button" class="btn success" onClick={submitForm}>Update</button>
-  //               <button type="button" class="btn cancel" onClick={closeForm}>Cancel</button>
-  //             </form>
-  //           </div>
-  //         </div>
-  //       )
-  //     }
-  //     console.log("button was clicked after if")
-
-  //     return currentItem;
-  //   })
-  //   setItems(newItems);
-  //   update(ref(database, 'users/' + user.uid), {
-  //     data: newItems
-  //   });
-  // }
-
-  
-
   var resetCheck = 0
 
   function closeForm() {
@@ -197,30 +124,14 @@ function Bank() {
     update(ref(database, 'users/' + user.uid), {
       data: newItems
     });
-
     document.getElementById("popupForm").style.display = "none";
   }
 
   // not in use
-  function resetEdit() { 
-    console.log("reset Edit");
-    document.getElementById("popupForm").style.display = "block";
-  }
-
-  function getEditItem() { 
-    let editItem = items.filter((currentItem) => {
-      if (currentItem.id === currentEditId) {
-        return currentItem;
-      }
-    });
-    setExistingDescription(editItem.description); 
-    console.log(editItem);
-    // setCurrentItem(editItem);
-  }
-
-  const editOnChange = (event) => {
-    // editItem.description = e.currentTarget.value
-  }
+  // function resetEdit() { 
+  //   console.log("reset Edit");
+  //   document.getElementById("popupForm").style.display = "block";
+  // }
 
   const entriesToShow = items.filter((currentItem) => {
     return (filter === "none" || currentItem.tags?.includes(filter));
@@ -228,24 +139,21 @@ function Bank() {
 
   if (items.length > 0 && showEditPopup) {
     // if statement not in use
-    if(resetCheck > 0) { 
-      resetEdit();
-    }
-    
+    // if(resetCheck > 0) { 
+    //   resetEdit();
+    // }
     return (
       <div>
         <Form items={items}
           setItems={setItems}
           database={database}
           user={user}
-          // currentItem={currentItem} 
           setFilter={setFilter} />
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
             <h3>Edit Accomplishment {currentEditId}</h3>
             <label htmlFor="editDescription">Description</label>
-            {/* Not referencing the correct item. also, onChange syntax in general = off */}
             <input type="text"
                    id="editDescription"
                    value={existingDescription}
@@ -253,9 +161,6 @@ function Bank() {
                     setExistingDescription(event.target.value);
                   }}
                    name="editDescription"></input>
-            <label htmlFor="editTags">Tags</label>
-            {/* Not referencing the correct item, unable to edit value */}
-            <input type="text" id="editTag" value="~wait for tiff/is this needed here?~" /* onChange={e => (editItem.tags = e.currentTarget.value)}*/ name="editTags"></input>
             <button type="button" className="btn" onClick={submitForm}>Update</button>
             <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
           </form>
