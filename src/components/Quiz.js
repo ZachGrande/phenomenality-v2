@@ -23,6 +23,9 @@ function QuizContent(props) {
 
   const [displayResults, setDisplayResults] = useState(false);
 
+  const [topResult, setTopResult] = useState(results[0].y);
+  const [topName, setTopName] = useState(results[0].indexLabel);
+
   // const setResults = props.setResults;
   
   // style of the quiz (stone = black)
@@ -139,16 +142,26 @@ function QuizContent(props) {
       )
     }
 
-    function topResult(results) {
+    function showTopResult(results) {
       // find the name of the top result
-      var topResult = results[0].y;
-      var topName = results[0].indexLabel;
+      // var topResult = results[0].y;
+      // var topName = results[0].indexLabel;
       for (var i = 0; i < results.length; i++) {
         if (results[i].y > topResult) {
-          topResult = results[i].y;
-          topName = results[i].indexLabel;
+          setTopResult(results[i].y);
+          setTopName(results[i].indexLabel);
+          // topResult = results[i].y;
+          // topName = results[i].indexLabel;
         }
       }
+      return(
+        <div>
+          <h2>You got {topName}!</h2>
+          <p>Click the button to see how you and {topName} can work 
+          to defeat imposter syndrome. To learn more about the other 
+          imposter types, go to the corresponding tab on the dropdown menu.</p>
+        </div>
+      )
     }
 
 
@@ -156,6 +169,11 @@ function QuizContent(props) {
   if (!displayResults) {
     return(
       <div>
+        <h1>Which Type of Imposter PHENOMENON Do You Have?</h1>
+        <p className="instructions">Complete this quick, 7-question quiz to 
+        determine which type of imposter syndrome you have, if any. You may 
+        find that multiple answers to one question apply to you. We encourage 
+        you to select the option that most aligns with your typical patterns.</p>
         <Survey.Survey model={survey} />
       </div>
     )
@@ -163,10 +181,13 @@ function QuizContent(props) {
     return(
       <div className="content">
         <div className="flex-container">
-          <span className="flex-item top-result">{topResult(results)}</span>
-            <div className="pieChart flex-item">
-              {renderChart(results)}
-            </div>
+        <h1>Imposter Syndrome Results</h1>
+          <span className="flex-item top-result">
+            {showTopResult(results)}
+          </span>
+          <div className="pieChart flex-item">
+            {renderChart(results)}
+          </div>
 
         </div>
         <p>DISCLAIMER: This is not medical advice. These results are meant to be used as a general guideline.</p>
