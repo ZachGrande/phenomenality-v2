@@ -26,6 +26,7 @@ function Bank() {
 
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(-1);
+  const [existingDescription, setExistingDescription] = useState("");
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -88,101 +89,36 @@ function Bank() {
   const editCard = id => {
     setShowEditPopup(true);
     setCurrentEditId(id);
+    let editItem = items.filter((currentItem) => {
+      if (currentItem.id === id) {
+        return currentItem;
+      }
+    });
+    setExistingDescription(editItem[0].description);
   }
 
-  /*const editCardsss = id => {
-    // let newItems = items.filter((currentItem) => {
-    //   if (currentItem.id === id) {
-    //     var edit_description = window.prompt("Edit your accomplishment description", currentItem.description);
-    //     // var edit_tags = window.prompt("Edit your tags"); HOLD OFF FOR TIFF
-    //     currentItem.description = edit_description;
-    //     // currentItem.tags = edit_tags; HOLD OFF FOR TIFF 
-    //   }
-    //   return currentItem;
-    // })
-    // setItems(newItems);
-    // update(ref(database, 'users/' + user.uid), {
-    //   data: newItems
-    // });{
-    let newItems = items.filter((currentItem) => {
-      //  <style type="text/css">
-      //     .formPopup {
-      //       display: none;
-      //       position: fixed;
-      //       left: 45%;
-      //       top: 5%;
-      //       transform: translate(-50%, 5%);
-      //       border: 3px solid #999999;
-      //       z-index: 9;
-      //     }
-      //   </style>
-      var oldDescription = ""
-      if (currentItem.id === id) {
-        console.log("button was clicked with ID", id)
-        oldDescription = currentItem.description;
-        return (
-          <div class="loginPopup">
-            <h1>Content</h1>
-            <div class="formPopup" id="popupForm">
-              {/* what does this do??*/
-  //             <form action="/action_page.php" class="formContainer">
-  //               <h4>Edit your Accomplishment</h4>
-  //               <label for="editDescription">
-  //                 <strong>Description</strong>
-  //               </label>
-  //               {/* might need to make sure that this is updating the current/correct description */}
-  //               <input type="text" id="editDescription" value={oldDescription} onChange={e => (currentItem.description = e.currentTarget.value)} name="editDescription"></input>
-  //               <button type="button" class="btn success" onClick={submitForm}>Update</button>
-  //               <button type="button" class="btn cancel" onClick={closeForm}>Cancel</button>
-  //             </form>
-  //           </div>
-  //         </div>
-  //       )
-  //     }
-  //     console.log("button was clicked after if")
-
-  //     return currentItem;
-  //   })
-  //   setItems(newItems);
-  //   update(ref(database, 'users/' + user.uid), {
-  //     data: newItems
-  //   });
-  // }
-
-  // function submitForm() {
-  //   document.getElementById("loginPopup").style.display = "none";
-  // }
-
   function closeForm() {
-    console.log("close Form clicked")
-    return (
-      <div>
-        <Form items={items}
-          setItems={setItems}
-          database={database}
-          user={user}
-          setFilter={setFilter} />
-        <h2 className="bank-title">Your Bank</h2>
-        <div className="formPopup" style="display:none" id="popupForm"></div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
-      </div>
-    )
+    setShowEditPopup(false);
   }
 
   function submitForm() {
-    console.log("submit Form clicked")
-    return (
-      <div>
-        <Form items={items}
-          setItems={setItems}
-          database={database}
-          user={user}
-          setFilter={setFilter} />
-        <h2 className="bank-title">Your Bank</h2>
-        <div className="formPopup" style="display:none" id="popupForm"></div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
-      </div>
-    )
+    let newItems = items.filter((currentItem) => {
+      if (currentItem.id === currentEditId) {
+        currentItem.description = existingDescription;
+      }
+      return currentItem;
+    })
+    newItems = newItems.map((currentItem, index = 0) => {
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
+      return currentItem;
+    })
+    setItems(newItems);
+    update(ref(database, 'users/' + user.uid), {
+      data: newItems
+    });
+    setShowEditPopup(false);
   }
 
   const entriesToShow = items.filter((currentItem) => {
@@ -198,19 +134,18 @@ function Bank() {
           user={user}
           setFilter={setFilter} />
         <h2 className="bank-title">Your Bank</h2>
-        <div className="formPopup blurContainer" id="popupForm">
+        <div className="formPopup" id="popupForm">
+          {/* this is an action for when the enter button is clicked? */}
           <form action="/action_page.php" className="formContainer">
-            <h4>Edit Accomplishment {currentEditId}</h4>
-            <label htmlFor="editDescription">
-              <strong>Description</strong>
-            </label>
-            {/* Not referencing the correct item, unable to edit value */}
-            <input type="text" id="editDescription" value="hi :)" onChange={e => (items.currentEditId.description = e.currentTarget.value)} name="editDescription"></input>
-            <label htmlFor="editTags">
-              <strong>Tags</strong>
-            </label>
-            {/* Not referencing the correct item, unable to edit value */}
-            <input type="text" id="editTag" value="~will this even need to be here?~" onChange={e => (items.currentEditId.tags = e.currentTarget.value)} name="editTags"></input>
+            <h3>Edit Accomplishment {currentEditId}</h3>
+            <label htmlFor="editDescription">Description</label>
+            <input type="text"
+                   id="editDescription"
+                   value={existingDescription}
+                   onChange={(event) => {
+                     setExistingDescription(event.target.value);
+              }}
+              name="editDescription"></input>
             <button type="button" className="btn" onClick={submitForm}>Update</button>
             <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
           </form>

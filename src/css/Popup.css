@@ -1,28 +1,26 @@
 * {
     box-sizing: border-box;
   }
-/* Not currently functional */
-  .blurContainer{
-    backdrop-filter: blur(10px); 
+
+  h3, label {
+      font-family: Playfair Display;
   }
-  .loginPopup {
-    display: none;
-    position: relative;
-    text-align: center;
-    width: 100%;  }
+  
   .formPopup {
     display: block;
     position: fixed;
+    box-shadow: 0 50px 500px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* this one doesnt work :( */
+    backdrop-filter: blur(10px);
     left: 50%;
     top: 25%;
     transform: translate(-50%, 5%);
-    border: 3px solid #999999;
     z-index: 9;
   }
   .formContainer {
     max-width: 300px;
     padding: 20px;
-    background-color: #fff;
+    background-color: white;
   }
   .formContainer input[type=text],
   .formContainer input[type=password] {
