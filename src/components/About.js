@@ -14,7 +14,7 @@ function About() {
           <div className="member">
             <img src={EliseAdams} alt="Elise"/>
             <p className="member-name">Elise Adams</p>
-            <p className="member-role">UX Design/Research</p>
+            <p className="member-role">Project Manager/UX Research</p>
           </div>
           <div className="member">
             <img src={ZachGrande} alt="Zach"/>
