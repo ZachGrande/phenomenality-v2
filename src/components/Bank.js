@@ -162,19 +162,39 @@ function Bank() {
 
   //HERE IS FILTERING METHOD
   const entriesToShow = items.filter((currentItem) => {
-    if(tags.length <= 0) { // handles if no tags are searched 
+    if(tags.length === 0) { // handles if no tags are searched 
       return currentItem;
     }
     
-    console.log(currentItem);
-    console.log("accomplishment tags: " + currentItem.tags);
-    console.log("search tags: " + tags);
-    let boolean = currentItem.tags.every(element => { return tags.includes(element)});
 
-    if (boolean) {
+    // for(let i = 0; i < tags.length; i++){
+    //   if (currentItem.tags.includes(tags[i])) {
+    //     return currentItem;
+    //   }
+    // }
+
+    // tags.array.forEach(element => {
+
+    //   if(tags.contains(element)){
+    //     return currentItem;
+    //   }
+
+    // });
+
+    let shouldReturnItem = true;
+
+    for(let i = 0; i < currentItem.tags.length; i++){
+      if(!tags.includes(currentItem.tags[i])){
+        shouldReturnItem = false;
+      }
+    }
+
+    if(shouldReturnItem){
       return currentItem;
     }
-  });
+
+    });
+
 
   if (items.length > 0 && showEditPopup) {
     return (
@@ -183,7 +203,8 @@ function Bank() {
           setItems={setItems}
           database={database}
           user={user}
-          setFilter={setFilter} />
+          //setFilter={setFilter} />
+          />
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
           {/* this is an action for when the enter button is clicked? */}
