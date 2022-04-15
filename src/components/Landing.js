@@ -8,7 +8,7 @@ function Landing() {
     <div className='landing'>
 
       <div className="welcome flex-container">
-        <div class="left-side"> 
+        <div className="left-side"> 
           <h1>Welcome to Your Personal Cheerleader!</h1>
           <p1>Log your daily achievements and mitigate the 
             effects of imposter phenomemon.</p1>
@@ -16,7 +16,7 @@ function Landing() {
             <button>Sign In</button>
           </div>
         </div>
-        <div class="right-side"> 
+        <div className="right-side"> 
           <img src={Welcome} alt="Individuals Welcoming" width="40%" height="40%"/>
         </div>
       </div>     
@@ -25,7 +25,7 @@ function Landing() {
         <div className='left-side'>
           
         </div>
-        <div class="right-side"> 
+        <div className="right-side"> 
           <h2>Filter and sort through all your achievements</h2>
           <p1>Track your day to day wins and build confidence 
             in yourself when reviewing your accomplishments 
@@ -42,7 +42,7 @@ function Landing() {
             something something something about how this is not 
             medical advice.</p1>
         </div>
-        <div class="right-side">
+        <div className="right-side">
           
         </div>
       </div>
@@ -51,7 +51,7 @@ function Landing() {
         <div className='left-side'>
           <img src={Question} alt="Individual Questioning" width="25%" height="25%"/>
         </div>
-        <div class="right-side">
+        <div className="right-side">
           <h2>What is Imposter Phenomenon?</h2>
           <p1>Imposter phenomenon is the feeling of doubt in one’s 
             relevant knowledge and abilities regardless of experience
