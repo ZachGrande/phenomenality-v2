@@ -2,17 +2,17 @@ import { useState } from 'react';
 import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
 
+
 function Form(props) {
 
   const items = props.items;
   const setItems = props.setItems;
   const database = props.database;
   const user = props.user;
-  const setFilter = props.setFilter;
 
   const [accomplishment, setAccomplishment] = useState("");
   const [status, setStatus] = useState("success");
-  const [tags, setTags] = useState([]);
+  const [accomplishmentTags, setAccomplishmentTags] = useState([]);
 
   const addNewAccomplishment = async (event) => { 
     event.preventDefault();
@@ -22,8 +22,11 @@ function Form(props) {
       id: items.length + 1,
       key: items.length + "",
       status: status,
-      tags: tags
+      tags: accomplishmentTags
     }
+
+    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
+    
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
       currentItem.id = index + 1;
@@ -31,6 +34,7 @@ function Form(props) {
       index = index + 1;
       return currentItem;
     })
+
     setItems(newItems);
     setAccomplishment("");
     update(ref(database, 'users/' + user.uid), {
@@ -39,8 +43,8 @@ function Form(props) {
   }
 
   const editTag = value => {
-    let newTags = tags;
-    if (!tags.includes(value)) {
+    let newTags = accomplishmentTags;
+    if (!accomplishmentTags.includes(value)) {
       newTags.push(value)
     } else {
       let index = newTags.indexOf(value);
@@ -48,7 +52,7 @@ function Form(props) {
         newTags.splice(index, 1);
       }
     }
-    setTags(newTags);
+    setAccomplishmentTags(newTags);
   }
 
   return (
@@ -98,29 +102,9 @@ function Form(props) {
        <br></br>
        <button onClick={addNewAccomplishment}>Add accomplishment</button>
        </form>
-       <br></br>
-       <h4>Want to filter by a specific tag?</h4>
-       <input
-         type="radio"
-         value="none"
-         name="filter"
-         defaultChecked={true}
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> None
-       <input
-         type="radio"
-         value="technical"
-         name="filter"
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> Technical
-       <input
-         type="radio"
-         value="soft skills"
-         name="filter"
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> Soft Skills
      </div>
-   )
- }
+   );
+}
+
 
  export default Form;
