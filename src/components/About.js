@@ -14,12 +14,12 @@ function About() {
           <div className="member">
             <img src={EliseAdams} alt="Elise"/>
             <p className="member-name">Elise Adams</p>
-            <p className="member-role">Project Manager/UX Research</p>
+            <p className="member-role">Project Manager/Research</p>
           </div>
           <div className="member">
             <img src={ZachGrande} alt="Zach"/>
             <p className="member-name">Zach Grande</p>
-            <p className="member-role">Full Stack Development</p>
+            <p className="member-role">Full-Stack Development</p>
           </div>
           <div className="member">
             <img src={RachelKinkley} alt="Rachel"/>
@@ -29,7 +29,7 @@ function About() {
           <div className="member">
             <img src={TiffanyTse} alt="Tiffany"/>
             <p className="member-name">Tiffany Tse</p>
-            <p className="member-role">UI/Front-end</p>
+            <p className="member-role">Front-end/UI</p>
           </div>
           <div className="member">
             <img src={ValerieTse} alt="Valerie"/>
