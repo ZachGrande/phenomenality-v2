@@ -183,7 +183,8 @@ function Bank() {
           setItems={setItems}
           database={database}
           user={user}
-          setFilter={setFilter} />
+          // setFilter={setFilter}
+          />
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
           {/* this is an action for when the enter button is clicked? */}
