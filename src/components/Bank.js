@@ -165,33 +165,19 @@ function Bank() {
     if(tags.length === 0) { // handles if no tags are searched 
       return currentItem;
     }
-    
-
-    // for(let i = 0; i < tags.length; i++){
-    //   if (currentItem.tags.includes(tags[i])) {
-    //     return currentItem;
-    //   }
-    // }
-
-    // tags.array.forEach(element => {
-
-    //   if(tags.contains(element)){
-    //     return currentItem;
-    //   }
-
-    // });
 
     let shouldReturnItem = true;
 
-    for(let i = 0; i < currentItem.tags.length; i++){
-      if(!tags.includes(currentItem.tags[i])){
+    for(let i = 0; i < tags.length; i++) {
+      if(!currentItem.tags.includes(tags[i])) {
         shouldReturnItem = false;
       }
     }
-
     if(shouldReturnItem){
       return currentItem;
     }
+
+    
 
     });
 
