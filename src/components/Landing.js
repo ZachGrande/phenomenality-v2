@@ -55,7 +55,7 @@ function Landing() {
           <h2>What is Imposter Phenomenon?</h2>
           <p className="landing-para">Imposter phenomenon is the feeling of doubt in one’s 
             relevant knowledge and abilities regardless of experience
-            or education, an experience common across young professionals
+            or education, a common experience across young professionals
             who are gender minorities. To address this, Phenomenality 
             encourages recognition of accomplishments by prompting you
             to document your daily wins!</p>
