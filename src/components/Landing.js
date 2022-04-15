@@ -10,8 +10,8 @@ function Landing() {
       <div className="welcome flex-container">
         <div className="left-side"> 
           <h1>Welcome to Your Personal Cheerleader!</h1>
-          <p1>Log your daily achievements and mitigate the 
-            effects of imposter phenomemon.</p1>
+          <p className="landing-para">Log your daily achievements and mitigate the 
+            effects of imposter phenomemon.</p>
           <div className='button-box'>
             <button>Sign In</button>
           </div>
@@ -27,20 +27,20 @@ function Landing() {
         </div>
         <div className="right-side"> 
           <h2>Filter and sort through all your achievements</h2>
-          <p1>Track your day to day wins and build confidence 
+          <p className="landing-para">Track your day to day wins and build confidence 
             in yourself when reviewing your accomplishments 
             and cataloging resume-worthy achievements for 
-            easy reference.</p1>
+            easy reference.</p>
         </div>
       </div>
 
       <div className="ipType flex-container">
         <div className='left-side'>
           <h2>See which imposter phenomenon type you most align with</h2>
-          <p1>Take a quiz to find out some tricks and tips you can 
+          <p className="landing-para">Take a quiz to find out some tricks and tips you can 
             <br></br>
             something something something about how this is not 
-            medical advice.</p1>
+            medical advice.</p>
         </div>
         <div className="right-side">
           
@@ -53,12 +53,12 @@ function Landing() {
         </div>
         <div className="right-side">
           <h2>What is Imposter Phenomenon?</h2>
-          <p1>Imposter phenomenon is the feeling of doubt in one’s 
+          <p className="landing-para">Imposter phenomenon is the feeling of doubt in one’s 
             relevant knowledge and abilities regardless of experience
-            or education, an experience common across young professionals
+            or education, a common experience across young professionals
             who are gender minorities. To address this, Phenomenality 
             encourages recognition of accomplishments by prompting you
-            to document your daily wins!</p1>
+            to document your daily wins!</p>
         </div>
       </div>
 
