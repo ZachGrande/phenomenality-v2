@@ -33,7 +33,7 @@ function Card(props) {
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
-        <button onClick={handleEdit}>Edit (broken)</button>
+        <button onClick={handleEdit}>Edit</button>
       </div>
     )
   }
@@ -48,7 +48,9 @@ function Card(props) {
 function CardList(props) {
   let items = props.items;
   let cardComponents = items.map((currentItem) => {
-    return <Card key={currentItem.id} item={currentItem} deleteCard={props.deleteCard} editCard={props.editCard} />
+    return <Card key={currentItem.id} item={currentItem}
+                 deleteCard={props.deleteCard}
+                 editCard={props.editCard} />
   })
 
   return (

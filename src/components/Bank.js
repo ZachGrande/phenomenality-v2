@@ -5,6 +5,7 @@ import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import Form from './Form.js';
+import '../css/Popup.css';
 
 import 'firebase/auth';
 import 'firebase/database';
@@ -62,34 +63,38 @@ function Bank() {
     console.log("delete tag work?")
   }
 
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const [currentEditId, setCurrentEditId] = useState(-1);
+  const [existingDescription, setExistingDescription] = useState("");
+
   onAuthStateChanged(auth, () => {
-      setIsLoading(false);
+    setIsLoading(false);
   })
 
   useEffect(() => {
     // if (isLoading !== false) {
-      // console.log("User", user.uid);
-      const dbRef = ref(database, 'users/' + user?.uid + '/data');
-      onValue(dbRef, (snapshot) => {
-        const data = snapshot.val();
-        // console.log(data);
-        if (data === null) {
-          setItems([]);
-          return null;
-        }
-        const keys = Object.keys(data);
-        // console.log("Keys", keys);
-        const newItems = keys.map((key) => {
-          const currentItem  = data[key];
-          currentItem.key = key;
-          // console.log("Current item", key, currentItem);
-          return currentItem;
-        })
-        // console.log("New items!", newItems);
-        setItems(newItems);
-      });
+    // console.log("User", user.uid);
+    const dbRef = ref(database, 'users/' + user?.uid + '/data');
+    onValue(dbRef, (snapshot) => {
+      const data = snapshot.val();
+      // console.log(data);
+      if (data === null) {
+        setItems([]);
+        return null;
+      }
+      const keys = Object.keys(data);
+      // console.log("Keys", keys);
+      const newItems = keys.map((key) => {
+        const currentItem = data[key];
+        currentItem.key = key;
+        // console.log("Current item", key, currentItem);
+        return currentItem;
+      })
+      // console.log("New items!", newItems);
+      setItems(newItems);
+    });
     // } else {
-      // console.log("Did not retrieve user location from database");
+    // console.log("Did not retrieve user location from database");
     // }
   }, [isLoading, database, user]);
 
@@ -121,19 +126,38 @@ function Bank() {
   }
 
   const editCard = id => {
-    let newItems = items.filter((currentItem) => {
+    setShowEditPopup(true);
+    setCurrentEditId(id);
+    let editItem = items.filter((currentItem) => {
       if (currentItem.id === id) {
-        var edit_description = window.prompt("Edit your accomplishment description", currentItem.description);
-        // var edit_tags = window.prompt("Edit your tags"); HOLD OFF FOR TIFF
-        currentItem.description = edit_description;
-        // currentItem.tags = edit_tags; HOLD OFF FOR TIFF 
+        return currentItem;
       }
+    });
+    setExistingDescription(editItem[0].description);
+  }
+
+  function closeForm() {
+    setShowEditPopup(false);
+  }
+
+  function submitForm() {
+    let newItems = items.filter((currentItem) => {
+      if (currentItem.id === currentEditId) {
+        currentItem.description = existingDescription;
+      }
+      return currentItem;
+    })
+    newItems = newItems.map((currentItem, index = 0) => {
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
       return currentItem;
     })
     setItems(newItems);
     update(ref(database, 'users/' + user.uid), {
       data: newItems
     });
+    setShowEditPopup(false);
   }
 
   //HERE IS FILTERING METHOD
@@ -152,7 +176,35 @@ function Bank() {
     }
   });
 
-  if (items.length > 0) {
+  if (items.length > 0 && showEditPopup) {
+    return (
+      <div>
+        <Form items={items}
+          setItems={setItems}
+          database={database}
+          user={user}
+          setFilter={setFilter} />
+        <h2 className="bank-title">Your Bank</h2>
+        <div className="formPopup" id="popupForm">
+          {/* this is an action for when the enter button is clicked? */}
+          <form action="/action_page.php" className="formContainer">
+            <h3>Edit Accomplishment {currentEditId}</h3>
+            <label htmlFor="editDescription">Description</label>
+            <input type="text"
+                   id="editDescription"
+                   value={existingDescription}
+                   onChange={(event) => {
+                     setExistingDescription(event.target.value);
+              }}
+              name="editDescription"></input>
+            <button type="button" className="btn" onClick={submitForm}>Update</button>
+            <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
+          </form>
+        </div>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
+      </div>
+    )
+  } else if (items.length > 0) {
     return (
       <div>
         <Form items={items}
@@ -163,25 +215,6 @@ function Bank() {
                    />
         <h2 className="bank-title">Your Bank</h2>
         <h4>Want to filter by a specific tag?</h4>
-       {/* <input
-         type="radio"
-         value="none"
-         name="filter"
-         defaultChecked={true}
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> None
-       <input
-         type="radio"
-         value="technical"
-         name="filter"
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> Technical
-       <input
-         type="radio"
-         value="soft skills"
-         name="filter"
-         onChange={e => setFilter(e.currentTarget.value)}
-       /> Soft Skills */}
        <br />
           {/* <ul>
             {["Item1", "Item2", "Item3"].map(item =>
@@ -211,7 +244,7 @@ function Bank() {
     return (
       <p>Loading your card list.</p>
     )
-    } else {
+  } else {
     return (
       <div>
         <p>You have not added to your credibility bank!</p>
