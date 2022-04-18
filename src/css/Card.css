@@ -24,9 +24,24 @@ ol {
 }
 
 .card-list .success {
-  background-color: #48BF91;
+  background-color: #FDEDDE;
 }
 
-.card-list .question-unanswered {
-  background-color: #FEE5B5;
+.btn-delete {
+  display: inline;
+  position: relative;
+  background-color: darkgrey;
+  border-color: darkgrey;
+  margin: 5px;
+  width: 75%;
 }
+
+.btn-edit {
+  display: inline;
+  position: relative;
+  margin: 5px;
+}
+
+/* .card-list .question-unanswered {
+  background-color: #FEE5B5;
+} */

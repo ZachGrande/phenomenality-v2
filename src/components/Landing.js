@@ -2,6 +2,7 @@ import '../css/Landing.css'
 import About from './About.js';
 import Welcome from '../assets/landing-photos/welcome.jpg';
 import Question from '../assets/landing-photos/question.png';
+import { Link } from 'react-router-dom';
 
 function Landing() {
   return(
@@ -13,8 +14,13 @@ function Landing() {
           <p className="landing-para">Log your daily achievements and mitigate the 
             effects of imposter phenomemon.</p>
           <div className='button-box'>
-            <button>Sign In</button>
-          </div>
+            {/* Attemps at making sign in button route to authentication */}
+            {/* <button onClick={<Link to="/authentication"></Link>}>Sign in</button>
+          <Link aria-label="Sign in" className="button" role="button" to="/authentication"> 
+          Sign in
+        </Link>           */}
+        <button>Sign in</button>
+        </div>
         </div>
         <div className="right-side"> 
           <img src={Welcome} alt="Individuals Welcoming" width="40%" height="40%"/>
