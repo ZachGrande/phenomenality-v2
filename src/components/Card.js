@@ -17,6 +17,10 @@ function Card(props) {
       props.editCard(thisItem.id)
     }
 
+    const handleView = (event) => {
+      props.viewCard(thisItem.id)
+    }
+
     return (
       <div className="card-item">
         <h2>{thisItem.title}</h2>
@@ -24,8 +28,9 @@ function Card(props) {
         <p>{thisItem.date}</p>
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
-        <button className="btn-delete" onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
+        <button className="btn-delete" onClick={handleClick}>Delete</button>
         <button className="btn-edit" onClick={handleEdit}>Edit</button>
+        <button className="btn-view" onClick={handleView}>View More</button>
       </div>
     )
   }

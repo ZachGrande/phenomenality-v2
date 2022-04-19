@@ -63,8 +63,11 @@ function Bank() {
   }
 
   const [showEditPopup, setShowEditPopup] = useState(false);
+  const [showViewPopup, setShowViewPopup] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(-1);
+  const [currentViewId, setCurrentViewId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState("");
+  const [existingTitle, setExistingTitle] = useState("");
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -133,6 +136,19 @@ function Bank() {
       }
     });
     setExistingDescription(editItem[0].description);
+    setExistingTitle(editItem[0].title);
+  }
+
+  const viewCard = id => {
+    setShowViewPopup(true);
+    setCurrentViewId(id);
+    let viewItem = items.filter((currentItem) => {
+      if (currentItem.id === id) {
+        return currentItem;
+      }
+    });
+    // setExistingDescription(viewItem[0].description);
+    // setExistingTitle(viewItem[0].title);
   }
 
   function closeForm() {
@@ -143,6 +159,7 @@ function Bank() {
     let newItems = items.filter((currentItem) => {
       if (currentItem.id === currentEditId) {
         currentItem.description = existingDescription;
+        currentItem.title = existingTitle;
       }
       return currentItem;
     })
@@ -193,7 +210,15 @@ function Bank() {
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
             <h3>Edit Accomplishment {currentEditId}</h3>
-            <label htmlFor="editDescription">Description</label>
+            <label htmlFor="editTitle">Title</label>
+            <input type="text"
+                   id="editTitle"
+                   value={existingTitle}
+                   onChange={(event) => {
+                     setExistingTitle(event.target.value);
+              }}
+              name="editTitle"></input>
+              <label htmlFor="editDescription">Description</label>
             <input type="text"
                    id="editDescription"
                    value={existingDescription}
@@ -205,10 +230,37 @@ function Bank() {
             <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
           </form>
         </div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div>
     )
-  } else if (items.length > 0) {
+  } else if (items.length > 0 && showViewPopup) {
+<div>
+        <Form items={items}
+          setItems={setItems}
+          database={database}
+          user={user}
+          />
+        <h2 className="bank-title">Your Bank</h2>
+        <div className="formPopup" id="popupForm">
+          <form action="/action_page.php" className="formContainer">
+            <h3>view Accomplishment {currentEditId}</h3>
+            <label htmlFor="viewTitle">Title</label>
+            <input type="text"
+                   id="viewTitle"
+                   value={existingTitle}
+              name="viewTitle"></input>
+              <label htmlFor="viewDescription">Description</label>
+            <input type="text"
+                   id="editDescription"
+                   value={existingDescription}
+              name="viewDescription"></input>
+            <button type="button" className="btn cancel" onClick={closeForm}>Close</button>
+          </form>
+        </div>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
+      </div>
+  } 
+  else if (items.length > 0) {
     return (
       <div>
         <Form items={items}
@@ -235,7 +287,7 @@ function Bank() {
           ))}
           </div>
         </div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard}/>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div>
     )
   } else if (loading) {
