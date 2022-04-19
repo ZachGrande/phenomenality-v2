@@ -14,16 +14,21 @@ function Form(props) {
   const [accomplishment, setAccomplishment] = useState("");
   const [status, setStatus] = useState("success");
   const [accomplishmentTags, setAccomplishmentTags] = useState([]);
+  const [title, setTitle] = useState("");
+
+  const current = new Date();
+  const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
 
   const addNewAccomplishment = async (event) => { 
     event.preventDefault();
     let thisAccomplishment = {
-      complete: true,
+      title: title,
       description: accomplishment,
       id: items.length + 1,
       key: items.length + "",
       status: status,
-      tags: accomplishmentTags
+      tags: accomplishmentTags,
+      date: date
     }
 
     console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
@@ -37,6 +42,7 @@ function Form(props) {
     })
 
     setItems(newItems);
+    setTitle("");
     setAccomplishment("");
     update(ref(database, 'users/' + user.uid), {
         data: items
@@ -58,10 +64,17 @@ function Form(props) {
 
   return (
      <div className = "padding">
-       {/* <p>Bank Page</p> */}
        <form>
        <h4>What's something you're proud of?</h4>
        <p><em>This only works if you are already logged in.</em></p>
+       <input
+         placeholder="Title"
+         value={title}
+         onChange={(event) => {
+           setTitle(event.target.value);
+         }}
+       />
+       <br></br>
        <input
          placeholder="Today I was able to..."
          value={accomplishment}
@@ -70,21 +83,6 @@ function Form(props) {
          }}
        />
        <br></br>
-       {/* <input
-         type="radio"
-         value="success"
-         name="status"
-         defaultChecked={status === "success"}
-         onChange={e => setStatus(e.currentTarget.value)}
-       /> Success
-       <br></br>
-       <input
-         type="radio"
-         value="question-unanswered"
-         name="status"
-         onChange={e => setStatus(e.currentTarget.value)}
-       /> Question (Unanswered)
-       <br></br> */}
        <p><u>Tags</u></p>
        <input
          type="checkbox"
@@ -106,6 +104,5 @@ function Form(props) {
      </div>
    );
 }
-
 
  export default Form;

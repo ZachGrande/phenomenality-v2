@@ -60,7 +60,6 @@ function Bank() {
   //DELETING TAG NO LONGER WORKS
   const deleteTag = (index) => {
     setTags(prevState => prevState.filter((tag, i) => i !== index))
-    console.log("delete tag work?")
   }
 
   const [showEditPopup, setShowEditPopup] = useState(false);
@@ -189,11 +188,9 @@ function Bank() {
           setItems={setItems}
           database={database}
           user={user}
-          //setFilter={setFilter} />
           />
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
-          {/* this is an action for when the enter button is clicked? */}
           <form action="/action_page.php" className="formContainer">
             <h3>Edit Accomplishment {currentEditId}</h3>
             <label htmlFor="editDescription">Description</label>
@@ -217,20 +214,12 @@ function Bank() {
         <Form items={items}
                    setItems={setItems}
                    database={database}
-                   user={user}
-                  //  setFilter={setFilter}
-                   />
+                   user={user}/>
         <h2 className="bank-title">Your Bank</h2>
         <div className = "tag-container">
         <h4>Want to filter by a specific tag?</h4>
        <br />
-          {/* <ul>
-            {["Item1", "Item2", "Item3"].map(item =>
-            <li key="{item}">{item}</li>
-            )}
-          </ul> UPDATE THE LIST OF TAGS BASED ON WHAT EXISTS IN SEARCH BAR*/}
        <div className="container">
-          {/* {tags.map((tag) => <div className="tag">{tag}</div>)} */}
           <input
             value={input}
             placeholder="Enter a tag"
@@ -249,7 +238,7 @@ function Bank() {
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard}/>
       </div>
     )
-  } else if (loading) { // does not work at the moment
+  } else if (loading) {
     return (
       <p>Loading your card list.</p>
     )
@@ -260,9 +249,7 @@ function Bank() {
         <Form items={items}
                    setItems={setItems}
                    database={database}
-                   user={user}
-                   //setFilter={setFilter}
-                   />
+                   user={user}/>
       </div>
 
     )
