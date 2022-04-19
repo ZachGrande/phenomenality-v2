@@ -14,7 +14,7 @@ function Landing() {
           <p className="landing-para">Log your daily achievements and mitigate the 
             effects of imposter phenomemon.</p>
           <div className='button-box sign-in'>
-          <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>          
+          <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>
         </div>
         </div>
         <div className="right-side"> 
