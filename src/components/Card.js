@@ -4,16 +4,6 @@ import '../css/Card.css';
 function Card(props) {
   let thisItem = props.item;
 
-  const getClassName = () => {
-    let className = "card-item ";
-    if (thisItem.status === "success") {
-      className += "success";
-    } else if (thisItem.status === "question-unanswered") {
-      className += "question-unanswered";
-    }
-    return className;
-  }
-
   const tagItems = thisItem.tags?.map((tag) =>
     <li key={tag}>{tag}</li>
   );
@@ -28,7 +18,8 @@ function Card(props) {
     }
 
     return (
-      <div className={getClassName()}>
+      <div className="card-item">
+        <h2>{thisItem.title}</h2>
         <p>{thisItem.id}</p>
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
