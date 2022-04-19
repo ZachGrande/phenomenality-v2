@@ -2,6 +2,7 @@ import '../css/Landing.css'
 import About from './About.js';
 import Welcome from '../assets/landing-photos/welcome.jpg';
 import Question from '../assets/landing-photos/question.png';
+import { Link } from 'react-router-dom';
 
 function Landing() {
   return(
@@ -12,9 +13,9 @@ function Landing() {
           <h1>Welcome to Your Personal Cheerleader!</h1>
           <p className="landing-para">Log your daily achievements and mitigate the 
             effects of imposter phenomemon.</p>
-          <div className='button-box'>
-            <button>Sign In</button>
-          </div>
+          <div className='button-box sign-in'>
+          <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>          
+        </div>
         </div>
         <div className="right-side"> 
           <img src={Welcome} alt="Individuals Welcoming" width="40%" height="40%"/>

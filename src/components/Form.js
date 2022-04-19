@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
+import '../css/Form.css'
 
 
 function Form(props) {
@@ -56,8 +57,8 @@ function Form(props) {
   }
 
   return (
-     <div>
-       <p>Bank Page</p>
+     <div className = "padding">
+       {/* <p>Bank Page</p> */}
        <form>
        <h4>What's something you're proud of?</h4>
        <p><em>This only works if you are already logged in.</em></p>
@@ -69,7 +70,7 @@ function Form(props) {
          }}
        />
        <br></br>
-       <input
+       {/* <input
          type="radio"
          value="success"
          name="status"
@@ -83,7 +84,7 @@ function Form(props) {
          name="status"
          onChange={e => setStatus(e.currentTarget.value)}
        /> Question (Unanswered)
-       <br></br>
+       <br></br> */}
        <p><u>Tags</u></p>
        <input
          type="checkbox"

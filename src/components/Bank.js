@@ -221,6 +221,7 @@ function Bank() {
                   //  setFilter={setFilter}
                    />
         <h2 className="bank-title">Your Bank</h2>
+        <div className = "tag-container">
         <h4>Want to filter by a specific tag?</h4>
        <br />
           {/* <ul>
@@ -243,6 +244,7 @@ function Bank() {
               <button onClick={() => deleteTag(index)}>x</button>
             </div>
           ))}
+          </div>
         </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard}/>
       </div>

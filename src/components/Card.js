@@ -32,8 +32,8 @@ function Card(props) {
         <p>{thisItem.id}</p>
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
-        <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
-        <button onClick={handleEdit}>Edit</button>
+        <button className="btn-delete" onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
+        <button className="btn-edit" onClick={handleEdit}>Edit</button>
       </div>
     )
   }

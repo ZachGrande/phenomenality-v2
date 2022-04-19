@@ -1,3 +1,16 @@
+h4 {
+  font-family: Playfair Display;
+}
+
+p { 
+  font-family: Source Sans Pro;
+}
+
+.padding { 
+  position: center;
+  text-align: center;
+}
+
 .container {
     display: flex;
     width: 50%;
