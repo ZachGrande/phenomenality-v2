@@ -13,13 +13,8 @@ function Landing() {
           <h1>Welcome to Your Personal Cheerleader!</h1>
           <p className="landing-para">Log your daily achievements and mitigate the 
             effects of imposter phenomemon.</p>
-          <div className='button-box'>
-            {/* Attemps at making sign in button route to authentication */}
-            {/* <button onClick={<Link to="/authentication"></Link>}>Sign in</button>
-          <Link aria-label="Sign in" className="button" role="button" to="/authentication"> 
-          Sign in
-        </Link>           */}
-        <button>Sign in</button>
+          <div className='button-box sign-in'>
+          <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>          
         </div>
         </div>
         <div className="right-side"> 
