@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../css/AddAccomplishment.css';
 import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
@@ -17,6 +18,8 @@ function AddAccomplishment() {
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const [showWelcome, setShowWelcome] = useState(true);
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -53,6 +56,10 @@ function AddAccomplishment() {
     });
   }, [isLoading, database, user]);
 
+  function advancePage() {
+    setShowWelcome(false);
+  }
+
   if (isLoading) {
     return (
       <p>Loading...</p>
@@ -69,9 +76,21 @@ function AddAccomplishment() {
     )
   }
 
-  return (
-    <h1>Hello, {name}!</h1>
-  )
+  if (showWelcome) {
+    return (
+      <div className="accomplishments">
+        <h1>Hello, {name}!</h1>
+        <p>Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
+        <button className="accomplishment-next" onClick={advancePage}>Next</button>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <h1>Enter accomplishment</h1>
+      </div>
+    )
+  }
 }
 
 export default AddAccomplishment;
