@@ -16,6 +16,9 @@ function Form(props) {
   const [accomplishmentTags, setAccomplishmentTags] = useState([]);
   const [title, setTitle] = useState("");
 
+  const current = new Date();
+  const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
+
   const addNewAccomplishment = async (event) => { 
     event.preventDefault();
     let thisAccomplishment = {
@@ -24,7 +27,8 @@ function Form(props) {
       id: items.length + 1,
       key: items.length + "",
       status: status,
-      tags: accomplishmentTags
+      tags: accomplishmentTags,
+      date: date
     }
 
     console.log(accomplishmentTags) //tags spits out array based on order on selection of tag

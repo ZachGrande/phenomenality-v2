@@ -20,7 +20,8 @@ function Card(props) {
     return (
       <div className="card-item">
         <h2>{thisItem.title}</h2>
-        <p>{thisItem.id}</p>
+        {/* <p>{thisItem.id}</p> */}
+        <p>{thisItem.date}</p>
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
         <button className="btn-delete" onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
