@@ -47,7 +47,8 @@ function CardList(props) {
   let cardComponents = items.map((currentItem) => {
     return <Card key={currentItem.id} item={currentItem}
                  deleteCard={props.deleteCard}
-                 editCard={props.editCard} />
+                 editCard={props.editCard} 
+                 viewCard={props.viewCard}/>
   })
 
   return (
