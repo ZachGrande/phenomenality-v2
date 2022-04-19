@@ -41,6 +41,11 @@ function Navigation() {
             </Link>
           </li>
           <li>
+            <Link to="/accomplishments">
+              Accomplishments
+            </Link>
+          </li>
+          <li>
             <Link to="/bank">
               Your Bank
             </Link>
