@@ -5,3 +5,15 @@
 .accomplishment-next {
   float: right;
 }
+
+.demo-photo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+
+.demo-photo, .odd {
+  background-color: #0000;
+  padding: 3vw;;
+}

@@ -5,6 +5,13 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from 'react-router-dom';
+import { map } from '@firebase/util';
+
+import WelcomeMessage from '../assets/accomplishment-demo/accomplishment-1.svg';
+import DailyAccomplishment from '../assets/accomplishment-demo/accomplishment-2.svg';
+import WonderfulAccomplishment from '../assets/accomplishment-demo/accomplishment-3.svg';
+import AccomplishmentComplete from '../assets/accomplishment-demo/accomplishment-4.svg';
+import SampleBank from '../assets/accomplishment-demo/accomplishment-5.svg';
 
 function AddAccomplishment() {
 
@@ -18,6 +25,9 @@ function AddAccomplishment() {
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [title, setTitle] = useState("");
+  const [accomplishment, setAccomplishment] = useState("");
+  const [accomplishmentTags, setAccomplishmentTags] = useState([]);
 
   const [showWelcome, setShowWelcome] = useState(true);
 
@@ -56,6 +66,48 @@ function AddAccomplishment() {
     });
   }, [isLoading, database, user]);
 
+  const addNewAccomplishment = async (event) => { 
+    event.preventDefault();
+    let thisAccomplishment = {
+      title: title,
+      description: accomplishment,
+      id: items.length + 1,
+      key: items.length + "",
+      tags: accomplishmentTags,
+      date: date
+    }
+
+    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
+    
+    let newItems = items.push(thisAccomplishment);
+    newItems = map((currentItem, index = 0, newItems) => {
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
+      return currentItem;
+    })
+
+    setItems(newItems);
+    setTitle("");
+    setAccomplishment("");
+    update(ref(database, 'users/' + user.uid), {
+        data: items
+    });
+  }
+
+  const editTag = value => {
+    let newTags = accomplishmentTags;
+    if (!accomplishmentTags.includes(value)) {
+      newTags.push(value)
+    } else {
+      let index = newTags.indexOf(value);
+      if (index > -1) {
+        newTags.splice(index, 1);
+      }
+    }
+    setAccomplishmentTags(newTags);
+  }
+
   function advancePage() {
     setShowWelcome(false);
   }
@@ -72,6 +124,22 @@ function AddAccomplishment() {
         <h1>You haven't logged in yet!</h1>
         <p>Sign in to begin logging your accomplishments.</p>
         <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>
+        <h2>Here's what Phenomenality can offer you!</h2>
+        <div>
+          <img className="demo-photo odd" src={WelcomeMessage} alt="welcome-message"/>
+        </div>
+        <div>
+          <img className="demo-photo even" src={DailyAccomplishment} alt="daily-accomplishment"/>
+        </div>
+        <div>
+          <img className="demo-photo odd" src={WonderfulAccomplishment} alt="wonderful-accomplishment"/>
+        </div>
+        <div>
+          <img className="demo-photo even" src={AccomplishmentComplete} alt="accomplishment-complete"/>
+        </div>
+        <div>
+          <img className="demo-photo odd" src={SampleBank} alt="sample-bank"/>
+        </div>
       </div>
     )
   }
@@ -87,7 +155,49 @@ function AddAccomplishment() {
   } else {
     return (
       <div>
-        <h1>Enter accomplishment</h1>
+        <h1>Daily Accomplishment</h1>
+        <p>What would you like to record?</p>
+        <div className = "padding">
+          <form>
+            <input
+              placeholder="Title"
+              value={title}
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+            />
+            <br></br>
+            <input
+              placeholder="Today I was able to..."
+              value={accomplishment}
+              onChange={(event) => {
+                setAccomplishment(event.target.value);
+              }}
+            />
+            <br></br>
+            <p><u>Tags</u></p>
+            <input
+              type="checkbox"
+              value="technical"
+              name="tag"
+              onChange={e => editTag(e.currentTarget.value)}
+            /> Technical
+            <br></br>
+            <input
+              type="checkbox"
+              value="soft skills"
+              name="tag"
+              onChange={e => editTag(e.currentTarget.value)}
+            /> Soft Skills
+            <br></br>
+            <br></br>
+            {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
+            <button onClick={addNewAccomplishment}><Link aria-label="Next"
+                  className="button rmv-underline"
+                  role="button"
+                  to="/accomplishments-complete">Next</Link></button>
+          </form>
+        </div>
       </div>
     )
   }
