@@ -7,6 +7,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from 'react-router-dom';
 import { map } from '@firebase/util';
 
+import WelcomeMessage from '../assets/accomplishment-demo/accomplishment-1.svg';
+import DailyAccomplishment from '../assets/accomplishment-demo/accomplishment-2.svg';
+import WonderfulAccomplishment from '../assets/accomplishment-demo/accomplishment-3.svg';
+import AccomplishmentComplete from '../assets/accomplishment-demo/accomplishment-4.svg';
+import SampleBank from '../assets/accomplishment-demo/accomplishment-5.svg';
+
 function AddAccomplishment() {
 
   const auth = getAuth(app);
@@ -118,6 +124,22 @@ function AddAccomplishment() {
         <h1>You haven't logged in yet!</h1>
         <p>Sign in to begin logging your accomplishments.</p>
         <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>
+        <h2>Here's what Phenomenality can offer you!</h2>
+        <div>
+          <img className="demo-photo odd" src={WelcomeMessage} alt="welcome-message"/>
+        </div>
+        <div>
+          <img className="demo-photo even" src={DailyAccomplishment} alt="daily-accomplishment"/>
+        </div>
+        <div>
+          <img className="demo-photo odd" src={WonderfulAccomplishment} alt="wonderful-accomplishment"/>
+        </div>
+        <div>
+          <img className="demo-photo even" src={AccomplishmentComplete} alt="accomplishment-complete"/>
+        </div>
+        <div>
+          <img className="demo-photo odd" src={SampleBank} alt="sample-bank"/>
+        </div>
       </div>
     )
   }
@@ -169,7 +191,11 @@ function AddAccomplishment() {
             /> Soft Skills
             <br></br>
             <br></br>
-            <button onClick={addNewAccomplishment}>Add accomplishment</button>
+            {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
+            <button onClick={addNewAccomplishment}><Link aria-label="Next"
+                  className="button rmv-underline"
+                  role="button"
+                  to="/accomplishments-complete">Next</Link></button>
           </form>
         </div>
       </div>
