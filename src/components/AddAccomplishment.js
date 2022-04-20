@@ -5,6 +5,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from 'react-router-dom';
+import { map } from '@firebase/util';
 
 function AddAccomplishment() {
 
@@ -18,6 +19,9 @@ function AddAccomplishment() {
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [title, setTitle] = useState("");
+  const [accomplishment, setAccomplishment] = useState("");
+  const [accomplishmentTags, setAccomplishmentTags] = useState([]);
 
   const [showWelcome, setShowWelcome] = useState(true);
 
@@ -56,6 +60,48 @@ function AddAccomplishment() {
     });
   }, [isLoading, database, user]);
 
+  const addNewAccomplishment = async (event) => { 
+    event.preventDefault();
+    let thisAccomplishment = {
+      title: title,
+      description: accomplishment,
+      id: items.length + 1,
+      key: items.length + "",
+      tags: accomplishmentTags,
+      date: date
+    }
+
+    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
+    
+    let newItems = items.push(thisAccomplishment);
+    newItems = map((currentItem, index = 0, newItems) => {
+      currentItem.id = index + 1;
+      currentItem.key = index + "";
+      index = index + 1;
+      return currentItem;
+    })
+
+    setItems(newItems);
+    setTitle("");
+    setAccomplishment("");
+    update(ref(database, 'users/' + user.uid), {
+        data: items
+    });
+  }
+
+  const editTag = value => {
+    let newTags = accomplishmentTags;
+    if (!accomplishmentTags.includes(value)) {
+      newTags.push(value)
+    } else {
+      let index = newTags.indexOf(value);
+      if (index > -1) {
+        newTags.splice(index, 1);
+      }
+    }
+    setAccomplishmentTags(newTags);
+  }
+
   function advancePage() {
     setShowWelcome(false);
   }
@@ -87,7 +133,45 @@ function AddAccomplishment() {
   } else {
     return (
       <div>
-        <h1>Enter accomplishment</h1>
+        <h1>Daily Accomplishment</h1>
+        <p>What would you like to record?</p>
+        <div className = "padding">
+          <form>
+            <input
+              placeholder="Title"
+              value={title}
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+            />
+            <br></br>
+            <input
+              placeholder="Today I was able to..."
+              value={accomplishment}
+              onChange={(event) => {
+                setAccomplishment(event.target.value);
+              }}
+            />
+            <br></br>
+            <p><u>Tags</u></p>
+            <input
+              type="checkbox"
+              value="technical"
+              name="tag"
+              onChange={e => editTag(e.currentTarget.value)}
+            /> Technical
+            <br></br>
+            <input
+              type="checkbox"
+              value="soft skills"
+              name="tag"
+              onChange={e => editTag(e.currentTarget.value)}
+            /> Soft Skills
+            <br></br>
+            <br></br>
+            <button onClick={addNewAccomplishment}>Add accomplishment</button>
+          </form>
+        </div>
       </div>
     )
   }
