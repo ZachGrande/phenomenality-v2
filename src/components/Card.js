@@ -45,7 +45,7 @@ function Card(props) {
 function CardList(props) {
   let items = props.items;
   let cardComponents = items.map((currentItem) => {
-    return <Card key={currentItem.id} item={currentItem}
+    return <Card className="card-item-container" key={currentItem.id} item={currentItem}
                  deleteCard={props.deleteCard}
                  editCard={props.editCard} 
                  viewCard={props.viewCard}/>

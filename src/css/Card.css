@@ -27,6 +27,11 @@ ol {
   background-color: #FDEDDE;
 }
 
+.card-item-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .btn-delete {
   display: inline;
   position: relative;
