@@ -147,12 +147,16 @@ function Bank() {
         return currentItem;
       }
     });
-    // setExistingDescription(viewItem[0].description);
-    // setExistingTitle(viewItem[0].title);
+    setExistingDescription(viewItem[0].description);
+    setExistingTitle(viewItem[0].title);
   }
 
-  function closeForm() {
+  function closeEditForm() {
     setShowEditPopup(false);
+  }
+
+  function closeViewForm() {
+    setShowViewPopup(false);
   }
 
   function submitForm() {
@@ -198,7 +202,7 @@ function Bank() {
     });
 
 
-  if (items.length > 0 && showEditPopup) {
+  if (items.length > 0 && showEditPopup) { 
     return (
       <div>
         <Form items={items}
@@ -227,13 +231,14 @@ function Bank() {
               }}
               name="editDescription"></input>
             <button type="button" className="btn" onClick={submitForm}>Update</button>
-            <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
+            <button type="button" className="btn cancel" onClick={closeEditForm}>Cancel</button>
           </form>
         </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div>
     )
-  } else if (items.length > 0 && showViewPopup) {
+  } else if (items.length > 0 && showViewPopup) { 
+    return(
 <div>
         <Form items={items}
           setItems={setItems}
@@ -242,23 +247,19 @@ function Bank() {
           />
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
-          <form action="/action_page.php" className="formContainer">
-            <h3>view Accomplishment {currentEditId}</h3>
+          <form className="formContainer">
+            <h3>Expanded View</h3>
             <label htmlFor="viewTitle">Title</label>
-            <input type="text"
-                   id="viewTitle"
-                   value={existingTitle}
-              name="viewTitle"></input>
-              <label htmlFor="viewDescription">Description</label>
-            <input type="text"
-                   id="editDescription"
-                   value={existingDescription}
-              name="viewDescription"></input>
-            <button type="button" className="btn cancel" onClick={closeForm}>Close</button>
+            <p className = "p-background" id="viewTitle">{existingTitle}</p>
+            <label htmlFor="viewDescription">Description</label>
+            <p className = "p-background" id="viewDescription">{existingDescription}</p>
+            <label htmlFor="viewTags">Tags</label>
+            <p className = "p-background" id="viewTags"> this no work yet</p>
+            <button type="button" className="btn cancel" onClick={closeViewForm}>Close</button>
           </form>
         </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
-      </div>
+      </div> )
   } 
   else if (items.length > 0) {
     return (
@@ -287,7 +288,9 @@ function Bank() {
           ))}
           </div>
         </div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
+        <div className="card-list"> 
+        <CardList className="card-list" items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
+        </div>
       </div>
     )
   } else if (loading) {
