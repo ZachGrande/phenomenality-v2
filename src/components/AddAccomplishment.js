@@ -30,6 +30,7 @@ function AddAccomplishment() {
   const [accomplishmentTags, setAccomplishmentTags] = useState([]);
 
   const [showWelcome, setShowWelcome] = useState(true);
+  const [hasLoggedToday, setHasLoggedToday] = useState(false);
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -65,6 +66,16 @@ function AddAccomplishment() {
       setName(currentName);
     });
   }, [isLoading, database, user]);
+
+  useEffect(() => {
+    if (items) {
+      items.filter((currentItem) => {
+        if (currentItem.date === date) {
+          setHasLoggedToday(true);
+        }
+      })
+    }
+  }, [items]);
 
   const addNewAccomplishment = async (event) => { 
     event.preventDefault();
@@ -112,6 +123,10 @@ function AddAccomplishment() {
     setShowWelcome(false);
   }
 
+  const toggleHasLoggedToday = () => {
+    setHasLoggedToday(!hasLoggedToday);
+  }
+
   if (isLoading) {
     return (
       <p>Loading...</p>
@@ -144,7 +159,16 @@ function AddAccomplishment() {
     )
   }
 
-  if (showWelcome) {
+  if (showWelcome && hasLoggedToday) {
+    return (
+      <div>
+        <h1>You've already logged an accomplishment today!</h1>
+        <p>Click here to view your logged accomplishments.</p>
+        <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
+        <p>If you'd like to add another accomplishment for today, <button onClick={toggleHasLoggedToday}>click here!</button></p>
+      </div>
+    )
+  } else if (showWelcome) {
     return (
       <div className="accomplishments">
         <h1>Hello, {name}!</h1>

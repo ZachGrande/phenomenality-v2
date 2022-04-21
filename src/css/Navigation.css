@@ -1,0 +1,24 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FDEDDE;
+  padding: .75rem;
+}
+
+nav .navbar-link {
+  color: black;
+  text-decoration: none;
+}
+
+nav li {
+  display: inline;
+  margin-right: 1rem;
+}
+
+li:hover, li:focus, li:active {
+  color: white;
+  border-bottom: .6rem solid white;
+  padding-bottom: .9rem;
+}
