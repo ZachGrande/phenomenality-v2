@@ -52,3 +52,8 @@
   .openButton:hover {
     opacity: 1;
   }
+
+  .p-background {
+    background-color: #D3D3D3;
+    padding: .5em;
+  }

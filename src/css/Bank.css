@@ -6,3 +6,8 @@
 .tag-container {
   margin-left: 20px;
 }
+
+.card-list {
+  display: flex;
+  justify-content: space-between;
+}
