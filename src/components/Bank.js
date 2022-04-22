@@ -264,7 +264,7 @@ function Bank() {
   else if (items.length > 0) {
     return (
       <div>
-        <Form items={items}
+        {/* <Form items={items}
                    setItems={setItems}
                    database={database}
                    user={user}/>
@@ -287,7 +287,7 @@ function Bank() {
             </div>
           ))}
           </div>
-        </div>
+        </div> */}
         <div className="card-list"> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
         </div>
