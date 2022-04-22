@@ -12,7 +12,7 @@ import 'firebase/database';
 
 import CardList from './Card.js';
 
-import '../css/Form.css';
+import '../css/Bank.css';
 
 function Bank() {
 
@@ -259,7 +259,6 @@ function Bank() {
                    setItems={setItems}
                    database={database}
                    user={user}
-                   //setFilter={setFilter}
                    />
       </div>
 

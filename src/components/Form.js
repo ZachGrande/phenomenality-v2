@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
 
+import '../css/Form.css';
 
 function Form(props) {
 
@@ -24,8 +25,6 @@ function Form(props) {
       status: status,
       tags: accomplishmentTags
     }
-
-    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
     
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
@@ -44,6 +43,8 @@ function Form(props) {
 
   const editTag = value => {
     let newTags = accomplishmentTags;
+    let idName = value.replace(/\s+/g, '');
+    document.getElementById(idName).classList.toggle('selected');
     if (!accomplishmentTags.includes(value)) {
       newTags.push(value)
     } else {
@@ -52,9 +53,18 @@ function Form(props) {
         newTags.splice(index, 1);
       }
     }
+
     setAccomplishmentTags(newTags);
   }
 
+// var element = document.createElement('select');
+// element.style.width = "100px";
+// add classname
+// element.classList.add("my-class");
+// or 
+// var d = document.getElementById("div1");
+// d.className += " otherclass";
+  
   return (
      <div>
        <p>Bank Page</p>
@@ -69,36 +79,28 @@ function Form(props) {
          }}
        />
        <br></br>
-       <input
-         type="radio"
-         value="success"
-         name="status"
-         defaultChecked={status === "success"}
-         onChange={e => setStatus(e.currentTarget.value)}
-       /> Success
-       <br></br>
-       <input
-         type="radio"
-         value="question-unanswered"
-         name="status"
-         onChange={e => setStatus(e.currentTarget.value)}
-       /> Question (Unanswered)
+       <div id='tag-section'>
        <br></br>
        <p><u>Tags</u></p>
        <input
-         type="checkbox"
-         value="technical"
-         name="tag"
-         onChange={e => editTag(e.currentTarget.value)}
-       /> Technical
-       <br></br>
-       <input
-         type="checkbox"
-         value="soft skills"
-         name="tag"
-         onChange={e => editTag(e.currentTarget.value)}
-       /> Soft Skills
-       <br></br>
+          id='Technical'
+          type='button'
+          name="tag"
+          className='tag-test technical'
+          value='Technical'
+          onClick={e => editTag(e.currentTarget.value)}
+       />
+      <input
+          id='SoftSkills'
+          type='button'
+          name="tag"
+          className='tag-test'
+          value='Soft Skills'
+          onClick={e => editTag(e.currentTarget.value)}
+       />
+       </div>
+      {/* ['Technical', 'Soft Skills', 'Kudos', 'Award',
+   'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'] */}
        <br></br>
        <button onClick={addNewAccomplishment}>Add accomplishment</button>
        </form>
