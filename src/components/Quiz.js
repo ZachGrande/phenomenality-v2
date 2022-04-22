@@ -67,19 +67,19 @@ function QuizContent(props) {
       // index: the current entry number we are looking at
       const resultsCopy = results.map((item) => {
         // update current counts with new results
-        if (item.indexLabel === "Violet") {
+        if (item.indexLabel === "Perfectionist") {
           item.y = p;
           item.name = "Perfectionist";
-        } else if (item.indexLabel === "Dash") {
+        } else if (item.indexLabel === "Soloist") {
           item.y = s;
           item.name = "Soloist";
-        } else if (item.indexLabel === "Mr. Incredible") {
+        } else if (item.indexLabel === "Superhuman") {
           item.y = sh;
           item.name = "Superhuman";
-        } else if (item.indexLabel === "Elastigirl") {
+        } else if (item.indexLabel === "Expert") {
           item.y = e;
           item.name = "Expert";
-        } else if (item.indexLabel === "Edna Mode") {
+        } else if (item.indexLabel === "Genius") {
           item.y = g;
           item.name = "Genius";
         } else {
@@ -93,11 +93,11 @@ function QuizContent(props) {
 
     }
     // the format the canvas.js needs to display results
-    var currentResults = [{"y":p,"indexLabel":"Violet","name":"Perfectionist"},
-                          {"y":s,"indexLabel":"Dash", "name":"Soloist"},
-                          {"y":sh,"indexLabel":"Mr. Incredible", "name":"Superhuman"},
-                          {"y":e,"indexLabel":"Elastigirl", "name":"Expert"},
-                          {"y":g,"indexLabel":"Edna Mode","name":"Genius"},
+    var currentResults = [{"y":p,"indexLabel":"Perfectionist","name":"Perfectionist"},
+                          {"y":s,"indexLabel":"Soloist", "name":"Soloist"},
+                          {"y":sh,"indexLabel":"Superhuman", "name":"Superhuman"},
+                          {"y":e,"indexLabel":"Expert", "name":"Expert"},
+                          {"y":g,"indexLabel":"Genius","name":"Genius"},
                           {"y":n,"indexLabel":"None", "name":"N/A"}];
 
     handleResults(); // final step: update state
@@ -122,14 +122,8 @@ function QuizContent(props) {
       // the main variable that sets up the pie chart. allows for results to be exported!
       const options = {
         exportEnabled: true,
-        animationEnabled: true,
         data: [{
-          type: "pie",
-          startAngle: 75,
-          showInLegend: "true",
-          toolTipContent: "{indexLabel} ({name}) {y}%",
-          legendText: "{indexLabel}",
-          indexLabelFontSize: 16,
+          type: "bar",
           dataPoints: results
         }]
       }
