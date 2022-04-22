@@ -8,6 +8,8 @@
 }
 
 .card-list .card-item {
+  /* display: flex;
+  flex-wrap: wrap; */
   text-align: center;
   border-radius: 25px;
   padding: 20px;
@@ -29,6 +31,7 @@ ol {
 
 .card-item-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
