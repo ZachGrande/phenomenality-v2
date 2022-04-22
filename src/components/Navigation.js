@@ -32,7 +32,7 @@ function Navigation() {
 
   return(
     <nav>
-      <div>
+      <div className="navigation">
         <ul>
           <p>Phenomenality</p>
           <p>Strengthen Your Mentality</p>
@@ -71,21 +71,22 @@ function Navigation() {
               About Us
             </Link>
           </li>
-          {/* <li>
-            <Link to="/authentication">
-              Sign In
-            </Link>
-          </li> */}
           <li>
             <Link className="navbar-link" to="/authentication">
-              {initials ? <p>{initials}</p> : <img src={profileButton}
-                                              onMouseOver={toggleProfileButton}
-                                              onMouseLeave={toggleProfileButton}
-                                              width="50"
-                                              alt="profile"></img>}
+              {initials ?
+                // <li className="initials">
+                <div className="initials">
+                  {initials}
+                </div>
+                // </li>
+                :
+                <img src={profileButton}
+                onMouseOver={toggleProfileButton}
+                onMouseLeave={toggleProfileButton}
+                width="50"
+                alt="profile"></img>}
             </Link>
           </li>
-          {/* <p>Profile block</p> */}
         </ul>
       </div>
     </nav>
