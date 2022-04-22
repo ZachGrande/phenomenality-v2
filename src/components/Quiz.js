@@ -12,11 +12,11 @@ function QuizContent(props) {
   // syncs with the state variable 
   // const results = props.results;
 
-  const freshResults = [{"y":0,"indexLabel":"Violet"},
-                        {"y":0,"indexLabel":"Dash"},
-                        {"y":0,"indexLabel":"Mr. Incredible"},
-                        {"y":0,"indexLabel":"Elastigirl"},
-                        {"y":0,"indexLabel":"Edna Mode"},
+  const freshResults = [{"y":0,"indexLabel":"Perfectionist"},
+                        {"y":0,"indexLabel":"Soloist"},
+                        {"y":0,"indexLabel":"Superhuman"},
+                        {"y":0,"indexLabel":"Expert"},
+                        {"y":0,"indexLabel":"Genius"},
                         {"y":0,"indexLabel":"None"}];
 
   const [results, setResults] = useState(freshResults);
@@ -44,19 +44,22 @@ function QuizContent(props) {
     var g = 0;
     var n = 0;
     
+    // FIX THIS PART FOR LOGIC!!!! used to be var key, is var valueName the correct thing to replace it with?
+    // nested if statement?
     for (var key in survey) {
-      if(survey[key] === "P"){
-        p+=14.29;
-      } else if (survey[key] === "S") {
-        s+=14.29;
-      } else if (survey[key] === "SH") {
-        sh+=14.29;
-      } else if (survey[key] === "E") {
-        e+=14.29;
-      } else if (survey[key] === "G") {
-        g+=14.29;
+      console.log(survey[key].valueName);
+      if(survey[key] === "item1"){
+        p+=1;
+      } else if (survey[key] === "item2") {
+        s+=2;
+      } else if (survey[key] === "item3") {
+        sh+=3;
+      } else if (survey[key] === "item4") {
+        e+=4;
+      } else if (survey[key] === "item5") {
+        g+=5;
       } else {
-        n+=14.29;
+        n+=0;
       } 
     }
 
