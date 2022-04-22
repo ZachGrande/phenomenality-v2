@@ -289,7 +289,7 @@ function Bank() {
           </div>
         </div>
         <div className="card-list"> 
-        <CardList className="card-list" items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
         </div>
       </div>
     )

@@ -23,12 +23,14 @@ function Card(props) {
 
     return (
       <div className="card-item">
-        <h2>{thisItem.title}</h2>
+        <div className='first-row'>
+        <p className='date'>{thisItem.date}</p>
+        <h2 className='title'>{thisItem.title}</h2>
+        </div>
+        <button className="btn-delete" onClick={handleClick}>x</button>
         {/* <p>{thisItem.id}</p> */}
-        <p>{thisItem.date}</p>
         <p>{thisItem.description}</p>
         <ul>{tagItems}</ul>
-        <button className="btn-delete" onClick={handleClick}>Delete</button>
         <button className="btn-edit" onClick={handleEdit}>Edit</button>
         <button className="btn-view" onClick={handleView}>View More</button>
       </div>
@@ -52,9 +54,9 @@ function CardList(props) {
   })
 
   return (
-    <ol className="card-list">
+    <div className="card-list card-item-container">
       {cardComponents}
-    </ol>
+    </div>
   )
 }
 
