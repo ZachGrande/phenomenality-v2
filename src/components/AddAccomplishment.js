@@ -21,6 +21,7 @@ function AddAccomplishment() {
 
   const current = new Date();
   const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
+  const titlePlaceholder = "Accomplishment for " + date;
 
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
@@ -183,21 +184,26 @@ function AddAccomplishment() {
         <p>What would you like to record?</p>
         <div className = "padding">
           <form>
-            <input
-              placeholder="Title"
+            <h3>Title</h3>
+            <textarea 
+              className="accompTextarea"
+              placeholder={titlePlaceholder}
               value={title}
               onChange={(event) => {
                 setTitle(event.target.value);
               }}
-            />
+              rows="2" cols="45">
+              </textarea>
             <br></br>
-            <input
+            <h3>Description</h3>
+            <textarea 
+              className="accompTextarea"
               placeholder="Today I was able to..."
               value={accomplishment}
               onChange={(event) => {
                 setAccomplishment(event.target.value);
               }}
-            />
+              rows="10" cols="45"></textarea>
             <br></br>
             <p><u>Tags</u></p>
             <input
