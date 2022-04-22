@@ -10,6 +10,11 @@ function Form(props) {
   const setItems = props.setItems;
   const database = props.database;
   const user = props.user;
+  // const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
+  // 'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
+  const tagColors = ['#581064', '#9B6CFE', '#6F79DB'];
+  const allTags = ['Technical', 'Soft Skills', 'Kudos'];
+
 
   const [accomplishment, setAccomplishment] = useState("");
   const [status, setStatus] = useState("success");
@@ -64,6 +69,59 @@ function Form(props) {
 // or 
 // var d = document.getElementById("div1");
 // d.className += " otherclass";
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var button = document.createElement('input');
+//   button.type = 'button';
+//   button.id = 'submit';
+//   button.value = 'Submit';
+//   button.className = 'btn';
+
+//   button.onclick = function() {
+//   // …
+//   };
+
+//   var container = document.getElementById('container');
+//   container.appendChild(button);
+// }, false);
+
+// function renderTags(){
+//   //tried to select element but has yet to be rendered
+//   let tagSection = document.getElementById('tagSection');
+//   console.log(tagSection);
+//   console.log("selected div element");
+//   for(let i = 0; i < allTags.length; i++) {
+//     let idName = allTags[i].replace(/\s+/g, '');
+//     let newTag = document.createElement('input');
+
+//     newTag.type = 'button';
+//     newTag.id = idName;
+//     newTag.value = allTags[i];
+//     newTag.name = 'tag';
+//     newTag.className = 'tag-test';
+//     newTag.style.backgroundColor = tagColors[i];
+//     newTag.onClick = e => editTag(e.currentTarget.value);
+    
+//     console.log("created tag " + allTags[i]);
+//     tagSection.appendChild(newTag);
+//     console.log("append tag " + allTags[i]);
+//   }
+
+// }
+
+//make tag component??
+
+// id='SoftSkills'
+// type='button'
+// name="tag"
+// className='tag-test'
+// value='Soft Skills'
+// onClick={e => editTag(e.currentTarget.value)}
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   console.log("page loading");
+//   renderTags();
+// });
   
   return (
      <div>
@@ -79,7 +137,8 @@ function Form(props) {
          }}
        />
        <br></br>
-       <div id='tag-section'>
+       {/* <button onClick={renderTags}>Render Tags</button> */}
+       <div id='tagSection'>
        <br></br>
        <p><u>Tags</u></p>
        <input
@@ -99,8 +158,6 @@ function Form(props) {
           onClick={e => editTag(e.currentTarget.value)}
        />
        </div>
-      {/* ['Technical', 'Soft Skills', 'Kudos', 'Award',
-   'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'] */}
        <br></br>
        <button onClick={addNewAccomplishment}>Add accomplishment</button>
        </form>

@@ -20,6 +20,7 @@ function Bank() {
   const database = getDatabase(app);
   const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
    'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
+   //create instance that user can edit?
 
   // const [user, loading, error] = useAuthState(auth);
   const [user, loading] = useAuthState(auth);
