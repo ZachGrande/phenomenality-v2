@@ -46,22 +46,62 @@ function QuizContent(props) {
     
     // FIX THIS PART FOR LOGIC!!!! used to be var key, is var valueName the correct thing to replace it with?
     // nested if statement?
-    for (var key in survey) {
-      console.log(survey[key].valueName);
-      if(survey[key] === "item1"){
-        p+=1;
-      } else if (survey[key] === "item2") {
-        s+=2;
-      } else if (survey[key] === "item3") {
-        sh+=3;
-      } else if (survey[key] === "item4") {
-        e+=4;
-      } else if (survey[key] === "item5") {
-        g+=5;
-      } else {
-        n+=0;
-      } 
-    }
+
+    //survey.map((item) => {
+      //if(item.charAt(0) == 'P') {
+      for (var key in survey) {
+        if(survey[key] === "P1"){           
+          p+=1;
+        } else if (survey[key] === "P2") {
+          p+=2;
+        } else if (survey[key] === "P3") {
+           p+=3;
+        } else if (survey[key] === "P4") {
+           p+=4;
+        } else if (survey[key] === "P5") {
+           p+=5;
+        } else if (survey[key] === "S1"){           
+           s+=1;
+        } else if (survey[key] === "S2") {
+           s+=2;
+        } else if (survey[key] === "S3") {
+           s+=3;
+        } else if (survey[key] === "S4") {
+           s+=4;
+        } else if (survey[key] === "S5") {
+          s+=5;
+        } else if (survey[key] === "G1") {
+          g+=1;
+        } else if (survey[key] === "G2") {
+          g+=2;
+        } else if (survey[key] === "G3") {
+          g+=3;
+        } else if (survey[key] === "G4") {
+          g+=4;
+        } else if (survey[key] === "G5") {
+          g+=5;
+        } else if (survey[key] === "SH1") {
+          sh+=1;
+        } else if (survey[key] === "SH2") {
+          sh+=2;
+        } else if (survey[key] === "SH3") {
+          sh+=3;
+        } else if (survey[key] === "SH4") {
+          sh+=4;
+        } else if (survey[key] === "SH5") {
+          sh+=5;
+        } else if (survey[key] === "E1") {
+          e+=1;
+        } else if (survey[key] === "E2") {
+          e+=2;
+        } else if (survey[key] === "E3") {
+          e+=3;
+        } else if (survey[key] === "E4") {
+          e+=4;
+        } else if (survey[key] === "E5") {
+          e+=5;
+        }
+      };
 
     // delayed computation until after survey is complete
     const handleResults = () => {

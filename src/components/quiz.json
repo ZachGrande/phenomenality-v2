@@ -7,29 +7,29 @@
       "elements": [
        {
         "type": "radiogroup",
-        "name": "question1",
+        "name": "P",
         "title": "I have been accused of being a micromanager.",
-        "valueName": "P",
+        "valueName": "P-1",
         "isRequired": true,
         "choices": [
          {
-          "value": "item1",
+          "value": "P1",
           "text": "1"
          },
          {
-          "value": "item2",
+          "value": "P2",
           "text": "2"
          },
          {
-          "value": "item3",
+          "value": "P3",
           "text": "3"
          },
          {
-          "value": "item4",
+          "value": "P4",
           "text": "4"
          },
          {
-          "value": "item5",
+          "value": "P5",
           "text": "5"
          }
         ],
@@ -40,27 +40,27 @@
         "name": "question2",
         "useDisplayValuesInTitle": false,
         "title": "I find myself staying at work/school longer than my peers, even after I have finished the day’s required tasks.",
-        "valueName": "SH",
+        "valueName": "SH-1",
         "isRequired": true,
         "choices": [
          {
-          "value": "item1",
+          "value": "SH1",
           "text": "1"
          },
          {
-          "value": "item2",
+          "value": "SH2",
           "text": "2"
          },
          {
-          "value": "item3",
+          "value": "SH3",
           "text": "3"
          },
          {
-          "value": "item4",
+          "value": "SH4",
           "text": "4"
          },
          {
-          "value": "item5",
+          "value": "SH5",
           "text": "5"
          }
         ],
@@ -72,27 +72,27 @@
         "type": "radiogroup",
         "name": "question3",
         "title": "I am used to excelling without much effort.",
-        "valueName": "G",
+        "valueName": "G-1",
         "isRequired": true,
         "choices": [
          {
-          "value": "item1",
+          "value": "G1",
           "text": "1"
          },
          {
-          "value": "item2",
+          "value": "G2",
           "text": "2"
          },
          {
-          "value": "item3",
+          "value": "G3",
           "text": "3"
          },
          {
-          "value": "item4",
+          "value": "G4",
           "text": "4"
          },
          {
-          "value": "item5",
+          "value": "G5",
           "text": "5"
          }
         ],
@@ -102,27 +102,27 @@
         "type": "radiogroup",
         "name": "question4",
         "title": "I believe that I need to accomplish things all on my own.",
-        "valueName": "S",
+        "valueName": "S-1",
         "isRequired": true,
         "choices": [
          {
-          "value": "item1",
+          "value": "S1",
           "text": "1"
          },
          {
-          "value": "item2",
+          "value": "S2",
           "text": "2"
          },
          {
-          "value": "item3",
+          "value": "S3",
           "text": "3"
          },
          {
-          "value": "item4",
+          "value": "S4",
           "text": "4"
          },
          {
-          "value": "item5",
+          "value": "S5",
           "text": "5"
          }
         ],
@@ -132,27 +132,752 @@
         "type": "radiogroup",
         "name": "question5",
         "title": "I will not apply to a job unless I meet every listed qualification/requirement.",
-        "valueName": "E",
+        "valueName": "E-1",
         "isRequired": true,
         "choices": [
          {
-          "value": "item1",
+          "value": "E1",
           "text": "1"
          },
          {
-          "value": "item2",
+          "value": "E2",
           "text": "2"
          },
          {
-          "value": "item3",
+          "value": "E3",
           "text": "3"
          },
          {
-          "value": "item4",
+          "value": "E4",
           "text": "4"
          },
          {
-          "value": "item5",
+          "value": "E5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       }
+      ]
+     },
+     {
+      "name": "page2",
+      "elements": [
+       {
+        "type": "radiogroup",
+        "name": "question1",
+        "title": "I typically receive “Straight A’s” or “gold stars” in everything I do.",
+        "choices": [
+         {
+          "value": "SH1",
+          "text": "1"
+         },
+         {
+          "value": "SH2",
+          "text": "2"
+         },
+         {
+          "value": "SH3",
+          "text": "3"
+         },
+         {
+          "value": "SH4",
+          "text": "4"
+         },
+         {
+          "value": "SH5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question6",
+        "title": "I get stressed when I am not working and find downtime wasteful.",
+        "choices": [
+         {
+          "value": "SH1",
+          "text": "1"
+         },
+         {
+          "value": "SH2",
+          "text": "2"
+         },
+         {
+          "value": "SH3",
+          "text": "3"
+         },
+         {
+          "value": "SH4",
+          "text": "4"
+         },
+         {
+          "value": "SH5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question7",
+        "title": "I constantly seek trainings and certifications because I think I need to improve my skills in order to succeed.",
+        "choices": [
+         {
+          "value": "E1",
+          "text": "1"
+         },
+         {
+          "value": "E2",
+          "text": "2"
+         },
+         {
+          "value": "E3",
+          "text": "3"
+         },
+         {
+          "value": "E4",
+          "text": "4"
+         },
+         {
+          "value": "E5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question8",
+        "title": "I often find myself saying,  “I don’t need anyone’s help.”",
+        "choices": [
+         {
+          "value": "S1",
+          "text": "1"
+         },
+         {
+          "value": "S2",
+          "text": "2"
+         },
+         {
+          "value": "S3",
+          "text": "3"
+         },
+         {
+          "value": "S4",
+          "text": "4"
+         },
+         {
+          "value": "S5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question9",
+        "title": "I struggle to delegate work to others, and when I do, I feel frustrated and disappointed with the results.",
+        "choices": [
+         {
+          "value": "P1",
+          "text": "1"
+         },
+         {
+          "value": "P2",
+          "text": "2"
+         },
+         {
+          "value": "P3",
+          "text": "3"
+         },
+         {
+          "value": "P4",
+          "text": "4"
+         },
+         {
+          "value": "P5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       }
+      ]
+     },
+     {
+      "name": "page3",
+      "elements": [
+       {
+        "type": "radiogroup",
+        "name": "question10",
+        "title": "I frame requests in terms of project requirements, rather than in terms of my needs as a person.",
+        "choices": [
+         {
+          "value": "S1",
+          "text": "1"
+         },
+         {
+          "value": "S2",
+          "text": "2"
+         },
+         {
+          "value": "S3",
+          "text": "3"
+         },
+         {
+          "value": "S4",
+          "text": "4"
+         },
+         {
+          "value": "S5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question11",
+        "title": "Even after I’ve been in a role for a while, I feel like I still don’t know “enough.”",
+        "choices": [
+         {
+          "value": "E1",
+          "text": "1"
+         },
+         {
+          "value": "E2",
+          "text": "2"
+         },
+         {
+          "value": "E3",
+          "text": "3"
+         },
+         {
+          "value": "E4",
+          "text": "4"
+         },
+         {
+          "value": "E5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question12",
+        "title": "I was told frequently as a child that I was the “smart one” in my family or peer group.",
+        "choices": [
+         {
+          "value": "G1",
+          "text": "1"
+         },
+         {
+          "value": "G2",
+          "text": "2"
+         },
+         {
+          "value": "G3",
+          "text": "3"
+         },
+         {
+          "value": "G4",
+          "text": "4"
+         },
+         {
+          "value": "G5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question13",
+        "title": "I have sacrificed my hobbies and passions for work.",
+        "choices": [
+         {
+          "value": "SH1",
+          "text": "1"
+         },
+         {
+          "value": "SH2",
+          "text": "2"
+         },
+         {
+          "value": "SH3",
+          "text": "3"
+         },
+         {
+          "value": "SH4",
+          "text": "4"
+         },
+         {
+          "value": "SH5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question14",
+        "title": "When I don’t make the (insanely high) mark on something, I accuse myself of “not being cut out” for my job and ruminate on it for days.",
+        "choices": [
+         {
+          "value": "P1",
+          "text": "1"
+         },
+         {
+          "value": "P2",
+          "text": "2"
+         },
+         {
+          "value": "P3",
+          "text": "3"
+         },
+         {
+          "value": "P4",
+          "text": "4"
+         },
+         {
+          "value": "P5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       }
+      ]
+     },
+     {
+      "name": "page4",
+      "elements": [
+       {
+        "type": "radiogroup",
+        "name": "question15",
+        "title": "I don't like it when someone considers me an 'expert' on something.",
+        "choices": [
+         {
+          "value": "E1",
+          "text": "1"
+         },
+         {
+          "value": "E2",
+          "text": "2"
+         },
+         {
+          "value": "E3",
+          "text": "3"
+         },
+         {
+          "value": "E4",
+          "text": "4"
+         },
+         {
+          "value": "E5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question16",
+        "title": "I feel like my work must be 100% perfect, 100% of the time.",
+        "choices": [
+         {
+          "value": "P1",
+          "text": "1"
+         },
+         {
+          "value": "P2",
+          "text": "2"
+         },
+         {
+          "value": "P3",
+          "text": "3"
+         },
+         {
+          "value": "P4",
+          "text": "4"
+         },
+         {
+          "value": "P5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question17",
+        "title": "I feel like I haven’t truly earned my title, despite my legitimate qualifications that got me here.",
+        "choices": [
+         {
+          "value": "SH1",
+          "text": "1"
+         },
+         {
+          "value": "SH2",
+          "text": "2"
+         },
+         {
+          "value": "SH3",
+          "text": "3"
+         },
+         {
+          "value": "SH4",
+          "text": "4"
+         },
+         {
+          "value": "SH5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question18",
+        "title": "I feel like I’ve failed if I had to ask for help.",
+        "choices": [
+         {
+          "value": "S1",
+          "text": "1"
+         },
+         {
+          "value": "S2",
+          "text": "2"
+         },
+         {
+          "value": "S3",
+          "text": "3"
+         },
+         {
+          "value": "S4",
+          "text": "4"
+         },
+         {
+          "value": "S5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question19",
+        "title": "I do not want a mentor because I can handle/figure things out on my own.",
+        "choices": [
+         {
+          "value": "G1",
+          "text": "1"
+         },
+         {
+          "value": "G2",
+          "text": "2"
+         },
+         {
+          "value": "G3",
+          "text": "3"
+         },
+         {
+          "value": "G4",
+          "text": "4"
+         },
+         {
+          "value": "G5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       }
+      ]
+     },
+     {
+      "name": "page5",
+      "elements": [
+       {
+        "type": "radiogroup",
+        "name": "question20",
+        "title": "I feel pressured to work harder and longer than those around me to prove my worth.",
+        "choices": [
+         {
+          "value": "SH1",
+          "text": "1"
+         },
+         {
+          "value": "SH2",
+          "text": "2"
+         },
+         {
+          "value": "SH3",
+          "text": "3"
+         },
+         {
+          "value": "SH4",
+          "text": "4"
+         },
+         {
+          "value": "SH5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question21",
+        "title": "I feel ashamed when I don’t know something.",
+        "choices": [
+         {
+          "value": "E1",
+          "text": "1"
+         },
+         {
+          "value": "E2",
+          "text": "2"
+         },
+         {
+          "value": "E3",
+          "text": "3"
+         },
+         {
+          "value": "E4",
+          "text": "4"
+         },
+         {
+          "value": "E5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question22",
+        "title": "When I produce work that is overall successful, I still view my efforts as a failure if I find a minor flaw.",
+        "choices": [
+         {
+          "value": "P1",
+          "text": "1"
+         },
+         {
+          "value": "P2",
+          "text": "2"
+         },
+         {
+          "value": "P3",
+          "text": "3"
+         },
+         {
+          "value": "P4",
+          "text": "4"
+         },
+         {
+          "value": "P5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question23",
+        "title": "I don’t mind virtual work/learning because I am able to work alone/more independently.",
+        "choices": [
+         {
+          "value": "S1",
+          "text": "1"
+         },
+         {
+          "value": "S2",
+          "text": "2"
+         },
+         {
+          "value": "S3",
+          "text": "3"
+         },
+         {
+          "value": "S4",
+          "text": "4"
+         },
+         {
+          "value": "S5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question24",
+        "title": "I only focus on what I know or can do.",
+        "choices": [
+         {
+          "value": "E1",
+          "text": "1"
+         },
+         {
+          "value": "E2",
+          "text": "2"
+         },
+         {
+          "value": "E3",
+          "text": "3"
+         },
+         {
+          "value": "E4",
+          "text": "4"
+         },
+         {
+          "value": "E5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       }
+      ]
+     },
+     {
+      "name": "page6",
+      "elements": [
+       {
+        "type": "radiogroup",
+        "name": "question25",
+        "title": "I often avoid challenges because it’s too uncomfortable to try something that I am not great at.",
+        "choices": [
+         {
+          "value": "G1",
+          "text": "1"
+         },
+         {
+          "value": "G2",
+          "text": "2"
+         },
+         {
+          "value": "G3",
+          "text": "3"
+         },
+         {
+          "value": "G4",
+          "text": "4"
+         },
+         {
+          "value": "G5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question26",
+        "title": "I feel the need to juggle multiple roles at once and am disappointed when I fall short in any single role.",
+        "choices": [
+         {
+          "value": "G1",
+          "text": "1"
+         },
+         {
+          "value": "G2",
+          "text": "2"
+         },
+         {
+          "value": "G3",
+          "text": "3"
+         },
+         {
+          "value": "G4",
+          "text": "4"
+         },
+         {
+          "value": "G5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question27",
+        "title": "I hate functioning with lack of details - I need to know everything about my work to be productive.",
+        "choices": [
+         {
+          "value": "P1",
+          "text": "1"
+         },
+         {
+          "value": "P2",
+          "text": "2"
+         },
+         {
+          "value": "P3",
+          "text": "3"
+         },
+         {
+          "value": "P4",
+          "text": "4"
+         },
+         {
+          "value": "P5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question28",
+        "title": "I don’t like to take credit for my work if I receive any kind of assistance.",
+        "choices": [
+         {
+          "value": "S1",
+          "text": "1"
+         },
+         {
+          "value": "S2",
+          "text": "2"
+         },
+         {
+          "value": "S3",
+          "text": "3"
+         },
+         {
+          "value": "S4",
+          "text": "4"
+         },
+         {
+          "value": "S5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question29",
+        "title": "When I'm faced with a setback, my confidence plummets because not performing well provokes a feeling of shame",
+        "choices": [
+         {
+          "value": "G1",
+          "text": "1"
+         },
+         {
+          "value": "G2",
+          "text": "2"
+         },
+         {
+          "value": "G3",
+          "text": "3"
+         },
+         {
+          "value": "G4",
+          "text": "4"
+         },
+         {
+          "value": "G5",
           "text": "5"
          }
         ],
