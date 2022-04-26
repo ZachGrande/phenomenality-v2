@@ -58,7 +58,6 @@ function Bank() {
 
   };
 
-  //DELETING TAG NO LONGER WORKS
   const deleteTag = (index) => {
     setTags(prevState => prevState.filter((tag, i) => i !== index))
     console.log("delete tag work?")
@@ -177,8 +176,6 @@ function Bank() {
     if(shouldReturnItem){
       return currentItem;
     }
-
-    
 
     });
 

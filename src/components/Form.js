@@ -58,7 +58,7 @@ function Form(props) {
         newTags.splice(index, 1);
       }
     }
-
+    console.log(accomplishmentTags);
     setAccomplishmentTags(newTags);
   }
 
@@ -85,31 +85,6 @@ function Form(props) {
 //   container.appendChild(button);
 // }, false);
 
-// function renderTags(){
-//   //tried to select element but has yet to be rendered
-//   let tagSection = document.getElementById('tagSection');
-//   console.log(tagSection);
-//   console.log("selected div element");
-//   for(let i = 0; i < allTags.length; i++) {
-//     let idName = allTags[i].replace(/\s+/g, '');
-//     let newTag = document.createElement('input');
-
-//     newTag.type = 'button';
-//     newTag.id = idName;
-//     newTag.value = allTags[i];
-//     newTag.name = 'tag';
-//     newTag.className = 'tag-test';
-//     newTag.style.backgroundColor = tagColors[i];
-//     newTag.onClick = e => editTag(e.currentTarget.value);
-    
-//     console.log("created tag " + allTags[i]);
-//     tagSection.appendChild(newTag);
-//     console.log("append tag " + allTags[i]);
-//   }
-
-// }
-
-//make tag component??
 
 // id='SoftSkills'
 // type='button'
@@ -153,7 +128,7 @@ function Form(props) {
           id='SoftSkills'
           type='button'
           name="tag"
-          className='tag-test'
+          className='tag-test softSkills'
           value='Soft Skills'
           onClick={e => editTag(e.currentTarget.value)}
        />
