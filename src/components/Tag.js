@@ -1,9 +1,16 @@
 import React from 'react';
 
 function Tag(props){
-    let thisItem = props.item;
+  let thisItem = props.item;
 
-    function renderTag() {
+  function renderItem() {
+
+    return (
+      <div>
+        <p>{thisItem}</p>
+      </div>
+    )
+  }
 
 
 // let tagSection = document.getElementById('tagSection');
@@ -26,41 +33,45 @@ function Tag(props){
 //   console.log("append tag " + allTags[i]);
 // }
 
-        const handleEditTag = (event) => {
-            props.editTag(thisItem.value);
-        }
+    //     const handleEditTag = (event) => {
+    //         props.editTag(thisItem.value);
+    //     }
 
-        return (
-            //return one instance of tag
-            <div>
-                <input
-                    id='Technical'
-                    type='button'
-                    name="tag"
-                    className='tag-test technical'
-                    value='Technical'
-                    onClick={e => editTag(e.currentTarget.value)}
-                />
+    //     return (
+    //         //return one instance of tag
+    //         <div>
+    //             <input
+    //                 id='Technical'
+    //                 type='button'
+    //                 name="tag"
+    //                 className='tag-test technical'
+    //                 value='Technical'
+    //                 onClick={e => editTag(e.currentTarget.value)}
+    //             />
 
-            </div>
-        )
-    }
+    //         </div>
+    //     )
+    // }
 
-    return(
-        <div>
-            {renderTag(thisItem)}
-        </div>
+    // return(
+    //     <div>
+    //         {renderTag(thisItem)}
+    //     </div>
+    // )
+    return (
+      <div>
+        {renderItem(thisItem)}
+      </div>
     )
 
 }
 
 function TagList(props){
-    let items = prop.itens;
-    let tagComponents = items.map((currentItem) => {
-        return <Tag 
+    let items = props.items;
+    let tagComponents = items?.map((currentItem) => {
+        return <Tag item={currentItem}
         />
     })
-
 
     return (
         <div>

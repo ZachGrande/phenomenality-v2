@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Card.css';
+import TagList from './Tag.js';
 
 function Card(props) {
   let thisItem = props.item;
@@ -14,9 +15,11 @@ function Card(props) {
     return className;
   }
 
-  const tagItems = thisItem.tags?.map((tag) =>
-    <li key={tag}>{tag}</li>
-  );
+  // const tagItems = thisItem.tags?.map((tag) =>
+    // <li key={tag}>{tag}</li>
+  // );
+
+
 
   function renderItem() {
     const handleClick = (event) => {
@@ -31,7 +34,8 @@ function Card(props) {
       <div className={getClassName()}>
         <p>{thisItem.id}</p>
         <p>{thisItem.description}</p>
-        <ul>{tagItems}</ul>
+        {/* <ul>{tagItems}</ul> */}
+        <TagList items={thisItem.tags} />
         <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
         <button onClick={handleEdit}>Edit</button>
       </div>
