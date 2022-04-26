@@ -1,18 +1,9 @@
-.card-list {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column-reverse;
-  flex-flow: column wrap;
-  justify-content: space-between;
-}
 
 .card-list p {
   font-family: Arial;
 }
 
-.card-list .card-item {
-  /* display: flex;
-  flex-wrap: wrap; */
+.card-item {
   text-align: center;
   position: relative;
   border-radius: 25px;
@@ -23,6 +14,10 @@
   width: 60%;
   margin-top: 20px;
   margin-bottom: 10px;
+  background-color: #FDEDDE;
+  /* order: 5; */
+  min-width: 400px;
+  flex-grow: 4;
 }
 
 ol {
@@ -33,14 +28,11 @@ ol {
   display: flex;
   flex-wrap: wrap;
   flex-flow: column wrap;
-  justify-content: space-between;
-}
-
-.card-item {
-  background-color: #FDEDDE;
-  /* order: 5; */
-  min-width: 400px;
-  flex-basis: 300px;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-between;
+  align-items: flex-start;
+  padding: 3em;
 }
 
 .btn-delete {
