@@ -1,11 +1,11 @@
 /* Centers and aligns video */
-.float-video {
+.imposter-content .float-video {
   float: center;
   margin: 1em;
 }
 
 /* Adjusts image sizes based on screen size */
-.page-image{
+.imposter-content .page-image {
   height:auto;
   max-width:50%;
 
@@ -22,7 +22,7 @@
 }
 @media (min-width: 768px) {
 
-  .page-image{
+  .imposter-content .page-image{
       max-width: 40%;
   }
 
@@ -30,11 +30,11 @@
 
 @media (min-width: 992px) {
 
-  .float-video{
+  .imposter-content .float-video{
       float:right;
   }
 
-  .page-image{
+  .imposter-content .page-image{
       max-width: 30%;
   }
 

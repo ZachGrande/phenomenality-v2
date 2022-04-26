@@ -3,7 +3,7 @@ import '../../css/Types.css';
 
 function Perfectionist() {
   return(
-    <div className="content">
+    <div className="imposter-content">
       <h1>Violet - The Perfectionist</h1>
       <img className="page-image" src={perfectionist} alt="pefectionist icon"/>
       <h2>Overview</h2>
