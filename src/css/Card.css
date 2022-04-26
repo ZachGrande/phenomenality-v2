@@ -8,7 +8,6 @@
   position: relative;
   border-radius: 25px;
   padding: 20px;
-  margin: 10px;
   box-shadow: 5px 5px 10px black;
   margin: auto;
   width: 60%;
@@ -16,6 +15,7 @@
   margin-bottom: 10px;
   background-color: #FDEDDE;
   /* order: 5; */
+  margin-left: 2em;
   min-width: 400px;
   flex-grow: 4;
 }
