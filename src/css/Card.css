@@ -1,6 +1,9 @@
 .card-list {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column-reverse;
+  flex-flow: column wrap;
+  justify-content: space-between;
 }
 
 .card-list p {
@@ -26,14 +29,18 @@ ol {
   padding-left: 0px;
 }
 
-.card-item {
-  background-color: #FDEDDE;
-}
-
 .card-item-container {
   display: flex;
   flex-wrap: wrap;
+  flex-flow: column wrap;
   justify-content: space-between;
+}
+
+.card-item {
+  background-color: #FDEDDE;
+  /* order: 5; */
+  min-width: 400px;
+  flex-basis: 300px;
 }
 
 .btn-delete {
