@@ -52,3 +52,8 @@ p {
     cursor: pointer;
     color: white;
   }
+
+.tag-btn-list .selected {
+  background-color: #eaeaea;
+  color: #7f7f81;
+}

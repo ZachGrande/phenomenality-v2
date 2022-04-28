@@ -13,6 +13,8 @@ import WonderfulAccomplishment from '../assets/accomplishment-demo/accomplishmen
 import AccomplishmentComplete from '../assets/accomplishment-demo/accomplishment-4.svg';
 import SampleBank from '../assets/accomplishment-demo/accomplishment-5.svg';
 
+import TagButtonList from './TagButton.js';
+
 function AddAccomplishment() {
 
   const auth = getAuth(app);
@@ -32,6 +34,9 @@ function AddAccomplishment() {
 
   const [showWelcome, setShowWelcome] = useState(true);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
+
+  const tagColors = ['color1', 'color2', 'color3'];
+  const allTags = ['Technical', 'Soft Skills', 'Kudos'];
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -109,6 +114,8 @@ function AddAccomplishment() {
 
   const editTag = value => {
     let newTags = accomplishmentTags;
+    let idName = value.replace(/\s+/g, '');
+    document.getElementById(idName).classList.toggle('selected');;
     if (!accomplishmentTags.includes(value)) {
       newTags.push(value)
     } else {
@@ -117,6 +124,7 @@ function AddAccomplishment() {
         newTags.splice(index, 1);
       }
     }
+    console.log(accomplishmentTags);
     setAccomplishmentTags(newTags);
   }
 
@@ -205,20 +213,13 @@ function AddAccomplishment() {
               }}
               rows="10" cols="45"></textarea>
             <br></br>
-            <p><u>Tags</u></p>
-            <input
-              type="checkbox"
-              value="technical"
-              name="tag"
-              onChange={e => editTag(e.currentTarget.value)}
-            /> Technical
-            <br></br>
-            <input
-              type="checkbox"
-              value="soft skills"
-              name="tag"
-              onChange={e => editTag(e.currentTarget.value)}
-            /> Soft Skills
+            <div id='tagSection'>
+              <p><u>Tags</u></p>
+              <TagButtonList items={allTags}
+                  editTag={editTag}
+                  color={tagColors}
+                  />
+            </div>
             <br></br>
             <br></br>
             {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}

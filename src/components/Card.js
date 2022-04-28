@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Card.css';
+import TagList from './Tag.js';
 
 function Card(props) {
   let thisItem = props.item;
@@ -30,7 +31,8 @@ function Card(props) {
         <button className="btn-delete" onClick={handleClick}>x</button>
         {/* <p>{thisItem.id}</p> */}
         <p>{thisItem.description}</p>
-        <ul>{tagItems}</ul>
+        {/* <ul>{tagItems}</ul> */}
+        <TagList items={thisItem.tags} />
         <button className="btn-edit" onClick={handleEdit}>Edit</button>
         <button className="btn-view" onClick={handleView}>View More</button>
       </div>
