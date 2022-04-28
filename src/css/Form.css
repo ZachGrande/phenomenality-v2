@@ -1,3 +1,58 @@
+h4 {
+  font-family: Playfair Display;
+}
+
+p { 
+  font-family: Source Sans Pro;
+}
+
+.padding { 
+  position: center;
+  text-align: center;
+}
+
+.container {
+    display: flex;
+    width: 50%;
+    max-width: 50%;
+    padding-left: 14px;
+    border: 1px grey solid;
+    border-radius: 5px;
+    color: black
+  }
+  
+  .container input {
+    width: 100%;
+    min-width: 50%;
+    border: none;
+    border-radius: 5px;
+    padding: 14px;
+    padding-left: 14px;
+  }
+  
+  .tag {
+    display: flex;
+    align-items: center;
+    margin: 7px 0;
+    margin-right: 10px;
+    padding: 0 10px;
+    padding-right: 5px;
+    border: 1px solid orange;
+    border-radius: 5px;
+    background-color: orange;
+    white-space: nowrap;
+    color: white;
+  }
+  
+  .tag button {
+    display: flex;
+    padding: 6px;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    color: white;
+  }
+
 .tag-btn-list .selected {
   background-color: #eaeaea;
   color: #7f7f81;

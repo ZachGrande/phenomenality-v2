@@ -1,0 +1,37 @@
+
+nav .navigation {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FDEDDE;
+  padding: .75rem;
+}
+
+nav .navigation .navbar-link {
+  color: black;
+  text-decoration: none;
+}
+
+nav .navigation li {
+  display: inline;
+  margin-right: 1rem;
+}
+
+nav .navigation li .initials {
+  display: inline;
+  margin-right: 1rem;
+  border: 3px;
+  border-style:solid;
+  border-color:#4698ED;
+  padding: 1em;
+  border-radius: 100px;
+}
+
+nav .navigation li:hover,
+nav .navigation li:focus,
+nav .navigation li:active {
+  color: white;
+  border-bottom: .6rem solid white;
+  padding-bottom: .9rem;
+}

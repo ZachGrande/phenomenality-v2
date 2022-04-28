@@ -1,3 +1,4 @@
+import '../css/Navigation.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
@@ -31,55 +32,61 @@ function Navigation() {
 
   return(
     <nav>
-      <div>
+      <div className="navigation">
         <ul>
           <p>Phenomenality</p>
           <p>Strengthen Your Mentality</p>
           <li>
-            <Link to="/">
+            <Link className="navbar-link" to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/bank">
+            <Link className="navbar-link" to="/accomplishments">
+              Accomplishments
+            </Link>
+          </li>
+          <li>
+            <Link className="navbar-link" to="/bank">
               Your Bank
             </Link>
           </li>
           <li>
-            <Link to="questions">
+            <Link className="navbar-link" to="questions">
               Q&#38;A
             </Link>
           </li>
           <li>
-            <Link to="quiz">
+            <Link className="navbar-link" to="quiz">
               Imposter Quiz
             </Link>
           </li>
           <li>
-            <Link to="more-info">
+            <Link className="navbar-link" to="more-info">
               More Imposter Information
             </Link>
           </li>
           <li>
-            <Link to="/about">
+            <Link className="navbar-link" to="/about">
               About Us
             </Link>
           </li>
-          {/* <li>
-            <Link to="/authentication">
-              Sign In
-            </Link>
-          </li> */}
           <li>
-            <Link to="/authentication">
-              {initials ? <p>{initials}</p> : <img src={profileButton}
-                                              onMouseOver={toggleProfileButton}
-                                              onMouseLeave={toggleProfileButton}
-                                              width="50"
-                                              alt="profile"></img>}
+            <Link className="navbar-link" to="/authentication">
+              {initials ?
+                // <li className="initials">
+                <div className="initials">
+                  {initials}
+                </div>
+                // </li>
+                :
+                <img src={profileButton}
+                onMouseOver={toggleProfileButton}
+                onMouseLeave={toggleProfileButton}
+                width="50"
+                alt="profile"></img>}
             </Link>
           </li>
-          {/* <p>Profile block</p> */}
         </ul>
       </div>
     </nav>

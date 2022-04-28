@@ -14,12 +14,7 @@ function renderChart(results) {
     exportEnabled: true,
     animationEnabled: true,
     data: [{
-      type: "pie",
-      startAngle: 75,
-      showInLegend: "true",
-      toolTipContent: "{indexLabel} ({name}) {y}%",
-      legendText: "{indexLabel}",
-      indexLabelFontSize: 16,
+      type: "bar",
       dataPoints: results
     }]
   }

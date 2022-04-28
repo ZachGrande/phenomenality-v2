@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
+import '../css/Form.css'
 
 import TagButtonList from './TagButton.js';
 
@@ -21,16 +22,21 @@ function Form(props) {
   const [accomplishment, setAccomplishment] = useState("");
   const [status, setStatus] = useState("success");
   const [accomplishmentTags, setAccomplishmentTags] = useState([]);
+  const [title, setTitle] = useState("");
+
+  const current = new Date();
+  const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
 
   const addNewAccomplishment = async (event) => { 
     event.preventDefault();
     let thisAccomplishment = {
-      complete: true,
+      title: title,
       description: accomplishment,
       id: items.length + 1,
       key: items.length + "",
       status: status,
-      tags: accomplishmentTags
+      tags: accomplishmentTags,
+      date: date
     }
     
     let newItems = items.push(thisAccomplishment);
@@ -42,6 +48,7 @@ function Form(props) {
     })
 
     setItems(newItems);
+    setTitle("");
     setAccomplishment("");
     update(ref(database, 'users/' + user.uid), {
         data: items
@@ -63,49 +70,20 @@ function Form(props) {
     console.log(accomplishmentTags);
     setAccomplishmentTags(newTags);
   }
-
-// var element = document.createElement('select');
-// element.style.width = "100px";
-// add classname
-// element.classList.add("my-class");
-// or 
-// var d = document.getElementById("div1");
-// d.className += " otherclass";
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   var button = document.createElement('input');
-//   button.type = 'button';
-//   button.id = 'submit';
-//   button.value = 'Submit';
-//   button.className = 'btn';
-
-//   button.onclick = function() {
-//   // …
-//   };
-
-//   var container = document.getElementById('container');
-//   container.appendChild(button);
-// }, false);
-
-
-// id='SoftSkills'
-// type='button'
-// name="tag"
-// className='tag-test'
-// value='Soft Skills'
-// onClick={e => editTag(e.currentTarget.value)}
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   console.log("page loading");
-//   renderTags();
-// });
   
   return (
-     <div>
-       <p>Bank Page</p>
+     <div className = "padding">
        <form>
        <h4>What's something you're proud of?</h4>
        <p><em>This only works if you are already logged in.</em></p>
+       <input
+         placeholder="Title"
+         value={title}
+         onChange={(event) => {
+           setTitle(event.target.value);
+         }}
+       />
+       <br></br>
        <input
          placeholder="Today I was able to..."
          value={accomplishment}
@@ -114,14 +92,12 @@ function Form(props) {
          }}
        />
        <br></br>
-       {/* <button onClick={renderTags}>Render Tags</button> */}
        <div id='tagSection'>
-       <br></br>
-       <p><u>Tags</u></p>
-       <TagButtonList items={allTags}
-          editTag={editTag}
-          color={tagColors}
-          />
+         <p><u>Tags</u></p>
+         <TagButtonList items={allTags}
+            editTag={editTag}
+            color={tagColors}
+            />
        </div>
        <br></br>
        <button onClick={addNewAccomplishment}>Add accomplishment</button>
@@ -129,6 +105,5 @@ function Form(props) {
      </div>
    );
 }
-
 
  export default Form;

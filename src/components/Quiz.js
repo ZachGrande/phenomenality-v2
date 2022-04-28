@@ -12,16 +12,19 @@ function QuizContent(props) {
   // syncs with the state variable 
   // const results = props.results;
 
-  const freshResults = [{"y":0,"indexLabel":"Violet"},
-                        {"y":0,"indexLabel":"Dash"},
-                        {"y":0,"indexLabel":"Mr. Incredible"},
-                        {"y":0,"indexLabel":"Elastigirl"},
-                        {"y":0,"indexLabel":"Edna Mode"},
+  const freshResults = [{"y":0,"indexLabel":"Perfectionist"},
+                        {"y":0,"indexLabel":"Soloist"},
+                        {"y":0,"indexLabel":"Superhuman"},
+                        {"y":0,"indexLabel":"Expert"},
+                        {"y":0,"indexLabel":"Genius"},
                         {"y":0,"indexLabel":"None"}];
 
   const [results, setResults] = useState(freshResults);
 
   const [displayResults, setDisplayResults] = useState(false);
+
+  const [topResult, setTopResult] = useState(results[0].y);
+  const [topName, setTopName] = useState(results[0].indexLabel);
 
   // const setResults = props.setResults;
   
@@ -41,21 +44,64 @@ function QuizContent(props) {
     var g = 0;
     var n = 0;
     
-    for (var key in survey) {
-      if(survey[key] === "P"){
-        p+=14.29;
-      } else if (survey[key] === "S") {
-        s+=14.29;
-      } else if (survey[key] === "SH") {
-        sh+=14.29;
-      } else if (survey[key] === "E") {
-        e+=14.29;
-      } else if (survey[key] === "G") {
-        g+=14.29;
-      } else {
-        n+=14.29;
-      } 
-    }
+    // FIX THIS PART FOR LOGIC!!!! used to be var key, is var valueName the correct thing to replace it with?
+    // nested if statement?
+
+    //survey.map((item) => {
+      //if(item.charAt(0) == 'P') {
+      for (var key in survey) {
+        if(survey[key] === "P1"){           
+          p+=1;
+        } else if (survey[key] === "P2") {
+          p+=2;
+        } else if (survey[key] === "P3") {
+           p+=3;
+        } else if (survey[key] === "P4") {
+           p+=4;
+        } else if (survey[key] === "P5") {
+           p+=5;
+        } else if (survey[key] === "S1"){           
+           s+=1;
+        } else if (survey[key] === "S2") {
+           s+=2;
+        } else if (survey[key] === "S3") {
+           s+=3;
+        } else if (survey[key] === "S4") {
+           s+=4;
+        } else if (survey[key] === "S5") {
+          s+=5;
+        } else if (survey[key] === "G1") {
+          g+=1;
+        } else if (survey[key] === "G2") {
+          g+=2;
+        } else if (survey[key] === "G3") {
+          g+=3;
+        } else if (survey[key] === "G4") {
+          g+=4;
+        } else if (survey[key] === "G5") {
+          g+=5;
+        } else if (survey[key] === "SH1") {
+          sh+=1;
+        } else if (survey[key] === "SH2") {
+          sh+=2;
+        } else if (survey[key] === "SH3") {
+          sh+=3;
+        } else if (survey[key] === "SH4") {
+          sh+=4;
+        } else if (survey[key] === "SH5") {
+          sh+=5;
+        } else if (survey[key] === "E1") {
+          e+=1;
+        } else if (survey[key] === "E2") {
+          e+=2;
+        } else if (survey[key] === "E3") {
+          e+=3;
+        } else if (survey[key] === "E4") {
+          e+=4;
+        } else if (survey[key] === "E5") {
+          e+=5;
+        }
+      };
 
     // delayed computation until after survey is complete
     const handleResults = () => {
@@ -64,19 +110,19 @@ function QuizContent(props) {
       // index: the current entry number we are looking at
       const resultsCopy = results.map((item) => {
         // update current counts with new results
-        if (item.indexLabel === "Violet") {
+        if (item.indexLabel === "Perfectionist") {
           item.y = p;
           item.name = "Perfectionist";
-        } else if (item.indexLabel === "Dash") {
+        } else if (item.indexLabel === "Soloist") {
           item.y = s;
           item.name = "Soloist";
-        } else if (item.indexLabel === "Mr. Incredible") {
+        } else if (item.indexLabel === "Superhuman") {
           item.y = sh;
           item.name = "Superhuman";
-        } else if (item.indexLabel === "Elastigirl") {
+        } else if (item.indexLabel === "Expert") {
           item.y = e;
           item.name = "Expert";
-        } else if (item.indexLabel === "Edna Mode") {
+        } else if (item.indexLabel === "Genius") {
           item.y = g;
           item.name = "Genius";
         } else {
@@ -90,11 +136,11 @@ function QuizContent(props) {
 
     }
     // the format the canvas.js needs to display results
-    var currentResults = [{"y":p,"indexLabel":"Violet","name":"Perfectionist"},
-                          {"y":s,"indexLabel":"Dash", "name":"Soloist"},
-                          {"y":sh,"indexLabel":"Mr. Incredible", "name":"Superhuman"},
-                          {"y":e,"indexLabel":"Elastigirl", "name":"Expert"},
-                          {"y":g,"indexLabel":"Edna Mode","name":"Genius"},
+    var currentResults = [{"y":p,"indexLabel":"Perfectionist","name":"Perfectionist"},
+                          {"y":s,"indexLabel":"Soloist", "name":"Soloist"},
+                          {"y":sh,"indexLabel":"Superhuman", "name":"Superhuman"},
+                          {"y":e,"indexLabel":"Expert", "name":"Expert"},
+                          {"y":g,"indexLabel":"Genius","name":"Genius"},
                           {"y":n,"indexLabel":"None", "name":"N/A"}];
 
     handleResults(); // final step: update state
@@ -119,14 +165,8 @@ function QuizContent(props) {
       // the main variable that sets up the pie chart. allows for results to be exported!
       const options = {
         exportEnabled: true,
-        animationEnabled: true,
         data: [{
-          type: "pie",
-          startAngle: 75,
-          showInLegend: "true",
-          toolTipContent: "{indexLabel} ({name}) {y}%",
-          legendText: "{indexLabel}",
-          indexLabelFontSize: 16,
+          type: "bar",
           dataPoints: results
         }]
       }
@@ -139,16 +179,26 @@ function QuizContent(props) {
       )
     }
 
-    function topResult(results) {
+    function showTopResult(results) {
       // find the name of the top result
-      var topResult = results[0].y;
-      var topName = results[0].indexLabel;
+      // var topResult = results[0].y;
+      // var topName = results[0].indexLabel;
       for (var i = 0; i < results.length; i++) {
         if (results[i].y > topResult) {
-          topResult = results[i].y;
-          topName = results[i].indexLabel;
+          setTopResult(results[i].y);
+          setTopName(results[i].indexLabel);
+          // topResult = results[i].y;
+          // topName = results[i].indexLabel;
         }
       }
+      return(
+        <div>
+          <h2>You got {topName}!</h2>
+          <p>Click the button to see how you and {topName} can work 
+          to defeat imposter syndrome. To learn more about the other 
+          imposter types, go to the corresponding tab on the dropdown menu.</p>
+        </div>
+      )
     }
 
 
@@ -156,6 +206,11 @@ function QuizContent(props) {
   if (!displayResults) {
     return(
       <div>
+        <h1>Which Type of Imposter PHENOMENON Do You Have?</h1>
+        <p className="instructions">Complete this quick, 7-question quiz to 
+        determine which type of imposter syndrome you have, if any. You may 
+        find that multiple answers to one question apply to you. We encourage 
+        you to select the option that most aligns with your typical patterns.</p>
         <Survey.Survey model={survey} />
       </div>
     )
@@ -163,10 +218,13 @@ function QuizContent(props) {
     return(
       <div className="content">
         <div className="flex-container">
-          <span className="flex-item top-result">{topResult(results)}</span>
-            <div className="pieChart flex-item">
-              {renderChart(results)}
-            </div>
+        <h1>Imposter Syndrome Results</h1>
+          <span className="flex-item top-result">
+            {showTopResult(results)}
+          </span>
+          <div className="pieChart flex-item">
+            {renderChart(results)}
+          </div>
 
         </div>
         <p>DISCLAIMER: This is not medical advice. These results are meant to be used as a general guideline.</p>

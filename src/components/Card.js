@@ -5,21 +5,9 @@ import TagList from './Tag.js';
 function Card(props) {
   let thisItem = props.item;
 
-  const getClassName = () => {
-    let className = "card-item ";
-    if (thisItem.status === "success") {
-      className += "success";
-    } else if (thisItem.status === "question-unanswered") {
-      className += "question-unanswered";
-    }
-    return className;
-  }
-
-  // const tagItems = thisItem.tags?.map((tag) =>
-    // <li key={tag}>{tag}</li>
-  // );
-
-
+  const tagItems = thisItem.tags?.map((tag) =>
+    <li key={tag}>{tag}</li>
+  );
 
   function renderItem() {
     const handleClick = (event) => {
@@ -30,14 +18,23 @@ function Card(props) {
       props.editCard(thisItem.id)
     }
 
+    const handleView = (event) => {
+      props.viewCard(thisItem.id)
+    }
+
     return (
-      <div className={getClassName()}>
-        <p>{thisItem.id}</p>
+      <div className="card-item">
+        <div className='first-row'>
+        <p className='date'>{thisItem.date}</p>
+        <h2 className='title'>{thisItem.title}</h2>
+        </div>
+        <button className="btn-delete" onClick={handleClick}>x</button>
+        {/* <p>{thisItem.id}</p> */}
         <p>{thisItem.description}</p>
         {/* <ul>{tagItems}</ul> */}
         <TagList items={thisItem.tags} />
-        <button onClick={handleClick}>Delete accomplishment {thisItem.id}</button>
-        <button onClick={handleEdit}>Edit</button>
+        <button className="btn-edit" onClick={handleEdit}>Edit</button>
+        <button className="btn-view" onClick={handleView}>View More</button>
       </div>
     )
   }
@@ -54,13 +51,14 @@ function CardList(props) {
   let cardComponents = items.map((currentItem) => {
     return <Card key={currentItem.id} item={currentItem}
                  deleteCard={props.deleteCard}
-                 editCard={props.editCard} />
+                 editCard={props.editCard} 
+                 viewCard={props.viewCard}/>
   })
 
   return (
-    <ol className="card-list">
+    <div className="card-list card-item-container">
       {cardComponents}
-    </ol>
+    </div>
   )
 }
 

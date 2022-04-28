@@ -60,12 +60,14 @@ function Bank() {
 
   const deleteTag = (index) => {
     setTags(prevState => prevState.filter((tag, i) => i !== index))
-    console.log("delete tag work?")
   }
 
   const [showEditPopup, setShowEditPopup] = useState(false);
+  const [showViewPopup, setShowViewPopup] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(-1);
+  const [currentViewId, setCurrentViewId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState("");
+  const [existingTitle, setExistingTitle] = useState("");
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -134,16 +136,34 @@ function Bank() {
       }
     });
     setExistingDescription(editItem[0].description);
+    setExistingTitle(editItem[0].title);
   }
 
-  function closeForm() {
+  const viewCard = id => {
+    setShowViewPopup(true);
+    setCurrentViewId(id);
+    let viewItem = items.filter((currentItem) => {
+      if (currentItem.id === id) {
+        return currentItem;
+      }
+    });
+    setExistingDescription(viewItem[0].description);
+    setExistingTitle(viewItem[0].title);
+  }
+
+  function closeEditForm() {
     setShowEditPopup(false);
+  }
+
+  function closeViewForm() {
+    setShowViewPopup(false);
   }
 
   function submitForm() {
     let newItems = items.filter((currentItem) => {
       if (currentItem.id === currentEditId) {
         currentItem.description = existingDescription;
+        currentItem.title = existingTitle;
       }
       return currentItem;
     })
@@ -180,21 +200,27 @@ function Bank() {
     });
 
 
-  if (items.length > 0 && showEditPopup) {
+  if (items.length > 0 && showEditPopup) { 
     return (
       <div>
         <Form items={items}
           setItems={setItems}
           database={database}
           user={user}
-          //setFilter={setFilter} />
           />
         <h2 className="bank-title">Your Bank</h2>
         <div className="formPopup" id="popupForm">
-          {/* this is an action for when the enter button is clicked? */}
           <form action="/action_page.php" className="formContainer">
             <h3>Edit Accomplishment {currentEditId}</h3>
-            <label htmlFor="editDescription">Description</label>
+            <label htmlFor="editTitle">Title</label>
+            <input type="text"
+                   id="editTitle"
+                   value={existingTitle}
+                   onChange={(event) => {
+                     setExistingTitle(event.target.value);
+              }}
+              name="editTitle"></input>
+              <label htmlFor="editDescription">Description</label>
             <input type="text"
                    id="editDescription"
                    value={existingDescription}
@@ -203,31 +229,48 @@ function Bank() {
               }}
               name="editDescription"></input>
             <button type="button" className="btn" onClick={submitForm}>Update</button>
-            <button type="button" className="btn cancel" onClick={closeForm}>Cancel</button>
+            <button type="button" className="btn cancel" onClick={closeEditForm}>Cancel</button>
           </form>
         </div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} />
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div>
     )
-  } else if (items.length > 0) {
+  } else if (items.length > 0 && showViewPopup) { 
+    return(
+<div>
+        <Form items={items}
+          setItems={setItems}
+          database={database}
+          user={user}
+          />
+        <h2 className="bank-title">Your Bank</h2>
+        <div className="formPopup" id="popupForm">
+          <form className="formContainer">
+            <h3>Expanded View</h3>
+            <label htmlFor="viewTitle">Title</label>
+            <p className = "p-background" id="viewTitle">{existingTitle}</p>
+            <label htmlFor="viewDescription">Description</label>
+            <p className = "p-background" id="viewDescription">{existingDescription}</p>
+            <label htmlFor="viewTags">Tags</label>
+            <p className = "p-background" id="viewTags"> this no work yet</p>
+            <button type="button" className="btn cancel" onClick={closeViewForm}>Close</button>
+          </form>
+        </div>
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
+      </div> )
+  } 
+  else if (items.length > 0) {
     return (
       <div>
-        <Form items={items}
+        {/* <Form items={items}
                    setItems={setItems}
                    database={database}
-                   user={user}
-                  //  setFilter={setFilter}
-                   />
+                   user={user}/>
         <h2 className="bank-title">Your Bank</h2>
+        <div className = "tag-container">
         <h4>Want to filter by a specific tag?</h4>
        <br />
-          {/* <ul>
-            {["Item1", "Item2", "Item3"].map(item =>
-            <li key="{item}">{item}</li>
-            )}
-          </ul> UPDATE THE LIST OF TAGS BASED ON WHAT EXISTS IN SEARCH BAR*/}
        <div className="container">
-          {/* {tags.map((tag) => <div className="tag">{tag}</div>)} */}
           <input
             value={input}
             placeholder="Enter a tag"
@@ -241,11 +284,14 @@ function Bank() {
               <button onClick={() => deleteTag(index)}>x</button>
             </div>
           ))}
+          </div>
+        </div> */}
+        <div className="card-list"> 
+        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
         </div>
-        <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard}/>
       </div>
     )
-  } else if (loading) { // does not work at the moment
+  } else if (loading) {
     return (
       <p>Loading your card list.</p>
     )
@@ -256,8 +302,7 @@ function Bank() {
         <Form items={items}
                    setItems={setItems}
                    database={database}
-                   user={user}
-                   />
+                   user={user}/>
       </div>
 
     )
