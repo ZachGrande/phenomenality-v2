@@ -14,8 +14,8 @@
 }
 
 .selected {
-  background-color: lightgrey;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 /* .button {

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
 
+import TagButtonList from './TagButton.js';
+
 import '../css/Form.css';
 
 function Form(props) {
@@ -47,9 +49,10 @@ function Form(props) {
   }
 
   const editTag = value => {
+    console.log(typeof value);
     let newTags = accomplishmentTags;
     let idName = value.replace(/\s+/g, '');
-    document.getElementById(idName).classList.toggle('selected');
+    document.getElementById(idName).classList.toggle('selected');;
     if (!accomplishmentTags.includes(value)) {
       newTags.push(value)
     } else {
@@ -58,7 +61,6 @@ function Form(props) {
         newTags.splice(index, 1);
       }
     }
-    console.log(accomplishmentTags);
     setAccomplishmentTags(newTags);
   }
 
@@ -117,21 +119,14 @@ function Form(props) {
        <br></br>
        <p><u>Tags</u></p>
        <input
-          id='Technical'
-          type='button'
-          name="tag"
-          className='tag-test technical'
-          value='Technical'
-          onClick={e => editTag(e.currentTarget.value)}
-       />
-      <input
-          id='SoftSkills'
-          type='button'
-          name="tag"
-          className='tag-test softSkills'
-          value='Soft Skills'
-          onClick={e => editTag(e.currentTarget.value)}
-       />
+                id='test'
+                type='button'
+                value='test'
+                className='tag-test'
+                onClick={e => editTag(e.currentTarget.value)}
+                />
+       <TagButtonList items={allTags} 
+          editTag={editTag}/>
        </div>
        <br></br>
        <button onClick={addNewAccomplishment}>Add accomplishment</button>
