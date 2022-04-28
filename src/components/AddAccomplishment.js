@@ -171,25 +171,25 @@ function AddAccomplishment() {
   if (showWelcome && hasLoggedToday) {
     return (
       <div>
-        <h1>You've already logged an accomplishment today!</h1>
-        <p>Click here to view your logged accomplishments.</p>
+        <h1 className="h1Accomp">You've already logged an accomplishment today!</h1>
+        <p className="encrg-p">Click here to view your logged accomplishments.</p>
         <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
-        <p>If you'd like to add another accomplishment for today, <button onClick={toggleHasLoggedToday}>click here!</button></p>
+        <p className="encrg-p">If you'd like to add another accomplishment for today, <button onClick={toggleHasLoggedToday}>click here!</button></p>
       </div>
     )
   } else if (showWelcome) {
     return (
       <div className="accomplishments">
-        <h1>Hello, {name}!</h1>
-        <p>Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
+        <h1 className="h1Accomp">Hello, {name}!</h1>
+        <p className="encrg-p">Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
         <button className="accomplishment-next" onClick={advancePage}>Next</button>
       </div>
     )
   } else {
     return (
       <div>
-        <h1>Daily Accomplishment</h1>
-        <p>What would you like to record?</p>
+        <h1 className="h1Accomp">Daily Accomplishment</h1>
+        <p className="encrg-p">What would you like to record?</p>
         <div className = "padding">
           <form>
             <h3>Title</h3>

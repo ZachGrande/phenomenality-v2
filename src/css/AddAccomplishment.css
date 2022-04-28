@@ -2,6 +2,11 @@
   padding: 10px;
 }
 
+.h1Accomp { 
+  font-family: Playfair Display;
+  margin-left: .5em;
+}
+
 .accomplishment-next {
   float: right;
 }
@@ -23,6 +28,22 @@
   font-size: 16px;
   border-radius: 10px;
   padding: .75em;
+}
+
+.encrgCenter { 
+  margin: 2em;
+  position: center;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.encrg-bottom-padding { 
+  margin-bottom: 2em;
+}
+
+.encrg-p { 
+  margin: 1em;
+  font-family: Source Sans Pro;
 }
 
 .tag-btn-list .selected {

@@ -1,0 +1,31 @@
+.h1imposterInfo {
+    font-family: Playfair Display;
+    margin-left: .5em;
+}
+.imposterInfo-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-between;
+  align-items: flex-start;
+  padding: 3em;
+}
+
+.type {
+    text-align: center;
+    position: relative;
+    border-radius: 25px;
+    padding: 1em;
+    box-shadow: 5px 5px 10px black;
+    margin: auto;
+    margin-top: 20px;
+    margin-left: 1em;
+    margin-bottom: 10px;
+    background-color: #579A72;
+    /* order: 5; */
+    flex-grow: 2;
+    color: black;
+    text-decoration: none;
+}
