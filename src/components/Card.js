@@ -4,7 +4,6 @@ import TagList from './Tag.js';
 
 function Card(props) {
   let thisItem = props.item;
-  console.log(props);
 
   const getClassName = () => {
     let className = "card-item ";

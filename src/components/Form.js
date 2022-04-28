@@ -14,7 +14,7 @@ function Form(props) {
   const user = props.user;
   // const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
   // 'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
-  const tagColors = ['#581064', '#9B6CFE', '#6F79DB'];
+  const tagColors = ['color1', 'color2', 'color3'];
   const allTags = ['Technical', 'Soft Skills', 'Kudos'];
 
 
@@ -49,7 +49,6 @@ function Form(props) {
   }
 
   const editTag = value => {
-    console.log(typeof value);
     let newTags = accomplishmentTags;
     let idName = value.replace(/\s+/g, '');
     document.getElementById(idName).classList.toggle('selected');;
@@ -61,6 +60,7 @@ function Form(props) {
         newTags.splice(index, 1);
       }
     }
+    console.log(accomplishmentTags);
     setAccomplishmentTags(newTags);
   }
 
@@ -118,15 +118,10 @@ function Form(props) {
        <div id='tagSection'>
        <br></br>
        <p><u>Tags</u></p>
-       <input
-                id='test'
-                type='button'
-                value='test'
-                className='tag-test'
-                onClick={e => editTag(e.currentTarget.value)}
-                />
-       <TagButtonList items={allTags} 
-          editTag={editTag}/>
+       <TagButtonList items={allTags}
+          editTag={editTag}
+          color={tagColors}
+          />
        </div>
        <br></br>
        <button onClick={addNewAccomplishment}>Add accomplishment</button>

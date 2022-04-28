@@ -1,28 +1,4 @@
-
-.tag-test {
-  font-size: 16px;
-  text-align: center;
-  border: none;
-  margin: 0.2rem;
-  padding: 10px 24px;
-  border-radius: 10%;
+.tag-btn-list .selected {
+  background-color: #eaeaea;
+  color: #7f7f81;
 }
-
-.technical {
-  background-color: green;
-  color: white;
-}
-
-.selected {
-  background-color: black;
-  color: white;
-}
-
-/* .button {
-  transition-duration: 0.4s;
-}
-
-.button:hover {
-  background-color: #4CAF50; 
-  color: white;
-} */
