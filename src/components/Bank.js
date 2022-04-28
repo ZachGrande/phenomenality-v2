@@ -205,12 +205,11 @@ function Bank() {
   if (items.length > 0 && showEditPopup) { 
     return (
       <div>
-        <Form items={items}
+        {/* <Form items={items}
           setItems={setItems}
           database={database}
           user={user}
-          />
-        <h2 className="bank-title">Your Bank</h2>
+          /> */}
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
             <h3>Edit Accomplishment {currentEditId}</h3>
@@ -234,18 +233,18 @@ function Bank() {
             <button type="button" className="btn cancel" onClick={closeEditForm}>Cancel</button>
           </form>
         </div>
+        <h1 className="bank-h1">All Accomplishments</h1> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div>
     )
   } else if (items.length > 0 && showViewPopup) { 
     return(
 <div>
-        <Form items={items}
+        {/* <Form items={items}
           setItems={setItems}
           database={database}
           user={user}
-          />
-        <h2 className="bank-title">Your Bank</h2>
+          /> */}
         <div className="formPopup" id="popupForm">
           <form className="formContainer">
             <h3>Expanded View</h3>
@@ -258,6 +257,7 @@ function Bank() {
             <button type="button" className="btn cancel" onClick={closeViewForm}>Close</button>
           </form>
         </div>
+        <h1 className="bank-h1">All Accomplishments</h1> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div> )
   } 
@@ -288,7 +288,8 @@ function Bank() {
           ))}
           </div>
         </div> */}
-        <div className="card-list"> 
+        <div className="card-list">
+        <h1 className="bank-h1">All Accomplishments</h1> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
         </div>
       </div>
