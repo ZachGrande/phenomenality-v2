@@ -12,7 +12,7 @@ import 'firebase/database';
 
 import CardList from './Card.js';
 
-import '../css/Form.css';
+import '../css/Bank.css';
 
 function Bank() {
 
@@ -20,6 +20,7 @@ function Bank() {
   const database = getDatabase(app);
   const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
    'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
+   //create instance that user can edit?
 
   // const [user, loading, error] = useAuthState(auth);
   const [user, loading] = useAuthState(auth);
@@ -57,7 +58,6 @@ function Bank() {
 
   };
 
-  //DELETING TAG NO LONGER WORKS
   const deleteTag = (index) => {
     setTags(prevState => prevState.filter((tag, i) => i !== index))
   }
@@ -196,8 +196,6 @@ function Bank() {
     if(shouldReturnItem){
       return currentItem;
     }
-
-    
 
     });
 

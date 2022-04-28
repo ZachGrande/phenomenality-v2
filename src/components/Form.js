@@ -3,6 +3,9 @@ import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
 import '../css/Form.css'
 
+import TagButtonList from './TagButton.js';
+
+import '../css/Form.css';
 
 function Form(props) {
 
@@ -10,6 +13,11 @@ function Form(props) {
   const setItems = props.setItems;
   const database = props.database;
   const user = props.user;
+  // const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
+  // 'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
+  const tagColors = ['color1', 'color2', 'color3'];
+  const allTags = ['Technical', 'Soft Skills', 'Kudos'];
+
 
   const [accomplishment, setAccomplishment] = useState("");
   const [status, setStatus] = useState("success");
@@ -30,8 +38,6 @@ function Form(props) {
       tags: accomplishmentTags,
       date: date
     }
-
-    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
     
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
@@ -51,6 +57,8 @@ function Form(props) {
 
   const editTag = value => {
     let newTags = accomplishmentTags;
+    let idName = value.replace(/\s+/g, '');
+    document.getElementById(idName).classList.toggle('selected');;
     if (!accomplishmentTags.includes(value)) {
       newTags.push(value)
     } else {
@@ -59,9 +67,10 @@ function Form(props) {
         newTags.splice(index, 1);
       }
     }
+    console.log(accomplishmentTags);
     setAccomplishmentTags(newTags);
   }
-
+  
   return (
      <div className = "padding">
        <form>
@@ -83,21 +92,13 @@ function Form(props) {
          }}
        />
        <br></br>
-       <p><u>Tags</u></p>
-       <input
-         type="checkbox"
-         value="technical"
-         name="tag"
-         onChange={e => editTag(e.currentTarget.value)}
-       /> Technical
-       <br></br>
-       <input
-         type="checkbox"
-         value="soft skills"
-         name="tag"
-         onChange={e => editTag(e.currentTarget.value)}
-       /> Soft Skills
-       <br></br>
+       <div id='tagSection'>
+         <p><u>Tags</u></p>
+         <TagButtonList items={allTags}
+            editTag={editTag}
+            color={tagColors}
+            />
+       </div>
        <br></br>
        <button onClick={addNewAccomplishment}>Add accomplishment</button>
        </form>
