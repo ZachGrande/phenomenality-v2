@@ -114,6 +114,8 @@ function AddAccomplishment() {
 
   const editTag = value => {
     let newTags = accomplishmentTags;
+    let idName = value.replace(/\s+/g, '');
+    document.getElementById(idName).classList.toggle('selected');;
     if (!accomplishmentTags.includes(value)) {
       newTags.push(value)
     } else {
@@ -122,6 +124,7 @@ function AddAccomplishment() {
         newTags.splice(index, 1);
       }
     }
+    console.log(accomplishmentTags);
     setAccomplishmentTags(newTags);
   }
 
