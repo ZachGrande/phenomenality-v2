@@ -24,3 +24,8 @@
   border-radius: 10px;
   padding: .75em;
 }
+
+.tag-btn-list .selected {
+  background-color: #eaeaea;
+  color: #7f7f81;
+}
