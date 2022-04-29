@@ -30,7 +30,7 @@ function TagButton(props){
     }*/
 
     const handleClick = (event) => {
-      console.log("Clicked", thisItem.class);
+      // console.log("Clicked", thisItem.class);
       props.toggleTag(thisItem.description);
     }
 

@@ -12,69 +12,21 @@
     opacity: 0.5;
 }
 
-/* .tag-btn-list .inactive {
-  opacity: 0.5
-} */
-
-/* .tag-btn-list .tag-item:hover,
-.tag-btn-list .tag-item:focus,
-.tag-btn-list .tag-item:active {
-  opacity: 1;
-} */
-
-.tag-btn-list .technical {
-  /* background-color: #FFB5E8;
-  color: #9B6CFE; */
-  background-color: #cdebd2;
-  opacity: 0.5
-  /* color: #58a064; */
-}
-
 .tag-btn-list .active {
   opacity: 1;
 }
 
-/* .tag-btn-list .technical:hover,
-.tag-btn-list .technical:focus,
-.tag-btn-list .technical:active {
-  opacity: 1;
-} */
+.tag-btn-list .technical {
+  background-color: #cdebd2;
+  /* opacity: 0.5; */
+}
 
-.soft-skills {
+.tag-btn-list .soft-skills {
   background-color: #E4D7FF;
+  /* opacity: 0.5; */
 }
 
-/* .tag-btn-list .soft-skills:hover,
-.tag-btn-list .soft-skills:focus,
-.tag-btn-list .soft-skills:active {
-  opacity: 1;
-} */
-
-.kudos {
+.tag-btn-list .kudos {
   background-color: #DADEFF;
+  /* opacity: 0.5; */
 }
-
-/* .technical {
-  background-color: #FFB5E8;
-  opacity: 0.5
-} */
-
-/* .tag-btn-list .technical .active {
-  color: #FFB5E8;
-} */
-
-/* .tag-btn-list .color1 {
-    background-color: #cdebd2;
-    color: #58a064;
-}
-
-.tag-btn-list .color2 {
-    color: #9B6CFE;
-    background-color: #e4d7ff;
-}
-
-.tag-btn-list .color3 {
-    color: #6F79DB;
-    background-color: #DADEFF
-} */
-/* '#581064', '', '#6F79DB' */

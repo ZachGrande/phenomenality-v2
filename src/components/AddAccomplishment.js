@@ -96,7 +96,7 @@ function AddAccomplishment() {
       date: date
     }
 
-    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
+    // console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
     
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
@@ -131,7 +131,7 @@ function AddAccomplishment() {
   }*/
 
   const toggleTag = value => {
-    console.log("Value", value);
+    // console.log("Value", value);
     let newTags = accomplishmentTags;
     if (!accomplishmentTags.includes(value)) {
       newTags.push(value);
@@ -141,12 +141,9 @@ function AddAccomplishment() {
         newTags.splice(index, 1);
       }
     }
-    console.log(newTags);
+    // console.log(newTags);
     let idName = value.toLowerCase().replace(/\s+/g, '-');
-    console.log("ID Name", idName);
-    // console.log("Class list", document.getElementsByClassName(idName)[0].classList);
     document.getElementsByClassName(idName)[0].classList.toggle("active");
-    // document.getElementById(idName).classList.toggle("active");
     setAccomplishmentTags(newTags);
   }
 
