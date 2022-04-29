@@ -5,9 +5,13 @@ function TagButton(props){
     let thisItem = props.item;
     let activeTags = props.activeTags;
 
+    // useEffect(() => {
+
+    // }, [activeTags])
+
     const getClassName = () => {
       let className = "tag-test " + thisItem.class;
-      if (activeTags.includes(thisItem.class)) {
+      if (activeTags.includes(thisItem.description)) {
         className = className + " active";
       } else {
         className = className + " inactive";
@@ -23,7 +27,7 @@ function TagButton(props){
 
       const handleClick = (event) => {
         console.log("Clicked", thisItem.class);
-        props.toggleTag(thisItem.class);
+        props.toggleTag(thisItem.description);
       }
 
         // let idName = thisItem.replace(/\s+/g, '');

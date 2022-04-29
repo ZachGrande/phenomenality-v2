@@ -16,6 +16,11 @@
   opacity: 0.5
 }
 
+/* .technical {
+  background-color: #FFB5E8;
+  opacity: 0.5
+} */
+
 .tag-btn-list .technical .active {
   color: #FFB5E8;
 }
