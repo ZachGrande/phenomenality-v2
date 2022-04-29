@@ -13,6 +13,11 @@ const tags = [
     id: 2,
     description: "Kudos",
     class: "kudos"
+  },
+  {
+    id: 3,
+    description: "Back end",
+    class: "back-end"
   }
 ];
 

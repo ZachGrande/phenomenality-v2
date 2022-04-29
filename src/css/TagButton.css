@@ -2,26 +2,53 @@
     display: flex;
 }
 
-.tag-test {
+.tag-item {
     font-size: 16px;
     text-align: center;
     border: none;
     margin: 0.2rem;
     padding: 10px 24px;
     border-radius: 10%;
+    opacity: 0.5;
 }
 
-.inactive {
+/* .tag-btn-list .inactive {
   opacity: 0.5
+} */
+
+/* .tag-btn-list .tag-item:hover,
+.tag-btn-list .tag-item:focus,
+.tag-btn-list .tag-item:active {
+  opacity: 1;
+} */
+
+.tag-btn-list .technical {
+  /* background-color: #FFB5E8;
+  color: #9B6CFE; */
+  background-color: #cdebd2;
+  opacity: 0.5
+  /* color: #58a064; */
 }
 
-.technical {
-  background-color: #FFB5E8;
+.tag-btn-list .active {
+  opacity: 1;
 }
+
+/* .tag-btn-list .technical:hover,
+.tag-btn-list .technical:focus,
+.tag-btn-list .technical:active {
+  opacity: 1;
+} */
 
 .soft-skills {
   background-color: #E4D7FF;
 }
+
+/* .tag-btn-list .soft-skills:hover,
+.tag-btn-list .soft-skills:focus,
+.tag-btn-list .soft-skills:active {
+  opacity: 1;
+} */
 
 .kudos {
   background-color: #DADEFF;

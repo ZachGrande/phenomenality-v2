@@ -131,6 +131,7 @@ function AddAccomplishment() {
   }*/
 
   const toggleTag = value => {
+    console.log("Value", value);
     let newTags = accomplishmentTags;
     if (!accomplishmentTags.includes(value)) {
       newTags.push(value);
@@ -141,6 +142,11 @@ function AddAccomplishment() {
       }
     }
     console.log(newTags);
+    let idName = value.toLowerCase().replace(/\s+/g, '-');
+    console.log("ID Name", idName);
+    // console.log("Class list", document.getElementsByClassName(idName)[0].classList);
+    document.getElementsByClassName(idName)[0].classList.toggle("active");
+    // document.getElementById(idName).classList.toggle("active");
     setAccomplishmentTags(newTags);
   }
 

@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../css/TagButton.css'
 
 function TagButton(props){
   let thisItem = props.item;
   let activeTags = props.activeTags;
 
-  // useEffect(() => {
-
-  // }, [activeTags])
+  useEffect(() => {
+    renderTagButton();
+  }, [activeTags]);
 
   const getClassName = () => {
-    let className = "tag-test " + thisItem.class;
+    /*let className = "tag-item " + thisItem.class;
     if (activeTags.includes(thisItem.description)) {
       className = className + " active";
     } else {
       className = className + " inactive";
     }
-    console.log(className);
-    return className;
+    if (!activeTags.includes(thisItem.description)) {
+      className = className + " inactive";
+    }
+    console.log("Getting class name for", className);
+    return className;*/
+    return "tag-item " + thisItem.class;
   }
     
   function renderTagButton(){
