@@ -8,6 +8,14 @@ nav .navigation {
   padding: .75rem;
 }
 
+.home-font { 
+  font-family: Playfair Display;
+}
+
+.link-font { 
+  font-family: Source Sans Pro;
+}
+
 nav .navigation .navbar-link {
   color: black;
   text-decoration: none;
@@ -32,6 +40,14 @@ nav .navigation li:hover,
 nav .navigation li:focus,
 nav .navigation li:active {
   color: white;
-  border-bottom: .6rem solid white;
-  padding-bottom: .9rem;
+  border-bottom: .4rem solid black;
+  padding-bottom: .5rem;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  /* transform: rotate(180deg); */
+}
+
+.nav-left { 
+  position: relative;
+  float: right;
 }

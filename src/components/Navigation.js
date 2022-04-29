@@ -34,45 +34,47 @@ function Navigation() {
     <nav>
       <div className="navigation">
         <ul>
-          <p>Phenomenality</p>
-          <p>Strengthen Your Mentality</p>
-          <li>
+          <Link className="navbar-link home-font" to="/">
+          phenomenality | strengthen your mentality
+            </Link>
+          {/* <li>
             <Link className="navbar-link" to="/">
-              Home
+              home
+            </Link>
+          </li> */}
+          <div className="nav-left">
+          <li>
+            <Link className="navbar-link link-font" to="/accomplishments">
+              accomplishments
             </Link>
           </li>
           <li>
-            <Link className="navbar-link" to="/accomplishments">
-              Accomplishments
+            <Link className="navbar-link link-font" to="/bank">
+              your bank
             </Link>
           </li>
-          <li>
-            <Link className="navbar-link" to="/bank">
-              Your Bank
-            </Link>
-          </li>
-          <li>
+          {/* <li>
             <Link className="navbar-link" to="questions">
               Q&#38;A
             </Link>
-          </li>
+          </li> */}
           <li>
-            <Link className="navbar-link" to="quiz">
-              Imposter Quiz
+            <Link className="navbar-link link-font" to="quiz">
+              quiz
             </Link>
           </li>
           <li>
-            <Link className="navbar-link" to="more-info">
-              More Imposter Information
+            <Link className="navbar-link link-font" to="more-info">
+              imposter phenomenon
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link className="navbar-link" to="/about">
               About Us
             </Link>
-          </li>
+          </li> */}
           <li>
-            <Link className="navbar-link" to="/authentication">
+            <Link className="navbar-link link-font" to="/authentication">
               {initials ?
                 // <li className="initials">
                 <div className="initials">
@@ -87,6 +89,7 @@ function Navigation() {
                 alt="profile"></img>}
             </Link>
           </li>
+          </div>
         </ul>
       </div>
     </nav>
