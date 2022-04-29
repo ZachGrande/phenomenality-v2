@@ -4,9 +4,9 @@ import '../../css/Types.css';
 function Expert() {
   return(
     <div className="imposter-content">
-      <h1>Elastigirl - The Expert</h1>
+      <h1>the expert</h1>
       <img className="page-image" src={expert} alt="expert icon"/>
-      <h2>Overview</h2>
+      <h2>overview</h2>
         <p>
           The expert represents a person with imposter syndrome that never
           feels good enough despite being extremely knowledgeable. This
@@ -18,7 +18,7 @@ function Expert() {
         <div className="float-video">
           <iframe aria-label="Expert overview" width="560" height="315" src="https://www.youtube.com/embed/MFd7I4iWeTg?start=111" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
-      <h2>General Tips</h2>
+      <h2>general tips</h2>
         <ul>
           <li>
             It's true that there's always more to learn. Striving to bulk
@@ -40,7 +40,7 @@ function Expert() {
             discover your inner expert. When you share what you know, it not only benefits others, but also helps you heal your fraudulent feelings.
           </li>
         </ul>
-      <h2>Resources</h2>
+      <h2>resources</h2>
         <ul>
           <li>
             <a href="https://www.fastcompany.com/3062984/a-guide-to-uncertainty-for-people-who-hate-not-knowing">A Guide To Uncertainty For People Who Hate Not Knowing</a>
@@ -49,7 +49,7 @@ function Expert() {
             <a href="https://www.lifehack.org/620152/the-art-of-not-knowing">The Art of Not Knowing</a>
           </li>
         </ul>
-      <h2>Quotes</h2>
+      <h2>quotes</h2>
         <blockquote>
           "Every time I was called on in class, I was sure that I was
           about to embarrass myself. Every time I took a test, I was 
