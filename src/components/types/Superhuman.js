@@ -5,7 +5,7 @@ import '../../css/Types.css';
 function Superhuman() {
   return(
     <div className="imposter-content">
-      <h1>Mr. Incredible - The Superhero</h1>
+      <h1>the superhero</h1>
       <img className="page-image" src={superhero} alt="superhero icon"/>
       <h2>Overview</h2>
         <p>
@@ -17,7 +17,7 @@ function Superhuman() {
         <div className="float-video">
           <iframe aria-label="Superhero overview" width="560" height="315" src="https://www.youtube.com/embed/MFd7I4iWeTg?start=94" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
-      <h2>General Tips</h2>
+      <h2>general tips</h2>
         <ul>
           <li>
             Impostor workaholics are actually addicted to the validation that comes from working, not to the work
@@ -33,7 +33,7 @@ function Superhuman() {
             you're competent and skilled, you'll be able to ease off the gas as you gauge how much work is reasonable.
           </li>
         </ul>
-      <h2>Resources</h2>
+      <h2>resources</h2>
         <ul>
           <li>
             <a href="https://fairygodboss.com/articles/5-ways-to-combat-your-need-for-constant-validation-at-work">5 Ways to Combat Your Need For Constant Validation at Work</a>
@@ -42,7 +42,7 @@ function Superhuman() {
             <a href="https://www.livewellwithsharonmartin.com/validate-yourself/">17 Ways to Validate Yourself</a>
           </li>
         </ul>
-      <h2>Quotes</h2>
+      <h2>quotes</h2>
         <blockquote>
           "I have spent my years since Princeton, while at law school and in my various professional jobs, not 
           feeling completely a part of the worlds I inhabit. I am always looking over my shoulder wondering if

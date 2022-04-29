@@ -4,6 +4,26 @@
   margin: 1em;
 }
 
+.imposter-content {
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+.imposter-content h1{ 
+  font-family: Playfair Display;
+  margin-left: .5em;
+}
+
+.imposter-content h2{ 
+  font-family: Playfair Display;
+  margin-left: .5em;
+}
+
+.imposter-content p { 
+  font-family: Source Sans Pro;
+  margin-left: 1em;
+}
+
 /* Adjusts image sizes based on screen size */
 .imposter-content .page-image {
   height:auto;
