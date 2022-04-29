@@ -1,0 +1,165 @@
+{
+    "title": "Imposter Quiz",
+    "logoPosition": "right",
+    "pages": [
+     {
+      "name": "page1",
+      "elements": [
+       {
+        "type": "radiogroup",
+        "name": "P",
+        "title": "I have been accused of being a micromanager.",
+        "valueName": "P-1",
+        "isRequired": true,
+        "choices": [
+         {
+          "value": "P1",
+          "text": "1"
+         },
+         {
+          "value": "P2",
+          "text": "2"
+         },
+         {
+          "value": "P3",
+          "text": "3"
+         },
+         {
+          "value": "P4",
+          "text": "4"
+         },
+         {
+          "value": "P5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question2",
+        "useDisplayValuesInTitle": false,
+        "title": "I find myself staying at work/school longer than my peers, even after I have finished the day’s required tasks.",
+        "valueName": "SH-1",
+        "isRequired": true,
+        "choices": [
+         {
+          "value": "SH1",
+          "text": "1"
+         },
+         {
+          "value": "SH2",
+          "text": "2"
+         },
+         {
+          "value": "SH3",
+          "text": "3"
+         },
+         {
+          "value": "SH4",
+          "text": "4"
+         },
+         {
+          "value": "SH5",
+          "text": "5"
+         }
+        ],
+        "otherPlaceHolder": "SH",
+        "otherText": "ipType",
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question3",
+        "title": "I am used to excelling without much effort.",
+        "valueName": "G-1",
+        "isRequired": true,
+        "choices": [
+         {
+          "value": "G1",
+          "text": "1"
+         },
+         {
+          "value": "G2",
+          "text": "2"
+         },
+         {
+          "value": "G3",
+          "text": "3"
+         },
+         {
+          "value": "G4",
+          "text": "4"
+         },
+         {
+          "value": "G5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question4",
+        "title": "I believe that I need to accomplish things all on my own.",
+        "valueName": "S-1",
+        "isRequired": true,
+        "choices": [
+         {
+          "value": "S1",
+          "text": "1"
+         },
+         {
+          "value": "S2",
+          "text": "2"
+         },
+         {
+          "value": "S3",
+          "text": "3"
+         },
+         {
+          "value": "S4",
+          "text": "4"
+         },
+         {
+          "value": "S5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       },
+       {
+        "type": "radiogroup",
+        "name": "question5",
+        "title": "I will not apply to a job unless I meet every listed qualification/requirement.",
+        "valueName": "E-1",
+        "isRequired": true,
+        "choices": [
+         {
+          "value": "E1",
+          "text": "1"
+         },
+         {
+          "value": "E2",
+          "text": "2"
+         },
+         {
+          "value": "E3",
+          "text": "3"
+         },
+         {
+          "value": "E4",
+          "text": "4"
+         },
+         {
+          "value": "E5",
+          "text": "5"
+         }
+        ],
+        "colCount": 5
+       }
+      ]
+     }
+    ]
+}
+
