@@ -15,6 +15,8 @@ import SampleBank from '../assets/accomplishment-demo/accomplishment-5.svg';
 
 import TagButtonList from './TagButton.js';
 
+import tags from './tags.js';
+
 function AddAccomplishment() {
 
   const auth = getAuth(app);
@@ -36,7 +38,7 @@ function AddAccomplishment() {
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
 
   const tagColors = ['color1', 'color2', 'color3'];
-  const allTags = ['Technical', 'Soft Skills', 'Kudos'];
+  // const allTags = ['Technical', 'Soft Skills', 'Kudos'];
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -94,7 +96,7 @@ function AddAccomplishment() {
       date: date
     }
 
-    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
+    // console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
     
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
@@ -112,7 +114,7 @@ function AddAccomplishment() {
     });
   }
 
-  const editTag = value => {
+  /*const editTag = value => {
     let newTags = accomplishmentTags;
     let idName = value.replace(/\s+/g, '');
     document.getElementById(idName).classList.toggle('selected');;
@@ -125,6 +127,23 @@ function AddAccomplishment() {
       }
     }
     console.log(accomplishmentTags);
+    setAccomplishmentTags(newTags);
+  }*/
+
+  const toggleTag = value => {
+    // console.log("Value", value);
+    let newTags = accomplishmentTags;
+    if (!accomplishmentTags.includes(value)) {
+      newTags.push(value);
+    } else {
+      let index = newTags.indexOf(value);
+      if (index > -1) {
+        newTags.splice(index, 1);
+      }
+    }
+    // console.log(newTags);
+    let idName = value.toLowerCase().replace(/\s+/g, '-');
+    document.getElementsByClassName(idName)[0].classList.toggle("active");
     setAccomplishmentTags(newTags);
   }
 
@@ -215,8 +234,9 @@ function AddAccomplishment() {
             <br></br>
             <div id='tagSection'>
               <p><u>Tags</u></p>
-              <TagButtonList items={allTags}
-                  editTag={editTag}
+              <TagButtonList items={tags}
+                  activeTags={accomplishmentTags}
+                  toggleTag={toggleTag}
                   color={tagColors}
                   />
             </div>

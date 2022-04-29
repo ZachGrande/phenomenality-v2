@@ -50,3 +50,14 @@
   background-color: #eaeaea;
   color: #7f7f81;
 }
+
+.tag-btn-list .active {
+  opacity: 1;
+}
+
+/* .tag-btn-list .technical .active { */
+.tag-btn-list .active {
+  /* outline: 1px solid black; */
+  outline: 2px solid #6EB6FF;
+  /* box-shadow: 5px 10px; */
+}
