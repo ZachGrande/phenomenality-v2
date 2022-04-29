@@ -16,7 +16,15 @@
 }
 
 .technical {
-  color: #FFB5E8;
+  background-color: #FFB5E8;
+}
+
+.soft-skills {
+  background-color: #E4D7FF;
+}
+
+.kudos {
+  background-color: #DADEFF;
 }
 
 /* .technical {
@@ -24,9 +32,9 @@
   opacity: 0.5
 } */
 
-.tag-btn-list .technical .active {
+/* .tag-btn-list .technical .active {
   color: #FFB5E8;
-}
+} */
 
 /* .tag-btn-list .color1 {
     background-color: #cdebd2;
