@@ -9,9 +9,18 @@
     margin: 0.2rem;
     padding: 10px 24px;
     border-radius: 10%;
-  }
+}
 
-.tag-btn-list .color1 {
+.tag-btn-list .technical .inactive {
+  color: #FFB5E8;
+  opacity: 0.5
+}
+
+.tag-btn-list .technical .active {
+  color: #FFB5E8;
+}
+
+/* .tag-btn-list .color1 {
     background-color: #cdebd2;
     color: #58a064;
 }
@@ -24,5 +33,5 @@
 .tag-btn-list .color3 {
     color: #6F79DB;
     background-color: #DADEFF
-}
+} */
 /* '#581064', '', '#6F79DB' */
