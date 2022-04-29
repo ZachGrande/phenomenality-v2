@@ -11,9 +11,12 @@
     border-radius: 10%;
 }
 
-.tag-btn-list .technical .inactive {
-  color: #FFB5E8;
+.inactive {
   opacity: 0.5
+}
+
+.technical {
+  color: #FFB5E8;
 }
 
 /* .technical {
