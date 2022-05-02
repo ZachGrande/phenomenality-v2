@@ -1,4 +1,5 @@
-.tag-list {
+.tag-list,
+.tag-btn-list {
   display: flex;
 }
 
@@ -11,14 +12,25 @@
   border-radius: 10%;
 }
 
-.tag-list .technical {
+.tag-btn-item {
+  opacity: 0.5;
+}
+
+.tag-btn-list .active {
+  opacity: 1;
+}
+
+.tag-list .technical,
+.tag-btn-list .technical {
 background-color: #cdebd2;
 }
 
-.tag-list .soft-skills {
+.tag-list .soft-skills,
+.tag-btn-list .soft-skills {
 background-color: #E4D7FF;
 }
 
-.tag-list .kudos {
+.tag-list .kudos,
+.tag-btn-list .kudos {
 background-color: #DADEFF;
 }
