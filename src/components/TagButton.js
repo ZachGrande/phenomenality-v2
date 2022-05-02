@@ -21,7 +21,7 @@ function TagButton(props){
     }
     console.log("Getting class name for", className);
     return className;*/
-    return "tag-item " + thisItem.class;
+    return "tag-btn-item " + thisItem.class;
   }
     
   function renderTagButton(){
