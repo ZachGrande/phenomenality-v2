@@ -6,7 +6,7 @@ const tags = [
   },
   {
     id: 1,
-    description: "Soft skills",
+    description: "Soft Skills",
     class: "soft-skills",
   },
   {
@@ -16,9 +16,44 @@ const tags = [
   },
   {
     id: 3,
-    description: "Back end",
-    class: "back-end"
-  }
+    description: "Award",
+    class: "award"
+  },
+  {
+    id: 4,
+    description: "Training",
+    class: "training"
+  },
+  {
+    id: 5,
+    description: "Special Projects",
+    class: "special-projects"
+  },
+  {
+    id: 6,
+    description: "Volunteer",
+    class: "volunteer"
+  },
+  {
+    id: 7,
+    description: "Promotion",
+    class: "promotion"
+  },
+  {
+    id: 8,
+    description: "Idea",
+    class: "idea"
+  },
+  {
+    id: 9,
+    description: "Innovation",
+    class: "innovation"
+  },
+  {
+    id: 10,
+    description: "Miscellaneous",
+    class: "miscellaneous"
+  },
 ];
 
 export default tags;
