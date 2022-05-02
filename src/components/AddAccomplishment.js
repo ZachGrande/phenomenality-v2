@@ -153,6 +153,7 @@ function AddAccomplishment() {
 
   const toggleHasLoggedToday = () => {
     setHasLoggedToday(!hasLoggedToday);
+    setShowWelcome(false);
   }
 
   if (isLoading) {
