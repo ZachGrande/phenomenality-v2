@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import '../css/TagButton.css'
+// import '../css/TagButton.css';
+import '../css/Tag.css';
 
 function TagButton(props){
   let thisItem = props.item;
@@ -21,7 +22,7 @@ function TagButton(props){
     }
     console.log("Getting class name for", className);
     return className;*/
-    return "tag-item " + thisItem.class;
+    return "tag-btn-item tag-item " + thisItem.class;
   }
     
   function renderTagButton(){
