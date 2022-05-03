@@ -158,8 +158,8 @@ function Bank() {
   }
 
   function submitForm() {
-    let shortAccomp = existingDescription.substring(0, 250);
-    if (existingDescription.length > 250) {
+    let shortAccomp = existingDescription.substring(0, 100);
+    if (existingDescription.length > 100) {
       shortAccomp += "...";
     }
 

@@ -29,6 +29,19 @@ p {
   float: right;
 }
 
+.accomp-signedout {
+  margin-left: 2em;
+}
+
+.accomp-signedout .button {
+  width: fit-content;
+  padding: 10px 10px;
+}
+
+.accomp-signedout .photo-header {
+  text-align: center;
+}
+
 .add-accomp .tag-title {
   font-family: 'Source Sans Pro';
   /* font-size: 24px; */

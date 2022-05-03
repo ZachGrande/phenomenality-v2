@@ -16,7 +16,8 @@
   border-radius: 25px;
   padding: 20px;
   box-shadow: 5px 5px 10px black;
-  margin: auto;
+  /* margin: auto; */
+  margin: 1em;
   width: 60%;
   /* margin-top: 20px; */
   /* margin-bottom: 10px; */
@@ -25,7 +26,8 @@
   /* margin-left: 2em; */
   min-width: 400px;
   max-width: 400px;
-  flex-grow: 4;
+  /* flex-grow: 4; */
+  justify-content: center;
 }
 
 ol {
@@ -39,7 +41,7 @@ ol {
   flex-direction: row;
   justify-content: center;
   align-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 3em;
 }
 

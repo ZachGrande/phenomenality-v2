@@ -87,8 +87,8 @@ function AddAccomplishment() {
   }, [items]);
 
   useEffect(() => {
-    let shortAccomp = accomplishment.substring(0, 250);
-    if (accomplishment.length > 250) {
+    let shortAccomp = accomplishment.substring(0, 100);
+    if (accomplishment.length > 100) {
       shortAccomp += "...";
     }
     setAccomplishmentDescription(shortAccomp);
@@ -151,7 +151,7 @@ function AddAccomplishment() {
         newTags.splice(index, 1);
       }
     }
-    
+
     let idName = value.toLowerCase().replace(/\s+/g, '-');
     document.getElementsByClassName(idName)[0].classList.toggle("active");
     setAccomplishmentTags(newTags);
@@ -174,11 +174,11 @@ function AddAccomplishment() {
 
   if (!user) {
     return (
-      <div>
+      <div className="accomp-signedout">
         <h1>You haven't logged in yet!</h1>
         <p>Sign in to begin logging your accomplishments.</p>
         <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>
-        <h2>Here's what Phenomenality can offer you!</h2>
+        <h2 className="photo-header">Here's what Phenomenality can offer you!</h2>
         <div>
           <img className="demo-photo odd" src={WelcomeMessage} alt="welcome-message"/>
         </div>
