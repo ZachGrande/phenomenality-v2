@@ -1,36 +1,41 @@
 import React from 'react';
+import '../css/Tag.css';
 
 function Tag(props){
   let thisItem = props.item;
 
-  function renderItem() {
+  const getClassName = () => {
+    return "tag-item " + thisItem.toLowerCase().replace(/\s+/g, '-');
+  }
 
+  function renderItem() {
     return (
       <div>
-        <p>{thisItem}</p>
+        <div className={getClassName()}>{thisItem}</div>
       </div>
     )
   }
 
     return (
-        <div>
-            {renderItem(thisItem)}
-        </div>
+      <div>
+        {renderItem(thisItem)}
+      </div>
     )
 
 }
 
 function TagList(props){
     let items = props.items;
+    let index = -1;
     let tagComponents = items?.map((currentItem) => {
-        return <Tag item={currentItem}
-        />
+      index++;
+      return <Tag item={currentItem} key={index}
+      />
     })
-
     return (
-        <div>
-            {tagComponents}
-        </div>
+      <div className="tag-list">
+        {tagComponents}
+      </div>
     )
 }
 

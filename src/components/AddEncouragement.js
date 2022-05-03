@@ -71,25 +71,28 @@ function AddEncouragement() {
   if (showEncouragingMessageInput) {
     return (
       <div>
-        <h1>Wonderful Accomplishment!</h1>
-        <p>Now write yourself an encouraging message that will be shown you to randomly.</p>
-        <form>
-          <textarea className="accompTextarea"
-            placeholder="Today I was able to..."
+        <h1 className="h1Accomp">Wonderful Accomplishment!</h1>
+        <p className="encrg-p">Now write yourself an encouraging message that will be shown you to randomly.</p>
+        <form className="encrgCenter">
+          <textarea className="accompTextarea encrg-bottom-padding"
+            placeholder="Example: You got this!"
             value={encouragingMessage}
             onChange={(event) => {
               setEncouragingMessage(event.target.value);
             }}
+            rows="2" cols="45"
           />
-          <button className="accomplishment-next" onClick={addNewEncouragingMessage}>Next</button>
+          <div>
+            <button className="accomplishment-next" onClick={addNewEncouragingMessage}>Next</button>
+          </div>
         </form>
       </div>
     )
   } else {
     return (
       <div>
-        <h1>Have a lovely day!</h1>
-        <p>Come back tomorrow to add another accomplishment!</p>
+        <h1 className="h1Accomp">Have a lovely day!</h1>
+        <p className="encrg-p">Come back tomorrow to add another accomplishment!</p>
         <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
       </div>
     )

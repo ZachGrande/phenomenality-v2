@@ -15,6 +15,8 @@ import SampleBank from '../assets/accomplishment-demo/accomplishment-5.svg';
 
 import TagButtonList from './TagButton.js';
 
+import tags from './tags.js';
+
 function AddAccomplishment() {
 
   const auth = getAuth(app);
@@ -36,7 +38,7 @@ function AddAccomplishment() {
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
 
   const tagColors = ['color1', 'color2', 'color3'];
-  const allTags = ['Technical', 'Soft Skills', 'Kudos'];
+  // const allTags = ['Technical', 'Soft Skills', 'Kudos'];
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -94,7 +96,7 @@ function AddAccomplishment() {
       date: date
     }
 
-    console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
+    // console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
     
     let newItems = items.push(thisAccomplishment);
     newItems = map((currentItem, index = 0, newItems) => {
@@ -112,12 +114,7 @@ function AddAccomplishment() {
     });
   }
 
-  const move = (event) =>{
-    event.preventDefault();
-    
-  }
-
-  const editTag = value => {
+  /*const editTag = value => {
     let newTags = accomplishmentTags;
     let idName = value.replace(/\s+/g, '');
     document.getElementById(idName).classList.toggle('selected');;
@@ -131,6 +128,23 @@ function AddAccomplishment() {
     }
     console.log(accomplishmentTags);
     setAccomplishmentTags(newTags);
+  }*/
+
+  const toggleTag = value => {
+    // console.log("Value", value);
+    let newTags = accomplishmentTags;
+    if (!accomplishmentTags.includes(value)) {
+      newTags.push(value);
+    } else {
+      let index = newTags.indexOf(value);
+      if (index > -1) {
+        newTags.splice(index, 1);
+      }
+    }
+    // console.log(newTags);
+    let idName = value.toLowerCase().replace(/\s+/g, '-');
+    document.getElementsByClassName(idName)[0].classList.toggle("active");
+    setAccomplishmentTags(newTags);
   }
 
   function advancePage() {
@@ -139,6 +153,7 @@ function AddAccomplishment() {
 
   const toggleHasLoggedToday = () => {
     setHasLoggedToday(!hasLoggedToday);
+    setShowWelcome(false);
   }
 
   if (isLoading) {
@@ -176,17 +191,17 @@ function AddAccomplishment() {
   if (showWelcome && hasLoggedToday) {
     return (
       <div>
-        <h1>You've already logged an accomplishment today!</h1>
-        <p>Click here to view your logged accomplishments.</p>
+        <h1 className="h1Accomp">You've already logged an accomplishment today!</h1>
+        <p className="encrg-p">Click here to view your logged accomplishments.</p>
         <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
-        <p>If you'd like to add another accomplishment for today, <button onClick={toggleHasLoggedToday}>click here!</button></p>
+        <p className="encrg-p">If you'd like to add another accomplishment for today, <button onClick={toggleHasLoggedToday}>click here!</button></p>
       </div>
     )
   } else if (showWelcome) {
     return (
-      <div className="outline-box">
-        <h1>Hello, {name}!</h1>
-        <p>Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
+      <div className="accomplishments outline-box">
+        <h1 className="h1Accomp">Hello, {name}!</h1>
+        <p className="encrg-p">Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
         <button className="accomplishment-next" onClick={advancePage}>Next</button>
         <br></br>
         <br></br>
@@ -195,8 +210,8 @@ function AddAccomplishment() {
   } else {
     return (
       <div className='outline-box'>
-        <h1>Daily Accomplishment</h1>
-        <p>What is something you'd like to record?</p>
+        <h1 className="h1Accomp">Daily Accomplishment</h1>
+        <p className="encrg-p">What would you like to record?</p>
         <div className = "padding">
           <form>
             <textarea 
@@ -222,8 +237,10 @@ function AddAccomplishment() {
             <br></br>
             <br></br>
             <div id='tagSection'>
-              <TagButtonList items={allTags}
-                  editTag={editTag}
+              <p><u>Tags</u></p>
+              <TagButtonList items={tags}
+                  activeTags={accomplishmentTags}
+                  toggleTag={toggleTag}
                   color={tagColors}
                   />
             </div>

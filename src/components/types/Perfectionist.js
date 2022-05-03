@@ -4,7 +4,7 @@ import '../../css/Types.css';
 function Perfectionist() {
   return(
     <div className="imposter-content">
-      <h1>Violet - The Perfectionist</h1>
+      <h1>the perfectionist</h1>
       <img className="page-image" src={perfectionist} alt="pefectionist icon"/>
       <h2>Overview</h2>
         <p>
@@ -16,7 +16,7 @@ function Perfectionist() {
         <div className="float-video">
           <iframe aria-label="Perfectionist overview" width="560" height="315" src="https://www.youtube.com/embed/MFd7I4iWeTg?start=80" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
-      <h2>General Tips</h2>
+      <h2>general tips</h2>
         <ul>
           <li>
             For this type, success is rarely satisfying because they believe they could've done even better. 
@@ -32,7 +32,7 @@ function Perfectionist() {
             be 100% flawless. The sooner you're able to accept that, the better off you'll be.
           </li>
         </ul>
-      <h2>Resources</h2>
+      <h2>resources</h2>
         <ul>
           <li>
             <a href="https://www.themuse.com/advice/12-little-milestones-you-should-be-celebrating-at-work">12 Little Milestones You Should Be Celebrating at Work</a>
@@ -41,7 +41,7 @@ function Perfectionist() {
             <a href="https://www.themuse.com/advice/a-realistic-plan-for-telling-your-boss-that-youre-burnt-out-and-need-personal-time">A Realistic Plan for Telling Your Boss That You're Burnt Out and Need Personal Time</a>
           </li>
         </ul>
-      <h2>Quotes</h2>
+      <h2>quotes</h2>
         <blockquote>
           "So I have to admit that today, even 12 years after graduation [from Harvard], I'm still insecure about my
            own worthiness. I have to remind myself today, You are here for a reason. Today, I feel much like I did 

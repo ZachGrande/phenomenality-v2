@@ -19,6 +19,11 @@ p{
   font-size: 24px;
 }
 
+.h1Accomp { 
+  font-family: Playfair Display;
+  margin-left: .5em;
+}
+
 .accomplishment-next {
   float: right;
 }
@@ -43,7 +48,34 @@ p{
   width: 80%;
 }
 
+.encrgCenter { 
+  margin: 2em;
+  position: center;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.encrg-bottom-padding { 
+  margin-bottom: 2em;
+}
+
+.encrg-p { 
+  margin: 1em;
+  font-family: Source Sans Pro;
+}
+
 .tag-btn-list .selected {
   background-color: #eaeaea;
   color: #7f7f81;
+}
+
+.tag-btn-list .active {
+  opacity: 1;
+}
+
+/* .tag-btn-list .technical .active { */
+.tag-btn-list .active {
+  /* outline: 1px solid black; */
+  outline: 2px solid #6EB6FF;
+  /* box-shadow: 5px 10px; */
 }

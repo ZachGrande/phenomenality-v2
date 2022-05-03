@@ -4,7 +4,7 @@ import '../../css/Types.css';
 function Soloist() {
   return(
     <div className="imposter-content">
-      <h1>Dash - The Soloist</h1>
+      <h1>the soloist</h1>
       <img className="page-image" src={soloist} alt="soloist icon"/>
       <h2>Overview</h2>
         <p>
@@ -17,7 +17,7 @@ function Soloist() {
         <div className="float-video">
           <iframe aria-label="Soloist overview" width="560" height="315" src="https://www.youtube.com/embed/MFd7I4iWeTg?start=139" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
-      <h2>General Tips</h2>
+      <h2>general tips</h2>
         <ul>
           <li>
             Keep in mind that you could be taking longer to complete something by 
@@ -36,7 +36,7 @@ function Soloist() {
             accepting assistance from others will help you complete tasks in record time.
           </li>
         </ul>
-      <h2>Resources</h2>
+      <h2>resources</h2>
         <ul>
           <li>
             <a href="https://www.cnbc.com/2019/07/09/stop-asking-can-i-pick-your-brain-harvard-says-this-is-how-successful-people-ask-for-advice.html">Harvard researchers: How to ask for advice without being annoying</a>
@@ -45,7 +45,7 @@ function Soloist() {
             <a href="https://www.themuse.com/advice/4-times-you-just-need-to-suck-it-up-and-ask-for-help-at-work">4 Times You Just Need to Suck it Up and Ask for Help at Work</a>
           </li>
         </ul>
-      <h2>Quotes</h2>
+      <h2>quotes</h2>
       <blockquote>
           "I still sometimes feel like a loser kid in high school and I
           just have to pick myself up and tell myself that I'm a superstar
