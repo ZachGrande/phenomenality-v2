@@ -18,11 +18,11 @@
 }
 
 .tag-btn-list {
-  padding-left: 5em;
-  padding-right: 5em;
+  padding-left: 6em;
+  padding-right: 6em;
   flex-wrap: wrap;
-  /* justify-content: space-evenly; */
-  align-content: center;
+  justify-content: center;
+  /* align-content: center; */
 }
 
 .tag-list .technical,

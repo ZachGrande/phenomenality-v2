@@ -25,7 +25,7 @@ function AddAccomplishment() {
 
   const current = new Date();
   const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
-  const titlePlaceholder = date + " Title";
+  const titlePlaceholder = "Accomplishment for " + date;
 
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
