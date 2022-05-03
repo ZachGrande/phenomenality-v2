@@ -23,7 +23,7 @@ function AddAccomplishment() {
 
   const current = new Date();
   const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
-  const titlePlaceholder = "Accomplishment for " + date;
+  const titlePlaceholder = date + " Title";
 
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
@@ -112,6 +112,11 @@ function AddAccomplishment() {
     });
   }
 
+  const move = (event) =>{
+    event.preventDefault();
+    
+  }
+
   const editTag = value => {
     let newTags = accomplishmentTags;
     let idName = value.replace(/\s+/g, '');
@@ -179,20 +184,21 @@ function AddAccomplishment() {
     )
   } else if (showWelcome) {
     return (
-      <div className="accomplishments">
+      <div className="outline-box">
         <h1>Hello, {name}!</h1>
         <p>Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
         <button className="accomplishment-next" onClick={advancePage}>Next</button>
+        <br></br>
+        <br></br>
       </div>
     )
   } else {
     return (
-      <div>
+      <div className='outline-box'>
         <h1>Daily Accomplishment</h1>
-        <p>What would you like to record?</p>
+        <p>What is something you'd like to record?</p>
         <div className = "padding">
           <form>
-            <h3>Title</h3>
             <textarea 
               className="accompTextarea"
               placeholder={titlePlaceholder}
@@ -203,18 +209,19 @@ function AddAccomplishment() {
               rows="2" cols="45">
               </textarea>
             <br></br>
-            <h3>Description</h3>
+            <br></br>
             <textarea 
               className="accompTextarea"
-              placeholder="Today I was able to..."
+              placeholder="Description"
               value={accomplishment}
               onChange={(event) => {
                 setAccomplishment(event.target.value);
               }}
               rows="10" cols="45"></textarea>
             <br></br>
+            <br></br>
+            <br></br>
             <div id='tagSection'>
-              <p><u>Tags</u></p>
               <TagButtonList items={allTags}
                   editTag={editTag}
                   color={tagColors}
@@ -223,6 +230,7 @@ function AddAccomplishment() {
             <br></br>
             <br></br>
             {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
+            {/* this button is strange */}
             <button onClick={addNewAccomplishment}><Link aria-label="Next"
                   className="button rmv-underline"
                   role="button"

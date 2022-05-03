@@ -1,5 +1,22 @@
-.accomplishments {
-  padding: 10px;
+h1 {
+  font-family: 'Playfair Display';
+  font-weight: 400;
+  font-size: 16px;
+}
+
+p{
+  font-family: 'Source Sans Pro';
+  font-weight: 300;
+}
+
+.outline-box {
+  padding: 50px 75px;
+  outline: 1px solid grey;
+  margin: 50px;
+}
+
+.accomplishments p{
+  font-size: 24px;
 }
 
 .accomplishment-next {
@@ -23,6 +40,7 @@
   font-size: 16px;
   border-radius: 10px;
   padding: .75em;
+  width: 80%;
 }
 
 .tag-btn-list .selected {
