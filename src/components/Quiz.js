@@ -1,4 +1,4 @@
-import surveyJSON from './quiz2.json';
+import surveyJSON from './quiz.json';
 import React, { useEffect, useState } from 'react';
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
@@ -29,7 +29,7 @@ function QuizContent(props) {
   // const setResults = props.setResults;
   
   // style of the quiz (stone = black)
-  Survey.StylesManager.applyTheme("stone");
+  Survey.StylesManager.applyTheme( 'darkrose');
 
   // the variable used to track quiz results 
   var survey = new Survey.Model(surveyJSON);
@@ -126,10 +126,7 @@ function QuizContent(props) {
         } else if (item.indexLabel === "Genius") {
           item.y = g;
           item.name = "Genius";
-        } else {
-          item.y = n;
-          item.name = "N/A";
-        }
+        } 
         return item;
       })
 
@@ -162,12 +159,32 @@ function QuizContent(props) {
     });
 
   
+
     function renderChart(results) {
       // the main variable that sets up the pie chart. allows for results to be exported!
       const options = {
         exportEnabled: true,
+        animationEnabled: true,
+        theme: "light2",
+        dataPointWidth: 200,
+        axisX:{
+          gridThickness: 0,
+          tickLength: 0,
+          lineThickness: 2,
+          labelFormatter: function(){
+            return " ";
+          }
+        },
+        axisY:{
+          gridThickness: 0,
+          tickLength: 0,
+          lineThickness: 2,
+          labelFormatter: function(){
+            return " ";
+          }
+        },
         data: [{
-          type: "bar",
+          type: "column",
           dataPoints: results
         }]
       }
@@ -205,9 +222,12 @@ function QuizContent(props) {
   if (!displayResults) {
     return(
       <div>
-        <h1>Which Types of Imposter Phenomenon Do You Have?</h1>
-        <p className="instructions">Complete this 30-question quiz to determine which types of imposter phenomenon you relate to most!</p>
-        <Survey.Survey model={survey} />
+        <h1 className='quiz-title'>Imposter Phenomenon Quiz</h1>
+        <div className='quiz-page'>
+          <p className="instructions">Complete this 30-question quiz to determine which types of imposter phenomenon you identify with most!
+          Determine how you feel about each statement, <b> from 1 (strongly disagree) to 5 (strongly agree).</b></p>
+          <Survey.Survey model={survey} />
+        </div>
       </div>
     )
   } else {

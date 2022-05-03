@@ -23,3 +23,22 @@
     padding: 25px;
     font-family: 'Source Sans Pro';
 }
+
+.instructions {
+    text-align: center;
+    font-family: 'Source Sans Pro';
+    padding-left: 250px;
+    padding-right: 250px;
+    overflow-wrap: normal;
+    font-size: 20px;
+}
+
+.quiz-title {
+    text-align: center;
+    font-family: 'Playfair Display';
+}
+
+.quiz-page {
+    padding-left: 75px;
+    padding-right: 75px;
+}
