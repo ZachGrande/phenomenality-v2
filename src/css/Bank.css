@@ -8,12 +8,10 @@
 }
 
 .card-list {
-  display: block;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .bank-h1 { 
-  display: block;
   font-family: Playfair Display;
   margin-left: .5em;
 }

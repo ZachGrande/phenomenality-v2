@@ -30,7 +30,7 @@ function Card(props) {
         </div>
         <button className="btn-delete" onClick={handleClick}>x</button>
         {/* <p>{thisItem.id}</p> */}
-        <p>{thisItem.description}</p>
+        <p className="description">{thisItem.descriptionDisplay}</p>
         {/* <ul>{tagItems}</ul> */}
         <TagList items={thisItem.tags} />
         <button className="btn-edit" onClick={handleEdit}>Edit</button>

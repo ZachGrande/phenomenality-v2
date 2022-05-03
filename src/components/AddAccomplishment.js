@@ -27,7 +27,7 @@ function AddAccomplishment() {
 
   const current = new Date();
   const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
-  const titlePlaceholder = date + " Title";
+  const titlePlaceholder = "Accomplishment for " + date;
 
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
@@ -35,6 +35,7 @@ function AddAccomplishment() {
   const [title, setTitle] = useState("");
   const [accomplishment, setAccomplishment] = useState("");
   const [accomplishmentTags, setAccomplishmentTags] = useState([]);
+  const [accomplishmentDescription, setAccomplishmentDescription] = useState("");
 
   const [showWelcome, setShowWelcome] = useState(true);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
@@ -87,11 +88,20 @@ function AddAccomplishment() {
     }
   }, [items]);
 
+  useEffect(() => {
+    let shortAccomp = accomplishment.substring(0, 100);
+    if (accomplishment.length > 100) {
+      shortAccomp += "...";
+    }
+    setAccomplishmentDescription(shortAccomp);
+  }, [accomplishment]);
+
   const addNewAccomplishment = async (event) => { 
     event.preventDefault();
     let thisAccomplishment = {
       title: title,
       description: accomplishment,
+      descriptionDisplay: accomplishmentDescription,
       id: items.length + 1,
       key: items.length + "",
       tags: accomplishmentTags,
@@ -143,7 +153,7 @@ function AddAccomplishment() {
         newTags.splice(index, 1);
       }
     }
-    // console.log(newTags);
+
     let idName = value.toLowerCase().replace(/\s+/g, '-');
     document.getElementsByClassName(idName)[0].classList.toggle("active");
     setAccomplishmentTags(newTags);
@@ -166,11 +176,11 @@ function AddAccomplishment() {
 
   if (!user) {
     return (
-      <div>
+      <div className="accomp-signedout">
         <h1>You haven't logged in yet!</h1>
         <p>Sign in to begin logging your accomplishments.</p>
         <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>
-        <h2>Here's what Phenomenality can offer you!</h2>
+        <h2 className="photo-header">Here's what Phenomenality can offer you!</h2>
         <div>
           <img className="demo-photo odd" src={WelcomeMessage} alt="welcome-message"/>
         </div>
@@ -213,7 +223,7 @@ function AddAccomplishment() {
     )
   } else {
     return (
-      <div className='outline-box'>
+      <div className='outline-box add-accomp'>
         <h1 className="h1Accomp">Daily Accomplishment</h1>
         <p className="encrg-p">What would you like to record?</p>
         <div className = "padding">
@@ -241,7 +251,7 @@ function AddAccomplishment() {
             <br></br>
             <br></br>
             <div id='tagSection'>
-              <p><u>Tags</u></p>
+              <p className="tag-title">Add a tag to your post so you can find it later!</p>
               <TagButtonList items={tags}
                   activeTags={accomplishmentTags}
                   toggleTag={toggleTag}

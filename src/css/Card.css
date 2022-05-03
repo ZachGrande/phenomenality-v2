@@ -1,23 +1,33 @@
-
 .card-list p {
   font-family: Arial;
+  display: flex;
+  justify-content: center;
+}
+
+.card-item .description {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card-item {
+  font-family: 'Source Sans Pro';
   text-align: center;
   position: relative;
   border-radius: 25px;
   padding: 20px;
   box-shadow: 5px 5px 10px black;
-  margin: auto;
+  /* margin: auto; */
+  margin: 1em;
   width: 60%;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  /* margin-top: 20px; */
+  /* margin-bottom: 10px; */
   background-color: #FDEDDE;
   /* order: 5; */
-  margin-left: 2em;
+  /* margin-left: 2em; */
   min-width: 400px;
-  flex-grow: 4;
+  max-width: 400px;
+  /* flex-grow: 4; */
+  justify-content: center;
 }
 
 ol {
@@ -29,9 +39,9 @@ ol {
   flex-wrap: wrap;
   flex-flow: column wrap;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 3em;
 }
 
