@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import CanvasJSReact from '../assets/canvasjs.react';
-// import './ResultsPage.css';
+import '../css/Quiz.css'
+
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 // Tracks the quiz results and updates the state variable created when the user enters or refreshes the page
@@ -16,8 +17,7 @@ function QuizContent(props) {
                         {"y":0,"indexLabel":"Soloist"},
                         {"y":0,"indexLabel":"Superhuman"},
                         {"y":0,"indexLabel":"Expert"},
-                        {"y":0,"indexLabel":"Genius"},
-                        {"y":0,"indexLabel":"None"}];
+                        {"y":0,"indexLabel":"Genius"}];
 
   const [results, setResults] = useState(freshResults);
 
@@ -29,7 +29,7 @@ function QuizContent(props) {
   // const setResults = props.setResults;
   
   // style of the quiz (stone = black)
-  Survey.StylesManager.applyTheme("stone");
+  Survey.StylesManager.applyTheme( 'darkrose');
 
   // the variable used to track quiz results 
   var survey = new Survey.Model(surveyJSON);
@@ -103,6 +103,7 @@ function QuizContent(props) {
         }
       };
 
+
     // delayed computation until after survey is complete
     const handleResults = () => {
       // create a copy of state and update elements as needed
@@ -125,10 +126,7 @@ function QuizContent(props) {
         } else if (item.indexLabel === "Genius") {
           item.y = g;
           item.name = "Genius";
-        } else {
-          item.y = n;
-          item.name = "N/A";
-        }
+        } 
         return item;
       })
 
@@ -140,8 +138,8 @@ function QuizContent(props) {
                           {"y":s,"indexLabel":"Soloist", "name":"Soloist"},
                           {"y":sh,"indexLabel":"Superhuman", "name":"Superhuman"},
                           {"y":e,"indexLabel":"Expert", "name":"Expert"},
-                          {"y":g,"indexLabel":"Genius","name":"Genius"},
-                          {"y":n,"indexLabel":"None", "name":"N/A"}];
+                          {"y":g,"indexLabel":"Genius","name":"Genius"}];
+  
 
     handleResults(); // final step: update state
 
@@ -161,17 +159,37 @@ function QuizContent(props) {
     });
 
   
+
     function renderChart(results) {
       // the main variable that sets up the pie chart. allows for results to be exported!
       const options = {
         exportEnabled: true,
+        animationEnabled: true,
+        theme: "light2",
+        dataPointWidth: 200,
+        axisX:{
+          gridThickness: 0,
+          tickLength: 0,
+          lineThickness: 2,
+          labelFormatter: function(){
+            return " ";
+          }
+        },
+        axisY:{
+          gridThickness: 0,
+          tickLength: 0,
+          lineThickness: 2,
+          labelFormatter: function(){
+            return " ";
+          }
+        },
         data: [{
-          type: "bar",
+          type: "column",
           dataPoints: results
         }]
       }
     
-      // displays the pie chart
+      // displays the bar chart
       return(
         <div>
           <CanvasJSChart options={options} />
@@ -192,11 +210,9 @@ function QuizContent(props) {
         }
       }
       return(
-        <div>
+        <div className='results'>
           <h2>You got {topName}!</h2>
-          <p>Click the button to see how you and {topName} can work 
-          to defeat imposter syndrome. To learn more about the other 
-          imposter types, go to the corresponding tab on the dropdown menu.</p>
+          <p>Click here to learn more about the {topName} and other imposter types! </p>
         </div>
       )
     }
@@ -206,28 +222,28 @@ function QuizContent(props) {
   if (!displayResults) {
     return(
       <div>
-        <h1>Which Type of Imposter PHENOMENON Do You Have?</h1>
-        <p className="instructions">Complete this quick, 7-question quiz to 
-        determine which type of imposter syndrome you have, if any. You may 
-        find that multiple answers to one question apply to you. We encourage 
-        you to select the option that most aligns with your typical patterns.</p>
-        <Survey.Survey model={survey} />
+        <h1 className='quiz-title'>Imposter Phenomenon Quiz</h1>
+        <div className='quiz-page'>
+          <p className="instructions">Complete this 30-question quiz to determine which types of imposter phenomenon you identify with most!
+          Determine how you feel about each statement, <b> from 1 (strongly disagree) to 5 (strongly agree).</b></p>
+          <Survey.Survey model={survey} />
+        </div>
       </div>
     )
   } else {
     return(
       <div className="content">
-        <div className="flex-container">
+        <div className="results-flex-container">
         <h1>Imposter Syndrome Results</h1>
           <span className="flex-item top-result">
             {showTopResult(results)}
           </span>
-          <div className="pieChart flex-item">
+          <div className="barChart-flex-item">
             {renderChart(results)}
           </div>
 
         </div>
-        <p>DISCLAIMER: This is not medical advice. These results are meant to be used as a general guideline.</p>
+        <p className='disclaimer'>DISCLAIMER: This is not medical advice. These results are meant to be used as a general guideline.</p>
       </div>
       
     )

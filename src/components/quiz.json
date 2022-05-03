@@ -1,5 +1,4 @@
 {
-    "title": "Imposter Quiz",
     "logoPosition": "right",
     "pages": [
      {
@@ -885,5 +884,6 @@
        }
       ]
      }
-    ]
+    ],
+    "showProgressBar": "bottom"
    }
