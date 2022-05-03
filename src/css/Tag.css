@@ -12,17 +12,13 @@
   border-radius: 10%;
 }
 
-.tag-btn-item {
-  /* opacity: 0.5; */
-}
-
 .tag-btn-list .active {
   opacity: 1;
 }
 
 .tag-list .technical,
 .tag-btn-list .technical {
-background-color: #cdebd2;
+background-color: #CDEBD2;
 }
 
 .tag-list .soft-skills,
@@ -33,4 +29,44 @@ background-color: #E4D7FF;
 .tag-list .kudos,
 .tag-btn-list .kudos {
 background-color: #DADEFF;
+}
+
+.tag-list .award,
+.tag-btn-list .award {
+background-color: #F2C7C7;
+}
+
+.tag-list .training,
+.tag-btn-list .training {
+background-color: #FEC9DD;
+}
+
+.tag-list .special-projects,
+.tag-btn-list .special-projects {
+background-color: #A9CDF2;
+}
+
+.tag-list .volunteer,
+.tag-btn-list .volunteer {
+background-color: #85E3FF;
+}
+
+.tag-list .promotion,
+.tag-btn-list .promotion {
+background-color: #FFF5BA;
+}
+
+.tag-list .idea,
+.tag-btn-list .idea {
+background-color: #AFCAFF;
+}
+
+.tag-list .innovation,
+.tag-btn-list .innovation {
+background-color: #D7ABFF;
+}
+
+.tag-list .miscellaneous,
+.tag-btn-list .miscellaneous {
+background-color: #BDFCC3;
 }
