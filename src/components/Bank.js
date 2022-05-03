@@ -158,9 +158,15 @@ function Bank() {
   }
 
   function submitForm() {
+    let shortAccomp = existingDescription.substring(0, 250);
+    if (existingDescription.length > 250) {
+      shortAccomp += "...";
+    }
+
     let newItems = items.filter((currentItem) => {
       if (currentItem.id === currentEditId) {
         currentItem.description = existingDescription;
+        currentItem.descriptionDisplay = shortAccomp;
         currentItem.title = existingTitle;
       }
       return currentItem;
@@ -260,30 +266,6 @@ function Bank() {
   else if (items.length > 0) {
     return (
       <div>
-        {/* <Form items={items}
-                   setItems={setItems}
-                   database={database}
-                   user={user}/>
-        <h2 className="bank-title">Your Bank</h2>
-        <div className = "tag-container">
-        <h4>Want to filter by a specific tag?</h4>
-       <br />
-       <div className="container">
-          <input
-            value={input}
-            placeholder="Enter a tag"
-            onKeyDown={onKeyDown}
-            onChange={onChange}
-          />
-          <br />
-          {tags.map((tag, index) => (
-            <div className="tag">
-              {tag}
-              <button onClick={() => deleteTag(index)}>x</button>
-            </div>
-          ))}
-          </div>
-        </div> */}
         <div className="card-list">
         <h1 className="bank-h1">All Accomplishments</h1> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>

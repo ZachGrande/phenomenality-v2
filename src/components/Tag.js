@@ -5,7 +5,7 @@ function Tag(props){
   let thisItem = props.item;
 
   const getClassName = () => {
-    return "tag-item " + thisItem.toLowerCase().replace(/\s+/g, '-');
+    return "tag-list tag-item " + thisItem.toLowerCase().replace(/\s+/g, '-');
   }
 
   function renderItem() {

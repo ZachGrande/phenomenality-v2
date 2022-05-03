@@ -22,7 +22,11 @@
   padding-right: 6em;
   flex-wrap: wrap;
   justify-content: center;
-  /* align-content: center; */
+}
+
+.tag-list {
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .tag-list .technical,

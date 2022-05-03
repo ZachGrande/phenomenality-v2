@@ -4,7 +4,7 @@ h1 {
   font-size: 16px;
 }
 
-p{
+p {
   font-family: 'Source Sans Pro';
   font-weight: 300;
 }
@@ -22,10 +22,19 @@ p{
 .h1Accomp { 
   font-family: Playfair Display;
   margin-left: .5em;
+  font-size: 36px;
 }
 
 .accomplishment-next {
   float: right;
+}
+
+.add-accomp .tag-title {
+  font-family: 'Source Sans Pro';
+  /* font-size: 24px; */
+  margin-left: 1.25em;
+  position: left;
+  text-align: left;
 }
 
 .demo-photo {
@@ -60,8 +69,8 @@ p{
 }
 
 .encrg-p { 
-  margin: 1em;
-  font-family: Source Sans Pro;
+  margin: 1.25em;
+  font-family: "Source Sans Pro";
 }
 
 .tag-btn-list .selected {
