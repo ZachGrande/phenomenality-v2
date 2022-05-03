@@ -37,8 +37,6 @@ function Bank() {
     setInput(value);
   };
 
-  //want to also add a search enter button ??
-  //use tags to search accomplishments
   //add client side verification - warning for tags that doesn't exist in search bar or if tag already selected
   //autocomplete tags
   //add client side verification - must include tag to accomplishment

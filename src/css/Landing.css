@@ -59,12 +59,12 @@
 }
 
 button, .button {
-  background-color: #579A72;
-  border-color: #579A72;
+  background-color: #437557;
+  border-color: #437557;
   color: #ffffff;
-  font-size: 2vw;
+  font-size: 1rem;
   text-align: center;
-  padding: 2% 15%;
+  padding: 1.5% 2%;
   border-radius: 12px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
