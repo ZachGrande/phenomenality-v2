@@ -7,6 +7,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from 'react-router-dom';
 import { map } from '@firebase/util';
 
+import Welcome from '../assets/encourage-message.svg';
+
 function AddEncouragement() {
 
   const auth = getAuth(app);
@@ -70,7 +72,7 @@ function AddEncouragement() {
 
   if (showEncouragingMessageInput) {
     return (
-      <div>
+      <div className='outline-box'>
         <h1 className="h1Accomp">Wonderful Accomplishment!</h1>
         <p className="encrg-p">Now write yourself an encouraging message that will be shown you to randomly.</p>
         <form className="encrgCenter">
@@ -90,9 +92,11 @@ function AddEncouragement() {
     )
   } else {
     return (
-      <div>
+      <div className='outline-box'>
         <h1 className="h1Accomp">Have a lovely day!</h1>
         <p className="encrg-p">Come back tomorrow to add another accomplishment!</p>
+        <img className="center-img" src={Welcome} alt="Two people high fiving" width="40%" height="40%"/>
+        <br></br>
         <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
       </div>
     )

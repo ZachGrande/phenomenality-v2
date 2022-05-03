@@ -13,6 +13,8 @@ import WonderfulAccomplishment from '../assets/accomplishment-demo/accomplishmen
 import AccomplishmentComplete from '../assets/accomplishment-demo/accomplishment-4.svg';
 import SampleBank from '../assets/accomplishment-demo/accomplishment-5.svg';
 
+import Welcome from '../assets/welcome-message.png';
+
 import TagButtonList from './TagButton.js';
 
 import tags from './tags.js';
@@ -190,7 +192,7 @@ function AddAccomplishment() {
 
   if (showWelcome && hasLoggedToday) {
     return (
-      <div>
+      <div className='outline-box'>
         <h1 className="h1Accomp">You've already logged an accomplishment today!</h1>
         <p className="encrg-p">Click here to view your logged accomplishments.</p>
         <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
@@ -202,6 +204,8 @@ function AddAccomplishment() {
       <div className="accomplishments outline-box">
         <h1 className="h1Accomp">Hello, {name}!</h1>
         <p className="encrg-p">Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
+        <img className="center-img" src={Welcome} alt="Person sitting in chair reading book" width="40%" height="40%"/>
+        <br></br>
         <button className="accomplishment-next" onClick={advancePage}>Next</button>
         <br></br>
         <br></br>
