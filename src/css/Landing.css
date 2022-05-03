@@ -71,13 +71,22 @@ button, .button {
 }
 
 .sign-in {
-  width: 10em;
+  width: 6em;
+}
+
+.accomp {
+  align-items: center;
+}
+
+.accompBtn {
+  width: fit-content;
+  padding: 10px 10px;
 }
 
 .rmv-underline:link {
   text-decoration: none;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px 10px;
 }
 
 button:hover, .button:hover {

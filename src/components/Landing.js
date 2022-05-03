@@ -32,6 +32,9 @@ function Landing() {
             in yourself when reviewing your accomplishments 
             and cataloging resume-worthy achievements for 
             easy reference.</p>
+            <div className='button-box accomp'>
+            <Link aria-label="Add an Accomplishment" className="button rmv-underline accompBtn" role="button" to="/accomplishments">Add an Accomplishment</Link>
+            </div>
         </div>
       </div>
 
