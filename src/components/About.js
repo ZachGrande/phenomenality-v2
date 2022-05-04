@@ -39,12 +39,12 @@ function About() {
         </div>
 
         <div className='thanks'>
-          <h2>With Thanks To</h2>
-          <h3>Jeremy Zaretzky</h3>
-          <h3>Emily Porter</h3>
-          <h3>Laura Schildkraut</h3>
-          <h3>Mina Tari</h3>
-          <h3>Milla Titova</h3>
+          <h3>With Thanks To</h3>
+          <p>Jeremy Zaretzky</p>
+          <p>Emily Porter</p>
+          <p>Laura Schildkraut</p>
+          <p>Mina Tari</p>
+          <p>Milla Titova</p>
         </div>
     </div>
     )

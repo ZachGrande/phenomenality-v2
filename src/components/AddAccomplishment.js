@@ -205,8 +205,9 @@ function AddAccomplishment() {
       <div className='outline-box'>
         <h1 className="h1Accomp">You've already logged an accomplishment today!</h1>
         <p className="encrg-p">Click here to view your logged accomplishments.</p>
-        <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
-        <p className="encrg-p">If you'd like to add another accomplishment for today, <button onClick={toggleHasLoggedToday}>click here!</button></p>
+        <Link aria-label="View Accomplishments" className="button rmv-underline viewAccompBtn2" role="button" to="/bank">View Accomplishments</Link>
+        <p className="encrg-p">If you'd like to add another accomplishment for today,</p> 
+        <button className="clickHereBtn" onClick={toggleHasLoggedToday}>click here!</button>
       </div>
     )
   } else if (showWelcome) {
@@ -262,10 +263,13 @@ function AddAccomplishment() {
             <br></br>
             {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
             {/* this button is strange */}
-            <button onClick={addNewAccomplishment}><Link aria-label="Next"
-                  className="button rmv-underline"
+            <button className="nextBtn" onClick={addNewAccomplishment}><Link aria-label="Next"
+                  className="button rmv-underline nextBtn"
                   role="button"
                   to="/accomplishments-complete">Next</Link></button>
+            <br></br>
+            <br></br>
+
           </form>
         </div>
       </div>

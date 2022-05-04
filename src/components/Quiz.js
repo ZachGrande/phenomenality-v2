@@ -222,8 +222,11 @@ function QuizContent(props) {
   if (!displayResults) {
     return(
       <div>
+        <div className="headerPadding">
         <h1 className='quiz-title'>Imposter Phenomenon Quiz</h1>
+        </div>
         <div className='quiz-page'>
+          <br></br>
           <p className="instructions">Complete this 30-question quiz to determine which types of imposter phenomenon you identify with most!
           Determine how you feel about each statement, <b> from 1 (strongly disagree) to 5 (strongly agree).</b></p>
           <Survey.Survey model={survey} />
