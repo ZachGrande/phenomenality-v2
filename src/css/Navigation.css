@@ -36,9 +36,9 @@ nav .navigation li .initials {
   border-radius: 100px;
 }
 
-nav .navigation li:hover,
-nav .navigation li:focus,
-nav .navigation li:active {
+.navvy:hover,
+.navvy:focus,
+.navvy:active {
   color: white;
   border-bottom: .4rem solid black;
   padding-bottom: .5rem;
