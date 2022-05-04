@@ -107,3 +107,26 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
+
+.viewAccompBtn { 
+ width: fit-content;
+ padding: 10px, 10px;
+ float: right;
+}
+
+.viewAccompBtn2 { 
+  width: fit-content;
+  padding: 10px, 10px;
+  float: center;
+  margin-left: 2em;
+}
+
+.clickHereBtn { 
+  margin-left: 2em;
+}
+
+.nextBtn{ 
+  float: right;
+  width: fit-content;
+  padding: 10px, 10px;
+}

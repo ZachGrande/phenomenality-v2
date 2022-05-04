@@ -97,7 +97,9 @@ function AddEncouragement() {
         <p className="encrg-p">Come back tomorrow to add another accomplishment!</p>
         <img className="center-img" src={Welcome} alt="Two people high fiving" width="40%" height="40%"/>
         <br></br>
-        <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
+        <Link aria-label="View Accomplishments" className="button rmv-underline viewAccompBtn" role="button" to="/bank">View Accomplishments</Link>
+        <br></br>
+
       </div>
     )
   }

@@ -45,6 +45,9 @@ function Landing() {
             <br></br>
             something something something about how this is not 
             medical advice.</p>
+            <div className='button-box quiz'>
+            <Link aria-label="Take the Quiz" className="button rmv-underline accompBtn" role="button" to="/quiz">Take the Quiz</Link>
+            </div>
         </div>
         <div className="right-side">
           
@@ -63,6 +66,9 @@ function Landing() {
             who are gender minorities. To address this, Phenomenality 
             encourages recognition of accomplishments by prompting you
             to document your daily wins!</p>
+            <div className='button-box types'>
+            <Link aria-label="Learn more about Imposter Phenomenon" className="button rmv-underline accompBtn" role="button" to="/more-info">Learn more about Imposter Phenomenon</Link>
+            </div>
         </div>
       </div>
 

@@ -1,6 +1,8 @@
 .h1imposterInfo {
     font-family: Playfair Display;
     margin-left: .5em;
+    font-weight: 400;
+    font-size: 36px;
 }
 .imposterInfo-container{
   display: flex;
