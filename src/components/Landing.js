@@ -1,7 +1,8 @@
 import '../css/Landing.css'
+import BankDemo from '../assets/landing-photos/bank-demo.svg';
 import About from './About.js';
 import Welcome from '../assets/landing-photos/welcome.jpg';
-import Question from '../assets/landing-photos/question.png';
+import Question from '../assets/landing-photos/question.svg';
 import { Link } from 'react-router-dom';
 
 function Landing() {
@@ -24,7 +25,7 @@ function Landing() {
 
       <div className="filter flex-container">
         <div className='left-side'>
-          
+          <img src={BankDemo} alt="Bank photo" width="25%" height="25%"/>
         </div>
         <div className="right-side"> 
           <h2>Filter and sort through all your achievements</h2>
