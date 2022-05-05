@@ -309,7 +309,7 @@ function Bank() {
 
 
         <div>
-          <h2>Filter for Tags</h2>
+          <h2 className="tag-title">Filter for Tags</h2>
           <TagButtonList items={allTags}
             activeTags={tags}
             toggleTag={toggleTag}
