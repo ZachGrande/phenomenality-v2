@@ -38,6 +38,11 @@ function Bank() {
     setInput(value);
   };
 
+  useEffect(() => {
+    // console.log(tags);
+    console.log("Tags");
+  }, [tags]);
+
   //add client side verification - warning for tags that doesn't exist in search bar or if tag already selected
   //autocomplete tags
   //add client side verification - must include tag to accomplishment
@@ -152,6 +157,7 @@ function Bank() {
 
   const toggleTag = value => {
     let newTags = tags;
+    // console.log("Tag clicked");
     if (!tags.includes(value)) {
       newTags.push(value);
     } else {
@@ -160,10 +166,12 @@ function Bank() {
         newTags.splice(index, 1);
       }
     }
+    // console.log(newTags);
+    setTags(newTags);
+    // console.log(tags);
 
     let idName = value.toLowerCase().replace(/\s+/g, '-');
     document.getElementsByClassName(idName)[0].classList.toggle("active");
-    setTags(newTags);
   }
 
   function closeEditForm() {
@@ -203,11 +211,13 @@ function Bank() {
 
   //HERE IS FILTERING METHOD
   const entriesToShow = items.filter((currentItem) => {
+    // console.log("Filtering for", tags);
     if(tags.length === 0) { // handles if no tags are searched 
       return currentItem;
     }
-    console.log("Filtering for", tags);
     let shouldReturnItem = true;
+
+    // console.log("Current item tags", currentItem.tags);
 
     for(let i = 0; i < tags.length; i++) {
       if(!currentItem.tags.includes(tags[i])) {
@@ -217,8 +227,7 @@ function Bank() {
     if(shouldReturnItem){
       return currentItem;
     }
-
-    });
+  });
 
 
   if (items.length > 0 && showEditPopup) { 
