@@ -18,8 +18,10 @@
     width: 50%;
     max-width: 500px;
     outline: 1px solid grey;
+    border-radius: 10px;
   }
   .formContainer {
+    border-radius: 10px;
     max-width: 500px;
     padding: 20px;
     background-color: white;
@@ -67,6 +69,7 @@
     background-color: #fff;
     outline: 1px solid grey;
     padding: .5em;
+    border-radius: 10px;
   }
 
   /* .tags-background {

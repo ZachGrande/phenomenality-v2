@@ -40,6 +40,8 @@ function About() {
 
         <div className='thanks'>
           <p>With many thanks to Jeremy Zaretzky, Emily Porter, Laura Schildkraut, Mina Tari, and Milla Titova</p>
+          <h6>NOTICE UPDATE: Beginning 5/26 the development of “phenomenality” has shut down.
+</h6>
         </div>
     </div>
     )
