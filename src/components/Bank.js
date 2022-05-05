@@ -5,6 +5,8 @@ import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import Form from './Form.js';
+import TagButtonList from './TagButton.js';
+import allTags from './tags.js';
 import '../css/Popup.css';
 
 import 'firebase/auth';
@@ -19,9 +21,8 @@ function Bank() {
 
   const auth = getAuth(app);
   const database = getDatabase(app);
-  const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
-   'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
-   //create instance that user can edit?
+  // const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
+  //  'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
 
   // const [user, loading, error] = useAuthState(auth);
   const [user, loading] = useAuthState(auth);
@@ -37,6 +38,11 @@ function Bank() {
     const { value } = e.target;
     setInput(value);
   };
+
+  useEffect(() => {
+    // console.log(tags);
+    console.log("Tags");
+  }, [tags]);
 
   //add client side verification - warning for tags that doesn't exist in search bar or if tag already selected
   //autocomplete tags
@@ -153,6 +159,25 @@ function Bank() {
     setExistingTags(viewItem[0].tags);
   }
 
+  const toggleTag = value => {
+    let newTags = tags;
+    // console.log("Tag clicked");
+    if (!tags.includes(value)) {
+      newTags.push(value);
+    } else {
+      let index = newTags.indexOf(value);
+      if (index > -1) {
+        newTags.splice(index, 1);
+      }
+    }
+    // console.log(newTags);
+    setTags(newTags);
+    // console.log(tags);
+
+    let idName = value.toLowerCase().replace(/\s+/g, '-');
+    document.getElementsByClassName(idName)[0].classList.toggle("active");
+  }
+
   function closeEditForm() {
     setShowEditPopup(false);
   }
@@ -190,11 +215,13 @@ function Bank() {
 
   //HERE IS FILTERING METHOD
   const entriesToShow = items.filter((currentItem) => {
+    // console.log("Filtering for", tags);
     if(tags.length === 0) { // handles if no tags are searched 
       return currentItem;
     }
-
     let shouldReturnItem = true;
+
+    // console.log("Current item tags", currentItem.tags);
 
     for(let i = 0; i < tags.length; i++) {
       if(!currentItem.tags.includes(tags[i])) {
@@ -204,8 +231,7 @@ function Bank() {
     if(shouldReturnItem){
       return currentItem;
     }
-
-    });
+  });
 
 
   if (items.length > 0 && showEditPopup) { 
@@ -279,6 +305,36 @@ function Bank() {
       <div>
         <div className="card-list">
         <h1 className="bank-h1">All Accomplishments</h1> 
+
+
+        {/* <div className = "tag-container">
+        <h4>Want to filter by a specific tag?</h4>
+       <br />
+       <div className="container">
+          <input
+            value={input}
+            placeholder="Enter a tag"
+            onKeyDown={onKeyDown}
+            onChange={onChange}
+          />
+          <br />
+          {tags.map((tag, index) => (
+            <div className="tag">
+              {tag}
+              <button onClick={() => deleteTag(index)}>x</button>
+            </div>
+          ))}
+          </div>
+        </div> */}
+
+
+        <div>
+          <h2 className="tag-title">Filter for Tags</h2>
+          <TagButtonList items={allTags}
+            activeTags={tags}
+            toggleTag={toggleTag}
+          />
+        </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
         </div>
       </div>

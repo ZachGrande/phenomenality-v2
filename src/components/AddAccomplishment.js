@@ -40,9 +40,6 @@ function AddAccomplishment() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
 
-  const tagColors = ['color1', 'color2', 'color3'];
-  // const allTags = ['Technical', 'Soft Skills', 'Kudos'];
-
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
   })
@@ -204,18 +201,18 @@ function AddAccomplishment() {
     return (
       <div className='outline-box'>
         <h1 className="h1Accomp">You've already logged an accomplishment today!</h1>
-        <p className="encrg-p">Click here to view your logged accomplishments.</p>
+        <p className="encrg-p">Visit your bank to view your accomplishments.</p>
         <Link aria-label="View Accomplishments" className="button rmv-underline viewAccompBtn2" role="button" to="/bank">View Accomplishments</Link>
-        <p className="encrg-p">If you'd like to add another accomplishment for today,</p> 
-        <button className="clickHereBtn" onClick={toggleHasLoggedToday}>click here!</button>
+        <p className="encrg-p">Or add another accomplishment for today.</p> 
+        <button className="clickHereBtn" onClick={toggleHasLoggedToday}>Add New Accomplishment</button>
       </div>
     )
   } else if (showWelcome) {
     return (
       <div className="accomplishments outline-box">
         <h1 className="h1Accomp">Hello, {name}!</h1>
-        <p className="encrg-p">Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
-        <img className="center-img" src={Welcome} alt="Person sitting in chair reading book" width="40%" height="40%"/>
+        <p className="encrg-p">Great work today! Keep moving forward and record an accomplishment!</p>
+        <img className="center-img" src={Welcome} alt="Person sitting in chair reading book" width="25%" height="25%"/>
         <br></br>
         <button className="accomplishment-next" onClick={advancePage}>Next</button>
         <br></br>
@@ -256,7 +253,6 @@ function AddAccomplishment() {
               <TagButtonList items={tags}
                   activeTags={accomplishmentTags}
                   toggleTag={toggleTag}
-                  color={tagColors}
                   />
             </div>
             <br></br>
