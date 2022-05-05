@@ -268,6 +268,36 @@ function Bank() {
       <div>
         <div className="card-list">
         <h1 className="bank-h1">All Accomplishments</h1> 
+
+
+        <div className = "tag-container">
+        <h4>Want to filter by a specific tag?</h4>
+       <br />
+       <div className="container">
+          <input
+            value={input}
+            placeholder="Enter a tag"
+            onKeyDown={onKeyDown}
+            onChange={onChange}
+          />
+          <br />
+          {tags.map((tag, index) => (
+            <div className="tag">
+              {tag}
+              <button onClick={() => deleteTag(index)}>x</button>
+            </div>
+          ))}
+          </div>
+        </div>
+
+
+        <div>
+          <h2>Filter for Tags</h2>
+          <TagButtonList items={tags}
+            activeTags={accomplishmentTags}
+            toggleTag={toggleTag}
+          />
+        </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
         </div>
       </div>
