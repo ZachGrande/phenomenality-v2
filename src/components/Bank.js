@@ -5,6 +5,8 @@ import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import Form from './Form.js';
+import TagButtonList from './TagButton.js';
+import allTags from './tags.js';
 import '../css/Popup.css';
 
 import 'firebase/auth';
@@ -18,9 +20,8 @@ function Bank() {
 
   const auth = getAuth(app);
   const database = getDatabase(app);
-  const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
-   'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
-   //create instance that user can edit?
+  // const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
+  //  'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
 
   // const [user, loading, error] = useAuthState(auth);
   const [user, loading] = useAuthState(auth);
@@ -149,6 +150,22 @@ function Bank() {
     setExistingTitle(viewItem[0].title);
   }
 
+  const toggleTag = value => {
+    let newTags = tags;
+    if (!tags.includes(value)) {
+      newTags.push(value);
+    } else {
+      let index = newTags.indexOf(value);
+      if (index > -1) {
+        newTags.splice(index, 1);
+      }
+    }
+
+    let idName = value.toLowerCase().replace(/\s+/g, '-');
+    document.getElementsByClassName(idName)[0].classList.toggle("active");
+    setTags(newTags);
+  }
+
   function closeEditForm() {
     setShowEditPopup(false);
   }
@@ -189,7 +206,7 @@ function Bank() {
     if(tags.length === 0) { // handles if no tags are searched 
       return currentItem;
     }
-
+    console.log("Filtering for", tags);
     let shouldReturnItem = true;
 
     for(let i = 0; i < tags.length; i++) {
@@ -270,7 +287,7 @@ function Bank() {
         <h1 className="bank-h1">All Accomplishments</h1> 
 
 
-        <div className = "tag-container">
+        {/* <div className = "tag-container">
         <h4>Want to filter by a specific tag?</h4>
        <br />
        <div className="container">
@@ -288,13 +305,13 @@ function Bank() {
             </div>
           ))}
           </div>
-        </div>
+        </div> */}
 
 
         <div>
           <h2>Filter for Tags</h2>
-          <TagButtonList items={tags}
-            activeTags={accomplishmentTags}
+          <TagButtonList items={allTags}
+            activeTags={tags}
             toggleTag={toggleTag}
           />
         </div>
