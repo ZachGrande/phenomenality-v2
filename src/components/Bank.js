@@ -11,6 +11,7 @@ import 'firebase/auth';
 import 'firebase/database';
 
 import CardList from './Card.js';
+import TagList from './Tag.js';
 
 import '../css/Bank.css';
 
@@ -66,6 +67,7 @@ function Bank() {
   const [currentViewId, setCurrentViewId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState("");
   const [existingTitle, setExistingTitle] = useState("");
+  const [existingTags, setExistingTags] = useState("");
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -135,6 +137,7 @@ function Bank() {
     });
     setExistingDescription(editItem[0].description);
     setExistingTitle(editItem[0].title);
+    setExistingTags(editItem[0].tags);
   }
 
   const viewCard = id => {
@@ -147,6 +150,7 @@ function Bank() {
     });
     setExistingDescription(viewItem[0].description);
     setExistingTitle(viewItem[0].title);
+    setExistingTags(viewItem[0].tags);
   }
 
   function closeEditForm() {
@@ -231,8 +235,11 @@ function Bank() {
                      setExistingDescription(event.target.value);
               }}
               name="editDescription"></input>
+                          <TagList items={existingTags} />
+            <div className="popup-btn-center">
             <button type="button" className="btn" onClick={submitForm}>Update</button>
             <button type="button" className="btn cancel" onClick={closeEditForm}>Cancel</button>
+         </div>
           </form>
         </div>
         <h1 className="bank-h1">All Accomplishments</h1> 
@@ -255,8 +262,12 @@ function Bank() {
             <label htmlFor="viewDescription">Description</label>
             <p className = "p-background" id="viewDescription">{existingDescription}</p>
             <label htmlFor="viewTags">Tags</label>
-            <p className = "p-background" id="viewTags"> this no work yet</p>
-            <button type="button" className="btn cancel" onClick={closeViewForm}>Close</button>
+            <div className="tags-background">
+              <TagList items={existingTags} />
+            </div>
+            <div className="popup-btn-center">
+              <button type="button" className="btn cancel" onClick={closeViewForm}>Close</button>
+            </div>
           </form>
         </div>
         <h1 className="bank-h1">All Accomplishments</h1> 
