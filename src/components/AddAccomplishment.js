@@ -211,8 +211,8 @@ function AddAccomplishment() {
     return (
       <div className="accomplishments outline-box">
         <h1 className="h1Accomp">Hello, {name}!</h1>
-        <p className="encrg-p">Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
-        <img className="center-img" src={Welcome} alt="Person sitting in chair reading book" width="40%" height="40%"/>
+        <p className="encrg-p">Great work today! Keep moving forward and record an accomplishment!</p>
+        <img className="center-img" src={Welcome} alt="Person sitting in chair reading book" width="25%" height="25%"/>
         <br></br>
         <button className="accomplishment-next" onClick={advancePage}>Next</button>
         <br></br>
