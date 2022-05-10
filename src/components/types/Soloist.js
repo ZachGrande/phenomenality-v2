@@ -6,7 +6,7 @@ function Soloist() {
     <div className="imposter-content">
       <h1>the soloist</h1>
       <img className="page-image" src={soloist} alt="soloist icon"/>
-      <h2>Overview</h2>
+      <h2>overview</h2>
         <p>
           The soloist represents a person with imposter syndrome that has extreme 
           difficulties asking others for help. Perhaps they may feel that others 

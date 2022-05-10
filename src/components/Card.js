@@ -33,8 +33,8 @@ function Card(props) {
         <p className="description">{thisItem.descriptionDisplay}</p>
         {/* <ul>{tagItems}</ul> */}
         <TagList items={thisItem.tags} />
-        <button className="btn-edit" onClick={handleEdit}>Edit</button>
-        <button className="btn-view" onClick={handleView}>View More</button>
+        <button className="btn-edit" onClick={handleEdit}>edit</button>
+        <button className="btn-view" onClick={handleView}>view more</button>
       </div>
     )
   }

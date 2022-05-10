@@ -244,8 +244,8 @@ function Bank() {
           /> */}
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
-            <h3>Edit Accomplishment {currentEditId}</h3>
-            <label htmlFor="editTitle">Title</label>
+            <h3>edit accomplishment {currentEditId}</h3>
+            <label htmlFor="editTitle">title</label>
             <input type="text"
                    id="editTitle"
                    value={existingTitle}
@@ -253,7 +253,7 @@ function Bank() {
                      setExistingTitle(event.target.value);
               }}
               name="editTitle"></input>
-              <label htmlFor="editDescription">Description</label>
+              <label htmlFor="editDescription">description</label>
             <input type="text"
                    id="editDescription"
                    value={existingDescription}
@@ -263,12 +263,12 @@ function Bank() {
               name="editDescription"></input>
                           <TagList items={existingTags} />
             <div className="popup-btn-center">
-            <button type="button" className="btn" onClick={submitForm}>Update</button>
-            <button type="button" className="btn cancel" onClick={closeEditForm}>Cancel</button>
+            <button type="button" className="btn" onClick={submitForm}>update</button>
+            <button type="button" className="btn cancel" onClick={closeEditForm}>cancel</button>
          </div>
           </form>
         </div>
-        <h1 className="bank-h1">All Accomplishments</h1> 
+        <h1 className="bank-h1">all accomplishments</h1> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div>
     )
@@ -282,21 +282,21 @@ function Bank() {
           /> */}
         <div className="formPopup" id="popupForm">
           <form className="formContainer">
-            <h3>Expanded View</h3>
-            <label htmlFor="viewTitle">Title</label>
+            <h3>expanded view</h3>
+            <label htmlFor="viewTitle">title</label>
             <p className = "p-background" id="viewTitle">{existingTitle}</p>
-            <label htmlFor="viewDescription">Description</label>
+            <label htmlFor="viewDescription">description</label>
             <p className = "p-background" id="viewDescription">{existingDescription}</p>
-            <label htmlFor="viewTags">Tags</label>
+            <label htmlFor="viewTags">tags</label>
             <div className="tags-background">
               <TagList items={existingTags} />
             </div>
             <div className="popup-btn-center">
-              <button type="button" className="btn cancel" onClick={closeViewForm}>Close</button>
+              <button type="button" className="btn cancel" onClick={closeViewForm}>close</button>
             </div>
           </form>
         </div>
-        <h1 className="bank-h1">All Accomplishments</h1> 
+        <h1 className="bank-h1">all accomplishments</h1> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div> )
   } 
@@ -304,7 +304,7 @@ function Bank() {
     return (
       <div>
         <div className="card-list">
-        <h1 className="bank-h1">All Accomplishments</h1> 
+        <h1 className="bank-h1">all accomplishments</h1> 
 
 
         {/* <div className = "tag-container">
@@ -329,7 +329,7 @@ function Bank() {
 
 
         <div>
-          <h2 className="tag-title">Filter for Tags</h2>
+          <h2 className="tag-title">filter for tags</h2>
           <TagButtonList items={allTags}
             activeTags={tags}
             toggleTag={toggleTag}
@@ -346,7 +346,7 @@ function Bank() {
   } else {
     return (
       <div>
-        <p>You have not added to your credibility bank!</p>
+        <p>you have not added to your credibility bank!</p>
         <Form items={items}
                    setItems={setItems}
                    database={database}

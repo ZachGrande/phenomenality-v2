@@ -1,57 +1,57 @@
 const tags = [
   {
     id: 0,
-    description: "Technical",
+    description: "technical",
     class: "technical",
   },
   {
     id: 1,
-    description: "Soft Skills",
+    description: "soft skills",
     class: "soft-skills",
   },
   {
     id: 2,
-    description: "Kudos",
+    description: "kudos",
     class: "kudos"
   },
   {
     id: 3,
-    description: "Award",
+    description: "award",
     class: "award"
   },
   {
     id: 4,
-    description: "Training",
+    description: "training",
     class: "training"
   },
   {
     id: 5,
-    description: "Special Projects",
+    description: "special projects",
     class: "special-projects"
   },
   {
     id: 6,
-    description: "Volunteer",
+    description: "volunteer",
     class: "volunteer"
   },
   {
     id: 7,
-    description: "Promotion",
+    description: "promotion",
     class: "promotion"
   },
   {
     id: 8,
-    description: "Idea",
+    description: "idea",
     class: "idea"
   },
   {
     id: 9,
-    description: "Innovation",
+    description: "innovation",
     class: "innovation"
   },
   {
     id: 10,
-    description: "Miscellaneous",
+    description: "miscellaneous",
     class: "miscellaneous"
   },
 ];

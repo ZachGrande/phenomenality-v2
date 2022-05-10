@@ -73,11 +73,11 @@ function AddEncouragement() {
   if (showEncouragingMessageInput) {
     return (
       <div className='outline-box'>
-        <h1 className="h1Accomp">Wonderful Accomplishment!</h1>
-        <p className="encrg-p">Now write yourself an encouraging message that will be shown you to randomly.</p>
+        <h1 className="h1Accomp">wonderful accomplishment!</h1>
+        <p className="encrg-p">now write yourself an encouraging message that will be shown you to randomly.</p>
         <form className="encrgCenter">
           <textarea className="accompTextarea encrg-bottom-padding"
-            placeholder="Example: You got this!"
+            placeholder="example: you've got this!"
             value={encouragingMessage}
             onChange={(event) => {
               setEncouragingMessage(event.target.value);
@@ -85,7 +85,7 @@ function AddEncouragement() {
             rows="2" cols="45"
           />
           <div>
-            <button className="accomplishment-next" onClick={addNewEncouragingMessage}>Next</button>
+            <button className="accomplishment-next" onClick={addNewEncouragingMessage}>next</button>
           </div>
         </form>
       </div>
@@ -93,11 +93,11 @@ function AddEncouragement() {
   } else {
     return (
       <div className='outline-box'>
-        <h1 className="h1Accomp">Have a lovely day!</h1>
-        <p className="encrg-p">Come back tomorrow to add another accomplishment!</p>
+        <h1 className="h1Accomp">have a lovely day!</h1>
+        <p className="encrg-p">come back tomorrow to add another accomplishment!</p>
         <img className="center-img" src={Welcome} alt="Two people high fiving" width="40%" height="40%"/>
         <br></br>
-        <Link aria-label="View Accomplishments" className="button rmv-underline viewAccompBtn" role="button" to="/bank">View Accomplishments</Link>
+        <Link aria-label="View Accomplishments" className="button rmv-underline viewAccompBtn" role="button" to="/bank">view accomplishments</Link>
         <br></br>
 
       </div>

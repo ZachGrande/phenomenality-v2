@@ -5,9 +5,9 @@ import '../../css/Types.css';
 function Superhuman() {
   return(
     <div className="imposter-content">
-      <h1>the superhero</h1>
+      <h1>the superhuman</h1>
       <img className="page-image" src={superhero} alt="superhero icon"/>
-      <h2>Overview</h2>
+      <h2>overview</h2>
         <p>
           The superwoman/man represents a person with imposter syndrome that often struggles with work addiction.
           This person may feel inadequate relative to colleagues and continue to push themselves as hard as possible,
