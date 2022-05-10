@@ -6,7 +6,7 @@ function Perfectionist() {
     <div className="imposter-content">
       <h1>the perfectionist</h1>
       <img className="page-image" src={perfectionist} alt="pefectionist icon"/>
-      <h2>Overview</h2>
+      <h2>overview</h2>
         <p>
           The perfectionist represents a person with imposter syndrome that strives to be their absolute 
           best, no matter the cost to their mental health. These individuals may be identified as typical 
