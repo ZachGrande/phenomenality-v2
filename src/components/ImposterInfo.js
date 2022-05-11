@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
 import '../css/ImposterInfo.css';
+import expert from '../assets/imposter-types/expert.svg';
+import genius from '../assets/imposter-types/genius.svg';
+import perfectionist from '../assets/imposter-types/perfectionist.svg';
+import soloist from '../assets/imposter-types/soloist.svg';
+import superhero from '../assets/imposter-types/superhero.svg';
 
 function ImposterInfo() {
   return(
@@ -7,23 +12,28 @@ function ImposterInfo() {
         <h1 className="h1imposterInfo">Imposter Phenomenon Information</h1>
         <div className="imposterInfo-container">
           <Link className="type" to="/type-1">
-            The Perfectionist
+            <img src={perfectionist} alt="perfectionist logo"/>
+            <div className='txt-div'>Perfectionist</div>
           </Link>
           <br />
           <Link className="type" to="/type-2">
-            The Superhuman
+            <img src={superhero} alt="superhuman logo"/>
+            <div className='txt-div'>Superhuman</div>
           </Link>
           <br />
           <Link className="type" to="/type-3">
-            The Genius
+            <img src={genius} alt="Elise"/>
+            <div className='txt-div'>Genius</div>
           </Link>
           <br />
           <Link className="type" to="/type-4">
-            The Soloist
+            <img src={soloist} alt="soloist logo"/> 
+            <div className='txt-div'>Soloist</div>
           </Link>
           <br />
           <Link className="type" to="/type-5">
-            The Expert
+            <img src={expert} alt="expert logo"/>
+            <div className='txt-div'>Expert</div>
           </Link>
         </div>
     </div>

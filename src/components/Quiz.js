@@ -1,9 +1,11 @@
-import surveyJSON from './quiz.json';
+import surveyJSON from './quiz2.json';
 import React, { useEffect, useState } from 'react';
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import CanvasJSReact from '../assets/canvasjs.react';
 import '../css/Quiz.css'
+import { Link } from 'react-router-dom';
+import '../css/Navigation.css'
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -209,13 +211,38 @@ function QuizContent(props) {
           // topName = results[i].indexLabel;
         }
       }
+
+        // generate a path to the imposter page for the top character based on results
+      var path = "../";
+      if (topName === "Perfectionist") {
+        path += "type-1";
+      } else if (topName === "Superhuman") {
+        path += "type-2";
+      } else if (topName === "Genius") {
+        path += "type-3";
+      } else if (topName === "Soloist") {
+        path += "type-4";
+      } else {
+        path += "type-5";
+      }
+
+      console.log(path);
       return(
         <div className='results'>
-          <h2>You got {topName}!</h2>
-          <p>Click here to learn more about the {topName} and other imposter types! </p>
+          <h2>You got {' '}   
+          <Link className="navbar-link link-font" to={path}>
+             {topName}
+          </Link>!</h2>
+          <p>Click {' '}          
+          <Link className="navbar-link link-font" to='../more-info'>
+             here
+          </Link>
+          {' '} to learn more about the {topName} and other imposter types! </p>
         </div>
       )
     }
+
+
 
 
 

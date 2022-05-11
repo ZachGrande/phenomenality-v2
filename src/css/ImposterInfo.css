@@ -7,9 +7,9 @@
   flex-wrap: wrap;
   flex-flow: column wrap;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 3em;
 }
 
@@ -23,9 +23,25 @@
     margin-top: 20px;
     margin-left: 1em;
     margin-bottom: 10px;
-    background-color: #579A72;
+    background-color: #FDEDDE;
     /* order: 5; */
     flex-grow: 2;
     color: black;
     text-decoration: none;
+    max-width: 250px;
+    max-height: 250px;
+  
+}
+
+.txt-div {
+  text-align: center;
+  font-family: Playfair Display;
+  font-weight: bold;
+}
+
+.type img {
+  width: 18vw;
+  height: 18vw;
+  max-width: 250px;
+  max-height: 250px;
 }
