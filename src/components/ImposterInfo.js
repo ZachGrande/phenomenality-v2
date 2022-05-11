@@ -9,7 +9,7 @@ import superhero from '../assets/imposter-types/superhero.svg';
 function ImposterInfo() {
   return(
     <div>
-        <h1 className="h1imposterInfo">Imposter Phenomenon Information</h1>
+        <h1 className="h1imposterInfo">imposter phenomenon information</h1>
         <div className="imposterInfo-container">
           <Link className="type" to="/type-1">
             <img src={perfectionist} alt="perfectionist logo"/>

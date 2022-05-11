@@ -5,12 +5,15 @@ import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import Form from './Form.js';
+import TagButtonList from './TagButton.js';
+import allTags from './tags.js';
 import '../css/Popup.css';
 
 import 'firebase/auth';
 import 'firebase/database';
 
 import CardList from './Card.js';
+import TagList from './Tag.js';
 
 import '../css/Bank.css';
 
@@ -18,9 +21,8 @@ function Bank() {
 
   const auth = getAuth(app);
   const database = getDatabase(app);
-  const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
-   'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
-   //create instance that user can edit?
+  // const allTags = ['Technical', 'Soft Skills', 'Kudos', 'Award',
+  //  'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
 
   // const [user, loading, error] = useAuthState(auth);
   const [user, loading] = useAuthState(auth);
@@ -36,6 +38,11 @@ function Bank() {
     const { value } = e.target;
     setInput(value);
   };
+
+  useEffect(() => {
+    // console.log(tags);
+    console.log("Tags");
+  }, [tags]);
 
   //add client side verification - warning for tags that doesn't exist in search bar or if tag already selected
   //autocomplete tags
@@ -66,6 +73,7 @@ function Bank() {
   const [currentViewId, setCurrentViewId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState("");
   const [existingTitle, setExistingTitle] = useState("");
+  const [existingTags, setExistingTags] = useState("");
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -135,6 +143,7 @@ function Bank() {
     });
     setExistingDescription(editItem[0].description);
     setExistingTitle(editItem[0].title);
+    setExistingTags(editItem[0].tags);
   }
 
   const viewCard = id => {
@@ -147,6 +156,26 @@ function Bank() {
     });
     setExistingDescription(viewItem[0].description);
     setExistingTitle(viewItem[0].title);
+    setExistingTags(viewItem[0].tags);
+  }
+
+  const toggleTag = value => {
+    let newTags = tags;
+    // console.log("Tag clicked");
+    if (!tags.includes(value)) {
+      newTags.push(value);
+    } else {
+      let index = newTags.indexOf(value);
+      if (index > -1) {
+        newTags.splice(index, 1);
+      }
+    }
+    // console.log(newTags);
+    setTags(newTags);
+    // console.log(tags);
+
+    let idName = value.toLowerCase().replace(/\s+/g, '-');
+    document.getElementsByClassName(idName)[0].classList.toggle("active");
   }
 
   function closeEditForm() {
@@ -186,11 +215,13 @@ function Bank() {
 
   //HERE IS FILTERING METHOD
   const entriesToShow = items.filter((currentItem) => {
+    // console.log("Filtering for", tags);
     if(tags.length === 0) { // handles if no tags are searched 
       return currentItem;
     }
-
     let shouldReturnItem = true;
+
+    // console.log("Current item tags", currentItem.tags);
 
     for(let i = 0; i < tags.length; i++) {
       if(!currentItem.tags.includes(tags[i])) {
@@ -200,8 +231,7 @@ function Bank() {
     if(shouldReturnItem){
       return currentItem;
     }
-
-    });
+  });
 
 
   if (items.length > 0 && showEditPopup) { 
@@ -214,8 +244,8 @@ function Bank() {
           /> */}
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
-            <h3>Edit Accomplishment {currentEditId}</h3>
-            <label htmlFor="editTitle">Title</label>
+            <h3>edit accomplishment {currentEditId}</h3>
+            <label htmlFor="editTitle">title</label>
             <input type="text"
                    id="editTitle"
                    value={existingTitle}
@@ -223,7 +253,7 @@ function Bank() {
                      setExistingTitle(event.target.value);
               }}
               name="editTitle"></input>
-              <label htmlFor="editDescription">Description</label>
+              <label htmlFor="editDescription">description</label>
             <input type="text"
                    id="editDescription"
                    value={existingDescription}
@@ -231,11 +261,14 @@ function Bank() {
                      setExistingDescription(event.target.value);
               }}
               name="editDescription"></input>
-            <button type="button" className="btn" onClick={submitForm}>Update</button>
-            <button type="button" className="btn cancel" onClick={closeEditForm}>Cancel</button>
+                          <TagList items={existingTags} />
+            <div className="popup-btn-center">
+            <button type="button" className="btn" onClick={submitForm}>update</button>
+            <button type="button" className="btn cancel" onClick={closeEditForm}>cancel</button>
+         </div>
           </form>
         </div>
-        <h1 className="bank-h1">All Accomplishments</h1> 
+        <h1 className="bank-h1">all accomplishments</h1> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div>
     )
@@ -249,17 +282,21 @@ function Bank() {
           /> */}
         <div className="formPopup" id="popupForm">
           <form className="formContainer">
-            <h3>Expanded View</h3>
-            <label htmlFor="viewTitle">Title</label>
+            <h3>expanded view</h3>
+            <label htmlFor="viewTitle">title</label>
             <p className = "p-background" id="viewTitle">{existingTitle}</p>
-            <label htmlFor="viewDescription">Description</label>
+            <label htmlFor="viewDescription">description</label>
             <p className = "p-background" id="viewDescription">{existingDescription}</p>
-            <label htmlFor="viewTags">Tags</label>
-            <p className = "p-background" id="viewTags"> this no work yet</p>
-            <button type="button" className="btn cancel" onClick={closeViewForm}>Close</button>
+            <label htmlFor="viewTags">tags</label>
+            <div className="tags-background">
+              <TagList items={existingTags} />
+            </div>
+            <div className="popup-btn-center">
+              <button type="button" className="btn cancel" onClick={closeViewForm}>close</button>
+            </div>
           </form>
         </div>
-        <h1 className="bank-h1">All Accomplishments</h1> 
+        <h1 className="bank-h1">all accomplishments</h1> 
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div> )
   } 
@@ -267,7 +304,37 @@ function Bank() {
     return (
       <div>
         <div className="card-list">
-        <h1 className="bank-h1">All Accomplishments</h1> 
+        <h1 className="bank-h1">all accomplishments</h1> 
+
+
+        {/* <div className = "tag-container">
+        <h4>Want to filter by a specific tag?</h4>
+       <br />
+       <div className="container">
+          <input
+            value={input}
+            placeholder="Enter a tag"
+            onKeyDown={onKeyDown}
+            onChange={onChange}
+          />
+          <br />
+          {tags.map((tag, index) => (
+            <div className="tag">
+              {tag}
+              <button onClick={() => deleteTag(index)}>x</button>
+            </div>
+          ))}
+          </div>
+        </div> */}
+
+
+        <div>
+          <h2 className="tag-title">filter for tags</h2>
+          <TagButtonList items={allTags}
+            activeTags={tags}
+            toggleTag={toggleTag}
+          />
+        </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
         </div>
       </div>
@@ -279,7 +346,7 @@ function Bank() {
   } else {
     return (
       <div>
-        <p>You have not added to your credibility bank!</p>
+        <p>you have not added to your credibility bank!</p>
         <Form items={items}
                    setItems={setItems}
                    database={database}

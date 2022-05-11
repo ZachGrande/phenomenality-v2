@@ -43,12 +43,12 @@ function Navigation() {
             </Link>
           </li> */}
           <div className="nav-left">
-          <li>
+          <li className="navvy">
             <Link className="navbar-link link-font" to="/accomplishments">
               accomplishments
             </Link>
           </li>
-          <li>
+          <li className="navvy">
             <Link className="navbar-link link-font" to="/bank">
               your bank
             </Link>
@@ -58,12 +58,12 @@ function Navigation() {
               Q&#38;A
             </Link>
           </li> */}
-          <li>
+          <li className="navvy">
             <Link className="navbar-link link-font" to="quiz">
               quiz
             </Link>
           </li>
-          <li>
+          <li className="navvy">
             <Link className="navbar-link link-font" to="more-info">
               imposter phenomenon
             </Link>

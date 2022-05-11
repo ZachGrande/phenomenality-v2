@@ -64,7 +64,6 @@ function TagButtonList(props){
       return <TagButton key={index} item={currentItem}
       activeTags={props.activeTags}
       toggleTag={props.toggleTag}
-      color={props.color[index]}
       />
   })
 
