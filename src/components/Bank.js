@@ -30,7 +30,7 @@ function Bank() {
   const [isLoading, setIsLoading] = useState(true);
 
   //NEED TO CHANGE FILTER TYPE TO ARRAY ?? 
-  //const [filter, setFilter] = useState("none");
+  const [filter, setFilter] = useState("none");
 
   const [input, setInput] = useState('');
   const [tags, setTags] = useState([]);
@@ -159,21 +159,12 @@ function Bank() {
     setExistingTags(viewItem[0].tags);
   }
 
-  const toggleTag = value => {
-    let newTags = tags;
-    // console.log("Tag clicked");
-    if (!tags.includes(value)) {
-      newTags.push(value);
+  const toggleFilter = value => {
+    if (filter === value) {
+      setFilter("none");
     } else {
-      let index = newTags.indexOf(value);
-      if (index > -1) {
-        newTags.splice(index, 1);
-      }
+      setFilter(value);
     }
-    // console.log(newTags);
-    setTags(newTags);
-    // console.log(tags);
-
     let idName = value.toLowerCase().replace(/\s+/g, '-');
     document.getElementsByClassName(idName)[0].classList.toggle("active");
   }
@@ -212,25 +203,9 @@ function Bank() {
     });
     setShowEditPopup(false);
   }
-
-  //HERE IS FILTERING METHOD
+  
   const entriesToShow = items.filter((currentItem) => {
-    // console.log("Filtering for", tags);
-    if(tags.length === 0) { // handles if no tags are searched 
-      return currentItem;
-    }
-    let shouldReturnItem = true;
-
-    // console.log("Current item tags", currentItem.tags);
-
-    for(let i = 0; i < tags.length; i++) {
-      if(!currentItem.tags.includes(tags[i])) {
-        shouldReturnItem = false;
-      }
-    }
-    if(shouldReturnItem){
-      return currentItem;
-    }
+    return (filter === "none" || currentItem.tags?.includes(filter));
   });
 
 
@@ -304,35 +279,14 @@ function Bank() {
     return (
       <div>
         <div className="card-list">
-        <h1 className="bank-h1">all accomplishments</h1> 
-
-
-        {/* <div className = "tag-container">
-        <h4>Want to filter by a specific tag?</h4>
-       <br />
-       <div className="container">
-          <input
-            value={input}
-            placeholder="Enter a tag"
-            onKeyDown={onKeyDown}
-            onChange={onChange}
-          />
-          <br />
-          {tags.map((tag, index) => (
-            <div className="tag">
-              {tag}
-              <button onClick={() => deleteTag(index)}>x</button>
-            </div>
-          ))}
-          </div>
-        </div> */}
+        <h1 className="bank-h1">all accomplishments</h1>
 
 
         <div>
           <h2 className="tag-title">filter for tags</h2>
           <TagButtonList items={allTags}
             activeTags={tags}
-            toggleTag={toggleTag}
+            toggleTag={toggleFilter}
           />
         </div>
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
