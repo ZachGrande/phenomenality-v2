@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 function Landing() {
   return(
     <div className='landing'>
+      <div className="welcome">
+      </div>
 
       <div className="welcome flex-container">
         <div className="left-side"> 
@@ -16,13 +18,13 @@ function Landing() {
           <p className="landing-para">log your daily accomplishments and mitigate the 
             effects of imposter phenomemon.</p>
           <div className='button-box sign-in'>
-          <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">sign in</Link>
-        </div>
+            <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">sign in</Link>
+          </div>
         </div>
         <div className="right-side"> 
-          <img src={Welcome} alt="Individuals Welcoming" width="40%" height="40%"/>
+          <img src={Welcome} alt="Individuals Welcoming" width="50%" height="50%"/>
         </div>
-      </div>     
+      </div>         
 
       <div className="filter flex-container">
         <div className='left-side'>
@@ -49,7 +51,7 @@ function Landing() {
             for professional care. if you are experiencing mental health challenges, we encourage 
             you to seek out professional help. </p>
             <div className='button-box quiz'>
-            <Link aria-label="Take the Quiz" className="button rmv-underline accompBtn" role="button" to="/quiz">take the Quiz</Link>
+            <Link aria-label="Take the Quiz" className="button rmv-underline accompBtn" role="button" to="/quiz">take the quiz</Link>
             </div>
         </div>
         <div className="right-side">
