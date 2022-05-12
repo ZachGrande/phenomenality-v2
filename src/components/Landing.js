@@ -9,9 +9,6 @@ import { Link } from 'react-router-dom';
 function Landing() {
   return(
     <div className='landing'>
-      <div className="welcome">
-      </div>
-
       <div className="welcome flex-container">
         <div className="left-side"> 
           <h1>welcome to your personal cheerleader!</h1>
