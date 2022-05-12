@@ -10,6 +10,7 @@ nav .navigation {
 .home-font { 
   font-family: Playfair Display;
   font-size: 24px;
+  margin-left: -35px;
 }
 
 .link-font { 
