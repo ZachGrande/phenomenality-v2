@@ -80,30 +80,24 @@ function Bank() {
   })
 
   useEffect(() => {
-    // if (isLoading !== false) {
-    // console.log("User", user.uid);
     const dbRef = ref(database, 'users/' + user?.uid + '/data');
     onValue(dbRef, (snapshot) => {
       const data = snapshot.val();
-      // console.log(data);
       if (data === null) {
         setItems([]);
         return null;
       }
       const keys = Object.keys(data);
-      // console.log("Keys", keys);
       const newItems = keys.map((key) => {
         const currentItem = data[key];
         currentItem.key = key;
-        // console.log("Current item", key, currentItem);
         return currentItem;
       })
-      // console.log("New items!", newItems);
       setItems(newItems);
     });
-    // } else {
-    // console.log("Did not retrieve user location from database");
-    // }
+    /*} else {
+    console.log("Did not retrieve user location from database");
+    }*/
   }, [isLoading, database, user]);
 
   if (isLoading) {
@@ -113,21 +107,16 @@ function Bank() {
   }
 
   const deleteCard = id => {
-    // console.log("Button pushed for card", id);
     let newItems = items.filter((currentItem) => {
-      // console.log(currentItem.id, id, currentItem.id !== id)
       return currentItem.id !== id;
     })
-    // console.log("Initial new items", newItems);
     newItems = newItems.map((currentItem, index = 0) => {
-      // console.log(currentItem);
       currentItem.id = index + 1;
       currentItem.key = index + "";
       index = index + 1;
       return currentItem;
     })
     setItems(newItems);
-    // console.log("New items", newItems);
     update(ref(database, 'users/' + user.uid), {
       data: newItems
     });
@@ -160,13 +149,21 @@ function Bank() {
   }
 
   const toggleFilter = value => {
-    if (filter === value) {
+    if (filter === "none") { // first time tagging
+      let idName = value.toLowerCase().replace(/\s+/g, '-');
+      document.getElementsByClassName(idName)[0].classList.toggle("active");
+      setFilter(value);
+    } else if (filter === value) { // turn off same tag
+      let idName = value.toLowerCase().replace(/\s+/g, '-');
+      document.getElementsByClassName(idName)[0].classList.toggle("active");
       setFilter("none");
-    } else {
+    } else { // switch tag
+      let idName = value.toLowerCase().replace(/\s+/g, '-');
+      document.getElementsByClassName(idName)[0].classList.toggle("active");
+      let existingIdName = filter.toLowerCase().replace(/\s+/g, '-');
+      document.getElementsByClassName(existingIdName)[0].classList.toggle("active");
       setFilter(value);
     }
-    let idName = value.toLowerCase().replace(/\s+/g, '-');
-    document.getElementsByClassName(idName)[0].classList.toggle("active");
   }
 
   function closeEditForm() {
@@ -208,15 +205,22 @@ function Bank() {
     return (filter === "none" || currentItem.tags?.includes(filter));
   });
 
+  function tagListContainer() {
+    return (
+      <div>
+        <h2 className="tag-title">filter for tags</h2>
+        <TagButtonList items={allTags}
+          activeTags={tags}
+          toggleTag={toggleFilter}
+        />
+      </div>
+    )
+  }
+
 
   if (items.length > 0 && showEditPopup) { 
     return (
       <div>
-        {/* <Form items={items}
-          setItems={setItems}
-          database={database}
-          user={user}
-          /> */}
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
             <h3>edit accomplishment {currentEditId}</h3>
@@ -243,18 +247,14 @@ function Bank() {
          </div>
           </form>
         </div>
-        <h1 className="bank-h1">all accomplishments</h1> 
+        <h1 className="bank-h1">all accomplishments</h1>
+        {tagListContainer()}
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div>
     )
   } else if (items.length > 0 && showViewPopup) { 
     return(
 <div>
-        {/* <Form items={items}
-          setItems={setItems}
-          database={database}
-          user={user}
-          /> */}
         <div className="formPopup" id="popupForm">
           <form className="formContainer">
             <h3>expanded view</h3>
@@ -271,7 +271,8 @@ function Bank() {
             </div>
           </form>
         </div>
-        <h1 className="bank-h1">all accomplishments</h1> 
+        <h1 className="bank-h1">all accomplishments</h1>
+        {tagListContainer()}
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
       </div> )
   } 
@@ -280,15 +281,7 @@ function Bank() {
       <div>
         <div className="card-list">
         <h1 className="bank-h1">all accomplishments</h1>
-
-
-        <div>
-          <h2 className="tag-title">filter for tags</h2>
-          <TagButtonList items={allTags}
-            activeTags={tags}
-            toggleTag={toggleFilter}
-          />
-        </div>
+        {tagListContainer()}
         <CardList items={entriesToShow} deleteCard={deleteCard} editCard={editCard} viewCard={viewCard}/>
         </div>
       </div>
@@ -300,11 +293,13 @@ function Bank() {
   } else {
     return (
       <div>
-        <p>you have not added to your credibility bank!</p>
-        <Form items={items}
-                   setItems={setItems}
-                   database={database}
-                   user={user}/>
+        <h1 className="bank-h1">You have not added to your accomplishment bank!</h1>
+        <div>
+          <h2 className="tag-title">filter for tags</h2>
+          <TagButtonList items={allTags}
+            activeTags={tags}
+          />
+        </div>
       </div>
 
     )
