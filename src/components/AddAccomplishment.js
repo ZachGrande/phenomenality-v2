@@ -260,7 +260,7 @@ function AddAccomplishment() {
             {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
             {/* this button is strange */}
             <button className="nextBtn" onClick={addNewAccomplishment}><Link aria-label="Next"
-                  className="button rmv-underline nextBtn"
+                  className="nextButton rmv-underline nextBtn"
                   role="button"
                   to="/accomplishments-complete">next</Link></button>
             <br></br>
