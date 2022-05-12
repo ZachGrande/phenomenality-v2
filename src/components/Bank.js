@@ -208,7 +208,8 @@ function Bank() {
   function tagListContainer() {
     return (
       <div>
-        <h2 className="tag-title">filter for tags</h2>
+       <h2 className="tag-title">filter tags</h2>
+          <p className="tag-desc"> select a tag you would like to filter through your accomplishments with!</p>
         <TagButtonList items={allTags}
           activeTags={tags}
           toggleTag={toggleFilter}
@@ -295,8 +296,8 @@ function Bank() {
       <div>
         <h1 className="bank-h1">You have not added to your accomplishment bank!</h1>
         <div>
-          <h2 className="tag-title">Filter Tags</h2>
-          <p> Select a tag you would like to filter through your accomplishments with</p>
+          <h2 className="tag-title">filter tags</h2>
+          <p className="tag-desc"> select a tag you would like to filter through your accomplishments with!</p>
           <TagButtonList items={allTags}
             activeTags={tags}
           />
