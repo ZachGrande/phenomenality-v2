@@ -264,6 +264,7 @@ function QuizContent(props) {
     return(
       <div className="content">
         <div className="results-flex-container">
+
         <h1>imposter phenomenon results</h1>
           <span className="flex-item top-result">
             {showTopResult(results)}
