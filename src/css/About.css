@@ -37,3 +37,23 @@
   font-weight: 400;
   font-size: 2.25vw;
 }
+
+.about .jackjack {
+  animation: jackjack-animation 15s linear infinite alternate;
+}
+
+.about .jackjack-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@keyframes jackjack-animation {
+  from {
+    /* left: 0; */
+    transform: translateX(0%)
+  }
+  to {
+    /* right: 0; */
+    transform: translateX(30vw) rotate(720deg)
+  }
+}
