@@ -45,7 +45,7 @@ function Navigation() {
           <div className="nav-left">
           <li className="navvy">
             <Link className="navbar-link link-font" to="/accomplishments">
-              accomplishments
+            accomplishments
             </Link>
           </li>
           <li className="navvy">
