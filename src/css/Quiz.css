@@ -25,17 +25,27 @@
 }
 
 .instructions {
+    position: grid;
     text-align: center;
     font-family: 'Source Sans Pro';
-    padding-left: 250px;
-    padding-right: 250px;
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-top: 40px;
     overflow-wrap: normal;
     font-size: 20px;
 }
 
 .quiz-title {
-    text-align: center;
     font-family: 'Playfair Display';
+    font-weight: 400;
+    font-size: 36px;
+    float: left;
+    margin: .5em;
+}
+
+.headerPadding {
+    padding-bottom: .5em;
+    margin-right: 10em;
 }
 
 .quiz-page {

@@ -107,3 +107,56 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
+
+.viewAccompBtn { 
+ width: fit-content;
+ padding: 10px, 10px;
+ float: right;
+}
+
+.viewAccompBtn2 { 
+  width: fit-content;
+  padding: 10px, 10px;
+  float: center;
+  margin-left: 2em;
+}
+
+.clickHereBtn { 
+  margin-left: 2em;
+}
+
+.nextBtn{ 
+  float: right;
+  width: fit-content;
+  padding: 10px, 10px;
+}
+
+
+
+
+
+
+
+
+.nextButton {
+  background-color: #437557;
+  border-color: #437557;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1.5% 2%;
+  border-radius: 12px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+}
+
+.rmv-underline:link {
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 10px;
+}
+
+.nextButton{
+  display: block;
+  /* padding-top: 2vw; */
+}

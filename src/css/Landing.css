@@ -14,11 +14,6 @@
   height: auto;
 }
 
-.welcome img {
-  width: 52vw;
-  height: auto;
-}
-
 .left-side {
   flex: 50%;
   justify-content: space-around;

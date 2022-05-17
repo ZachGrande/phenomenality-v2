@@ -1,4 +1,3 @@
-
 nav .navigation {
   /* position: fixed; */
   top: 0;
@@ -10,6 +9,8 @@ nav .navigation {
 
 .home-font { 
   font-family: Playfair Display;
+  font-size: 24px;
+  margin-left: -35px;
 }
 
 .link-font { 
@@ -36,9 +37,9 @@ nav .navigation li .initials {
   border-radius: 100px;
 }
 
-nav .navigation li:hover,
-nav .navigation li:focus,
-nav .navigation li:active {
+.navvy:hover,
+.navvy:focus,
+.navvy:active {
   color: white;
   border-bottom: .4rem solid black;
   padding-bottom: .5rem;
@@ -50,4 +51,6 @@ nav .navigation li:active {
 .nav-left { 
   position: relative;
   float: right;
+  padding-top: .4em;
+  font-size: 20px;
 }

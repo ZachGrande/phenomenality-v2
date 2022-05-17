@@ -1,5 +1,14 @@
+.tag-desc { 
+  float: left;
+  margin-left: 50px;
+  padding-right: 7000px;
+  white-space: nowrap;
+  font-size: 20px;
+  margin-top: -10px;
+}
+
 .card-list p {
-  font-family: Arial;
+  font-family: Source Sans Pro;
   display: flex;
   justify-content: center;
 }
@@ -39,6 +48,7 @@ ol {
   flex-wrap: wrap;
   flex-flow: column wrap;
   flex-direction: row;
+  /* flex-direction: column-reverse; */
   justify-content: center;
   align-content: space-between;
   align-items: center;

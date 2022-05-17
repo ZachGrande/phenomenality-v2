@@ -13,7 +13,7 @@ import WonderfulAccomplishment from '../assets/accomplishment-demo/accomplishmen
 import AccomplishmentComplete from '../assets/accomplishment-demo/accomplishment-4.svg';
 import SampleBank from '../assets/accomplishment-demo/accomplishment-5.svg';
 
-import Welcome from '../assets/welcome-message.png';
+import Welcome from '../assets/welcome-message.svg';
 
 import TagButtonList from './TagButton.js';
 
@@ -27,7 +27,7 @@ function AddAccomplishment() {
 
   const current = new Date();
   const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
-  const titlePlaceholder = "Accomplishment for " + date;
+  const titlePlaceholder = "accomplishment for " + date;
 
   const [items, setItems] = useState([]);
   const [name, setName] = useState("");
@@ -39,9 +39,6 @@ function AddAccomplishment() {
 
   const [showWelcome, setShowWelcome] = useState(true);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
-
-  const tagColors = ['color1', 'color2', 'color3'];
-  // const allTags = ['Technical', 'Soft Skills', 'Kudos'];
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -177,10 +174,10 @@ function AddAccomplishment() {
   if (!user) {
     return (
       <div className="accomp-signedout">
-        <h1>You haven't logged in yet!</h1>
-        <p>Sign in to begin logging your accomplishments.</p>
-        <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">Sign in</Link>
-        <h2 className="photo-header">Here's what Phenomenality can offer you!</h2>
+        <h1>you haven't logged in yet!</h1>
+        <p>sign in to begin logging your accomplishments.</p>
+        <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">sign in</Link>
+        <h2 className="photo-header">here's what phenomenality can offer you!</h2>
         <div>
           <img className="demo-photo odd" src={WelcomeMessage} alt="welcome-message"/>
         </div>
@@ -203,20 +200,21 @@ function AddAccomplishment() {
   if (showWelcome && hasLoggedToday) {
     return (
       <div className='outline-box'>
-        <h1 className="h1Accomp">You've already logged an accomplishment today!</h1>
-        <p className="encrg-p">Click here to view your logged accomplishments.</p>
-        <Link aria-label="View Accomplishments" className="button rmv-underline" role="button" to="/bank">View Accomplishments</Link>
-        <p className="encrg-p">If you'd like to add another accomplishment for today, <button onClick={toggleHasLoggedToday}>click here!</button></p>
+        <h1 className="h1Accomp">you've already logged an accomplishment today!</h1>
+        <p className="encrg-p">visit your bank to view your accomplishments.</p>
+        <Link aria-label="View Accomplishments" className="button rmv-underline viewAccompBtn2" role="button" to="/bank">view accomplishments</Link>
+        <p className="encrg-p">or add another accomplishment for today.</p> 
+        <button className="clickHereBtn" onClick={toggleHasLoggedToday}>add new accomplishment</button>
       </div>
     )
   } else if (showWelcome) {
     return (
       <div className="accomplishments outline-box">
-        <h1 className="h1Accomp">Hello, {name}!</h1>
-        <p className="encrg-p">Sometimes we need to separate our feelings from fact. Take a minute to recognize those feelings, but understand that the feeling will eventually pass.</p>
-        <img className="center-img" src={Welcome} alt="Person sitting in chair reading book" width="40%" height="40%"/>
+        <h1 className="h1Accomp">hello, {name}!</h1>
+        <p className="encrg-p">great work today! keep moving forward and record an accomplishment!</p>
+        <img className="center-img" src={Welcome} alt="Person sitting in chair reading book" width="30%" height="30%"/>
         <br></br>
-        <button className="accomplishment-next" onClick={advancePage}>Next</button>
+        <button className="accomplishment-next" onClick={advancePage}>next</button>
         <br></br>
         <br></br>
       </div>
@@ -224,8 +222,8 @@ function AddAccomplishment() {
   } else {
     return (
       <div className='outline-box add-accomp'>
-        <h1 className="h1Accomp">Daily Accomplishment</h1>
-        <p className="encrg-p">What would you like to record?</p>
+        <h1 className="h1Accomp">daily accomplishment</h1>
+        <p className="encrg-p">what would you like to record?</p>
         <div className = "padding">
           <form>
             <textarea 
@@ -241,7 +239,7 @@ function AddAccomplishment() {
             <br></br>
             <textarea 
               className="accompTextarea"
-              placeholder="Description"
+              placeholder="description"
               value={accomplishment}
               onChange={(event) => {
                 setAccomplishment(event.target.value);
@@ -251,21 +249,23 @@ function AddAccomplishment() {
             <br></br>
             <br></br>
             <div id='tagSection'>
-              <p className="tag-title">Add a tag to your post so you can find it later!</p>
+              <p className="tag-title">add a tag to your post so you can find it later!</p>
               <TagButtonList items={tags}
                   activeTags={accomplishmentTags}
                   toggleTag={toggleTag}
-                  color={tagColors}
                   />
             </div>
             <br></br>
             <br></br>
             {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
             {/* this button is strange */}
-            <button onClick={addNewAccomplishment}><Link aria-label="Next"
-                  className="button rmv-underline"
+            <button className="nextBtn" onClick={addNewAccomplishment}><Link aria-label="Next"
+                  className="nextButton rmv-underline nextBtn"
                   role="button"
-                  to="/accomplishments-complete">Next</Link></button>
+                  to="/accomplishments-complete">next</Link></button>
+            <br></br>
+            <br></br>
+
           </form>
         </div>
       </div>
