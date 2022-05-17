@@ -22,7 +22,7 @@ function ImposterInfo() {
           </Link>
           <br />
           <Link className="type" to="/type-3">
-            <img src={genius} alt="Elise"/>
+            <img src={genius} alt="genius logo"/>
             <div className='txt-div'>Genius</div>
           </Link>
           <br />
