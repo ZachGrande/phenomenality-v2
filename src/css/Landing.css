@@ -9,7 +9,8 @@
   align-items: center;
 }
 
-.landing img {
+.landing .right-side img,
+.landing .left-side img {
   width: 45vw;
   height: auto;
 }

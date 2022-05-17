@@ -4,6 +4,7 @@ import EliseAdams from '../assets/team-photos/EliseAdams.jpg';
 import ValerieTse from '../assets/team-photos/ValerieTse.jpg';
 import TiffanyTse from '../assets/team-photos/TiffanyTse.jpg';
 import RachelKinkley from '../assets/team-photos/RachelKinkley.jpeg';
+import jackjack from '../assets/jack-jack.svg';
 
 function About() {
   return(
@@ -42,6 +43,9 @@ function About() {
           <p>with many thanks to jeremy zaretzky, emily porter, laura schildkraut, mina tari, and milla titova</p>
           <h6>NOTICE UPDATE: beginning 5/26 the development of “phenomenality” has shut down.
 </h6>
+          <div className="jackjack-container">
+          <img className="jackjack" src={jackjack} alt="logo" />
+          </div>
         </div>
     </div>
     )
