@@ -5,6 +5,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from '../config';
 import leafActive from '../assets/leaf-active.svg';
 import leafInactive from '../assets/leaf-inactive.svg';
+import downCarrot from '../assets/down-carrot.svg';
 
 const auth = getAuth(app);
 
@@ -90,6 +91,14 @@ function Navigation() {
             </Link>
           </li>
           </div>
+          <button className="carrot-menu">
+          <div className="menu">
+            <p>menu
+            <img className= "carrot-icon"src={downCarrot} alt="Bank photo" width="12%" height="12%"/>
+            </p>
+          </div>
+          <i class="closeIcon material-icons">c</i>
+        </button>
         </ul>
       </div>
     </nav>
