@@ -61,7 +61,72 @@ function dropDownMenu() {
 function closeDropDownMenu() {
   setShowDropDownMenu(false);
 }
-
+return (
+  <nav>
+      <div className="navigation">
+        <ul>
+        <Link className="keepStrengthen navbar-link home-font" to="/">
+          phenomenality | strengthen your mentality
+            </Link>
+            <Link className="dropStrengthen navbar-link home-font" to="/">
+          phenomenality
+            </Link>
+          {showDropDownMenu ?
+          <p>nothing</p> : 
+          <div className="nav-left">
+          <li className="navvy">
+            <Link className="navbar-link link-font" to="/accomplishments">
+            accomplishments
+            </Link>
+          </li>
+          <li className="navvy">
+            <Link className="navbar-link link-font" to="/bank">
+              your bank
+            </Link>
+          </li>
+          {/* <li>
+            <Link className="navbar-link" to="questions">
+              Q&#38;A
+            </Link>
+          </li> */}
+          <li className="navvy">
+            <Link className="navbar-link link-font" to="quiz">
+              quiz
+            </Link>
+          </li>
+          <li className="navvy">
+            <Link className="navbar-link link-font" to="more-info">
+              imposter phenomenon
+            </Link>
+          </li>
+          <li>
+            <Link className="navbar-link link-font" to="/authentication">
+              {initials ?
+                // <li className="initials">
+                <div className="initials">
+                  {initials}
+                </div>
+                // </li>
+                :
+                <img src={profileButton}
+                onMouseOver={toggleProfileButton}
+                onMouseLeave={toggleProfileButton}
+                width="50"
+                alt="profile"></img>}
+            </Link>
+          </li>
+          </div> }
+          <button className="carrot-menu" onClick={dropDownMenu}>
+          <div className="menu">
+            <p>menu
+            <img className= "carrot-icon"src={downCarrot} alt="Bank photo" width="12%" height="12%"/>
+            </p>
+          </div>
+        </button>
+        </ul>
+      </div>
+    </nav>) 
+)
 if (!showDropDownMenu) { 
   return (
     <nav>
@@ -152,7 +217,7 @@ if (!showDropDownMenu) {
           {/* <i className="closeIcon material-icons">c</i> */}
         </button>
         </ul>
-          <div className="dropDown dropDownContainer moveeeee" id="popupForm">
+          <div className="dropDown dropDownContainer" id="popupForm">
             <ul>
           <li className="navvy">
             <Link className="navbar-link link-font" to="/accomplishments">
