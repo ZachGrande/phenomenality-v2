@@ -54,6 +54,10 @@ function Navigation() {
 
 // menu.addEventListener("click", toggleMenu);
 
+function toggleDropDown() {
+  setShowDropDownMenu(!showDropDownMenu);
+}
+
 function dropDownMenu() {
   setShowDropDownMenu(true);
 }
@@ -72,7 +76,65 @@ return (
           phenomenality
             </Link>
           {showDropDownMenu ?
-          <p>nothing</p> : 
+          <div className="dropDown dropDownContainer" id="popupForm">
+          <ul>
+        <li className="navvy">
+          <Link className="navbar-link link-font" to="/accomplishments">
+          accomplishments
+          </Link>
+          <br></br>
+          <br></br>
+        </li>
+        <li className="navvy">
+          <Link className="navbar-link link-font" to="/bank">
+            your bank
+          </Link>
+          <br></br>
+          <br></br>
+        </li>
+        {/* <li>
+          <Link className="navbar-link" to="questions">
+            Q&#38;A
+          </Link>
+        </li> */}
+        <li className="navvy">
+          <Link className="navbar-link link-font" to="quiz">
+            quiz
+          </Link>
+          <br></br>
+          <br></br>
+        </li>
+        <li className="navvy">
+          <Link className="navbar-link link-font" to="more-info">
+            imposter phenomenon
+          </Link>
+          <br></br>
+        </li>
+        <br></br>
+        <br></br>
+        <li className="dropdownInitials">
+          <Link className="navbar-link link-font dropdownInitials" to="/authentication">
+            {initials ?
+              // <li className="initials">
+              <div className="initials">
+                {initials}
+              </div>
+              // </li>
+              :
+              <img src={profileButton}
+              onMouseOver={toggleProfileButton}
+              onMouseLeave={toggleProfileButton}
+              width="50"
+              alt="profile"></img>}
+          </Link>
+        </li>
+        </ul>
+        <div className="popup-btn-center">
+            {/* <button type="button" className="btn cancel" onClick={closeDropDownMenu}>close</button> */}
+          </div>
+        </div>
+          
+          : 
           <div className="nav-left">
           <li className="navvy">
             <Link className="navbar-link link-font" to="/accomplishments">
@@ -84,11 +146,6 @@ return (
               your bank
             </Link>
           </li>
-          {/* <li>
-            <Link className="navbar-link" to="questions">
-              Q&#38;A
-            </Link>
-          </li> */}
           <li className="navvy">
             <Link className="navbar-link link-font" to="quiz">
               quiz
@@ -116,7 +173,7 @@ return (
             </Link>
           </li>
           </div> }
-          <button className="carrot-menu" onClick={dropDownMenu}>
+          <button className="carrot-menu" onClick={toggleDropDown}>
           <div className="menu">
             <p>menu
             <img className= "carrot-icon"src={downCarrot} alt="Bank photo" width="12%" height="12%"/>
@@ -126,7 +183,7 @@ return (
         </ul>
       </div>
     </nav>) 
-)
+
 if (!showDropDownMenu) { 
   return (
     <nav>
