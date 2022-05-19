@@ -55,7 +55,7 @@
 
 button, .button {
   background-color: #437557;
-  border-color: #437557;
+  border-color: transparent;
   color: #ffffff;
   font-size: 1rem;
   text-align: center;

@@ -201,10 +201,16 @@ function AddAccomplishment() {
     return (
       <div className='outline-box'>
         <h1 className="h1Accomp">you've already logged an accomplishment today!</h1>
-        <p className="encrg-p">visit your bank to view your accomplishments.</p>
-        <Link aria-label="View Accomplishments" className="button rmv-underline viewAccompBtn2" role="button" to="/bank">view accomplishments</Link>
-        <p className="encrg-p">or add another accomplishment for today.</p> 
-        <button className="clickHereBtn" onClick={toggleHasLoggedToday}>add new accomplishment</button>
+        <div className='accompText'>
+          <div className='backToBank'>
+            <p className="encrg-p">visit your bank to view your accomplishments.</p>
+            <Link aria-label="View Accomplishments" className="button rmv-underline viewAccompBtn2" role="button" to="/bank">view accomplishments</Link>
+          </div>
+          <div className='addNewAccomp'>
+            <p className="encrg-p">or add another accomplishment for today.</p> 
+            <button className="clickHereBtn" onClick={toggleHasLoggedToday}>add new accomplishment</button>
+          </div>
+        </div>
       </div>
     )
   } else if (showWelcome) {
