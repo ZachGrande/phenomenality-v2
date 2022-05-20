@@ -130,7 +130,7 @@ function toggleDropDown() {
                     <img src={profileButton}
                     onMouseOver={toggleProfileButton}
                     onMouseLeave={toggleProfileButton}
-                    width="50"
+                    width="46"
                     alt="profile"></img>}
                 </Link>
               </li>
