@@ -7,11 +7,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from 'react-router-dom';
 import { map } from '@firebase/util';
 
-import WelcomeMessage from '../assets/accomplishment-demo/accomplishment-1.svg';
-import DailyAccomplishment from '../assets/accomplishment-demo/accomplishment-2.svg';
-import WonderfulAccomplishment from '../assets/accomplishment-demo/accomplishment-3.svg';
-import AccomplishmentComplete from '../assets/accomplishment-demo/accomplishment-4.svg';
-import SampleBank from '../assets/accomplishment-demo/accomplishment-5.svg';
+import WelcomeMessage from '../assets/accomplishment-demo/accomplishment-1.png';
+import DailyAccomplishment from '../assets/accomplishment-demo/accomplishment-2.png';
+import WonderfulAccomplishment from '../assets/accomplishment-demo/accomplishment-3.png';
+import AccomplishmentComplete from '../assets/accomplishment-demo/accomplishment-4.png';
+import SampleBank from '../assets/accomplishment-demo/accomplishment-5.png';
+import SampleBankFilter from '../assets/accomplishment-demo/accomplishment-6.png';
 
 import Welcome from '../assets/welcome-message.svg';
 
@@ -177,7 +178,7 @@ function AddAccomplishment() {
         <h1>you haven't logged in yet!</h1>
         <p>sign in to begin logging your accomplishments.</p>
         <Link aria-label="Sign in" className="button rmv-underline" role="button" to="/authentication">sign in</Link>
-        <h2 className="photo-header">here's what phenomenality can offer you!</h2>
+        <h2 className="photo-header bloop">here's what phenomenality can offer you!</h2>
         <div>
           <img className="demo-photo odd" src={WelcomeMessage} alt="welcome-message"/>
         </div>
@@ -192,6 +193,9 @@ function AddAccomplishment() {
         </div>
         <div>
           <img className="demo-photo odd" src={SampleBank} alt="sample-bank"/>
+        </div>
+        <div>
+          <img className="demo-photo odd" src={SampleBankFilter} alt="sample-bank-filter"/>
         </div>
       </div>
     )

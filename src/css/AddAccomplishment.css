@@ -58,6 +58,8 @@ p {
   margin-left: auto;
   margin-right: auto;
   width: 75%;
+  outline: 1px solid grey;
+  margin-bottom: 2em;
 }
 
 .demo-photo, .odd {
