@@ -1,21 +1,18 @@
 <h1 align="center">Phenomenality</h1>
 
-<h2 align="center"><em>Build Your Credibility</em></h2>
+<h2 align="center"><em>Helping Gender Minorities Mitigate Imposter Phenomenon in the Workplace</em></h2>
 
-<p align="center">Capstone Group 3: Orka</p>
+<p align="center">Capstone Group B03: Orka</p>
 
 <h2>Our Mission </h2>
 
-This application addresses feelings of imposter phenomenon in young professionals who are gender minorities. Users are encouraged to build their credibility bank to build confidence in themselves catalog resume-worthy achievements for easy reference.
-
-This solution works specifically to address the United Nations 5th Sustainable Development Goal: Gender Equality. Imposter phenomenon can limit the opportunites women and minorities are comfortable pursuing in their work environment. 
+Gender minorities entering the technology field experience imposter phenomenon (IP) at a disproportionate rate as compared to their male counterparts. Phenomenality aims to mitigate the effects of perceived inadequacy by encouraging users to reflect on and celebrate their daily accomplishments in a journal-like manner. Through consistent, affirmative self-talk, a Likert scale quiz, and personalized IP alleviation strategies, Phenomenality provides gender minorities with the resources to optimize their potential, boost their confidence, and ultimately flourish in their professional environments.
 
 ## Features
-* Interactive quiz to assess user's imposter type
-* Visualized results to show cross section of types
-* Real-world stories from successful industry members
-* Tips for how to combat feelings of imposter phenomenon
-* Fun Incredibles theme integration
+* Record your daily professional accomplishments
+* Tag with industry-related terms to promote quick and easy filtering when recalling
+* Take a quiz to learn about five of the widely-recognized IP archetypes
+* Learn about IP mitigation strategies unique to your IP archetype
 
 # Live Product
 
@@ -25,9 +22,9 @@ https://phenomenality-bdf65.web.app/
 
 This product is inspired by work from Autumn 2021 UW INFO 442: Cooperative Software Development with the same group.
 
-Project Repo: https://github.com/UW-INFO442-AU21/group4-in4matix
+Project Repo: https://github.com/ZachGrande/Phenomenality 
 
-Published Site: https://uw-info442-au21.github.io/group4-in4matix/
+Published Capstone Site: https://ischool.uw.edu/capstone/projects/2022/phenomenality-helping-gender-minorities-mitigate-imposter-phenomenon
 
 ## Group Members
 * Elise Adams
@@ -35,31 +32,3 @@ Published Site: https://uw-info442-au21.github.io/group4-in4matix/
 * Rachel Kinkley
 * Tiffany Tse
 * Valerie Tse
-
-# Development Instructions
-
-## Start Localhost
-
-`npm start`
-
-`Ctrl + C` to cancel
-
-## Prepare Build for Firebase Hosting
-
-`npm run build`
-
-## Deploy to Firebase
-
-`firebase deploy`
-
-## Make a New Branch
-
-Do these two steps in sequence to (1) make a new branch and (2) publish it to GitHub.
-
-`git checkout -b <branch-name>`
-
-`git push --set-upstream origin <branch-name>`
-
-To close a branch, make a Pull Request on the GitHub site.
-
-<a href="https://www.flaticon.com/free-icons/brain" title="brain icons">Brain icons created by Freepik - Flaticon</a>
