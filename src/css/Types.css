@@ -5,8 +5,9 @@
 }
 
 .imposter-content {
-  margin-left: .5em;
-  margin-right: .5em;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
 }
 
 .imposter-content h1{ 

@@ -9,8 +9,8 @@ function Superhuman() {
       <img className="page-image" src={superhero} alt="superhero icon"/>
       <h2>overview</h2>
         <p>
-          The superwoman/man represents a person with imposter syndrome that often struggles with work addiction.
-          This person may feel inadequate relative to colleagues and continue to push themselves as hard as possible,
+          The superhuman represents a person with imposter phenomenon that struggles with work addiction.
+          This person may feel inadequate relative to colleagues and continue to push themselves
           regardless of the consequences on mental, physical and emotional health.
         </p>
         <pre></pre>
@@ -20,17 +20,17 @@ function Superhuman() {
       <h2>general tips</h2>
         <ul>
           <li>
-            Impostor workaholics are actually addicted to the validation that comes from working, not to the work
+            Imposter workaholics are actually addicted to the validation that comes from working, not to the work
             itself. Start training yourself to veer away from external validation. No one should have more power
-            to make you feel good about yourself than you–even your boss when they give your project the stamp
+            to make you feel good about yourself than you–-even your boss when they give your project the stamp
             of approval.
           </li>
           <li>
-            On the flip side, learn to take constructive criticism seriously, not personally.
+            On the flip side, learn to take constructive criticism at face value, not personally.
           </li>
           <li>
-            As you become more attuned to internal validation and able to nurture your inner confidence that states
-            you're competent and skilled, you'll be able to ease off the gas as you gauge how much work is reasonable.
+            As you become more attuned to internal validation and able to nurture your inner confidence, affirming that
+            you are competent and skilled. You'll be able to ease off the gas as you gauge how much work is healthy and rewarding.
           </li>
         </ul>
       <h2>resources</h2>

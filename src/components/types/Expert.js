@@ -8,8 +8,8 @@ function Expert() {
       <img className="page-image" src={expert} alt="expert icon"/>
       <h2>overview</h2>
         <p>
-          The expert represents a person with imposter syndrome that never
-          feels good enough despite being extremely knowledgeable. This
+          The expert represents a person with imposter phenomenon that never
+          feels good enough despite their valid qualifications. This
           person may feel like they are less experienced than their 
           colleagues if they do not know an answer or have knowledge on 
           certain topics.
@@ -21,9 +21,8 @@ function Expert() {
       <h2>general tips</h2>
         <ul>
           <li>
-            It's true that there's always more to learn. Striving to bulk
-            up your skill set can certainly help you make strides professionally
-            and keep you competitive in the job market. But taken too far, the
+            It's true that there's always more to learn. Going beyond what's expected of you at work can help you excel professionally and get noticed in a competitive job market.
+             Taken too far, the
             tendency to endlessly seek out more information can actually be a 
             form of procrastination.
           </li>
@@ -35,9 +34,9 @@ function Expert() {
           <li>
             Realize there's no shame in asking for help when you need it. If you don't
             know how to do something, ask a coworker. If you can't figure out how to
-            solve a problem, seek advice from a supportive supervisor, or even a career
+            solve a problem, seek advice from a supervisor, or even a career
             coach. Mentoring junior colleagues or volunteering can be a great way to 
-            discover your inner expert. When you share what you know, it not only benefits others, but also helps you heal your fraudulent feelings.
+            discover your inner expert. When you share what you know, it not only benefits others, but also helps you redirect your fraudulent feelings.
           </li>
         </ul>
       <h2>resources</h2>

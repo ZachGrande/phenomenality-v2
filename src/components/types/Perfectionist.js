@@ -8,8 +8,8 @@ function Perfectionist() {
       <img className="page-image" src={perfectionist} alt="pefectionist icon"/>
       <h2>overview</h2>
         <p>
-          The perfectionist represents a person with imposter syndrome that strives to be their absolute 
-          best, no matter the cost to their mental health. These individuals may be identified as typical 
+          The perfectionist represents a person with imposter phenomenon that strives to be their absolute 
+          best, no matter the cost to their mental health. These individuals may identify as typical 
           “perfectionists” who set impossibly high standards for themselves.
         </p>
         <pre></pre>
@@ -19,12 +19,12 @@ function Perfectionist() {
       <h2>general tips</h2>
         <ul>
           <li>
-            For this type, success is rarely satisfying because they believe they could've done even better. 
-            But that's neither productive nor healthy. Owning and celebrating achievements is essential if you 
-            want to avoid burnout, find contentment, and cultivate self-confidence.
+            For this type, success is rarely satisfying because they believe they could always do better. 
+            While that drive for perfection may seem admirable from an outsider, it's actually neither productive nor healthy. Owning and celebrating both big and small achievements is essential if you 
+            want to avoid burnout and cultivate self-confidence.
           </li>
           <li>
-            Learn to take your mistakes in stride, viewing them as a natural part of the process.
+            Learn to take your mistakes in stride, viewing them as a natural part of the growth process.
           </li>
           <li>
             In addition, push yourself to act before you're ready. Force yourself to start the project you've

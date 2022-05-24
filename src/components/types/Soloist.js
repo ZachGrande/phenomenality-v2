@@ -8,10 +8,10 @@ function Soloist() {
       <img className="page-image" src={soloist} alt="soloist icon"/>
       <h2>overview</h2>
         <p>
-          The soloist represents a person with imposter syndrome that has extreme 
-          difficulties asking others for help. Perhaps they may feel that others 
+          The soloist represents a person with imposter phenomenon that has 
+          difficulty asking others for help. Perhaps they may feel that others 
           are not as competent as themselves or that they must prove their own 
-          worth through their productivity.
+          worth through their individual productivity.
         </p>
         <pre></pre>
         <div className="float-video">
@@ -20,20 +20,18 @@ function Soloist() {
       <h2>general tips</h2>
         <ul>
           <li>
-            Keep in mind that you could be taking longer to complete something by 
-            insisting in your head that you have to figure it out yourself
+            Keep in mind that you could be taking much longer to complete something by 
+            insisting that you have to figure it out yourself rather than reaching out to someone.
           </li>
           <li>
-            Firstly, you should know that no man is an island. Admittedly, 
-            independence is blissful; however, it shouldn't deter you from accepting
-            assistance from others.Everyone has their area of strength, and asking 
+            It's important to recognize that no one is completely isolated. Independence is blissful; however, it shouldn't deter you from accepting
+            assistance from others. Everyone has their areas of strength, and asking 
             for help with a particular area you are not good at will help to maximize
-            the quality of tasks.
+            both the quality and quantity of your completed tasks.
           </li>
           <li>
-            Therefore, you should learn to ask questions as it only shows a willingness
-            to learn rather than incompetence as no man knows it all. Additionally, 
-            accepting assistance from others will help you complete tasks in record time.
+            Therefore, you should learn to view asking questions as a willingness
+            to learn rather than incompetence. 
           </li>
         </ul>
       <h2>resources</h2>
@@ -47,7 +45,7 @@ function Soloist() {
         </ul>
       <h2>quotes</h2>
       <blockquote>
-          "I still sometimes feel like a loser kid in high school and I
+          "I still sometimes feel like a loser kid in high school. I
           just have to pick myself up and tell myself that I'm a superstar
           every morning so that I can get through this day and be for my
           fans what they need for me to be."

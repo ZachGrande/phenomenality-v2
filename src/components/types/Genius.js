@@ -8,10 +8,10 @@ function Genius() {
       <img className="page-image" src={genius} alt="genius icon"/>
       <h2>overview</h2>
         <p>
-          “The natural genius represents a person with imposter syndrome 
+          “The natural genius represents a person with imposter phenomenon 
           that not only struggles with perfectionism but also sets out 
           to achieve lofty goals on their first try. These individuals 
-          feel unworthy, guilty and shameful if they cannot easily 
+          feel unworthy and shameful if they cannot easily 
           complete a task or achieve a goal on their first go. 
         </p>
         <pre></pre>
@@ -21,17 +21,16 @@ function Genius() {
       <h2>general tips</h2>
         <ul>
           <li>
-            To move past this, try seeing yourself as a work in progress. 
-            Accomplishing great things involves lifelong learning and skill
-            building–for everyone, even the most confident people. 
+            To move past this, try viewing yourself as a work in progress. 
+            Accomplishing great things continuous learning, growing, and making mistakes--for everyone, even the most confident people. 
           </li>
           <li>
             Rather than beating yourself up when you don't reach your impossibly
-            high standards, identify specific, changeable behaviors that you can improve over time.
+            high standards, identify specific, small, and changeable behaviors that you can improve over time.
           </li>
           <li>
             For example, if you want to have more impact at the office, 
-            it's much more productive to focus on honing your presentation 
+            it's much more productive to focus on going out of your comfort zone to practice your presentation 
             skills than swearing off speaking up in meetings as something you're “just not good at.” 
           </li>
         </ul>
