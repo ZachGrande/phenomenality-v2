@@ -24,6 +24,8 @@
 .imposter-content p { 
   font-family: Source Sans Pro;
   margin-left: 1em;
+  font-weight: 900;
+  font-size: 20px;
 }
 
 /* Adjusts image sizes based on screen size */
@@ -37,6 +39,16 @@
 
 }
 
+.imposter-content li {
+  font-family: Source Sans Pro;
+  margin-left: 1em;
+}
+
+.imposter-content blockquote {
+  font-family: Source Sans Pro;
+  margin-left: 1em;
+  font-style: italic;
+}
 /* Adjusts video player size based on screen size */
 @media (min-width: 600px) {
 

@@ -9,7 +9,7 @@ function Expert() {
       <h2>overview</h2>
         <p>
           The expert represents a person with imposter phenomenon that never
-          feels good enough despite their valid qualifications. This
+          feels good enough despite valid qualifications. This
           person may feel like they are less experienced than their 
           colleagues if they do not know an answer or have knowledge on 
           certain topics.
