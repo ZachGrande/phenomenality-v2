@@ -24,7 +24,7 @@ function AddAccomplishment() {
 
   const auth = getAuth(app);
   const database = getDatabase(app);
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const current = new Date();
   const date = `${current.getMonth()+1}/${current.getDate()}/${current.getFullYear()}`;
@@ -78,13 +78,10 @@ function AddAccomplishment() {
 
   useEffect(() => {
     if (items) {
-      items.filter((currentItem) => {
-        if (currentItem.date === date) {
-          setHasLoggedToday(true);
-        }
-      })
+      const hasLogged = items.some((currentItem) => currentItem.date === date);
+      setHasLoggedToday(hasLogged);
     }
-  }, [items]);
+  }, [items, date]);
 
   useEffect(() => {
     let shortAccomp = accomplishment.substring(0, 100);

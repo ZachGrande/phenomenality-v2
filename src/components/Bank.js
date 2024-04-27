@@ -4,7 +4,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
-import Form from './Form.js';
 import TagButtonList from './TagButton.js';
 import allTags from './tags.js';
 import '../css/Popup.css';
@@ -32,45 +31,9 @@ function Bank() {
   //NEED TO CHANGE FILTER TYPE TO ARRAY ?? 
   const [filter, setFilter] = useState("none");
 
-  const [input, setInput] = useState('');
-  const [tags, setTags] = useState([]);
-  const onChange = (e) => {
-    const { value } = e.target;
-    setInput(value);
-  };
-
-  useEffect(() => {
-    // console.log(tags);
-    console.log("Tags");
-  }, [tags]);
-
-  //add client side verification - warning for tags that doesn't exist in search bar or if tag already selected
-  //autocomplete tags
-  //add client side verification - must include tag to accomplishment
-  const onKeyDown = (e) => {
-    const { key } = e;
-    const trimmedInput = input.trim();
-
-    //only allows users to input tag that exists in allTag array
-    if (key === 'Enter' && trimmedInput.length && !tags.includes(trimmedInput)) {
-      e.preventDefault();
-
-      if (allTags.map(tag => tag.toLowerCase()).includes(trimmedInput.toLowerCase())) {
-        setTags(prevState => [...prevState, trimmedInput]);
-        setInput('');
-      }
-    }
-
-  };
-
-  const deleteTag = (index) => {
-    setTags(prevState => prevState.filter((tag, i) => i !== index))
-  }
-
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [showViewPopup, setShowViewPopup] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(-1);
-  const [currentViewId, setCurrentViewId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState("");
   const [existingTitle, setExistingTitle] = useState("");
   const [existingTags, setExistingTags] = useState("");
@@ -129,6 +92,7 @@ function Bank() {
       if (currentItem.id === id) {
         return currentItem;
       }
+      return null;
     });
     setExistingDescription(editItem[0].description);
     setExistingTitle(editItem[0].title);
@@ -137,11 +101,11 @@ function Bank() {
 
   const viewCard = id => {
     setShowViewPopup(true);
-    setCurrentViewId(id);
     let viewItem = items.filter((currentItem) => {
       if (currentItem.id === id) {
         return currentItem;
       }
+      return null;
     });
     setExistingDescription(viewItem[0].description);
     setExistingTitle(viewItem[0].title);
@@ -211,7 +175,7 @@ function Bank() {
        <h2 className="tag-title">filter tags</h2>
           <p className="tag-desc"> select a tag you would like to filter through your accomplishments with!</p>
         <TagButtonList items={allTags}
-          activeTags={tags}
+          activeTags={existingTags}
           toggleTag={toggleFilter}
         />
       </div>
@@ -299,7 +263,7 @@ function Bank() {
           <h2 className="tag-title">filter tags</h2>
           <p className="tag-desc"> select a tag you would like to filter through your accomplishments with!</p>
           <TagButtonList items={allTags}
-            activeTags={tags}
+            activeTags={existingTags}
           />
         </div>
       </div>

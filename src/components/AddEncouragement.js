@@ -13,7 +13,7 @@ function AddEncouragement() {
 
   const auth = getAuth(app);
   const database = getDatabase(app);
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const [isLoading, setIsLoading] = useState(true);
   const [showEncouragingMessageInput, setShowEncouragingMessageInput] = useState(true);

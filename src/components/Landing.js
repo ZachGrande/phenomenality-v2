@@ -25,7 +25,7 @@ function Landing() {
 
       <div className="filter flex-container">
         <div className='left-side'>
-          <img src={BankDemo} alt="Bank photo" width="25%" height="25%"/>
+          <img src={BankDemo} alt="Bank" width="25%" height="25%"/>
         </div>
         <div className="right-side"> 
           <h2>filter and sort through all your accomplishments</h2>

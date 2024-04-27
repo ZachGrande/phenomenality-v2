@@ -20,7 +20,6 @@ function Form(props) {
 
 
   const [accomplishment, setAccomplishment] = useState("");
-  const [status, setStatus] = useState("success");
   const [accomplishmentTags, setAccomplishmentTags] = useState([]);
   const [title, setTitle] = useState("");
 
@@ -34,7 +33,6 @@ function Form(props) {
       description: accomplishment,
       id: items.length + 1,
       key: items.length + "",
-      status: status,
       tags: accomplishmentTags,
       date: date
     }
