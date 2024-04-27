@@ -5,10 +5,6 @@ import TagList from './Tag.js';
 function Card(props) {
   let thisItem = props.item;
 
-  const tagItems = thisItem.tags?.map((tag) =>
-    <li key={tag}>{tag}</li>
-  );
-
   function renderItem() {
     const handleClick = (event) => {
       props.deleteCard(thisItem.id)
@@ -29,9 +25,7 @@ function Card(props) {
         <h2 className='title'>{thisItem.title}</h2>
         </div>
         <button className="btn-delete" onClick={handleClick}>x</button>
-        {/* <p>{thisItem.id}</p> */}
         <p className="description">{thisItem.descriptionDisplay}</p>
-        {/* <ul>{tagItems}</ul> */}
         <TagList items={thisItem.tags} />
         <button className="btn-edit" onClick={handleEdit}>edit</button>
         <button className="btn-view" onClick={handleView}>view more</button>

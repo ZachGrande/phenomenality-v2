@@ -22,8 +22,6 @@ function Authentication() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  // const [displayName, setDisplayName] = useState("");
-
   const [user, setUser] = useState({});
 
   const [loading, setLoading] = useState(true);
@@ -35,18 +33,11 @@ function Authentication() {
   const [lastName, setLastName] = useState("");
   const [position, setPosition] = useState("");
   const [welcomeName, setWelcomeName] = useState(null);
-  const [initials, setInitials] = useState("");
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
-    // setTimeout(() => {
       setLoading(false);
-    // }, 1000)
   })
-
-  // useEffect(() => {
-  //   setInitials(user?.displayName);
-  // }, [user]);
 
   useEffect(() => {
     setLoading(true);

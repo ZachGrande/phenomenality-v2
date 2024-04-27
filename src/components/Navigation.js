@@ -138,7 +138,7 @@ function toggleDropDown() {
             <button className="carrot-menu" onClick={toggleDropDown}>
               <div className="menu">
                 <p>menu
-                  <img className="carrot-icon"src={downCarrot} alt="Bank photo" width="12%" height="12%"/>
+                  <img className="carrot-icon"src={downCarrot} alt="Bank" width="12%" height="12%"/>
                 </p>
               </div>
             </button>

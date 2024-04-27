@@ -1,5 +1,5 @@
 import surveyJSON from './quiz.json';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import CanvasJSReact from '../assets/canvasjs.react';
@@ -44,7 +44,6 @@ function QuizContent(props) {
     var sh = 0;
     var e = 0;
     var g = 0;
-    var n = 0;
     
     // FIX THIS PART FOR LOGIC!!!! used to be var key, is var valueName the correct thing to replace it with?
     // nested if statement?
