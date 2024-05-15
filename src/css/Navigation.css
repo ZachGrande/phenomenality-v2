@@ -25,7 +25,11 @@ nav .navigation li {
   display: inline;
 }
 
-.dropdown-list {
+nav .navigation .nav-left li {
+  margin-right: 1rem;
+}
+
+#popupForm ul {
   padding-left: 1rem;
 }
 
