@@ -24,7 +24,10 @@ nav .navigation .navbar-link {
 
 nav .navigation li {
   display: inline;
-  margin-right: 1rem;
+}
+
+.dropdown-list {
+  padding-left: 1rem;
 }
 
 nav .navigation li .initials {
@@ -52,7 +55,6 @@ nav .navigation li .initials {
   display: none;
   position: relative;
   float: right;
-  padding-top: .4em;
   font-size: 20px;
 }
 
@@ -116,6 +118,10 @@ nav button:hover, .button:hover {
   float: right;
   margin-top: 9px;
   margin-left: -50px;
+}
+
+.rotated {
+  transform: rotate(-90deg);
 }
 
 .showMenu {
