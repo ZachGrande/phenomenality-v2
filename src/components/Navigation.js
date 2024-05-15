@@ -49,7 +49,7 @@ function toggleDropDown() {
           </Link>
           {showDropDownMenu ?
             <div className="dropDown dropDownContainer" id="popupForm">
-              <ul>
+              <ul class="dropdown-list">
                 <li className="navvy">
                   <Link className="navbar-link link-font" to="/accomplishments">
                     accomplishments
@@ -138,7 +138,7 @@ function toggleDropDown() {
             <button className="carrot-menu" onClick={toggleDropDown}>
               <div className="menu">
                 <p>menu
-                  <img className="carrot-icon"src={downCarrot} alt="Bank" width="12%" height="12%"/>
+                  <img className={"carrot-icon" + (!showDropDownMenu ? ' rotated' : '')} src={downCarrot} alt="Bank" width="12%" height="12%"/>
                 </p>
               </div>
             </button>
