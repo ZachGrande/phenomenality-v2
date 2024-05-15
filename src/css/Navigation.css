@@ -1,5 +1,4 @@
 nav .navigation {
-  /* position: fixed; */
   top: 0;
   left: 0;
   width: 100%;
@@ -48,7 +47,6 @@ nav .navigation li .initials {
   padding-bottom: .5rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  /* transform: rotate(180deg); */
 }
 
 .nav-left { 
@@ -59,7 +57,6 @@ nav .navigation li .initials {
 }
 
 nav button {
-  /* background-color: transparent; */
   display: relative;
   color: black;
   border-color: transparent;
@@ -83,21 +80,6 @@ nav button:hover, .button:hover {
 .closeIcon {
   display: none;
 }
-
- /* .menu {
-  position: fixed;
-  transform: translateY(-100%);
-  transition: transform 0.2s;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 99;
-  background: black;
-  color: white;
-  list-style: none;
-  padding-top: 4rem;
-}  */
 
 .carrot-menu {
   position: relative;
@@ -138,7 +120,6 @@ nav button:hover, .button:hover {
   }
 }
 
-/* drop down menu */
 
 h3, label {
     font-family: Playfair Display;
@@ -152,7 +133,7 @@ h3, label {
   display: block;
   position: fixed;
   box-shadow: 0 50px 500px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* backdrop-filter: blur(10px); */
+
   right: -90px;
   top: 8%;
   transform: translate(-50%, 5%);
