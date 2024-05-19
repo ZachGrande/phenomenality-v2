@@ -1,5 +1,5 @@
 import soloist from '../../assets/imposter-types/soloist.svg';
-import '../../css/Types.css';
+import '../../css/Types.sass';
 
 function Soloist() {
   return(

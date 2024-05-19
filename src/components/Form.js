@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { ref, update } from 'firebase/database';
 import { map } from '@firebase/util';
-import '../css/Form.css'
+import '../css/Form.sass'
 
 import TagButtonList from './TagButton.js';
 
-import '../css/Form.css';
+import '../css/Form.sass';
 
 function Form(props) {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Tag.css';
+import '../css/Tag.sass';
 
 function Tag(props){
   let thisItem = props.item;

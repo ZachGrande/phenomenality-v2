@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import '../css/Bank.css';
+import '../css/Bank.sass';
 import { useAuthState } from "react-firebase-hooks/auth";
 import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import TagButtonList from './TagButton.js';
 import allTags from './tags.js';
-import '../css/Popup.css';
+import '../css/Popup.sass';
 
 import 'firebase/auth';
 import 'firebase/database';
@@ -14,7 +14,7 @@ import 'firebase/database';
 import CardList from './Card.js';
 import TagList from './Tag.js';
 
-import '../css/Bank.css';
+import '../css/Bank.sass';
 
 function Bank() {
 

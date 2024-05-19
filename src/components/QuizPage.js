@@ -1,8 +1,8 @@
 import QuizContent from './QuizContent.js';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import './QuizPage.css';
-import './Responsive.css';
+import './QuizPage.sass';
+import './Responsive.sass';
 
 // The visable content for the quiz page
 function QuizPage(props) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/AddAccomplishment.css';
+import '../css/AddAccomplishment.sass';
 import app from '../config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';

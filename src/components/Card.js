@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Card.css';
+import '../css/Card.sass';
 import TagList from './Tag.js';
 
 function Card(props) {

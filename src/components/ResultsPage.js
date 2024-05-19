@@ -2,7 +2,7 @@
 // var CanvasJSReact = require('./assets/canvasjs.react');
 import CanvasJSReact from './assets/canvasjs.react';
 import { Link } from 'react-router-dom';
-import './ResultsPage.css';
+import './ResultsPage.sass';
 // var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
