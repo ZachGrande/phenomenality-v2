@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
 import CanvasJSReact from '../assets/canvasjs.react';
-import '../css/Quiz.sass'
+import '../styles/Quiz.sass'
 import { Link } from 'react-router-dom';
-import '../css/Navigation.sass'
+import '../styles/Navigation.sass'
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 

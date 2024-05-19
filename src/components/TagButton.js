@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Tag.sass';
+import '../styles/Tag.sass';
 
 function TagButton(props){
   let thisItem = props.item;

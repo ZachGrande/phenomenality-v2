@@ -1,5 +1,5 @@
 import genius from '../../assets/imposter-types/genius.svg';
-import '../../css/Types.sass';
+import '../../styles/Types.sass';
 
 function Genius() {
   return(

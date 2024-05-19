@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/App.sass';
+import '../styles/App.sass';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Navigation from './Navigation.js';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import superhero from '../../assets/imposter-types/superhero.svg';
-import '../../css/Types.sass';
+import '../../styles/Types.sass';
 
 // Function returns all of page's content
 function Superhuman() {
