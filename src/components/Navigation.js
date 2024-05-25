@@ -39,7 +39,7 @@ function toggleDropDown() {
 
   return (
     <nav>
-      <div className="navigation">
+      <div className="navigation w-100 p-3">
         <ul>
           <Link className="keepStrengthen navbar-link home-font" to="/">
             phenomenality | strengthen your mentality
