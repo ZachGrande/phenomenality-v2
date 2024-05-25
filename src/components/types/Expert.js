@@ -1,5 +1,5 @@
 import expert from '../../assets/imposter-types/expert.svg';
-import '../../css/Types.css';
+import '../../styles/Types.sass';
 
 function Expert() {
   return(

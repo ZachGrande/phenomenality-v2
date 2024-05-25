@@ -1,4 +1,4 @@
-import '../css/About.css';
+import '../styles/About.sass';
 import ZachGrande from '../assets/team-photos/ZachGrande.png';
 import EliseAdams from '../assets/team-photos/EliseAdams.jpg';
 import ValerieTse from '../assets/team-photos/ValerieTse.jpg';

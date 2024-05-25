@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import '../css/Authentication.css';
+import '../styles/Authentication.sass';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
   onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
 import { getDatabase, ref, set, update, onValue } from 'firebase/database';

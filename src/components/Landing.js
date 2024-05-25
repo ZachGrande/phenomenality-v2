@@ -1,4 +1,4 @@
-import '../css/Landing.css'
+import '../styles/Landing.sass'
 import BankDemo from '../assets/landing-photos/bank-demo.svg';
 import About from './About.js';
 import Welcome from '../assets/landing-photos/welcome.jpg';

@@ -1,4 +1,4 @@
-import '../css/Navigation.css'
+import '../styles/Navigation.sass'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';

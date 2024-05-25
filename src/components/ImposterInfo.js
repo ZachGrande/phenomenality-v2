@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../css/ImposterInfo.css';
+import '../styles/ImposterInfo.sass';
 import expert from '../assets/imposter-types/expert.svg';
 import genius from '../assets/imposter-types/genius.svg';
 import perfectionist from '../assets/imposter-types/perfectionist.svg';

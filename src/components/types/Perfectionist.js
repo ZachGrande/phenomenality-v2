@@ -1,5 +1,5 @@
 import perfectionist from '../../assets/imposter-types/perfectionist.svg';
-import '../../css/Types.css';
+import '../../styles/Types.sass';
 
 function Perfectionist() {
   return(
