@@ -40,7 +40,7 @@ function toggleDropDown() {
   return (
     <nav>
       <div className="navigation w-100 p-3">
-        <ul>
+        <ul className="mb-0">
           <Link className="keepStrengthen navbar-link home-font" to="/">
             phenomenality | strengthen your mentality
           </Link>
@@ -137,9 +137,8 @@ function toggleDropDown() {
             </div> }
             <button className="carrot-menu" onClick={toggleDropDown}>
               <div className="menu">
-                <p>menu
-                  <img className={"carrot-icon" + (!showDropDownMenu ? ' rotated' : '')} src={downCarrot} alt="Bank" width="12%" height="12%"/>
-                </p>
+                <p className="mb-0 d-inline-block align-top">menu</p>
+                <img className={"carrot-icon d-inline-block" + (!showDropDownMenu ? ' rotated' : '')} src={downCarrot} alt="Bank" width="12%" height="12%"/>
               </div>
             </button>
         </ul>
