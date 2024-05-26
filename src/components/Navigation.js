@@ -50,28 +50,28 @@ function toggleDropDown() {
           {showDropDownMenu ?
             <div className="dropDown dropDownContainer" id="popupForm">
               <ul>
-                <li className="navvy">
+                <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="/accomplishments">
                     accomplishments
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy">
+                <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="/bank">
                     your bank
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy">
+                <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="quiz">
                     quiz
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy">
+                <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="more-info">
                     imposter phenomenon
                   </Link>
@@ -79,7 +79,7 @@ function toggleDropDown() {
                 </li>
                 <br></br>
                 <br></br>
-                <li className="dropdownInitials">
+                <li className="dropdownInitials d-inline">
                   <Link className="navbar-link link-font dropdownInitials" to="/authentication">
                   {initials ?
                     <div className="initials">
@@ -100,27 +100,27 @@ function toggleDropDown() {
             </div>
           : 
             <div className="nav-left">
-              <li className="navvy">
+              <li className="navvy d-inline">
                 <Link className="navbar-link link-font" to="/accomplishments">
                   accomplishments
                 </Link>
               </li>
-              <li className="navvy">
+              <li className="navvy d-inline">
                 <Link className="navbar-link link-font" to="/bank">
                   your bank
                 </Link>
               </li>
-              <li className="navvy">
+              <li className="navvy d-inline">
                 <Link className="navbar-link link-font" to="quiz">
                   quiz
                 </Link>
               </li>
-              <li className="navvy">
+              <li className="navvy d-inline">
                 <Link className="navbar-link link-font" to="more-info">
                   imposter phenomenon
                 </Link>
               </li>
-              <li>
+              <li className="d-inline">
                 <Link className="navbar-link link-font" to="/authentication">
                   {initials ?
                     <div className="initials">
