@@ -172,7 +172,7 @@ function Bank() {
   function tagListContainer() {
     return (
       <div>
-       <h2 className="tag-title">filter tags</h2>
+       <h2 className="tag-title mx-3">filter tags</h2>
           <p className="tag-desc"> select a tag you would like to filter through your accomplishments with!</p>
         <TagButtonList items={allTags}
           activeTags={existingTags}
@@ -185,7 +185,7 @@ function Bank() {
 
   if (items.length > 0 && showEditPopup) { 
     return (
-      <div>
+      <div className="container">
         <div className="formPopup" id="popupForm">
           <form action="/action_page.php" className="formContainer">
             <h3>edit accomplishment {currentEditId}</h3>
@@ -243,7 +243,7 @@ function Bank() {
   } 
   else if (items.length > 0) {
     return (
-      <div>
+      <div className="container">
         <div className="card-list">
         <h1 className="bank-h1">all accomplishments</h1>
         {tagListContainer()}
@@ -257,10 +257,11 @@ function Bank() {
     )
   } else {
     return (
-      <div>
+      <div className="container-xl">
         <h1 className="bank-h1">You have not added to your accomplishment bank!</h1>
+        {/* TODO: This should not be visible if no accomplishments are present */}
         <div>
-          <h2 className="tag-title">filter tags</h2>
+          <h2 className="tag-title mx-3">filter tags</h2>
           <p className="tag-desc"> select a tag you would like to filter through your accomplishments with!</p>
           <TagButtonList items={allTags}
             activeTags={existingTags}

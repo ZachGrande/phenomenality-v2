@@ -49,7 +49,7 @@ function toggleDropDown() {
           </Link>
           {showDropDownMenu ?
             <div className="dropDown dropDownContainer" id="popupForm">
-              <ul>
+              <ul className="px-4">
                 <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="/accomplishments">
                     accomplishments
