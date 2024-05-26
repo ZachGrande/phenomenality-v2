@@ -100,27 +100,27 @@ function toggleDropDown() {
             </div>
           : 
             <div className="nav-left">
-              <li className="navvy d-inline">
+              <li className="navvy d-inline mx-2">
                 <Link className="navbar-link link-font" to="/accomplishments">
                   accomplishments
                 </Link>
               </li>
-              <li className="navvy d-inline">
+              <li className="navvy d-inline mx-2">
                 <Link className="navbar-link link-font" to="/bank">
                   your bank
                 </Link>
               </li>
-              <li className="navvy d-inline">
+              <li className="navvy d-inline mx-2">
                 <Link className="navbar-link link-font" to="quiz">
                   quiz
                 </Link>
               </li>
-              <li className="navvy d-inline">
+              <li className="navvy d-inline mx-2">
                 <Link className="navbar-link link-font" to="more-info">
                   imposter phenomenon
                 </Link>
               </li>
-              <li className="d-inline">
+              <li className="d-inline mx-2">
                 <Link className="navbar-link link-font" to="/authentication">
                   {initials ?
                     <div className="initials">
