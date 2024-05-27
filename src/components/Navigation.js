@@ -39,8 +39,8 @@ function toggleDropDown() {
 
   return (
     <nav>
-      <div className="navigation">
-        <ul>
+      <div className="navigation w-100 p-3">
+        <ul className="mb-0 px-0">
           <Link className="keepStrengthen navbar-link home-font" to="/">
             phenomenality | strengthen your mentality
           </Link>
@@ -49,29 +49,29 @@ function toggleDropDown() {
           </Link>
           {showDropDownMenu ?
             <div className="dropDown dropDownContainer" id="popupForm">
-              <ul>
-                <li className="navvy">
+              <ul className="px-4">
+                <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="/accomplishments">
                     accomplishments
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy">
+                <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="/bank">
                     your bank
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy">
+                <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="quiz">
                     quiz
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy">
+                <li className="navvy d-inline">
                   <Link className="navbar-link link-font" to="more-info">
                     imposter phenomenon
                   </Link>
@@ -79,7 +79,7 @@ function toggleDropDown() {
                 </li>
                 <br></br>
                 <br></br>
-                <li className="dropdownInitials">
+                <li className="dropdownInitials d-inline">
                   <Link className="navbar-link link-font dropdownInitials" to="/authentication">
                   {initials ?
                     <div className="initials">
@@ -100,27 +100,27 @@ function toggleDropDown() {
             </div>
           : 
             <div className="nav-left">
-              <li className="navvy">
+              <li className="navvy d-inline mx-2">
                 <Link className="navbar-link link-font" to="/accomplishments">
                   accomplishments
                 </Link>
               </li>
-              <li className="navvy">
+              <li className="navvy d-inline mx-2">
                 <Link className="navbar-link link-font" to="/bank">
                   your bank
                 </Link>
               </li>
-              <li className="navvy">
+              <li className="navvy d-inline mx-2">
                 <Link className="navbar-link link-font" to="quiz">
                   quiz
                 </Link>
               </li>
-              <li className="navvy">
+              <li className="navvy d-inline mx-2">
                 <Link className="navbar-link link-font" to="more-info">
                   imposter phenomenon
                 </Link>
               </li>
-              <li>
+              <li className="d-inline mx-2">
                 <Link className="navbar-link link-font" to="/authentication">
                   {initials ?
                     <div className="initials">
@@ -137,9 +137,8 @@ function toggleDropDown() {
             </div> }
             <button className="carrot-menu" onClick={toggleDropDown}>
               <div className="menu">
-                <p>menu
-                  <img className={"carrot-icon" + (!showDropDownMenu ? ' rotated' : '')} src={downCarrot} alt="Bank" width="12%" height="12%"/>
-                </p>
+                <p className="mb-0 d-inline-block align-top">menu</p>
+                <img className={"carrot-icon d-inline-block" + (!showDropDownMenu ? ' rotated' : '')} src={downCarrot} alt="Bank" width="12%" height="12%"/>
               </div>
             </button>
         </ul>

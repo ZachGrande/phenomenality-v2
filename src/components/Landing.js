@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 function Landing() {
   return(
     <div className='landing'>
-      <div className="welcome flex-container">
+      <div className="welcome p-3 flex-container">
         <div className="left-side"> 
           <h1>welcome to your personal cheerleader!</h1>
           <p className="landing-para">log your daily accomplishments and mitigate the 
@@ -23,7 +23,7 @@ function Landing() {
         </div>
       </div>         
 
-      <div className="filter flex-container">
+      <div className="filter flex-container p-3">
         <div className='left-side'>
           <img src={BankDemo} alt="Bank" width="25%" height="25%"/>
         </div>
@@ -39,7 +39,7 @@ function Landing() {
         </div>
       </div>
 
-      <div className="ipType flex-container">
+      <div className="ipType flex-container p-3">
         <div className='left-side'>
           <h2>see which imposter phenomenon type you most align with</h2>
           <p className="landing-para">take a quiz to find out some tricks and tips you can 
@@ -56,7 +56,7 @@ function Landing() {
         </div>
       </div>
 
-      <div className="what flex-container">
+      <div className="what flex-container p-3">
         <div className='left-side'>
           <img src={Question} alt="Individual Questioning" width="25%" height="25%"/>
         </div>
@@ -74,8 +74,8 @@ function Landing() {
         </div>
       </div>
 
-      <div className="about">
-        <About></About>
+      <div className="about p-3">
+        <About />
       </div>
       
     </div>
