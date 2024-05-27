@@ -14,7 +14,7 @@ export default class App extends React.Component {
           <meta charSet="utf-8" />
           <title>Phenomenality</title>
         </Helmet>
-        <Router>
+        <Router basename="/">
           <Routes>
             <Route path="/*" element={<SiteRouter />} />
           </Routes>
