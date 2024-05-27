@@ -20,7 +20,7 @@ function SiteRouter() {
   return (
     <Routes className="content-wrap">
       <Route element={<HomeLayout />}>
-        <Route index path="/" element={<Landing />} />
+        <Route index element={<Landing />} />
         <Route exact={true} path="/accomplishments" element={<AddAccomplishment />} />
         <Route exact={true} path="/accomplishments-complete" element={<AddEncouragement />} />
         <Route exact={true} path="/bank" element={<Bank />} />
