@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Landing from './Landing.js';
 import Bank from './Bank.js';
 import Questions from './Questions.js';
@@ -35,6 +35,7 @@ function SiteRouter() {
         <Route exact={true} path="/type-4" element={<Soloist />} />
         <Route exact={true} path="/type-5" element={<Expert />} />
       </Route>
+      <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   );
 }
