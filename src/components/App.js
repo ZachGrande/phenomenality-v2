@@ -31,7 +31,7 @@ export default class App extends React.Component {
         <Router className="content-wrap">
           <Navigation />
           <Routes>
-            <Route exact={true} path="/" element={<Landing />} />
+            <Route index path="/" element={<Landing />} />
             <Route exact={true} path="/accomplishments" element={<AddAccomplishment />} />
             <Route exact={true} path="/accomplishments-complete" element={<AddEncouragement />} />
             <Route exact={true} path="/bank" element={<Bank />} />
