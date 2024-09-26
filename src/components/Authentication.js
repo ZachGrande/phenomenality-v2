@@ -1,28 +1,24 @@
 import { React, useState, useEffect } from 'react';
 import '../styles/Authentication.sass';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword,
   onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
-import { getDatabase, ref, set, update, onValue } from 'firebase/database';
-
-import app from '../config';
-
-const auth = getAuth(app);
-const database = getDatabase(app);
+import { ref, set, update, onValue } from 'firebase/database';
+import useFirebase from '../hooks/useFirebase';
 
 function createEntryForUserInDatabase(user) {
+  const { database } = useFirebase;
   set(ref(database, 'users/' + user.uid), {
     email: user.email,
   });
 }
 
 function Authentication() {
+  const { user, auth, database } = useFirebase();
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
-  const [user, setUser] = useState({});
 
   const [loading, setLoading] = useState(true);
 
@@ -34,9 +30,10 @@ function Authentication() {
   const [position, setPosition] = useState("");
   const [welcomeName, setWelcomeName] = useState(null);
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-      setLoading(false);
+  console.log(auth);
+
+  onAuthStateChanged(auth, () => {
+    setLoading(false);
   })
 
   useEffect(() => {
@@ -49,7 +46,7 @@ function Authentication() {
       }
 
     });
-  }, [user]);
+  }, [database, user]);
 
   const register = async () => {
     setLoading(true);
@@ -84,26 +81,12 @@ function Authentication() {
     await signOut(auth);
   };
 
-  // const updateDisplayName = async () => {
-  //   updateProfile(auth.currentUser, {
-  //     displayName: displayName
-  //   }).then(() => {
-  //     update(ref(database, 'users/' + user.uid), {
-  //       displayName: user.displayName,
-  //     });
-  //   }).catch((error) => {
-  //     console.log("Error updating profile", error);
-  //   })
-  // }
-
   const buildProfile = async () => {
     setLoading(true);
     toggleFirstTimeUser();
 
     let currentInitials = firstName.charAt(0).toUpperCase() +
                    lastName.charAt(0).toUpperCase();
-    
-    // setInitials(currentInitials);
 
     updateProfile(auth.currentUser, {
       displayName: currentInitials
