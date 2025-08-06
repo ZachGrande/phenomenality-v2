@@ -29,4 +29,60 @@ jobs:
         with:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
       - name: Deploy preview to Firebase Hosting
-        run: firebase hosting:channel:deploy pr-${{ github.event.number }} --expires 7d --project phenomenality-v2
+        id: firebase-deploy
+        run: |
+          output=$(firebase hosting:channel:deploy pr-${{ github.event.number }} --expires 7d --project phenomenality-v2)
+          echo "$output"
+          
+          # Extract the preview URL from the output
+          preview_url=$(echo "$output" | grep -o 'https://[^[:space:]]*\.web\.app' | tail -1)
+          echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
+          
+          # Extract expiration date
+          expires=$(echo "$output" | grep -o 'expires [^]]*' | sed 's/expires //')
+          echo "expires_date=$expires" >> $GITHUB_OUTPUT
+      
+      - name: Comment PR with preview URL
+        uses: actions/github-script@v7
+        if: steps.firebase-deploy.outputs.preview_url
+        with:
+          script: |
+            const previewUrl = '${{ steps.firebase-deploy.outputs.preview_url }}';
+            const expiresDate = '${{ steps.firebase-deploy.outputs.expires_date }}';
+            const commitSha = '${{ github.event.pull_request.head.sha }}';
+            const shortSha = commitSha.substring(0, 7);
+            
+            // Format expiration date
+            const expiresFormatted = new Date(expiresDate).toUTCString();
+            
+            const commentBody = `## 🚀 Preview Deployment Ready!\n\n**✅ Your changes have been deployed successfully**\n\n### 🌐 Preview Environment\n**🔗 [${previewUrl}](${previewUrl})**\n\n### 📊 Deployment Details\n| Property | Value |\n|----------|-------|\n| **Commit** | \`${shortSha}\` |\n| **Expires** | ${expiresFormatted} |\n| **Environment** | Preview Channel \`pr-${context.issue.number}\` |\n| **Build** | Firebase Hosting |\n\n### 🔍 What to Test\n- ✅ Verify your changes work as expected\n- ✅ Test responsive design across devices\n- ✅ Check for any console errors\n- ✅ Validate accessibility features\n\n<sub>🔥 Powered by Firebase Hosting • 🤖 Automated with GitHub Actions</sub>\n<sub>Deployment signature: \`${commitSha}\`</sub>`;
+            
+            // Check if we already commented on this PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.login === 'github-actions[bot]' && 
+              comment.body.includes('Visit the preview URL for this PR')
+            );
+            
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            }
