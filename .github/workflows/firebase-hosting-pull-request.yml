@@ -79,7 +79,7 @@ jobs:
             
             const botComment = comments.find(comment => 
               comment.user.login === 'github-actions[bot]' && 
-              comment.body.includes('Visit the preview URL for this PR')
+              comment.body.includes('Preview Deployment Ready')
             );
             
             if (botComment) {
