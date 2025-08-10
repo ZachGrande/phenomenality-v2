@@ -50,7 +50,7 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            const templatePath = path.join(__dirname, '../../comment-template.md');
+            const templatePath = path.join(process.env.GITHUB_WORKSPACE, '.github/comment-template.md');
             let commentBody = fs.readFileSync(templatePath, 'utf8');
 
             const previewUrl = '${{ steps.firebase-deploy.outputs.preview_url }}';
