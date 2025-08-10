@@ -59,8 +59,8 @@ jobs:
             const shortSha = commitSha.substring(0, 7);
             const prNumber = context.issue.number;
 
-            // Format expiration date
-            const expiresFormatted = new Date(expiresDate).toUTCString();
+            // Format expiration date in Pacific Time
+            const expiresFormatted = new Date(expiresDate).toLocaleString('en-US', { timeZone: 'America/Los_Angeles', timeZoneName: 'short' });
 
             // Replace placeholders in the template
             commentBody = commentBody
