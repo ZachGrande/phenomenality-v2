@@ -39,7 +39,7 @@ jobs:
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
           
           # Extract expiration date
-          expires=$(echo "$output" | grep -o 'expires [^]]*' | sed 's/expires //')
+          expires=$(echo "$output" | grep -o 'expires [^]]*' | sed 's/expires //' | sed -E 's/\x1B\[[0-9;]*[mK]//g')
           echo "expires_date=$expires" >> $GITHUB_OUTPUT
       
       - name: Comment PR with preview URL
