@@ -63,7 +63,7 @@ function toggleDropDown() {
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy d-inline">
+                <li className={clsx(styles.navvy, "d-inline")}>
                   <Link className="navbar-link link-font" href="/bank">
                     your bank
                   </Link>
@@ -105,29 +105,29 @@ function toggleDropDown() {
               </div>
             </div>
           : 
-            <div className="nav-left">
-              <li className="navvy d-inline mx-2">
-                <Link className="navbar-link link-font" href="/accomplishments">
+            <div className={clsx(styles["nav-left"])}>
+              <li className={clsx(styles.navvy, "d-inline", "mx-2")}>
+                <Link className={clsx(styles["navbar-link"], styles["link-font"])} href="/accomplishments">
                   accomplishments
                 </Link>
               </li>
-              <li className="navvy d-inline mx-2">
-                <Link className="navbar-link link-font" href="/bank">
+              <li className={clsx(styles.navvy, "d-inline", "mx-2")}>
+                <Link className={clsx(styles["navbar-link"], styles["link-font"])} href="/bank">
                   your bank
                 </Link>
               </li>
-              <li className="navvy d-inline mx-2">
-                <Link className="navbar-link link-font" href="quiz">
+              <li className={clsx(styles.navvy, "d-inline", "mx-2")}>
+                <Link className={clsx(styles["navbar-link"], styles["link-font"])} href="quiz">
                   quiz
                 </Link>
               </li>
-              <li className="navvy d-inline mx-2">
-                <Link className="navbar-link link-font" href="more-info">
+              <li className={clsx(styles.navvy, "d-inline", "mx-2")}>
+                <Link className={clsx(styles["navbar-link"], styles["link-font"])} href="more-info">
                   imposter phenomenon
                 </Link>
               </li>
               <li className="d-inline mx-2">
-                <Link className="navbar-link link-font" href="/authentication">
+                <Link className={clsx(styles["navbar-link"], styles["link-font"])} href="/authentication">
                   {initials ?
                     <div className="initials">
                       {initials}
