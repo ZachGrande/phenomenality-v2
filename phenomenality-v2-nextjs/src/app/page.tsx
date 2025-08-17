@@ -1,7 +1,7 @@
 import Link from 'next/link';
+import clsx from 'clsx';
 import styles from '../styles/page.module.sass';
 import About from '../components/About';
-import clsx from 'clsx';
 
 export default function Page() {
   const BankDemo = '../assets/landing-photos/bank-demo.svg';
