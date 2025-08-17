@@ -45,21 +45,21 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="ipType flex-container p-3">
-          <div className="left-side">
+        <div className={clsx(styles.ipType, styles['flex-container'], 'p-3')}>
+          <div className={styles['left-side']}>
             <h2>see which imposter phenomenon type you most align with</h2>
-            <p className="landing-para">
+            <p className={styles['landing-para']}>
               take a quiz to find out some tricks and tips you can
               <br />
               phenomenality does not contain medical advice and is not meant to be a subsitute
               for professional care. if you are experiencing mental health challenges, we encourage
               you to seek out professional help.
             </p>
-            <div className="button-box quiz">
-              <Link aria-label="Take the Quiz" className="button rmv-underline accompBtn" role="button" href="/quiz">take the quiz</Link>
+            <div className={clsx(styles['button-box'], styles.quiz)}>
+              <Link aria-label="Take the Quiz" className={clsx(styles.button, styles['rmv-underline'], styles.accompBtn)} role="button" href="/quiz">take the quiz</Link>
             </div>
           </div>
-          <div className="right-side">
+          <div className={styles['right-side']}>
             <img src={Chart} alt="Individual Chart" width="10%" height="10%" />
           </div>
         </div>
