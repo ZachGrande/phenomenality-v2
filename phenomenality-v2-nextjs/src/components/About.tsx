@@ -1,12 +1,12 @@
 import './About.module.sass';
 
 function About() {
-  const ZachGrande = '../assets/team-photos/ZachGrande.png';
-  const EliseAdams = '../assets/team-photos/EliseAdams.jpg';
-  const ValerieTse = '../assets/team-photos/ValerieTse.jpg';
-  const TiffanyTse = '../assets/team-photos/TiffanyTse.jpg';
-  const RachelKinkley = '../assets/team-photos/RachelKinkley.jpeg';
-  const jackjack = '../assets/jack-jack.svg';
+  const ZachGrande = './images/ZachGrande.png';
+  const EliseAdams = './images/EliseAdams.jpg';
+  const ValerieTse = './images/ValerieTse.jpg';
+  const TiffanyTse = './images/TiffanyTse.jpg';
+  const RachelKinkley = './images/RachelKinkley.jpeg';
+  const jackjack = './images/jack-jack.svg';
 
   return(
     <div className="about">
