@@ -64,13 +64,13 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="what flex-container p-3">
-          <div className="left-side">
+        <div className={clsx(styles.what, styles['flex-container'], 'p-3')}>
+          <div className={styles['left-side']}>
             <img src={Question} alt="Individual Questioning" width="25%" height="25%" />
           </div>
-          <div className="right-side">
+          <div className={styles['right-side']}>
             <h2>what is imposter phenomenon?</h2>
-            <p className="landing-para">
+            <p className={styles['landing-para']}>
               imposter phenomenon is the feeling of doubt in one’s
               relevant knowledge and abilities regardless of experience
               or education, a common experience across young professionals
@@ -78,13 +78,13 @@ export default function Page() {
               encourages recognition of accomplishments by prompting you
               to document your daily wins!
             </p>
-            <div className="button-box types">
-              <Link aria-label="Learn more about Imposter Phenomenon" className="button rmv-underline accompBtn" role="button" href="/more-info">learn more</Link>
+            <div className={clsx(styles['button-box'], styles.types)}>
+              <Link aria-label="Learn more about Imposter Phenomenon" className={clsx(styles.button, styles['rmv-underline'], styles.accompBtn)} role="button" href="/more-info">learn more</Link>
             </div>
           </div>
         </div>
 
-        <div className="about p-3">
+        <div className={clsx(styles.about, 'p-3')}>
           <About />
         </div>
 
