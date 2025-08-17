@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
-import styles from '../styles/page.module.sass';
+import styles from './page.module.sass';
 import About from '../components/About';
 
 export default function Page() {
