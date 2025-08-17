@@ -8,6 +8,7 @@ import {
 } from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.sass';
+import clsx from 'clsx';
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -36,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.className} ${geistMono.className} ${playfairDisplay.className} ${sourceSans3.className}`}>
+    <html lang="en" className={clsx(geistSans.className, geistMono.className, playfairDisplay.className, sourceSans3.className)}>
       <body>{children}</body>
     </html>
   );
