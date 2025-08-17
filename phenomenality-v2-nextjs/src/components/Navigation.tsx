@@ -57,38 +57,38 @@ function toggleDropDown() {
             <div className={clsx(styles.dropDown, styles.dropDownContainer)} id="popupForm">
               <ul className="px-4">
                 <li className={clsx(styles.navvy, "d-inline")}>
-                  <Link className={clsx(styles['link-font'])} href="/accomplishments">
+                  <Link className={clsx(styles["navbar-link"], styles['link-font'])} href="/accomplishments">
                     accomplishments
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
                 <li className={clsx(styles.navvy, "d-inline")}>
-                  <Link className="navbar-link link-font" href="/bank">
+                  <Link className={clsx(styles["navbar-link"], styles["link-font"])} href="/bank">
                     your bank
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy d-inline">
-                  <Link className="navbar-link link-font" href="quiz">
+                <li className={clsx(styles.navvy, "d-inline")}>
+                  <Link className={clsx(styles["navbar-link"], styles["link-font"])} href="quiz">
                     quiz
                   </Link>
                   <br></br>
                   <br></br>
                 </li>
-                <li className="navvy d-inline">
-                  <Link className="navbar-link link-font" href="more-info">
+                <li className={clsx(styles.navvy, "d-inline")}>
+                  <Link className={clsx(styles["navbar-link"], styles["link-font"])} href="more-info">
                     imposter phenomenon
                   </Link>
                   <br></br>
                 </li>
                 <br></br>
                 <br></br>
-                <li className="dropdownInitials d-inline">
-                  <Link className="navbar-link link-font dropdownInitials" href="/authentication">
+                <li className={clsx(styles.dropdownInitials, "d-inline")}>
+                  <Link className={clsx(styles["navbar-link"], styles["link-font"], styles.dropdownInitials)} href="/authentication">
                   {initials ?
-                    <div className="initials">
+                    <div className={styles.initials}>
                       {initials}
                     </div>
                   :
@@ -100,7 +100,7 @@ function toggleDropDown() {
                   </Link>
                 </li>
               </ul>
-              <div className="popup-btn-center">
+              <div className={styles["popup-btn-center"]}>
                 {/* <button type="button" className="btn cancel" onClick={closeDropDownMenu}>close</button> */}
               </div>
             </div>
@@ -142,9 +142,9 @@ function toggleDropDown() {
               </li>
             </div> }
             <button className={styles['carrot-menu']} onClick={toggleDropDown}>
-              <div className="menu">
-                <p className="mb-0 d-inline-block align-top">menu</p>
-                <img className={"carrot-icon d-inline-block" + (!showDropDownMenu ? ' rotated' : '')} src={downCarrot} alt="Bank" width="12%" height="12%"/>
+              <div className={styles.menu}>
+                <p className={clsx(styles["link-font"], "mb-0 d-inline-block align-top")}>menu</p>
+                <img className={clsx(styles["carrot-icon"], "d-inline-block", (!showDropDownMenu ? styles.rotated : ''))} src={downCarrot} alt="Bank" width="12%" height="12%"/>
               </div>
             </button>
         </ul>
