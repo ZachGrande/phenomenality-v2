@@ -8,8 +8,8 @@ import {
 } from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.sass';
-import Navigation from './layout/Navigation';
 import clsx from 'clsx';
+import Navigation from './layout/Navigation';
 
 const geistSans = Geist({
   subsets: ['latin'],
