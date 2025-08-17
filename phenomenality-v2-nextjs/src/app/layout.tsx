@@ -7,7 +7,7 @@ import {
   Source_Sans_3 as SourceSans3,
 } from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../styles/globals.sass';
+import './globals.sass';
 import clsx from 'clsx';
 import Navigation from './layout/Navigation';
 
