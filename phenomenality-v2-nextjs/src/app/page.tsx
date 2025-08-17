@@ -1,81 +1,94 @@
-import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import Navigation from '../components/Navigation';
-import styles from '../styles/Landing.module.sass';
+import styles from '../styles/page.module.sass';
+import About from '../components/About';
+import clsx from 'clsx';
 
-export default function Home() {
+export default function Page() {
+  const BankDemo = '../assets/landing-photos/bank-demo.svg';
+  const Chart = '../assets/landing-photos/chart.svg';
+  const Welcome = '../assets/landing-photos/welcome.jpg';
+  const Question = '../assets/landing-photos/question.svg';
   return (
     <div className={styles.page}>
-      <Navigation />
-      <main className={styles.landing}>
-        <div className={styles.welcome}>
+      <div className={styles.landing}>
+        <div className={clsx(styles.welcome, 'p-3', styles['flex-container'])}>
           <div className={styles['left-side']}>
             <h1>welcome to your personal cheerleader!</h1>
-            <p>Log your daily accomplishments and mitigate the effects of imposter phenomenon.</p>
-            <div className={styles.buttonBox}>
-              <Link href="/authentication" className={styles.button}>Sign in</Link>
+            <p className={styles['landing-para']}>
+              log your daily accomplishments and mitigate the
+              effects of imposter phenomemon.
+            </p>
+            <div className={clsx(styles['button-box'], styles['sign-in'])}>
+              <Link aria-label="Sign in" className="button rmv-underline" role="button" href="/authentication">sign in</Link>
             </div>
           </div>
           <div className={styles['right-side']}>
-            <Image src="/assets/landing-photos/welcome.jpg" alt="Individuals Welcoming" width={500} height={500} />
+            <img src={Welcome} alt="Individuals Welcoming" width="50%" height="50%" />
           </div>
         </div>
 
-        <div className={styles.filter}>
-          <div className={styles.leftSide}>
-            <Image src="/assets/landing-photos/bank-demo.svg" alt="Bank" width={250} height={250} />
+        <div className={clsx(styles.filter, styles['flex-container'], 'p-3')}>
+          <div className={styles['left-side']}>
+            <img src={BankDemo} alt="Bank" width="25%" height="25%" />
           </div>
-          <div className={styles.rightSide}>
-            <h2>Filter and sort through all your accomplishments</h2>
-            <p>
-              Track your day-to-day wins and build confidence in yourself when reviewing your
-              accomplishments and cataloging resume-worthy achievements for easy reference.
+          <div className={styles['right-side']}>
+            <h2>filter and sort through all your accomplishments</h2>
+            <p className={styles['landing-para']}>
+              track your day to day wins and build confidence
+              in yourself when reviewing your accomplishments
+              and cataloging resume-worthy achievements for
+              easy reference.
             </p>
-            <div className={styles.buttonBox}>
-              <Link href="/accomplishments" className={styles.button}>Add an accomplishment</Link>
+            <div className={clsx(styles['button-box'], styles.accomp)}>
+              <Link aria-label="Add an Accomplishment" className={clsx(styles.button, styles['rmv-underline'], styles.accompBtn)} role="button" href="/accomplishments">add an accomplishment</Link>
             </div>
           </div>
         </div>
 
-        <div className={styles.ipType}>
-          <div className={styles.leftSide}>
-            <h2>See which imposter phenomenon type you most align with</h2>
-            <p>
-              Take a quiz to find out some tricks and tips. Phenomenality does not contain medical
-              advice and is not meant to be a substitute for professional care. If you are
-              experiencing mental health challenges, we encourage you to seek professional help.
+        <div className="ipType flex-container p-3">
+          <div className="left-side">
+            <h2>see which imposter phenomenon type you most align with</h2>
+            <p className="landing-para">
+              take a quiz to find out some tricks and tips you can
+              <br />
+              phenomenality does not contain medical advice and is not meant to be a subsitute
+              for professional care. if you are experiencing mental health challenges, we encourage
+              you to seek out professional help.
             </p>
-            <div className={styles.buttonBox}>
-              <Link href="/quiz" className={styles.button}>Take the quiz</Link>
+            <div className="button-box quiz">
+              <Link aria-label="Take the Quiz" className="button rmv-underline accompBtn" role="button" href="/quiz">take the quiz</Link>
             </div>
           </div>
-          <div className={styles.rightSide}>
-            <Image src="/chart.svg" alt="Individual Chart" width={100} height={100} />
+          <div className="right-side">
+            <img src={Chart} alt="Individual Chart" width="10%" height="10%" />
           </div>
         </div>
 
-        <div className={styles.what}>
-          <div className={styles.leftSide}>
-            <Image src="/question.svg" alt="Individual Questioning" width={250} height={250} />
+        <div className="what flex-container p-3">
+          <div className="left-side">
+            <img src={Question} alt="Individual Questioning" width="25%" height="25%" />
           </div>
-          <div className={styles.rightSide}>
-            <h2>What is imposter phenomenon?</h2>
-            <p>
-              Imposter phenomenon is the feeling of doubt in one’s relevant knowledge and abilities
-              regardless of experience or education, a common experience across young professionals
-              who are gender minorities. To address this, Phenomenality encourages recognition of
-              accomplishments by prompting you to document your daily wins!
+          <div className="right-side">
+            <h2>what is imposter phenomenon?</h2>
+            <p className="landing-para">
+              imposter phenomenon is the feeling of doubt in one’s
+              relevant knowledge and abilities regardless of experience
+              or education, a common experience across young professionals
+              who are gender minorities. to address this, phenomenality
+              encourages recognition of accomplishments by prompting you
+              to document your daily wins!
             </p>
-            <div className={styles.buttonBox}>
-              <Link href="/more-info" className={styles.button}>Learn more</Link>
+            <div className="button-box types">
+              <Link aria-label="Learn more about Imposter Phenomenon" className="button rmv-underline accompBtn" role="button" href="/more-info">learn more</Link>
             </div>
           </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <p>&copy; 2022 University of Washington - Team Orka</p>
-      </footer>
+
+        <div className="about p-3">
+          <About />
+        </div>
+
+      </div>
     </div>
   );
 }
