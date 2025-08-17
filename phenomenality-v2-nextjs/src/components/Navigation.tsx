@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // import leafActive from 'assets/leaf-active.svg';
@@ -93,11 +94,12 @@ function Navigation() {
                           </div>
                         )
                         : (
-                          <img
+                          <Image
                             src={profileButton}
                             onMouseOver={toggleProfileButton}
                             onMouseLeave={toggleProfileButton}
                             width="50"
+                            height="50"
                             alt="profile"
                           />
                         )}
@@ -105,7 +107,8 @@ function Navigation() {
                   </li>
                 </ul>
                 <div className={styles['popup-btn-center']}>
-                  {/* <button type="button" className="btn cancel" onClick={closeDropDownMenu}>close</button> */}
+                  {/* <button type="button" className="btn cancel"
+                      onClick={closeDropDownMenu}>close</button> */}
                 </div>
               </div>
             )
@@ -140,11 +143,12 @@ function Navigation() {
                         </div>
                       )
                       : (
-                        <img
+                        <Image
                           src={profileButton}
                           onMouseOver={toggleProfileButton}
                           onMouseLeave={toggleProfileButton}
                           width="46"
+                          height="46"
                           alt="profile"
                         />
                       )}
@@ -152,10 +156,16 @@ function Navigation() {
                 </li>
               </div>
             ) }
-          <button className={styles['carrot-menu']} onClick={toggleDropDown}>
+          <button type="button" className={styles['carrot-menu']} onClick={toggleDropDown}>
             <div className={styles.menu}>
               <p className={clsx(styles['link-font'], 'mb-0 d-inline-block align-top')}>menu</p>
-              <img className={clsx(styles['carrot-icon'], 'd-inline-block', (!showDropDownMenu ? styles.rotated : ''))} src={downCarrot} alt="Bank" width="12%" height="12%" />
+              <img
+                className={clsx(styles['carrot-icon'], 'd-inline-block', (!showDropDownMenu ? styles.rotated : ''))}
+                src={downCarrot}
+                alt="Bank"
+                width="12%"
+                height="12%"
+              />
             </div>
           </button>
         </ul>
