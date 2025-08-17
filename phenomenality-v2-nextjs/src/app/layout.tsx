@@ -8,6 +8,7 @@ import {
 } from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.sass';
+import Navigation from './layout/Navigation';
 import clsx from 'clsx';
 
 const geistSans = Geist({
@@ -38,6 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={clsx(geistSans.className, geistMono.className, playfairDisplay.className, sourceSans3.className)}>
+      <Navigation />
       <body>{children}</body>
     </html>
   );

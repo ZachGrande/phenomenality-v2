@@ -8,8 +8,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // import leafInactive from 'assets/leaf-inactive.svg';
 // import downCarrot from 'assets/down-carrot.svg';
 import clsx from 'clsx';
-import styles from '../styles/Navigation.module.sass';
-import app from '../config';
+import styles from './Navigation.module.sass';
+import app from '../../config';
 
 const leafActive = 'assets/leaf-active.svg';
 const leafInactive = 'assets/leaf-inactive.svg';
