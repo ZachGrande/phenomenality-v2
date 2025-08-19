@@ -1,46 +1,47 @@
-import './About.module.sass';
+import Image from 'next/image';
+import styles from './About.module.sass';
+
+import ZachGrande from './images/ZachGrande.png';
+import EliseAdams from './images/EliseAdams.jpg';
+import ValerieTse from './images/ValerieTse.jpg';
+import TiffanyTse from './images/TiffanyTse.jpg';
+import RachelKinkley from './images/RachelKinkley.jpeg';
+import jackjack from './images/jack-jack.svg';
 
 export default function About() {
-  const ZachGrande = './images/ZachGrande.png';
-  const EliseAdams = './images/EliseAdams.jpg';
-  const ValerieTse = './images/ValerieTse.jpg';
-  const TiffanyTse = './images/TiffanyTse.jpg';
-  const RachelKinkley = './images/RachelKinkley.jpeg';
-  const jackjack = './images/jack-jack.svg';
-
   return (
-    <div className="about">
+    <div className={styles.about}>
       <h1>the team</h1>
 
-      <div className="member-group">
-        <div className="member">
-          <img src={EliseAdams} alt="Elise" />
+      <div className={styles['member-group']}>
+        <div className={styles.member}>
+          <Image src={EliseAdams} alt="Elise" className={styles['member-photo']} />
           <p className="member-name">elise adams</p>
           <p className="member-role">project manager/research</p>
         </div>
-        <div className="member">
-          <img src={ZachGrande} alt="Zach" />
+        <div className={styles.member}>
+          <Image src={ZachGrande} alt="Zach" className={styles['member-photo']} />
           <p className="member-name">zach grande</p>
           <p className="member-role">full-stack development</p>
         </div>
-        <div className="member">
-          <img src={RachelKinkley} alt="Rachel" />
+        <div className={styles.member}>
+          <Image src={RachelKinkley} alt="Rachel" className={styles['member-photo']} />
           <p className="member-name">rachel kinkley</p>
           <p className="member-role">front-end/research</p>
         </div>
-        <div className="member">
-          <img src={TiffanyTse} alt="Tiffany" />
+        <div className={styles.member}>
+          <Image src={TiffanyTse} alt="Tiffany" className={styles['member-photo']} />
           <p className="member-name">tiffany tse</p>
           <p className="member-role">front-end/ui</p>
         </div>
-        <div className="member">
-          <img src={ValerieTse} alt="Valerie" />
+        <div className={styles.member}>
+          <Image src={ValerieTse} alt="Valerie" className={styles['member-photo']} />
           <p className="member-name">valerie tse</p>
           <p className="member-role">program manager/ux</p>
         </div>
       </div>
 
-      <div className="thanks">
+      <div className={styles.thanks}>
         <p>
           with many thanks to jeremy zaretzky, emily porter, laura schildkraut,
           mina tari, and milla titova
@@ -48,8 +49,8 @@ export default function About() {
         <h6>
           NOTICE UPDATE: beginning 5/26 the development of “phenomenality” has shut down.
         </h6>
-        <div className="jackjack-container">
-          <img className="jackjack" src={jackjack} alt="logo" />
+        <div className={styles['jackjack-container']}>
+          <Image className={styles.jackjack} src={jackjack} alt="phenomenality logo" />
         </div>
       </div>
     </div>
