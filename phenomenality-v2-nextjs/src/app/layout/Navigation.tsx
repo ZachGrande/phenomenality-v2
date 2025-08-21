@@ -4,16 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-// import leafActive from 'assets/leaf-active.svg';
-// import leafInactive from 'assets/leaf-inactive.svg';
-// import downCarrot from 'assets/down-carrot.svg';
 import clsx from 'clsx';
 import styles from './Navigation.module.sass';
 import app from '../../config';
+import leafActive from '../../assets/icons/leaf-active.svg';
+import leafInactive from '../../assets/icons/leaf-inactive.svg';
+import downCarrot from '../../assets/icons/down-carrot.svg';
 
-const leafActive = 'assets/leaf-active.svg';
-const leafInactive = 'assets/leaf-inactive.svg';
-const downCarrot = 'assets/down-carrot.svg';
 const auth = getAuth(app);
 
 function Navigation() {
@@ -159,12 +156,11 @@ function Navigation() {
           <button type="button" className={styles['carrot-menu']} onClick={toggleDropDown}>
             <div className={styles.menu}>
               <p className={clsx(styles['link-font'], 'mb-0 d-inline-block align-top')}>menu</p>
-              <img
+              <Image
                 className={clsx(styles['carrot-icon'], 'd-inline-block', (!showDropDownMenu ? styles.rotated : ''))}
                 src={downCarrot}
-                alt="Bank"
-                width="12%"
-                height="12%"
+                alt="menu"
+                style={{ width: '12%', height: 'auto' }}
               />
             </div>
           </button>
