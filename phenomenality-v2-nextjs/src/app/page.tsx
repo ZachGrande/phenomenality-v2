@@ -1,13 +1,15 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import clsx from 'clsx';
 import styles from './page.module.sass';
 import About from '../components/About';
 
+import BankDemo from '../assets/landing-photos/bank-demo.svg';
+import Chart from '../assets/landing-photos/chart.svg';
+import Welcome from '../assets/landing-photos/welcome.jpg';
+import Question from '../assets/landing-photos/question.svg';
+
 export default function Page() {
-  const BankDemo = '../assets/landing-photos/bank-demo.svg';
-  const Chart = '../assets/landing-photos/chart.svg';
-  const Welcome = '../assets/landing-photos/welcome.jpg';
-  const Question = '../assets/landing-photos/question.svg';
   return (
     <div className={styles.page}>
       <div className={styles.landing}>
@@ -23,13 +25,13 @@ export default function Page() {
             </div>
           </div>
           <div className={styles['right-side']}>
-            <img src={Welcome} alt="Individuals Welcoming" width="50%" height="50%" />
+            <Image src={Welcome} alt="Individuals Welcoming" className={styles.landingImage} />
           </div>
         </div>
 
         <div className={clsx(styles.filter, styles['flex-container'], 'p-3')}>
           <div className={styles['left-side']}>
-            <img src={BankDemo} alt="Bank" width="25%" height="25%" />
+            <Image src={BankDemo} alt="Bank" className={styles.landingImage} />
           </div>
           <div className={styles['right-side']}>
             <h2>filter and sort through all your accomplishments</h2>
@@ -60,13 +62,13 @@ export default function Page() {
             </div>
           </div>
           <div className={styles['right-side']}>
-            <img src={Chart} alt="Individual Chart" width="10%" height="10%" />
+            <Image src={Chart} alt="Individual Chart" className={styles.landingImage} />
           </div>
         </div>
 
         <div className={clsx(styles.what, styles['flex-container'], 'p-3')}>
           <div className={styles['left-side']}>
-            <img src={Question} alt="Individual Questioning" width="25%" height="25%" />
+            <Image src={Question} alt="Individual Questioning" className={styles.landingImage} />
           </div>
           <div className={styles['right-side']}>
             <h2>what is imposter phenomenon?</h2>
