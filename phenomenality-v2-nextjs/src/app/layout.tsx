@@ -38,7 +38,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={clsx(geistSans.className, geistMono.className, playfairDisplay.className, sourceSans3.className)}>
+    <html
+      lang="en"
+      className={clsx(
+        geistSans.className,
+        geistMono.className,
+        playfairDisplay.className,
+        sourceSans3.className,
+      )}
+    >
       <Navigation />
       <body>{children}</body>
     </html>
