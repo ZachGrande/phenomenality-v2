@@ -38,3 +38,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Upgrading framework
 
 The Codemod utility helps run transformations on the codebase. Find the guide here: https://nextjs.org/docs/app/guides/upgrading/codemods
+
+## Upgrading linter
+
+Next.js v16 will deprecate `next lint`. We migrated to full support for `eslint` v9 with a new linter configuration using `prettier`.
+
+```bash
+npx @eslint/migrate-config eslint.config.mjs
+```
