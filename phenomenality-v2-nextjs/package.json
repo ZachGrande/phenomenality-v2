@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --config eslint.config.mts",
-    "format": "eslint . --config eslint.config.mts --fix",
-    "check-format": "prettier --check ."
+    "format": "eslint . --config eslint.config.mts --fix"
   },
   "dependencies": {
     "bootstrap": "^5.3.7",
