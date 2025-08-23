@@ -29,7 +29,7 @@ export default defineConfig([
     files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
     plugins: { prettier },
     rules: {
-      'prettier/prettier': ['error', { singleQuote: true }],
+      'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'all' }],
     },
   },
 ]);
