@@ -1,13 +1,14 @@
 import React from 'react';
-import Image from 'next/image';
-import styles from './About.module.sass';
 
-import ZachGrande from './images/ZachGrande.png';
+import Image from 'next/image';
+
+import styles from './About.module.sass';
 import EliseAdams from './images/EliseAdams.jpg';
-import ValerieTse from './images/ValerieTse.jpg';
-import TiffanyTse from './images/TiffanyTse.jpg';
-import RachelKinkley from './images/RachelKinkley.jpeg';
 import jackjack from './images/jack-jack.svg';
+import RachelKinkley from './images/RachelKinkley.jpeg';
+import TiffanyTse from './images/TiffanyTse.jpg';
+import ValerieTse from './images/ValerieTse.jpg';
+import ZachGrande from './images/ZachGrande.png';
 
 export default function About() {
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
-import type { Metadata } from 'next';
+
+import clsx from 'clsx';
 import {
   Geist,
   Geist_Mono as GeistMono,
@@ -8,8 +9,10 @@ import {
 } from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.css';
 import './globals.sass';
-import clsx from 'clsx';
+
 import Navigation from './layout/Navigation';
+
+import type { Metadata } from 'next';
 
 const geistSans = Geist({
   subsets: ['latin'],

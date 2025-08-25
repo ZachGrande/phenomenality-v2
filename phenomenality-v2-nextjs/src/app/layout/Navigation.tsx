@@ -1,16 +1,19 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
 import clsx from 'clsx';
-import styles from './Navigation.module.sass';
-import app from '../../config';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import downCarrot from '../../assets/icons/down-carrot.svg';
 import leafActive from '../../assets/icons/leaf-active.svg';
 import leafInactive from '../../assets/icons/leaf-inactive.svg';
-import downCarrot from '../../assets/icons/down-carrot.svg';
+import app from '../../config';
+
+import styles from './Navigation.module.sass';
 
 const auth = getAuth(app);
 

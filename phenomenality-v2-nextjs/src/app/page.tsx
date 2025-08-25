@@ -1,14 +1,16 @@
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+
 import clsx from 'clsx';
-import styles from './page.module.sass';
-import About from '../components/About';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import BankDemo from '../assets/landing-photos/bank-demo.svg';
 import Chart from '../assets/landing-photos/chart.svg';
-import Welcome from '../assets/landing-photos/welcome.jpg';
 import Question from '../assets/landing-photos/question.svg';
+import Welcome from '../assets/landing-photos/welcome.jpg';
+import About from '../components/About';
+
+import styles from './page.module.sass';
 
 export default function Page() {
   return (

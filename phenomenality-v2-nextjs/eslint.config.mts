@@ -1,11 +1,13 @@
+import { version as reactVersion } from 'react';
+
 import js from '@eslint/js';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import prettierConfig from 'eslint-config-prettier';
+import pluginImport from 'eslint-plugin-import';
+import prettier from 'eslint-plugin-prettier';
+import pluginReact from 'eslint-plugin-react';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import pluginReact from 'eslint-plugin-react';
-import { defineConfig, globalIgnores } from 'eslint/config';
-import prettier from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
-import { version as reactVersion } from 'react';
 
 export default defineConfig([
   globalIgnores(['.next/']),
@@ -37,6 +39,37 @@ export default defineConfig([
       'prettier/prettier': [
         'error',
         { singleQuote: true, trailingComma: 'all' },
+      ],
+    },
+  },
+  {
+    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    plugins: { import: pluginImport },
+    rules: {
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+            'object',
+            'type',
+          ],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+          pathGroups: [
+            {
+              pattern: 'react',
+              group: 'external',
+              position: 'before',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['react'],
+        },
       ],
     },
   },
