@@ -8,6 +8,7 @@ import css from '@eslint/css';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import { version as reactVersion } from 'react';
 
 export default defineConfig([
   globalIgnores(['.next/']),
@@ -19,6 +20,13 @@ export default defineConfig([
   },
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {
+    settings: {
+      react: {
+        version: reactVersion,
+      },
+    },
+  },
   // { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
   // { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
   // { files: ["**/*.json5"], plugins: { json }, language: "json/json5", extends: ["json/recommended"] },
