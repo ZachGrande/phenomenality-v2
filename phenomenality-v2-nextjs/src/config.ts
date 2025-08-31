@@ -1,4 +1,4 @@
-import { getAnalytics } from 'firebase/analytics';
+import { getAnalytics, Analytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
@@ -15,6 +15,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
+
+export const getClientAnalytics = (): Analytics | null => {
+  if (typeof window === 'undefined') return null;
+  return getAnalytics(app);
+};
 
 export default app;
