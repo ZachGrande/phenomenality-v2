@@ -8,10 +8,10 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import downCarrot from '../../assets/icons/down-carrot.svg';
-import leafActive from '../../assets/icons/leaf-active.svg';
-import leafInactive from '../../assets/icons/leaf-inactive.svg';
 import app from '../../config';
+import downCarrot from '../_assets/icons/down-carrot.svg';
+import leafActive from '../_assets/icons/leaf-active.svg';
+import leafInactive from '../_assets/icons/leaf-inactive.svg';
 
 import styles from './Navigation.module.sass';
 

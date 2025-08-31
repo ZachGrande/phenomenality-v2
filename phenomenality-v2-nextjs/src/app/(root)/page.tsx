@@ -4,13 +4,13 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import BankDemo from '../assets/landing-photos/bank-demo.svg';
-import Chart from '../assets/landing-photos/chart.svg';
-import Question from '../assets/landing-photos/question.svg';
-import Welcome from '../assets/landing-photos/welcome.jpg';
-import About from '../components/About';
+import BankDemo from '../_assets/landing-photos/bank-demo.svg';
+import Chart from '../_assets/landing-photos/chart.svg';
+import Question from '../_assets/landing-photos/question.svg';
+import Welcome from '../_assets/landing-photos/welcome.jpg';
 
-import styles from './page.module.sass';
+import About from './_components/About';
+import styles from './_styles/page.module.sass';
 
 export default function Page() {
   return (

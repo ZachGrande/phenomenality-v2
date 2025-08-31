@@ -10,7 +10,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.css';
 import './globals.sass';
 
-import Navigation from './layout/Navigation';
+import Navigation from './_components/Navigation';
 
 import type { Metadata } from 'next';
 
