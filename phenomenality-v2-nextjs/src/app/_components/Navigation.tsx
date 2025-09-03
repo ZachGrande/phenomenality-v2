@@ -23,9 +23,11 @@ function Navigation() {
   const [profileButton, setProfileButton] = useState(leafInactive);
   const [showDropDownMenu, setShowDropDownMenu] = useState(false);
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
 
   useEffect(() => {
     setInitials(user?.displayName);
