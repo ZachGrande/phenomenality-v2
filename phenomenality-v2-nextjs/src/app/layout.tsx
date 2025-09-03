@@ -50,8 +50,10 @@ export default function RootLayout({
         sourceSans3.className,
       )}
     >
-      <Navigation />
-      <body>{children}</body>
+      <body>
+        <Navigation />
+        {children}
+      </body>
     </html>
   );
 }
