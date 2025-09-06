@@ -2,16 +2,16 @@
 
 import React, { useState, useEffect } from 'react';
 
-import styles from './_styles/page.module.sass';
-import clsx from 'clsx';
 import { map } from '@firebase/util';
+import clsx from 'clsx';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import app from '../../config';
+
 import WelcomeMessage from './_assets/accomplishment-demo/accomplishment-1.png';
 import DailyAccomplishment from './_assets/accomplishment-demo/accomplishment-2.png';
 import WonderfulAccomplishment from './_assets/accomplishment-demo/accomplishment-3.png';
@@ -19,9 +19,9 @@ import AccomplishmentComplete from './_assets/accomplishment-demo/accomplishment
 import SampleBank from './_assets/accomplishment-demo/accomplishment-5.png';
 import SampleBankFilter from './_assets/accomplishment-demo/accomplishment-6.png';
 import Welcome from './_assets/welcome-message.svg';
-
 import TagButtonList from './_components/TagButton';
 import tags from './_components/tags';
+import styles from './_styles/page.module.sass';
 
 function AddAccomplishment() {
   const auth = getAuth(app);
@@ -174,7 +174,9 @@ function AddAccomplishment() {
     return (
       <div className={styles.accomplishmentsSignedOut}>
         <h1 className={styles.h1}>you haven't logged in yet!</h1>
-        <p className={styles.p}>sign in to begin logging your accomplishments.</p>
+        <p className={styles.p}>
+          sign in to begin logging your accomplishments.
+        </p>
         <Link
           aria-label="Sign in"
           className={clsx('button', styles.button, styles['rmv-underline'])}
@@ -219,7 +221,11 @@ function AddAccomplishment() {
           />
         </div>
         <div>
-          <Image className={clsx(styles.demoPhoto, styles.odd)} src={SampleBank} alt="sample-bank" />
+          <Image
+            className={clsx(styles.demoPhoto, styles.odd)}
+            src={SampleBank}
+            alt="sample-bank"
+          />
         </div>
         <div>
           <Image
@@ -253,7 +259,9 @@ function AddAccomplishment() {
             </Link>
           </div>
           <div className="addNewAccomp">
-            <p className={clsx(styles['encrg-p'], styles.p)}>or add another accomplishment for today.</p>
+            <p className={clsx(styles['encrg-p'], styles.p)}>
+              or add another accomplishment for today.
+            </p>
             <button className="clickHereBtn" onClick={toggleHasLoggedToday}>
               add new accomplishment
             </button>
@@ -286,8 +294,12 @@ function AddAccomplishment() {
   } else {
     return (
       <div className="outline-box add-accomp">
-        <h1 className={clsx(styles.h1, styles.h1Accomp)}>daily accomplishment</h1>
-        <p className={clsx(styles['encrg-p'], styles.p)}>what would you like to record?</p>
+        <h1 className={clsx(styles.h1, styles.h1Accomp)}>
+          daily accomplishment
+        </h1>
+        <p className={clsx(styles['encrg-p'], styles.p)}>
+          what would you like to record?
+        </p>
         <div className="padding">
           <form>
             <textarea
