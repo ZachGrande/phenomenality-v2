@@ -2,12 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 
-import './_styles/page.module.sass';
+import styles from './_styles/page.module.sass';
+import clsx from 'clsx';
 import { map } from '@firebase/util';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import app from '../../config';
 import WelcomeMessage from './_assets/accomplishment-demo/accomplishment-1.png';
@@ -165,59 +167,63 @@ function AddAccomplishment() {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className={styles.p}>Loading...</p>;
   }
 
   if (!user) {
     return (
-      <div className="accomp-signedout">
-        <h1>you haven't logged in yet!</h1>
-        <p>sign in to begin logging your accomplishments.</p>
+      <div className={styles.accomplishmentsSignedOut}>
+        <h1 className={styles.h1}>you haven't logged in yet!</h1>
+        <p className={styles.p}>sign in to begin logging your accomplishments.</p>
         <Link
           aria-label="Sign in"
-          className="button rmv-underline"
+          className={clsx('button', styles.button, styles['rmv-underline'])}
           role="button"
           href="/authentication"
         >
           sign in
         </Link>
-        <h2 className="photo-header bloop">
+        <h2 className={clsx(styles.photoHeader, styles.bloop)}>
           here's what phenomenality can offer you!
         </h2>
         <div>
-          <img
-            className="demo-photo odd"
+          <Image
+            className={clsx(styles.demoPhoto, styles.odd)}
             src={WelcomeMessage}
             alt="welcome-message"
+            width={2876}
+            height={1794}
           />
         </div>
         <div>
-          <img
-            className="demo-photo even"
+          <Image
+            className={clsx(styles.demoPhoto, styles.even)}
             src={DailyAccomplishment}
             alt="daily-accomplishment"
+            width={2872}
+            height={1800}
           />
         </div>
         <div>
-          <img
-            className="demo-photo odd"
+          <Image
+            className={clsx(styles.demoPhoto, styles.odd)}
             src={WonderfulAccomplishment}
             alt="wonderful-accomplishment"
           />
         </div>
         <div>
-          <img
-            className="demo-photo even"
+          <Image
+            className={clsx(styles.demoPhoto, styles.even)}
             src={AccomplishmentComplete}
             alt="accomplishment-complete"
           />
         </div>
         <div>
-          <img className="demo-photo odd" src={SampleBank} alt="sample-bank" />
+          <Image className={clsx(styles.demoPhoto, styles.odd)} src={SampleBank} alt="sample-bank" />
         </div>
         <div>
-          <img
-            className="demo-photo odd"
+          <Image
+            className={clsx(styles.demoPhoto, styles.odd)}
             src={SampleBankFilter}
             alt="sample-bank-filter"
           />
@@ -229,12 +235,12 @@ function AddAccomplishment() {
   if (showWelcome && hasLoggedToday) {
     return (
       <div className="outline-box">
-        <h1 className="h1Accomp">
+        <h1 className={clsx(styles.h1, styles.h1Accomp)}>
           you've already logged an accomplishment today!
         </h1>
         <div className="accompText">
           <div className="backToBank">
-            <p className="encrg-p">
+            <p className={clsx(styles['encrg-p'], styles.p)}>
               visit your bank to view your accomplishments.
             </p>
             <Link
@@ -247,7 +253,7 @@ function AddAccomplishment() {
             </Link>
           </div>
           <div className="addNewAccomp">
-            <p className="encrg-p">or add another accomplishment for today.</p>
+            <p className={clsx(styles['encrg-p'], styles.p)}>or add another accomplishment for today.</p>
             <button className="clickHereBtn" onClick={toggleHasLoggedToday}>
               add new accomplishment
             </button>
@@ -258,11 +264,11 @@ function AddAccomplishment() {
   } else if (showWelcome) {
     return (
       <div className="accomplishments outline-box">
-        <h1 className="h1Accomp">hello, {name}!</h1>
-        <p className="encrg-p">
+        <h1 className={clsx(styles.h1, styles.h1Accomp)}>hello, {name}!</h1>
+        <p className={clsx(styles['encrg-p'], styles.p)}>
           great work today! keep moving forward and record an accomplishment!
         </p>
-        <img
+        <Image
           className="center-img"
           src={Welcome}
           alt="Person sitting in chair reading book"
@@ -280,8 +286,8 @@ function AddAccomplishment() {
   } else {
     return (
       <div className="outline-box add-accomp">
-        <h1 className="h1Accomp">daily accomplishment</h1>
-        <p className="encrg-p">what would you like to record?</p>
+        <h1 className={clsx(styles.h1, styles.h1Accomp)}>daily accomplishment</h1>
+        <p className={clsx(styles['encrg-p'], styles.p)}>what would you like to record?</p>
         <div className="padding">
           <form>
             <textarea
@@ -310,7 +316,7 @@ function AddAccomplishment() {
             <br></br>
             <br></br>
             <div id="tagSection">
-              <p className="tag-title">
+              <p className={clsx(styles['tag-title'], styles.p)}>
                 add a tag to your post so you can find it later!
               </p>
               <TagButtonList
