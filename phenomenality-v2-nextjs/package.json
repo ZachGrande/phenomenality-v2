@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --config eslint.config.mts",
-    "lint:fix": "eslint . --config eslint.config.mts --fix",
+    "lint:fix": "eslint --config eslint.config.mts --fix",
     "format": "npm run lint:fix"
   },
   "dependencies": {
