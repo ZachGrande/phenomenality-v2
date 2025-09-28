@@ -1,6 +1,9 @@
 nav .navigation
   background-color: #FDEDDE
 
+nav .navigation > ul
+  line-height: 46px
+
 .home-font
   font-family: Playfair Display
   font-size: 24px
@@ -13,13 +16,22 @@ nav .navigation .navbar-link
   text-decoration: none
 
 nav .navigation li .initials
-  display: inline
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  vertical-align: middle
+  width: 46px
+  height: 46px
+  box-sizing: border-box
   margin-right: 1rem
   border: 3px
   border-style: solid
   border-color: #4698ED
-  padding: 1em
-  border-radius: 100px
+  border-radius: 50%
+  padding: 0
+  line-height: 1
+  font-size: 16px
+  font-weight: 600
 
 .navvy:hover,
 .navvy:focus,

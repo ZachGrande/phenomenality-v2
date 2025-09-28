@@ -185,7 +185,7 @@ function Navigation() {
                   href="/authentication"
                 >
                   {initials ? (
-                    <div className="initials">{initials}</div>
+                    <div className={styles.initials}>{initials}</div>
                   ) : (
                     <Image
                       src={profileButton}
