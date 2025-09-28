@@ -5,7 +5,7 @@ function TagButton(props) {
   const thisItem = props.item;
 
   const getClassName = () => {
-    return 'tag-btn-item tag-item ' + thisItem.class;
+    return 'tagBtnItem tag-item ' + thisItem.class;
   };
 
   function renderTagButton() {

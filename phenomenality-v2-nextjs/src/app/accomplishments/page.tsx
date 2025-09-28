@@ -240,7 +240,7 @@ function AddAccomplishment() {
 
   if (showWelcome && hasLoggedToday) {
     return (
-      <div className="outline-box">
+      <div className={styles.outlineBox}>
         <h1 className={clsx(styles.h1, styles.h1Accomp)}>
           you've already logged an accomplishment today!
         </h1>
@@ -271,20 +271,20 @@ function AddAccomplishment() {
     );
   } else if (showWelcome) {
     return (
-      <div className="accomplishments outline-box">
+      <div className={clsx(styles.accomplishments, styles.outlineBox)}>
         <h1 className={clsx(styles.h1, styles.h1Accomp)}>hello, {name}!</h1>
         <p className={clsx(styles['encrg-p'], styles.p)}>
           great work today! keep moving forward and record an accomplishment!
         </p>
         <Image
-          className="center-img"
+          className={styles.centerImg}
           src={Welcome}
           alt="Person sitting in chair reading book"
           width="30%"
           height="30%"
         />
         <br></br>
-        <button className="accomplishment-next" onClick={advancePage}>
+        <button className={styles.accomplishmentNext} onClick={advancePage}>
           next
         </button>
         <br></br>
@@ -293,7 +293,7 @@ function AddAccomplishment() {
     );
   } else {
     return (
-      <div className="outline-box add-accomp">
+      <div className={clsx(styles.outlineBox, styles.addAccomp)}>
         <h1 className={clsx(styles.h1, styles.h1Accomp)}>
           daily accomplishment
         </h1>
@@ -303,7 +303,7 @@ function AddAccomplishment() {
         <div className="padding">
           <form>
             <textarea
-              className="accompTextarea"
+              className={styles.accompTextarea}
               placeholder={titlePlaceholder}
               value={title}
               onChange={(event) => {
@@ -315,7 +315,7 @@ function AddAccomplishment() {
             <br></br>
             <br></br>
             <textarea
-              className="accompTextarea"
+              className={styles.accompTextarea}
               placeholder="description"
               value={accomplishment}
               onChange={(event) => {
@@ -341,10 +341,10 @@ function AddAccomplishment() {
             <br></br>
             {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
             {/* this button is strange */}
-            <button className="nextBtn" onClick={addNewAccomplishment}>
+            <button className={styles.nextBtn} onClick={addNewAccomplishment}>
               <Link
                 aria-label="Next"
-                className="nextButton rmv-underline nextBtn"
+                className={clsx(styles.nextButton, styles['rmv-underline'], styles.nextBtn)}
                 role="button"
                 href="/accomplishments-complete"
               >
