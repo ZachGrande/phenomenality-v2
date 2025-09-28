@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --config eslint.config.mts",
+    "lint": "eslint --config eslint.config.mts",
     "lint:fix": "eslint . --config eslint.config.mts --fix",
     "format": "npm run lint:fix"
   },
