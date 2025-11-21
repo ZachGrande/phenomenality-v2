@@ -110,7 +110,7 @@ function AddEncouragement() {
   } else {
     return (
       <div className={styles.outlineBox}>
-        <h1 className="h1Accomp">have a lovely day!</h1>
+        <h1 className={styles.h1Accomp}>have a lovely day!</h1>
         <p className={styles['encrg-p']}>
           come back tomorrow to add another accomplishment!
         </p>
