@@ -4,7 +4,7 @@ import surveyJSON from './_assets/quiz.json';
 import React, { useState, useEffect, useMemo } from 'react';
 // import * as Survey from "survey-react-ui";
 import { Survey, Model } from "survey-react-ui";
-import 'survey-core/survey-core.css';
+import 'survey-core/survey-core.min.css';
 import dynamic from 'next/dynamic';
 // import '../styles/Quiz.sass'
 import styles from './_styles/page.module.sass';
@@ -16,6 +16,12 @@ const CanvasJSChart = dynamic(
   () => import('@canvasjs/react-charts').then((mod) => mod.default.CanvasJSChart),
   { ssr: false }
 );
+
+// TODO: Work must still be done to replicate the darkrose theme
+// https://surveyjs.io/stay-updated/release-notes/v2.0.0
+const darkroseTheme = {
+  isPanelless: true,
+};
 
 // Tracks the quiz results and updates the state variable created when the user enters or refreshes the page
 function QuizContent(props) {
@@ -40,14 +46,14 @@ function QuizContent(props) {
   const [isMounted, setIsMounted] = useState(false);
 
   // const setResults = props.setResults;
-  // console.log(StylesManager);
   
   // Create survey model only on client-side to avoid hydration mismatch
   const survey = useMemo(() => {
     if (typeof window === 'undefined') return null;
-    // style of the quiz (stone = black)
-    Survey?.StylesManager?.applyTheme('darkrose');
-    return new Model(surveyJSON);
+    const surveyModel = new Model(surveyJSON);
+    // Apply custom darkrose-like theme
+    surveyModel.applyTheme(darkroseTheme);
+    return surveyModel;
   }, []);
   
   // Set mounted state after hydration
@@ -268,12 +274,12 @@ function QuizContent(props) {
   if (!isMounted || !survey) {
     return (
       <div>
-        <div className="headerPadding">
-          <h1 className='quiz-title'>imposter phenomenon quiz</h1>
+        <div className={styles.headerPadding}>
+          <h1 className={styles['quiz-title']}>imposter phenomenon quiz</h1>
         </div>
-        <div className='quiz-page'>
+        <div className={styles['quiz-page']}>
           <br></br>
-          <p className="instructions">Loading quiz...</p>
+          <p className={styles.instructions}>Loading quiz...</p>
         </div>
       </div>
     );
@@ -282,12 +288,12 @@ function QuizContent(props) {
   if (!displayResults) {
     return(
       <div>
-        <div className="headerPadding">
-        <h1 className='quiz-title'>imposter phenomenon quiz</h1>
+        <div className={styles.headerPadding}>
+        <h1 className={styles['quiz-title']}>imposter phenomenon quiz</h1>
         </div>
-        <div className='quiz-page'>
+        <div className={styles['quiz-page']}>
           <br></br>
-          <p className="instructions">complete this 30-question quiz to determine which types of imposter phenomenon you identify with most!
+          <p className={styles.instructions}>complete this 30-question quiz to determine which types of imposter phenomenon you identify with most!
           determine how you feel about each statement, <b> from 1 (strongly disagree) to 5 (strongly agree).</b></p>
           <Survey model={survey} />
         </div>
