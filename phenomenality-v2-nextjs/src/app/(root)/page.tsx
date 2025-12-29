@@ -26,7 +26,11 @@ export default function Page() {
             <div className={clsx(styles['button-box'], styles['sign-in'])}>
               <Link
                 aria-label="Sign in"
-                className="button rmv-underline"
+                className={clsx(
+                  'button',
+                  styles.button,
+                  styles['rmv-underline'],
+                )}
                 role="button"
                 href="/authentication"
               >
@@ -58,6 +62,7 @@ export default function Page() {
               <Link
                 aria-label="Add an Accomplishment"
                 className={clsx(
+                  'button',
                   styles.button,
                   styles['rmv-underline'],
                   styles.accompBtn,
@@ -86,6 +91,7 @@ export default function Page() {
               <Link
                 aria-label="Take the Quiz"
                 className={clsx(
+                  'button',
                   styles.button,
                   styles['rmv-underline'],
                   styles.accompBtn,
@@ -127,6 +133,7 @@ export default function Page() {
               <Link
                 aria-label="Learn more about Imposter Phenomenon"
                 className={clsx(
+                  'button',
                   styles.button,
                   styles['rmv-underline'],
                   styles.accompBtn,
