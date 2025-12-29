@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic';
 // import '../styles/Quiz.sass'
 import styles from './_styles/page.module.sass';
 import Link from 'next/link';
+import clsx from 'clsx';
 // import '../styles/Navigation.sass'
 
 // Dynamically import CanvasJS to avoid SSR issues (document is not defined)
@@ -254,13 +255,16 @@ function QuizContent(props) {
 
       console.log(path);
       return(
-        <div className='results'>
+        <div className={styles.results}>
           <h2>You got {' '}   
-          <Link className="navbar-link link-font" href={path}>
+          <Link
+            className={clsx(styles['navbar-link'], styles['link-font'])}
+            href={path}
+          >
              {topName}
           </Link>!</h2>
           <p>Click {' '}          
-          <Link className="navbar-link link-font" href='../more-info'>
+          <Link className={clsx(styles['navbar-link'], styles['link-font'])} href='../more-info'>
              here
           </Link>
           {' '} to learn more about the {topName} and other imposter types! </p>
@@ -301,19 +305,19 @@ function QuizContent(props) {
     )
   } else {
     return(
-      <div className="content">
-        <div className="results-flex-container">
+      <div className={styles.content}>
+        <div className={styles['results-flex-container']}>
 
         <h1>imposter phenomenon results</h1>
-          <span className="flex-item top-result">
+          <span className={clsx(styles['flex-item'], styles['top-result'])}>
             {showTopResult(results)}
           </span>
-          <div className="barChart-flex-item">
+          <div className={styles['barChart-flex-item']}>
             {renderChart(results)}
           </div>
 
         </div>
-        <p className='disclaimer'>DISCLAIMER: this is not medical advice. these results are meant to be used as a general guideline.</p>
+        <p className={styles.disclaimer}>DISCLAIMER: this is not medical advice. these results are meant to be used as a general guideline.</p>
       </div>
       
     )
