@@ -3,12 +3,13 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import expert from './_assets/imposter-types/expert.svg';
-import genius from './_assets/imposter-types/genius.svg';
-import perfectionist from './_assets/imposter-types/perfectionist.svg';
-import soloist from './_assets/imposter-types/soloist.svg';
-import superhero from './_assets/imposter-types/superhero.svg';
 import styles from './_styles/page.module.sass';
+
+import expert from '@/app/_assets/imposter-types/expert.svg';
+import genius from '@/app/_assets/imposter-types/genius.svg';
+import perfectionist from '@/app/_assets/imposter-types/perfectionist.svg';
+import soloist from '@/app/_assets/imposter-types/soloist.svg';
+import superhero from '@/app/_assets/imposter-types/superhero.svg';
 
 function ImposterInfo() {
   return (
