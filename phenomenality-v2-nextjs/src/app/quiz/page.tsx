@@ -23,6 +23,7 @@ const CanvasJSChart = dynamic(
 // https://surveyjs.io/stay-updated/release-notes/v2.0.0
 const darkroseTheme = {
   isPanelless: true,
+  showQuestionNumbers: 'on',
 };
 
 // Tracks the quiz results and updates the state variable created when the user enters or refreshes the page
