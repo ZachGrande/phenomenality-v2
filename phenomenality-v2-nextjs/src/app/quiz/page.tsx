@@ -2,20 +2,15 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 
+import clsx from 'clsx';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { Survey, Model } from 'survey-react-ui';
 
-import surveyJSON from './_assets/quiz.json';
-
-// import * as Survey from "survey-react-ui";
 import 'survey-core/survey-core.min.css';
-import dynamic from 'next/dynamic';
 
-// import '../styles/Quiz.sass'
+import surveyJSON from './_assets/quiz.json';
 import styles from './_styles/page.module.sass';
-
-import Link from 'next/link';
-import clsx from 'clsx';
-// import '../styles/Navigation.sass'
 
 // Dynamically import CanvasJS to avoid SSR issues (document is not defined)
 const CanvasJSChart = dynamic(
@@ -31,7 +26,7 @@ const darkroseTheme = {
 };
 
 // Tracks the quiz results and updates the state variable created when the user enters or refreshes the page
-function QuizContent(props) {
+function QuizContent() {
   // syncs with the state variable
   // const results = props.results;
 
