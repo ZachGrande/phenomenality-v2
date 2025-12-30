@@ -19,6 +19,14 @@ jobs:
         run: npm ci
       - name: Build project
         run: npm run build
+      - name: Debug - List build directory
+        run: |
+          echo "=== Build directory contents ==="
+          ls -la build/
+          echo "=== Checking for index.html ==="
+          test -f build/index.html && echo "✓ index.html exists" || echo "✗ index.html MISSING"
+          echo "=== Checking for _next folder ==="
+          test -d build/_next && echo "✓ _next folder exists" || echo "✗ _next folder MISSING"
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
       - name: Authenticate with Google Cloud
