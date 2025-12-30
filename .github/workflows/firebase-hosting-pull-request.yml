@@ -28,7 +28,10 @@ jobs:
       - name: Deploy preview to Firebase Hosting
         id: firebase-deploy
         run: |
-          output=$(firebase hosting:channel:deploy pr-${{ github.event.number }} --expires 7d --project phenomenality-v2)
+          SHORT_SHA=$(echo "${{ github.event.pull_request.head.sha }}" | cut -c1-7)
+          CHANNEL_NAME="pr-${{ github.event.number }}-${SHORT_SHA}"
+          
+          output=$(firebase hosting:channel:deploy "${CHANNEL_NAME}" --expires 7d --project phenomenality-v2)
           echo "$output"
           
           # Extract the preview URL from the output
