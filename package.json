@@ -1,59 +1,47 @@
 {
-  "name": "phenomenality",
+  "name": "phenomenality-v2-nextjs",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "24.4.1"
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --config eslint.config.mts",
+    "lint:fix": "eslint --config eslint.config.mts --fix",
+    "format": "npm run lint:fix"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "firebase": "^11.2.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-firebase-hooks": "^5.0.2",
-    "react-helmet-async": "^1.2.3",
-    "react-router-dom": "^6.23.1",
-    "sass": "^1.77.2",
-    "survey-react": "^1.9.23",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "@canvasjs/react-charts": "^1.0.2",
+    "bootstrap": "^5.3.7",
+    "clsx": "^2.1.1",
+    "firebase": "^12.1.0",
+    "next": "15.5.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-firebase-hooks": "^5.1.1",
+    "survey-core": "^2.5.3",
+    "survey-react-ui": "^2.5.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.0.2",
-    "@eslint/js": "^9.1.1",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^15.0.7",
-    "@testing-library/user-event": "^13.5.0",
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "globals": "^15.0.0",
-    "react-scripts": "^5.0.1"
+    "@eslint/css": "^0.10.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.34.0",
+    "@eslint/json": "^0.13.1",
+    "@eslint/markdown": "^7.2.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.34.0",
+    "eslint-config-next": "15.4.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0",
+    "jiti": "^2.5.1",
+    "prettier": "^3.6.2",
+    "sass": "^1.90.0",
+    "typescript": "^5",
+    "typescript-eslint": "^8.40.0"
   }
 }
