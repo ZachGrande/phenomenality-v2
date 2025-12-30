@@ -20,7 +20,7 @@
     "react-dom": "^19.2.3",
     "react-firebase-hooks": "^5.1.1",
     "survey-core": "^2.5.3",
-    "survey-react-ui": "^2.5.3"
+    "survey-react-ui": "^2.5.4"
   },
   "devDependencies": {
     "@eslint/css": "^0.10.0",
