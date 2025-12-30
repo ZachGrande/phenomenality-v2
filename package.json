@@ -28,9 +28,9 @@
     "@eslint/js": "^9.34.0",
     "@eslint/json": "^0.13.1",
     "@eslint/markdown": "^7.2.0",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/node": "^20.19.10",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
     "eslint": "^9.34.0",
     "eslint-config-next": "^15.5.9",
     "eslint-config-prettier": "^10.1.8",
@@ -41,7 +41,7 @@
     "jiti": "^2.5.1",
     "prettier": "^3.6.2",
     "sass": "^1.90.0",
-    "typescript": "^5",
+    "typescript": "^5.9.2",
     "typescript-eslint": "^8.40.0"
   }
 }
