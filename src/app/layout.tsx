@@ -1,0 +1,59 @@
+import React from 'react';
+
+import clsx from 'clsx';
+import {
+  Geist,
+  Geist_Mono as GeistMono,
+  Playfair_Display as PlayfairDisplay,
+  Source_Sans_3 as SourceSans3,
+} from 'next/font/google';
+import 'bootstrap/dist/css/bootstrap.css';
+import './globals.sass';
+
+import Navigation from './_components/Navigation';
+
+import type { Metadata } from 'next';
+
+const geistSans = Geist({
+  subsets: ['latin'],
+});
+
+const geistMono = GeistMono({
+  subsets: ['latin'],
+});
+
+const playfairDisplay = PlayfairDisplay({
+  subsets: ['latin'],
+});
+
+const sourceSans3 = SourceSans3({
+  subsets: ['latin'],
+});
+
+export const metadata: Metadata = {
+  title: 'Phenomenality',
+  description: 'Strengthen your mentality',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={clsx(
+        geistSans.className,
+        geistMono.className,
+        playfairDisplay.className,
+        sourceSans3.className,
+      )}
+    >
+      <body>
+        <Navigation />
+        {children}
+      </body>
+    </html>
+  );
+}
