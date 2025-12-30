@@ -4,7 +4,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import clsx from 'clsx';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -18,7 +18,7 @@ import styles from './Navigation.module.sass';
 const auth = getAuth(app);
 
 function Navigation() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<User | null>(null);
   const [initials, setInitials] = useState('');
   const [profileButton, setProfileButton] = useState(leafInactive);
   const [showDropDownMenu, setShowDropDownMenu] = useState(false);
@@ -30,7 +30,7 @@ function Navigation() {
   }, []);
 
   useEffect(() => {
-    setInitials(user?.displayName);
+    setInitials(user?.displayName ?? '');
   }, [user]);
 
   const toggleProfileButton = () => {
