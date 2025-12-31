@@ -199,7 +199,9 @@ function Bank() {
         <div className={popupStyles.formPopup} id="popupForm">
           <form action="/action_page.php" className={popupStyles.formContainer}>
             <h3>edit accomplishment {currentEditId}</h3>
-            <label className={popupStyles.label} htmlFor="editTitle">title</label>
+            <label className={popupStyles.label} htmlFor="editTitle">
+              title
+            </label>
             <input
               type="text"
               id="editTitle"
@@ -209,7 +211,9 @@ function Bank() {
               }}
               name="editTitle"
             ></input>
-            <label className={popupStyles.label} htmlFor="editDescription">description</label>
+            <label className={popupStyles.label} htmlFor="editDescription">
+              description
+            </label>
             <input
               type="text"
               id="editDescription"
@@ -254,15 +258,21 @@ function Bank() {
         <div className={popupStyles.formPopup} id="popupForm">
           <form className={popupStyles.formContainer}>
             <h3>expanded view</h3>
-            <label className={popupStyles.label} htmlFor="viewTitle">title</label>
+            <label className={popupStyles.label} htmlFor="viewTitle">
+              title
+            </label>
             <p className="p-background" id="viewTitle">
               {existingTitle}
             </p>
-            <label className={popupStyles.label} htmlFor="viewDescription">description</label>
+            <label className={popupStyles.label} htmlFor="viewDescription">
+              description
+            </label>
             <p className="p-background" id="viewDescription">
               {existingDescription}
             </p>
-            <label className={popupStyles.label} htmlFor="viewTags">tags</label>
+            <label className={popupStyles.label} htmlFor="viewTags">
+              tags
+            </label>
             <div className="tags-background">
               <TagList items={existingTags} />
             </div>

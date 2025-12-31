@@ -344,7 +344,11 @@ function AddAccomplishment() {
             <button className={styles.nextBtn} onClick={addNewAccomplishment}>
               <Link
                 aria-label="Next"
-                className={clsx(styles.nextButton, styles['rmv-underline'], styles.nextBtn)}
+                className={clsx(
+                  styles.nextButton,
+                  styles['rmv-underline'],
+                  styles.nextBtn,
+                )}
                 role="button"
                 href="/accomplishments-complete"
               >
