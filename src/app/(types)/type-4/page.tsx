@@ -43,8 +43,8 @@ function Soloist() {
           than reaching out to someone.
         </li>
         <li>
-          It's important to recognize that no one is completely isolated.
-          Independence is blissful; however, it shouldn't deter you from
+          It&apos;s important to recognize that no one is completely isolated.
+          Independence is blissful; however, it shouldn&apos;t deter you from
           accepting assistance from others. Everyone has their areas of
           strength, and asking for help with a particular area you are not good
           at will help to maximize both the quality and quantity of your
@@ -70,10 +70,10 @@ function Soloist() {
       </ul>
       <h2>quotes</h2>
       <blockquote>
-        "I still sometimes feel like a loser kid in high school. I just have to
-        pick myself up and tell myself that I'm a superstar every morning so
-        that I can get through this day and be for my fans what they need for me
-        to be."
+        &quot;I still sometimes feel like a loser kid in high school. I just
+        have to pick myself up and tell myself that I&apos;m a superstar every
+        morning so that I can get through this day and be for my fans what they
+        need for me to be.&quot;
       </blockquote>
       <cite>
         — Lady Gaga, Grammy and Oscar Winning Singer-Songwriter and Actress

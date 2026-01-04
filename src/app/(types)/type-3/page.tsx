@@ -40,15 +40,15 @@ function Genius() {
           mistakes--for everyone, even the most confident people.
         </li>
         <li>
-          Rather than beating yourself up when you don't reach your impossibly
-          high standards, identify specific, small, and changeable behaviors
-          that you can improve over time.
+          Rather than beating yourself up when you don&apos;t reach your
+          impossibly high standards, identify specific, small, and changeable
+          behaviors that you can improve over time.
         </li>
         <li>
-          For example, if you want to have more impact at the office, it's much
-          more productive to focus on going out of your comfort zone to practice
-          your presentation skills than swearing off speaking up in meetings as
-          something you're “just not good at.”
+          For example, if you want to have more impact at the office, it&apos;s
+          much more productive to focus on going out of your comfort zone to
+          practice your presentation skills than swearing off speaking up in
+          meetings as something you&apos;re &quot;just not good at.&quot;
         </li>
       </ul>
       <h2>resources</h2>
@@ -66,9 +66,9 @@ function Genius() {
       </ul>
       <h2>quotes</h2>
       <blockquote>
-        "I have written 11 books, but each time I think, ‘uh oh, they're going
-        to find out now. I've run a game on everybody, and they're going to find
-        me out."
+        &quot;I have written 11 books, but each time I think, &apos;uh oh,
+        they&apos;re going to find out now. I&apos;ve run a game on everybody,
+        and they&apos;re going to find me out.&apos;&quot;
       </blockquote>
       <cite>
         — Maya Angelou, Presidential Medal of Freedom Award Winning American

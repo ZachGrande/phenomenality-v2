@@ -52,7 +52,7 @@ function Superhuman() {
         <li>
           As you become more attuned to internal validation and able to nurture
           your inner confidence, affirming that you are competent and skilled.
-          You'll be able to ease off the gas as you gauge how much work is
+          You&apos;ll be able to ease off the gas as you gauge how much work is
           healthy and rewarding.
         </li>
       </ul>
@@ -71,10 +71,10 @@ function Superhuman() {
       </ul>
       <h2>quotes</h2>
       <blockquote>
-        "I have spent my years since Princeton, while at law school and in my
-        various professional jobs, not feeling completely a part of the worlds I
-        inhabit. I am always looking over my shoulder wondering if I measure
-        up."
+        &quot;I have spent my years since Princeton, while at law school and in
+        my various professional jobs, not feeling completely a part of the
+        worlds I inhabit. I am always looking over my shoulder wondering if I
+        measure up.&quot;
       </blockquote>
       <cite>
         — Sonia Sotomayer, Associate Justice of the Supreme Court of the United
