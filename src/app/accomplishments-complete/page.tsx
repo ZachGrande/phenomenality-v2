@@ -55,7 +55,7 @@ function AddEncouragement() {
     };
 
     let newItems = items.push(thisEncouragingMessage);
-    newItems = map((currentItem, index = 0, newItems) => {
+    newItems = map((currentItem, index = 0) => {
       currentItem.id = index + 1;
       currentItem.key = index + '';
       index = index + 1;

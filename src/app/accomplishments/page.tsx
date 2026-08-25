@@ -109,7 +109,7 @@ function AddAccomplishment() {
     // console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
 
     let newItems = items.push(thisAccomplishment);
-    newItems = map((currentItem, index = 0, _newItems) => {
+    newItems = map((currentItem, index = 0) => {
       currentItem.id = index + 1;
       currentItem.key = index + '';
       index = index + 1;
@@ -173,7 +173,7 @@ function AddAccomplishment() {
   if (!user) {
     return (
       <div className={styles.accomplishmentsSignedOut}>
-        <h1 className={styles.h1}>you haven't logged in yet!</h1>
+        <h1 className={styles.h1}>you haven&apos;t logged in yet!</h1>
         <p className={styles.p}>
           sign in to begin logging your accomplishments.
         </p>
@@ -186,7 +186,7 @@ function AddAccomplishment() {
           sign in
         </Link>
         <h2 className={clsx(styles.photoHeader, styles.bloop)}>
-          here's what phenomenality can offer you!
+          here&apos;s what phenomenality can offer you!
         </h2>
         <div>
           <Image
@@ -242,7 +242,7 @@ function AddAccomplishment() {
     return (
       <div className={styles.outlineBox}>
         <h1 className={clsx(styles.h1, styles.h1Accomp)}>
-          you've already logged an accomplishment today!
+          you&apos;ve already logged an accomplishment today!
         </h1>
         <div className="accompText">
           <div className="backToBank">

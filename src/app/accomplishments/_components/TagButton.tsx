@@ -1,7 +1,23 @@
 import React from 'react';
 import './Tag.sass';
 
-function TagButton(props) {
+interface TagButtonItem {
+  class: string;
+  description: string;
+}
+
+interface TagButtonProps {
+  item: TagButtonItem;
+  toggleTag: (description: string) => void;
+}
+
+interface TagButtonListProps {
+  items: TagButtonItem[];
+  activeTags?: string[];
+  toggleTag: (description: string) => void;
+}
+
+function TagButton(props: TagButtonProps) {
   const thisItem = props.item;
 
   const getClassName = () => {
@@ -9,7 +25,7 @@ function TagButton(props) {
   };
 
   function renderTagButton() {
-    const handleClick = (event) => {
+    const handleClick = () => {
       props.toggleTag(thisItem.description);
     };
 
@@ -28,17 +44,12 @@ function TagButton(props) {
   return <div>{renderTagButton(thisItem)}</div>;
 }
 
-function TagButtonList(props) {
+function TagButtonList(props: TagButtonListProps) {
   const items = props.items;
 
   const tagBtnComponenets = items?.map((currentItem, index) => {
     return (
-      <TagButton
-        key={index}
-        item={currentItem}
-        activeTags={props.activeTags}
-        toggleTag={props.toggleTag}
-      />
+      <TagButton key={index} item={currentItem} toggleTag={props.toggleTag} />
     );
   });
 
