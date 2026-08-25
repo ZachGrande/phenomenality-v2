@@ -166,7 +166,7 @@ function Authentication() {
           <br />
           <button onClick={login}>Sign In</button>
           <p>
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <button onClick={toggleLogin}>Register today.</button>
           </p>
         </div>
@@ -219,7 +219,7 @@ function Authentication() {
             }}
           />
           <br />
-          <h4>What's your current job title?</h4>
+          <h4>What&apos;s your current job title?</h4>
           <input
             placeholder="Software Engineer"
             onChange={(event) => {
@@ -229,7 +229,7 @@ function Authentication() {
           <br />
           <br />
           <button onClick={buildProfile}>
-            I'm done setting up my profile.
+            I&apos;m done setting up my profile.
           </button>
         </div>
       );

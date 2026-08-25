@@ -3,19 +3,41 @@ import React from 'react';
 import './Card.sass';
 import TagList from './Tag';
 
-function Card(props) {
+interface CardItem {
+  date: string;
+  descriptionDisplay: string;
+  id: number;
+  tags: string[];
+  title: string;
+}
+
+interface CardProps {
+  item: CardItem;
+  deleteCard: (id: number) => void;
+  editCard: (id: number) => void;
+  viewCard: (id: number) => void;
+}
+
+interface CardListProps {
+  items: CardItem[];
+  deleteCard: (id: number) => void;
+  editCard: (id: number) => void;
+  viewCard: (id: number) => void;
+}
+
+function Card(props: CardProps) {
   const thisItem = props.item;
 
   function renderItem() {
-    const handleClick = (event) => {
+    const handleClick = () => {
       props.deleteCard(thisItem.id);
     };
 
-    const handleEdit = (event) => {
+    const handleEdit = () => {
       props.editCard(thisItem.id);
     };
 
-    const handleView = (event) => {
+    const handleView = () => {
       props.viewCard(thisItem.id);
     };
 
@@ -43,7 +65,7 @@ function Card(props) {
   return <div>{renderItem(thisItem)}</div>;
 }
 
-function CardList(props) {
+function CardList(props: CardListProps) {
   const items = props.items;
   const cardComponents = items.map((currentItem) => {
     return (

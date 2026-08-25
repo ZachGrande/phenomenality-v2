@@ -1,7 +1,15 @@
 import React from 'react';
 import './Tag.sass';
 
-function Tag(props) {
+interface TagProps {
+  item: string;
+}
+
+interface TagListProps {
+  items: string[];
+}
+
+function Tag(props: TagProps) {
   const thisItem = props.item;
 
   const getClassName = () => {
@@ -19,7 +27,7 @@ function Tag(props) {
   return <div>{renderItem(thisItem)}</div>;
 }
 
-function TagList(props) {
+function TagList(props: TagListProps) {
   const items = props.items;
   let index = -1;
   const tagComponents = items?.map((currentItem) => {

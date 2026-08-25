@@ -34,11 +34,11 @@ function Expert() {
       <h2>general tips</h2>
       <ul>
         <li>
-          It's true that there's always more to learn. Going beyond what's
-          expected of you at work can help you excel professionally and get
-          noticed in a competitive job market. Taken too far, the tendency to
-          endlessly seek out more information can actually be a form of
-          procrastination.
+          It&apos;s true that there&apos;s always more to learn. Going beyond
+          what&apos;s expected of you at work can help you excel professionally
+          and get noticed in a competitive job market. Taken too far, the
+          tendency to endlessly seek out more information can actually be a form
+          of procrastination.
         </li>
         <li>
           Start practicing just-in-time learning. This means acquiring a skill
@@ -46,13 +46,13 @@ function Expert() {
           than hoarding knowledge for (false) comfort.
         </li>
         <li>
-          Realize there's no shame in asking for help when you need it. If you
-          don't know how to do something, ask a coworker. If you can't figure
-          out how to solve a problem, seek advice from a supervisor, or even a
-          career coach. Mentoring junior colleagues or volunteering can be a
-          great way to discover your inner expert. When you share what you know,
-          it not only benefits others, but also helps you redirect your
-          fraudulent feelings.
+          Realize there&apos;s no shame in asking for help when you need it. If
+          you don&apos;t know how to do something, ask a coworker. If you
+          can&apos;t figure out how to solve a problem, seek advice from a
+          supervisor, or even a career coach. Mentoring junior colleagues or
+          volunteering can be a great way to discover your inner expert. When
+          you share what you know, it not only benefits others, but also helps
+          you redirect your fraudulent feelings.
         </li>
       </ul>
       <h2>resources</h2>
@@ -70,11 +70,11 @@ function Expert() {
       </ul>
       <h2>quotes</h2>
       <blockquote>
-        "Every time I was called on in class, I was sure that I was about to
-        embarrass myself. Every time I took a test, I was sure that it had gone
-        badly. And every time I didn't embarrass myself — or even excelled — I
-        believed that I had fooled everyone yet again. One day soon, the jig
-        would be up..."
+        &quot;Every time I was called on in class, I was sure that I was about
+        to embarrass myself. Every time I took a test, I was sure that it had
+        gone badly. And every time I didn&apos;t embarrass myself — or even
+        excelled — I believed that I had fooled everyone yet again. One day
+        soon, the jig would be up...&quot;
       </blockquote>
       <cite>— Sheryl Sandberg, Chief Operating Officer of Facebook</cite>
     </div>
