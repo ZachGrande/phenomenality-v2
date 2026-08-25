@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint --config eslint.config.mts",
     "lint:fix": "eslint --config eslint.config.mts --fix",
     "format": "npm run lint:fix"
@@ -28,6 +29,7 @@
     "@eslint/js": "^9.34.0",
     "@eslint/json": "^0.13.2",
     "@eslint/markdown": "^7.5.1",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20.19.43",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
@@ -41,6 +43,7 @@
     "jiti": "^2.7.0",
     "prettier": "^3.9.6",
     "sass": "^1.103.1",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.68.0"
   }

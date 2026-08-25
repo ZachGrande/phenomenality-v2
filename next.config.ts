@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // TODO: remove once the ~77 pre-existing type errors are burned down.
+  // Run `npm run typecheck` to see them; they are no longer invisible.
   typescript: {
     ignoreBuildErrors: true,
   },

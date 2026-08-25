@@ -47,7 +47,7 @@ function Navigation() {
 
   return (
     <nav>
-      <div className={clsx(styles.navigation, 'w-100 p-3')}>
+      <div className={clsx(styles.navigation, 'w-full p-4')}>
         <ul className="mb-0 px-0">
           <Link
             className={clsx(
@@ -75,7 +75,7 @@ function Navigation() {
               id="popupForm"
             >
               <ul className="px-4">
-                <li className={clsx(styles.navvy, 'd-inline')}>
+                <li className={clsx(styles.navvy, 'inline')}>
                   <Link
                     className={clsx(styles['navbar-link'], styles['link-font'])}
                     href="/accomplishments"
@@ -85,7 +85,7 @@ function Navigation() {
                   <br />
                   <br />
                 </li>
-                <li className={clsx(styles.navvy, 'd-inline')}>
+                <li className={clsx(styles.navvy, 'inline')}>
                   <Link
                     className={clsx(styles['navbar-link'], styles['link-font'])}
                     href="/bank"
@@ -95,7 +95,7 @@ function Navigation() {
                   <br />
                   <br />
                 </li>
-                <li className={clsx(styles.navvy, 'd-inline')}>
+                <li className={clsx(styles.navvy, 'inline')}>
                   <Link
                     className={clsx(styles['navbar-link'], styles['link-font'])}
                     href="quiz"
@@ -105,7 +105,7 @@ function Navigation() {
                   <br />
                   <br />
                 </li>
-                <li className={clsx(styles.navvy, 'd-inline')}>
+                <li className={clsx(styles.navvy, 'inline')}>
                   <Link
                     className={clsx(styles['navbar-link'], styles['link-font'])}
                     href="more-info"
@@ -116,7 +116,7 @@ function Navigation() {
                 </li>
                 <br />
                 <br />
-                <li className={clsx(styles.dropdownInitials, 'd-inline')}>
+                <li className={clsx(styles.dropdownInitials, 'inline')}>
                   <Link
                     className={clsx(
                       styles['navbar-link'],
@@ -147,7 +147,7 @@ function Navigation() {
             </div>
           ) : (
             <div className={clsx(styles['nav-left'])}>
-              <li className={clsx(styles.navvy, 'd-inline', 'mx-2')}>
+              <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
                 <Link
                   className={clsx(styles['navbar-link'], styles['link-font'])}
                   href="/accomplishments"
@@ -155,7 +155,7 @@ function Navigation() {
                   accomplishments
                 </Link>
               </li>
-              <li className={clsx(styles.navvy, 'd-inline', 'mx-2')}>
+              <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
                 <Link
                   className={clsx(styles['navbar-link'], styles['link-font'])}
                   href="/bank"
@@ -163,7 +163,7 @@ function Navigation() {
                   your bank
                 </Link>
               </li>
-              <li className={clsx(styles.navvy, 'd-inline', 'mx-2')}>
+              <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
                 <Link
                   className={clsx(styles['navbar-link'], styles['link-font'])}
                   href="quiz"
@@ -171,7 +171,7 @@ function Navigation() {
                   quiz
                 </Link>
               </li>
-              <li className={clsx(styles.navvy, 'd-inline', 'mx-2')}>
+              <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
                 <Link
                   className={clsx(styles['navbar-link'], styles['link-font'])}
                   href="more-info"
@@ -179,7 +179,7 @@ function Navigation() {
                   imposter phenomenon
                 </Link>
               </li>
-              <li className="d-inline mx-2">
+              <li className="inline mx-2">
                 <Link
                   className={clsx(styles['navbar-link'], styles['link-font'])}
                   href="/authentication"
@@ -209,7 +209,7 @@ function Navigation() {
               <p
                 className={clsx(
                   styles['link-font'],
-                  'mb-0 d-inline-block align-top',
+                  'mb-0 inline-block align-top',
                 )}
               >
                 menu
@@ -217,7 +217,7 @@ function Navigation() {
               <Image
                 className={clsx(
                   styles['carrot-icon'],
-                  'd-inline-block',
+                  'inline-block',
                   !showDropDownMenu ? styles.rotated : '',
                 )}
                 src={downCarrot}

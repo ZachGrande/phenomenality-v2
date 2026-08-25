@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <div className={styles.page}>
       <div className={styles.landing}>
-        <div className={clsx(styles.welcome, 'p-3', styles['flex-container'])}>
+        <div className={clsx(styles.welcome, 'p-4', styles['flex-container'])}>
           <div className={styles['left-side']}>
             <h1>welcome to your personal cheerleader!</h1>
             <p className={styles['landing-para']}>
@@ -47,7 +47,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className={clsx(styles.filter, styles['flex-container'], 'p-3')}>
+        <div className={clsx(styles.filter, styles['flex-container'], 'p-4')}>
           <div className={styles['left-side']}>
             <Image src={BankDemo} alt="Bank" className={styles.landingImage} />
           </div>
@@ -76,7 +76,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className={clsx(styles.ipType, styles['flex-container'], 'p-3')}>
+        <div className={clsx(styles.ipType, styles['flex-container'], 'p-4')}>
           <div className={styles['left-side']}>
             <h2>see which imposter phenomenon type you most align with</h2>
             <p className={styles['landing-para']}>
@@ -112,7 +112,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className={clsx(styles.what, styles['flex-container'], 'p-3')}>
+        <div className={clsx(styles.what, styles['flex-container'], 'p-4')}>
           <div className={styles['left-side']}>
             <Image
               src={Question}
@@ -147,7 +147,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className={clsx(styles.about, 'p-3')}>
+        <div className={clsx(styles.about, 'p-4')}>
           <About />
         </div>
       </div>

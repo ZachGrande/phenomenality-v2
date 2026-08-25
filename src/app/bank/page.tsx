@@ -316,13 +316,13 @@ function Bank() {
     return <p>Loading your card list.</p>;
   } else {
     return (
-      <div className="container-xl">
+      <div className="container">
         <h1 className={styles['bank-h1']}>
           You have not added to your accomplishment bank!
         </h1>
         {/* TODO: This should not be visible if no accomplishments are present */}
         <div>
-          <h2 className={clsx(styles['tag-title'], 'mx-3')}>filter tags</h2>
+          <h2 className={clsx(styles['tag-title'], 'mx-4')}>filter tags</h2>
           <p className={styles['tag-desc']}>
             {' '}
             select a tag you would like to filter through your accomplishments

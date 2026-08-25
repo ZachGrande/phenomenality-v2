@@ -1,16 +1,16 @@
 .h1
-  font-family: 'Playfair Display'
+  font-family: var(--font-display)
   font-weight: 400
   font-size: 16px
 
 .p, .button
-  font-family: 'Source Sans 3'
+  font-family: var(--font-sans)
   font-weight: 300
 
 .outlineBox
   display: flex
   padding: 50px 75px
-  outline: 1px solid grey
+  outline: 1px solid var(--color-border-subtle)
   margin: 50px
   flex-direction: column
   align-items: center
@@ -19,7 +19,7 @@
   font-size: 24px
 
 .h1Accomp
-  font-family: Playfair Display
+  font-family: var(--font-display)
   margin-left: .5em
   font-size: 36px
 
@@ -41,10 +41,10 @@
   text-align: center
 
 .bloop
-  font-family: Playfair Display
+  font-family: var(--font-display)
 
 .addAccomp .tag-title
-  font-family: 'Source Sans 3'
+  font-family: var(--font-sans)
   position: left
   text-align: left
   font-size: 28px
@@ -57,16 +57,15 @@
   margin-left: auto
   margin-right: auto
   width: 100%
-  // width: 75%
 
 .demoPhoto, .odd
-  background-color: #0000
+  background-color: transparent
   padding: 3vw
 
 .accompTextarea
-  font-family: "Source Sans 3"
+  font-family: var(--font-sans)
   font-size: 16px
-  border-radius: 10px
+  border-radius: var(--radius-panel)
   padding: .75em
   width: 80%
 
@@ -81,17 +80,7 @@
 
 .encrg-p
   margin: 1.25em
-  font-family: "Source Sans 3"
-
-.tag-btn-list .selected
-  background-color: #eaeaea
-  color: #7f7f81
-
-.tag-btn-list .active
-  opacity: 1
-
-.tag-btn-list .active
-  outline: 2px solid #6EB6FF
+  font-family: var(--font-sans)
 
 .centerImg
   display: block
@@ -135,20 +124,18 @@
   align-items: center
 
 .nextButton
-  background-color: #437557
-  border-color: #437557
-  color: #ffffff
+  display: block
+  background-color: var(--color-brand)
+  border-color: var(--color-brand)
+  color: var(--color-brand-contrast)
   font-size: 1rem
   text-align: center
   padding: 1.5% 2%
-  border-radius: 12px
-  font-family: 'Source Sans 3', sans-serif
+  border-radius: var(--radius-control)
+  font-family: var(--font-sans)
   font-weight: 400
 
 .rmv-underline:link
   text-decoration: none
   text-align: center
   padding: 10px 10px
-
-.nextButton
-  display: block

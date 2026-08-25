@@ -1,5 +1,6 @@
 import React from 'react';
-import './Tag.sass';
+
+import '@/app/_styles/tags.css';
 
 interface TagButtonItem {
   class: string;

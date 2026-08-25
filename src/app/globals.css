@@ -1,42 +1,123 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Only Bootstrap's reboot (element normalization) is kept — its utilities are
+ * all `!important`, which would beat Tailwind regardless of cascade layers.
+ * Reboot sits in the lowest layer and is the last piece of Bootstrap to remove.
+ */
+@layer bootstrap, theme, base, components, utilities;
+
+@import 'bootstrap/dist/css/bootstrap-reboot.css' layer(bootstrap);
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@source '../';
+
+/* `static` forces every token to be emitted, since the .sass files reference
+   them via var() and Tailwind cannot detect that usage. */
+@theme static {
+  --font-display: var(--font-playfair-display), Georgia, 'Times New Roman',
+    serif;
+  --font-sans: var(--font-source-sans-3), system-ui, -apple-system, sans-serif;
+
+  --color-brand: #437557;
+  --color-brand-contrast: #ffffff;
+  --color-cream: #fdedde;
+  --color-surface: #ffffff;
+  --color-ink: #000000;
+
+  --color-accent: #4698ed;
+  --color-focus-ring: #6eb6ff;
+
+  --color-muted: #a9a9a9;
+  --color-border-subtle: #808080;
+  --color-field: #eeeeee;
+  --color-field-focus: #dddddd;
+  --color-inactive: #eaeaea;
+  --color-inactive-text: #7f7f81;
+
+  --color-tag-technical: #cdebd2;
+  --color-tag-technical-text: #3d6c3d;
+  --color-tag-soft-skills: #e4d7ff;
+  --color-tag-soft-skills-text: #9b6cfe;
+  --color-tag-kudos: #dadeff;
+  --color-tag-kudos-text: #6f79db;
+  --color-tag-award: #f2c7c7;
+  --color-tag-training: #fedce9;
+  --color-tag-special-projects: #c7def7;
+  --color-tag-volunteer: #bdedff;
+  --color-tag-promotion: #fff8d2;
+  --color-tag-idea: #cbddff;
+  --color-tag-innovation: #e5c8ff;
+  --color-tag-miscellaneous: #d4fdd8;
+
+  --radius-control: 12px;
+  --radius-panel: 10px;
+  --radius-card: 25px;
+
+  --shadow-elevate: 0 12px 16px 0 rgb(0 0 0 / 0.24),
+    0 17px 50px 0 rgb(0 0 0 / 0.19);
+  --shadow-popup: 0 50px 500px 0 rgb(0 0 0 / 0.2),
+    0 6px 20px 0 rgb(0 0 0 / 0.19);
+  --shadow-card: 5px 5px 10px rgb(0 0 0 / 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Compatibility shim reproducing Bootstrap's `.container` widths, which the
+   bank page still relies on. Delete once that page is migrated. */
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 0.75rem;
+
+  @media (width >= 576px) {
+    max-width: 540px;
+  }
+  @media (width >= 768px) {
+    max-width: 720px;
+  }
+  @media (width >= 992px) {
+    max-width: 960px;
+  }
+  @media (width >= 1200px) {
+    max-width: 1140px;
+  }
+  @media (width >= 1400px) {
+    max-width: 1320px;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+  button,
+  .button {
+    background-color: var(--color-brand);
+    border-color: transparent;
+    color: var(--color-brand-contrast);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    border-radius: var(--radius-control);
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  .button-box,
+  .button {
+    display: block;
+  }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  button:hover,
+  .button:hover {
+    box-shadow: var(--shadow-elevate);
   }
 }
