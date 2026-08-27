@@ -10,62 +10,62 @@ import ZachGrande from './images/ZachGrande.png';
 
 export default function About() {
   return (
-    <div className={styles.about}>
-      <h1>the team</h1>
+    <div className="text-center">
+      <h1 className="text-display-lg font-display">the team</h1>
 
-      <div className={styles['member-group']}>
-        <div className={styles.member}>
+      <div className="flex flex-wrap justify-center gap-6 p-6 font-bold">
+        <div className="flex flex-col items-center">
           <Image
             src={EliseAdams}
             alt="Elise"
-            className={styles['member-photo']}
+            className="size-40 rounded-full object-cover md:size-48"
           />
           <p className="text-fluid-lg">elise adams</p>
           <p className="text-fluid-md font-normal italic">
             project manager/research
           </p>
         </div>
-        <div className={styles.member}>
+        <div className="flex flex-col items-center">
           <Image
             src={ZachGrande}
             alt="Zach"
-            className={styles['member-photo']}
+            className="size-40 rounded-full object-cover md:size-48"
           />
           <p className="text-fluid-lg">zach grande</p>
           <p className="text-fluid-md font-normal italic">
             full-stack development
           </p>
         </div>
-        <div className={styles.member}>
+        <div className="flex flex-col items-center">
           <Image
             src={RachelKinkley}
             alt="Rachel"
-            className={styles['member-photo']}
+            className="size-40 rounded-full object-cover md:size-48"
           />
           <p className="text-fluid-lg">rachel kinkley</p>
           <p className="text-fluid-md font-normal italic">front-end/research</p>
         </div>
-        <div className={styles.member}>
+        <div className="flex flex-col items-center">
           <Image
             src={TiffanyTse}
             alt="Tiffany"
-            className={styles['member-photo']}
+            className="size-40 rounded-full object-cover md:size-48"
           />
           <p className="text-fluid-lg">tiffany tse</p>
           <p className="text-fluid-md font-normal italic">front-end/ui</p>
         </div>
-        <div className={styles.member}>
+        <div className="flex flex-col items-center">
           <Image
             src={ValerieTse}
             alt="Valerie"
-            className={styles['member-photo']}
+            className="size-40 rounded-full object-cover md:size-48"
           />
           <p className="text-fluid-lg">valerie tse</p>
           <p className="text-fluid-md font-normal italic">program manager/ux</p>
         </div>
       </div>
 
-      <div className={styles.thanks}>
+      <div>
         <p>
           with many thanks to jeremy zaretzky, emily porter, laura schildkraut,
           mina tari, and milla titova
@@ -74,7 +74,7 @@ export default function About() {
           NOTICE UPDATE: beginning 5/26 the development of “phenomenality” has
           shut down.
         </h6>
-        <div className={styles['jackjack-container']}>
+        <div className="my-5">
           <Image
             className={styles.jackjack}
             src={jackjack}

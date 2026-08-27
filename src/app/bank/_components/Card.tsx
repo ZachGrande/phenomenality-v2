@@ -1,4 +1,4 @@
-import './Card.css';
+import CardButton from './CardButton';
 import TagList from './Tag';
 
 interface CardItem {
@@ -40,22 +40,24 @@ function Card(props: CardProps) {
     };
 
     return (
-      <div className="card-item">
-        <div className="first-row">
-          <p className="date">{thisItem.date}</p>
-          <h2 className="title">{thisItem.title}</h2>
+      <div className="relative m-4 w-3/5 min-w-100 max-w-100 rounded-card bg-cream p-5 text-center font-sans shadow-card">
+        <div>
+          <p className="flex justify-center font-sans">{thisItem.date}</p>
+          <h2>{thisItem.title}</h2>
         </div>
-        <button className="btn-delete" onClick={handleClick}>
+        <CardButton
+          variant="delete"
+          aria-label="Delete accomplishment"
+          onClick={handleClick}
+        >
           x
-        </button>
-        <p className="description">{thisItem.descriptionDisplay}</p>
+        </CardButton>
+        <p className="flex flex-wrap justify-center font-sans">
+          {thisItem.descriptionDisplay}
+        </p>
         <TagList items={thisItem.tags} />
-        <button className="btn-edit" onClick={handleEdit}>
-          edit
-        </button>
-        <button className="btn-view" onClick={handleView}>
-          view more
-        </button>
+        <CardButton onClick={handleEdit}>edit</CardButton>
+        <CardButton onClick={handleView}>view more</CardButton>
       </div>
     );
   }
@@ -77,7 +79,11 @@ function CardList(props: CardListProps) {
     );
   });
 
-  return <div className="card-list card-item-container">{cardComponents}</div>;
+  return (
+    <div className="flex flex-row flex-wrap content-between items-center justify-center p-12">
+      {cardComponents}
+    </div>
+  );
 }
 
 export default CardList;
