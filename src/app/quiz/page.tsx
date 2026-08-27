@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
@@ -26,12 +26,18 @@ const darkroseTheme = {
   showQuestionNumbers: 'on',
 };
 
+interface QuizResult {
+  y: number;
+  indexLabel: string;
+  name?: string;
+}
+
 // Tracks the quiz results and updates the state variable created when the user enters or refreshes the page
 function QuizContent() {
   // syncs with the state variable
   // const results = props.results;
 
-  const freshResults = [
+  const freshResults: QuizResult[] = [
     { y: 0, indexLabel: 'Perfectionist' },
     { y: 0, indexLabel: 'Soloist' },
     { y: 0, indexLabel: 'Superhuman' },
@@ -66,7 +72,10 @@ function QuizContent() {
   }, []);
 
   // takes complete survey and converts to an array that's compatible with Canvas.js
-  function convertResults(survey, results) {
+  function convertResults(
+    survey: Record<string, unknown>,
+    results: QuizResult[],
+  ) {
     let p = 0;
     let s = 0;
     let sh = 0;
@@ -188,7 +197,7 @@ function QuizContent() {
     });
   }, [survey]);
 
-  function renderChart(results) {
+  function renderChart(results: QuizResult[]) {
     // the main variable that sets up the pie chart. allows for results to be exported!
     const options = {
       exportEnabled: true,
@@ -227,7 +236,7 @@ function QuizContent() {
     );
   }
 
-  function showTopResult(results) {
+  function showTopResult(results: QuizResult[]) {
     // find the name of the top result
     // var topResult = results[0].y;
     // var topName = results[0].indexLabel;

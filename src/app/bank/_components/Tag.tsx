@@ -1,5 +1,3 @@
-import React from 'react';
-
 import '@/app/_styles/tags.css';
 
 interface TagProps {
@@ -25,7 +23,7 @@ function Tag(props: TagProps) {
     );
   }
 
-  return <div>{renderItem(thisItem)}</div>;
+  return <div>{renderItem()}</div>;
 }
 
 function TagList(props: TagListProps) {

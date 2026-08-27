@@ -1,6 +1,6 @@
 'use client';
 
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   getAuth,
@@ -12,12 +12,14 @@ import {
 } from 'firebase/auth';
 import { getDatabase, ref, set, update, onValue } from 'firebase/database';
 
+import type { User } from 'firebase/auth';
+
 import app from '@/config';
 
 const auth = getAuth(app);
 const database = getDatabase(app);
 
-function createEntryForUserInDatabase(user) {
+function createEntryForUserInDatabase(user: User) {
   set(ref(database, 'users/' + user.uid), {
     email: user.email,
   });
@@ -30,7 +32,7 @@ function Authentication() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<User | null>(null);
 
   const [loading, setLoading] = useState(true);
 
@@ -40,7 +42,7 @@ function Authentication() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [position, setPosition] = useState('');
-  const [welcomeName, setWelcomeName] = useState(null);
+  const [welcomeName, setWelcomeName] = useState<string | null>(null);
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
@@ -70,7 +72,7 @@ function Authentication() {
       );
       createEntryForUserInDatabase(user.user);
     } catch (error) {
-      console.log('Authentication error', error.message);
+      console.log('Authentication error', error);
     }
   };
 
@@ -80,7 +82,7 @@ function Authentication() {
       // setLoading(true);
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     } catch (error) {
-      console.log('Authentication error', error.message);
+      console.log('Authentication error', error);
     }
   };
 
@@ -109,6 +111,10 @@ function Authentication() {
       firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
 
     // setInitials(currentInitials);
+
+    if (!auth.currentUser || !user) {
+      return;
+    }
 
     updateProfile(auth.currentUser, {
       displayName: currentInitials,

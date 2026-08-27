@@ -3,7 +3,7 @@
 }
 
 .about h1 {
-  font-size: 4vw;
+  font-size: var(--text-display-lg);
   font-family: var(--font-display);
 }
 
@@ -21,12 +21,12 @@
 }
 
 .thanks h2 {
-  font-size: 2.75vw;
+  font-size: var(--text-display-md);
 }
 
 .thanks h3 {
   font-weight: 400;
-  font-size: 2.25vw;
+  font-size: var(--text-display-sm);
 }
 
 .about .jackjack {

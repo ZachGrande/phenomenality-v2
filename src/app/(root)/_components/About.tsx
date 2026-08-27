@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Image from 'next/image';
 
 import styles from './About.module.css';
@@ -22,8 +20,8 @@ export default function About() {
             alt="Elise"
             className={styles['member-photo']}
           />
-          <p className="text-[2vw]">elise adams</p>
-          <p className="text-[1.6vw] font-normal italic">
+          <p className="text-fluid-lg">elise adams</p>
+          <p className="text-fluid-md font-normal italic">
             project manager/research
           </p>
         </div>
@@ -33,8 +31,8 @@ export default function About() {
             alt="Zach"
             className={styles['member-photo']}
           />
-          <p className="text-[2vw]">zach grande</p>
-          <p className="text-[1.6vw] font-normal italic">
+          <p className="text-fluid-lg">zach grande</p>
+          <p className="text-fluid-md font-normal italic">
             full-stack development
           </p>
         </div>
@@ -44,8 +42,8 @@ export default function About() {
             alt="Rachel"
             className={styles['member-photo']}
           />
-          <p className="text-[2vw]">rachel kinkley</p>
-          <p className="text-[1.6vw] font-normal italic">front-end/research</p>
+          <p className="text-fluid-lg">rachel kinkley</p>
+          <p className="text-fluid-md font-normal italic">front-end/research</p>
         </div>
         <div className={styles.member}>
           <Image
@@ -53,8 +51,8 @@ export default function About() {
             alt="Tiffany"
             className={styles['member-photo']}
           />
-          <p className="text-[2vw]">tiffany tse</p>
-          <p className="text-[1.6vw] font-normal italic">front-end/ui</p>
+          <p className="text-fluid-lg">tiffany tse</p>
+          <p className="text-fluid-md font-normal italic">front-end/ui</p>
         </div>
         <div className={styles.member}>
           <Image
@@ -62,8 +60,8 @@ export default function About() {
             alt="Valerie"
             className={styles['member-photo']}
           />
-          <p className="text-[2vw]">valerie tse</p>
-          <p className="text-[1.6vw] font-normal italic">program manager/ux</p>
+          <p className="text-fluid-lg">valerie tse</p>
+          <p className="text-fluid-md font-normal italic">program manager/ux</p>
         </div>
       </div>
 

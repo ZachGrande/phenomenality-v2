@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import clsx from 'clsx';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
@@ -16,6 +16,8 @@ import TagList from './_components/Tag';
 import styles from './_styles/page.module.css';
 import popupStyles from './_styles/Popup.module.css';
 
+import type { Accomplishment } from '@/types/accomplishment';
+
 import 'firebase/auth';
 import 'firebase/database';
 
@@ -27,7 +29,7 @@ function Bank() {
 
   // const [user, loading, error] = useAuthState(auth);
   const [user, loading] = useAuthState(auth);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Accomplishment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   //NEED TO CHANGE FILTER TYPE TO ARRAY ??
@@ -38,7 +40,7 @@ function Bank() {
   const [currentEditId, setCurrentEditId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState('');
   const [existingTitle, setExistingTitle] = useState('');
-  const [existingTags, setExistingTags] = useState('');
+  const [existingTags, setExistingTags] = useState<string[]>([]);
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -69,7 +71,10 @@ function Bank() {
     return <p>Loading...</p>;
   }
 
-  const deleteCard = (id) => {
+  const deleteCard = (id: number) => {
+    if (!user) {
+      return;
+    }
     let newItems = items.filter((currentItem) => {
       return currentItem.id !== id;
     });
@@ -85,7 +90,7 @@ function Bank() {
     });
   };
 
-  const editCard = (id) => {
+  const editCard = (id: number) => {
     setShowEditPopup(true);
     setCurrentEditId(id);
     const editItem = items.filter((currentItem) => {
@@ -99,7 +104,7 @@ function Bank() {
     setExistingTags(editItem[0].tags);
   };
 
-  const viewCard = (id) => {
+  const viewCard = (id: number) => {
     setShowViewPopup(true);
     const viewItem = items.filter((currentItem) => {
       if (currentItem.id === id) {
@@ -112,7 +117,7 @@ function Bank() {
     setExistingTags(viewItem[0].tags);
   };
 
-  const toggleFilter = (value) => {
+  const toggleFilter = (value: string) => {
     if (filter === 'none') {
       // first time tagging
       const idName = value.toLowerCase().replace(/\s+/g, '-');
@@ -144,6 +149,10 @@ function Bank() {
   }
 
   function submitForm() {
+    if (!user) {
+      return;
+    }
+
     let shortAccomp = existingDescription.substring(0, 100);
     if (existingDescription.length > 100) {
       shortAccomp += '...';

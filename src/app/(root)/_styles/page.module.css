@@ -32,18 +32,18 @@
 .landing h1 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 4.5vw;
+  font-size: var(--text-display-xl);
 }
 
 .landing h2 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 4vw;
+  font-size: var(--text-display-lg);
 }
 
 .landing-para {
   font-family: var(--font-sans);
-  font-size: 2vw;
+  font-size: var(--text-fluid-lg);
 }
 
 .sign-in {

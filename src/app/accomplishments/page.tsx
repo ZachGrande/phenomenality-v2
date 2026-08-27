@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { map } from '@firebase/util';
 import clsx from 'clsx';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
@@ -23,6 +22,8 @@ import TagButtonList from './_components/TagButton';
 import tags from './_components/tags';
 import styles from './_styles/page.module.css';
 
+import type { Accomplishment } from '@/types/accomplishment';
+
 function AddAccomplishment() {
   const auth = getAuth(app);
   const database = getDatabase(app);
@@ -32,12 +33,12 @@ function AddAccomplishment() {
   const date = `${current.getMonth() + 1}/${current.getDate()}/${current.getFullYear()}`;
   const titlePlaceholder = 'accomplishment for ' + date;
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Accomplishment[]>([]);
   const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState('');
   const [accomplishment, setAccomplishment] = useState('');
-  const [accomplishmentTags, setAccomplishmentTags] = useState([]);
+  const [accomplishmentTags, setAccomplishmentTags] = useState<string[]>([]);
   const [accomplishmentDescription, setAccomplishmentDescription] =
     useState('');
 
@@ -94,33 +95,33 @@ function AddAccomplishment() {
     setAccomplishmentDescription(shortAccomp);
   }, [accomplishment]);
 
-  const addNewAccomplishment = async (event) => {
+  const addNewAccomplishment = async (event: React.MouseEvent) => {
     event.preventDefault();
+    if (!user) {
+      return;
+    }
+
     const thisAccomplishment = {
       title: title,
       description: accomplishment,
       descriptionDisplay: accomplishmentDescription,
-      id: items.length + 1,
-      key: items.length + '',
       tags: accomplishmentTags,
       date: date,
     };
 
-    // console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
-
-    let newItems = items.push(thisAccomplishment);
-    newItems = map((currentItem, index = 0) => {
-      currentItem.id = index + 1;
-      currentItem.key = index + '';
-      index = index + 1;
-      return currentItem;
-    });
+    const newItems = [...items, thisAccomplishment].map(
+      (currentItem, index) => ({
+        ...currentItem,
+        id: index + 1,
+        key: index + '',
+      }),
+    );
 
     setItems(newItems);
     setTitle('');
     setAccomplishment('');
     update(ref(database, 'users/' + user.uid), {
-      data: items,
+      data: newItems,
     });
   };
 
@@ -140,7 +141,7 @@ function AddAccomplishment() {
     setAccomplishmentTags(newTags);
   }*/
 
-  const toggleTag = (value) => {
+  const toggleTag = (value: string) => {
     // console.log("Value", value);
     const newTags = accomplishmentTags;
     if (!accomplishmentTags.includes(value)) {
@@ -281,11 +282,9 @@ function AddAccomplishment() {
           great work today! keep moving forward and record an accomplishment!
         </p>
         <Image
-          className={styles.centerImg}
+          className={clsx(styles.centerImg, 'h-auto w-[30%]')}
           src={Welcome}
           alt="Person sitting in chair reading book"
-          width="30%"
-          height="30%"
         />
         <br></br>
         <button className={styles.accomplishmentNext} onClick={advancePage}>
@@ -313,8 +312,8 @@ function AddAccomplishment() {
               onChange={(event) => {
                 setTitle(event.target.value);
               }}
-              rows="2"
-              cols="45"
+              rows={2}
+              cols={45}
             ></textarea>
             <br></br>
             <br></br>
@@ -325,8 +324,8 @@ function AddAccomplishment() {
               onChange={(event) => {
                 setAccomplishment(event.target.value);
               }}
-              rows="10"
-              cols="45"
+              rows={10}
+              cols={45}
             ></textarea>
             <br></br>
             <br></br>

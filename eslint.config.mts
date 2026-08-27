@@ -34,6 +34,11 @@ export default defineConfig([
     files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
   },
   {
+    // React 19's automatic JSX runtime; React need not be in scope.
+    ...pluginReact.configs.flat['jsx-runtime'],
+    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+  },
+  {
     settings: {
       react: {
         version: reactVersion,

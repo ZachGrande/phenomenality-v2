@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './Card.css';
 import TagList from './Tag';
 
@@ -62,7 +60,7 @@ function Card(props: CardProps) {
     );
   }
 
-  return <div>{renderItem(thisItem)}</div>;
+  return <div>{renderItem()}</div>;
 }
 
 function CardList(props: CardListProps) {

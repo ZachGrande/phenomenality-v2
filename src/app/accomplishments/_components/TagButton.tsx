@@ -1,5 +1,3 @@
-import React from 'react';
-
 import '@/app/_styles/tags.css';
 
 interface TagButtonItem {
@@ -42,7 +40,7 @@ function TagButton(props: TagButtonProps) {
     );
   }
 
-  return <div>{renderTagButton(thisItem)}</div>;
+  return <div>{renderTagButton()}</div>;
 }
 
 function TagButtonList(props: TagButtonListProps) {

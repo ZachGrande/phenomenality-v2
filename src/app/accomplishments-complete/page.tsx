@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { map } from '@firebase/util';
 import clsx from 'clsx';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
@@ -11,6 +10,8 @@ import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import Welcome from './_assets/encourage-message.svg';
+
+import type { EncouragingMessage } from '@/types/accomplishment';
 
 import styles from '@/app/accomplishments/_styles/page.module.css';
 import app from '@/config';
@@ -24,7 +25,7 @@ function AddEncouragement() {
   const [showEncouragingMessageInput, setShowEncouragingMessageInput] =
     useState(true);
   const [encouragingMessage, setEncouragingMessage] = useState('');
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<EncouragingMessage[]>([]);
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -40,7 +41,7 @@ function AddEncouragement() {
       }
       const keys = Object.keys(data);
       const newItems = keys.map((key) => {
-        const currentItem = data[key];
+        const currentItem = data[key] as EncouragingMessage;
         currentItem.key = key;
         return currentItem;
       });
@@ -48,24 +49,24 @@ function AddEncouragement() {
     });
   }, [isLoading, database, user]);
 
-  const addNewEncouragingMessage = async (event) => {
+  const addNewEncouragingMessage = async (event: React.MouseEvent) => {
     event.preventDefault();
-    const thisEncouragingMessage = {
-      description: encouragingMessage,
-    };
+    if (!user) {
+      return;
+    }
 
-    let newItems = items.push(thisEncouragingMessage);
-    newItems = map((currentItem, index = 0) => {
-      currentItem.id = index + 1;
-      currentItem.key = index + '';
-      index = index + 1;
-      return currentItem;
-    });
+    const newItems = [...items, { description: encouragingMessage }].map(
+      (currentItem, index) => ({
+        ...currentItem,
+        id: index + 1,
+        key: index + '',
+      }),
+    );
 
     setItems(newItems);
     setEncouragingMessage('');
     update(ref(database, 'users/' + user.uid), {
-      messages: items,
+      messages: newItems,
     });
     setShowEncouragingMessageInput(false);
   };
@@ -93,8 +94,8 @@ function AddEncouragement() {
             onChange={(event) => {
               setEncouragingMessage(event.target.value);
             }}
-            rows="2"
-            cols="45"
+            rows={2}
+            cols={45}
           />
           <div>
             <button
@@ -115,11 +116,9 @@ function AddEncouragement() {
           come back tomorrow to add another accomplishment!
         </p>
         <Image
-          className={styles.centerImg}
+          className={clsx(styles.centerImg, 'h-auto w-2/5')}
           src={Welcome}
           alt="Two people high fiving"
-          width="40%"
-          height="40%"
         />
         <br></br>
         <Link
