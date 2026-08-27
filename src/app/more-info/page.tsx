@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import styles from './_styles/page.module.sass';
+import styles from './_styles/page.module.css';
 
 import expert from '@/app/_assets/imposter-types/expert.svg';
 import genius from '@/app/_assets/imposter-types/genius.svg';

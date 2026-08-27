@@ -1,17 +1,12 @@
-/*
- * Only Bootstrap's reboot (element normalization) is kept — its utilities are
- * all `!important`, which would beat Tailwind regardless of cascade layers.
- * Reboot sits in the lowest layer and is the last piece of Bootstrap to remove.
- */
-@layer bootstrap, theme, base, components, utilities;
+@layer theme, base, components, utilities;
 
-@import 'bootstrap/dist/css/bootstrap-reboot.css' layer(bootstrap);
 @import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
 @import 'tailwindcss/utilities.css' layer(utilities);
 
 @source '../';
 
-/* `static` forces every token to be emitted, since the .sass files reference
+/* `static` forces every token to be emitted, since the CSS modules reference
    them via var() and Tailwind cannot detect that usage. */
 @theme static {
   --font-display: var(--font-playfair-display), Georgia, 'Times New Roman',
@@ -23,6 +18,8 @@
   --color-cream: #fdedde;
   --color-surface: #ffffff;
   --color-ink: #000000;
+  --color-text: #212529;
+  --color-link: #0d6efd;
 
   --color-accent: #4698ed;
   --color-focus-ring: #6eb6ff;
@@ -60,33 +57,73 @@
   --shadow-card: 5px 5px 10px rgb(0 0 0 / 1);
 }
 
-/* Compatibility shim reproducing Bootstrap's `.container` widths, which the
-   bank page still relies on. Delete once that page is migrated. */
-@utility container {
-  width: 100%;
-  margin-inline: auto;
-  padding-inline: 0.75rem;
-
-  @media (width >= 576px) {
-    max-width: 540px;
-  }
-  @media (width >= 768px) {
-    max-width: 720px;
-  }
-  @media (width >= 992px) {
-    max-width: 960px;
-  }
-  @media (width >= 1200px) {
-    max-width: 1140px;
-  }
-  @media (width >= 1400px) {
-    max-width: 1320px;
-  }
-}
-
+/* Fluid heading scale. Replaces the Bootstrap reboot typography the pages were
+   written against; Tailwind's preflight strips heading sizing entirely. */
 @layer base {
   body {
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-block: 0 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 1.375rem + 1.5vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 1.325rem + 0.9vw, 2rem);
+  }
+
+  h3 {
+    font-size: clamp(1.375rem, 1.3rem + 0.6vw, 1.75rem);
+  }
+
+  h4 {
+    font-size: clamp(1.3rem, 1.275rem + 0.3vw, 1.5rem);
+  }
+
+  h5 {
+    font-size: 1.25rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+
+  p {
+    margin-block: 0 1rem;
+  }
+
+  ul,
+  ol {
+    margin-block: 0 1rem;
+    padding-left: 2rem;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: underline;
   }
 
   a:focus-visible,

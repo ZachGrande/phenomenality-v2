@@ -13,8 +13,8 @@ import allTags from '../accomplishments/_components/tags';
 
 import CardList from './_components/Card';
 import TagList from './_components/Tag';
-import styles from './_styles/page.module.sass';
-import popupStyles from './_styles/Popup.module.sass';
+import styles from './_styles/page.module.css';
+import popupStyles from './_styles/Popup.module.css';
 
 import 'firebase/auth';
 import 'firebase/database';
@@ -195,7 +195,7 @@ function Bank() {
   if (items.length > 0 && showEditPopup) {
     // TODO: Place form popup in a separate component
     return (
-      <div className="container">
+      <div className="mx-auto w-full max-w-6xl px-3">
         <div className={popupStyles.formPopup} id="popupForm">
           <form action="/action_page.php" className={popupStyles.formContainer}>
             <h3>edit accomplishment {currentEditId}</h3>
@@ -261,13 +261,19 @@ function Bank() {
             <label className={popupStyles.label} htmlFor="viewTitle">
               title
             </label>
-            <p className="p-background" id="viewTitle">
+            <p
+              className="rounded-panel bg-surface p-2 outline-1 outline-border-subtle"
+              id="viewTitle"
+            >
               {existingTitle}
             </p>
             <label className={popupStyles.label} htmlFor="viewDescription">
               description
             </label>
-            <p className="p-background" id="viewDescription">
+            <p
+              className="rounded-panel bg-surface p-2 outline-1 outline-border-subtle"
+              id="viewDescription"
+            >
               {existingDescription}
             </p>
             <label className={popupStyles.label} htmlFor="viewTags">
@@ -299,7 +305,7 @@ function Bank() {
     );
   } else if (items.length > 0) {
     return (
-      <div className="container">
+      <div className="mx-auto w-full max-w-6xl px-3">
         <div className={styles['card-list']}>
           <h1 className={styles['bank-h1']}>all accomplishments</h1>
           {tagListContainer()}
@@ -316,7 +322,7 @@ function Bank() {
     return <p>Loading your card list.</p>;
   } else {
     return (
-      <div className="container">
+      <div className="mx-auto w-full max-w-6xl px-3">
         <h1 className={styles['bank-h1']}>
           You have not added to your accomplishment bank!
         </h1>

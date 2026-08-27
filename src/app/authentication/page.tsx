@@ -12,8 +12,6 @@ import {
 } from 'firebase/auth';
 import { getDatabase, ref, set, update, onValue } from 'firebase/database';
 
-import styles from './_styles/page.module.sass';
-
 import app from '@/config';
 
 const auth = getAuth(app);
@@ -138,7 +136,7 @@ function Authentication() {
 
   if (loading) {
     return (
-      <div className={styles.auth}>
+      <div className="text-center">
         <h1>LOADING ASSETS</h1>
       </div>
     );
@@ -147,7 +145,7 @@ function Authentication() {
   if (!user) {
     if (loginPage) {
       return (
-        <div className={styles.auth}>
+        <div className="text-center">
           <h3>Welcome Back</h3>
           <input
             placeholder="Email..."
@@ -173,7 +171,7 @@ function Authentication() {
       );
     } else {
       return (
-        <div className={styles.auth}>
+        <div className="text-center">
           <h3>Register</h3>
           <input
             placeholder="Email..."
@@ -201,7 +199,7 @@ function Authentication() {
   } else {
     if (firstTimeUser) {
       return (
-        <div className={styles.auth}>
+        <div className="text-center">
           <h1>Build Profile</h1>
           <h4>First Name</h4>
           <input
@@ -235,7 +233,7 @@ function Authentication() {
       );
     }
     return (
-      <div className={styles.auth}>
+      <div className="text-center">
         {/* {welcomeName ?
           <h2>Welcome back, {welcomeName}</h2> :
           <h2></h2>} */}

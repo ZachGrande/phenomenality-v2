@@ -10,7 +10,7 @@ import { Survey, Model } from 'survey-react-ui';
 import 'survey-core/survey-core.min.css';
 
 import surveyJSON from './_assets/quiz.json';
-import styles from './_styles/page.module.sass';
+import styles from './_styles/page.module.css';
 
 // Dynamically import CanvasJS to avoid SSR issues (document is not defined)
 const CanvasJSChart = dynamic(

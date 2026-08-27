@@ -2,7 +2,7 @@ import React from 'react';
 
 import Image from 'next/image';
 
-import styles from './About.module.sass';
+import styles from './About.module.css';
 import EliseAdams from './images/EliseAdams.jpg';
 import jackjack from './images/jack-jack.svg';
 import RachelKinkley from './images/RachelKinkley.jpeg';
@@ -22,8 +22,10 @@ export default function About() {
             alt="Elise"
             className={styles['member-photo']}
           />
-          <p className="member-name">elise adams</p>
-          <p className="member-role">project manager/research</p>
+          <p className="text-[2vw]">elise adams</p>
+          <p className="text-[1.6vw] font-normal italic">
+            project manager/research
+          </p>
         </div>
         <div className={styles.member}>
           <Image
@@ -31,8 +33,10 @@ export default function About() {
             alt="Zach"
             className={styles['member-photo']}
           />
-          <p className="member-name">zach grande</p>
-          <p className="member-role">full-stack development</p>
+          <p className="text-[2vw]">zach grande</p>
+          <p className="text-[1.6vw] font-normal italic">
+            full-stack development
+          </p>
         </div>
         <div className={styles.member}>
           <Image
@@ -40,8 +44,8 @@ export default function About() {
             alt="Rachel"
             className={styles['member-photo']}
           />
-          <p className="member-name">rachel kinkley</p>
-          <p className="member-role">front-end/research</p>
+          <p className="text-[2vw]">rachel kinkley</p>
+          <p className="text-[1.6vw] font-normal italic">front-end/research</p>
         </div>
         <div className={styles.member}>
           <Image
@@ -49,8 +53,8 @@ export default function About() {
             alt="Tiffany"
             className={styles['member-photo']}
           />
-          <p className="member-name">tiffany tse</p>
-          <p className="member-role">front-end/ui</p>
+          <p className="text-[2vw]">tiffany tse</p>
+          <p className="text-[1.6vw] font-normal italic">front-end/ui</p>
         </div>
         <div className={styles.member}>
           <Image
@@ -58,8 +62,8 @@ export default function About() {
             alt="Valerie"
             className={styles['member-photo']}
           />
-          <p className="member-name">valerie tse</p>
-          <p className="member-role">program manager/ux</p>
+          <p className="text-[2vw]">valerie tse</p>
+          <p className="text-[1.6vw] font-normal italic">program manager/ux</p>
         </div>
       </div>
 

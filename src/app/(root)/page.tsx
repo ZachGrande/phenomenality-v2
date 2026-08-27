@@ -10,7 +10,7 @@ import Question from '../_assets/landing-photos/question.svg';
 import Welcome from '../_assets/landing-photos/welcome.jpg';
 
 import About from './_components/About';
-import styles from './_styles/page.module.sass';
+import styles from './_styles/page.module.css';
 
 export default function Page() {
   return (

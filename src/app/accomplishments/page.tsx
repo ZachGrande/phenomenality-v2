@@ -21,7 +21,7 @@ import SampleBankFilter from './_assets/accomplishment-demo/accomplishment-6.png
 import Welcome from './_assets/welcome-message.svg';
 import TagButtonList from './_components/TagButton';
 import tags from './_components/tags';
-import styles from './_styles/page.module.sass';
+import styles from './_styles/page.module.css';
 
 function AddAccomplishment() {
   const auth = getAuth(app);
@@ -244,25 +244,29 @@ function AddAccomplishment() {
         <h1 className={clsx(styles.h1, styles.h1Accomp)}>
           you&apos;ve already logged an accomplishment today!
         </h1>
-        <div className="accompText">
-          <div className="backToBank">
+        <div className="flex flex-row">
+          <div className="flex flex-col items-center">
             <p className={clsx(styles['encrg-p'], styles.p)}>
               visit your bank to view your accomplishments.
             </p>
             <Link
               aria-label="View Accomplishments"
-              className="button rmv-underline viewAccompBtn2"
+              className={clsx(
+                'button',
+                styles['rmv-underline'],
+                'ml-8 h-[45px] w-fit',
+              )}
               role="button"
               href="/bank"
             >
               view accomplishments
             </Link>
           </div>
-          <div className="addNewAccomp">
+          <div className="flex flex-col items-center">
             <p className={clsx(styles['encrg-p'], styles.p)}>
               or add another accomplishment for today.
             </p>
-            <button className="clickHereBtn" onClick={toggleHasLoggedToday}>
+            <button className="ml-8 h-[45px]" onClick={toggleHasLoggedToday}>
               add new accomplishment
             </button>
           </div>

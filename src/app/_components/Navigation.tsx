@@ -13,7 +13,7 @@ import downCarrot from '../_assets/icons/down-carrot.svg';
 import leafActive from '../_assets/icons/leaf-active.svg';
 import leafInactive from '../_assets/icons/leaf-inactive.svg';
 
-import styles from './Navigation.module.sass';
+import styles from './Navigation.module.css';
 
 const auth = getAuth(app);
 

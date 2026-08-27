@@ -1,5 +1,6 @@
 import { version as reactVersion } from 'react';
 
+import css from '@eslint/css';
 import js from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import prettierConfig from 'eslint-config-prettier';
@@ -24,8 +25,14 @@ export default defineConfig([
     extends: ['js/recommended'],
     languageOptions: { globals: globals.browser },
   },
-  tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+  ...tseslint.configs.recommended.map((config) => ({
+    ...config,
+    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+  })),
+  {
+    ...pluginReact.configs.flat.recommended,
+    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+  },
   {
     settings: {
       react: {
@@ -37,7 +44,22 @@ export default defineConfig([
   // { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
   // { files: ["**/*.json5"], plugins: { json }, language: "json/json5", extends: ["json/recommended"] },
   // { files: ["**/*.md"], plugins: { markdown }, language: "markdown/gfm", extends: ["markdown/recommended"] },
-  // { files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },
+  {
+    files: ['**/*.css'],
+    plugins: { css },
+    language: 'css/css',
+    extends: ['css/recommended'],
+    rules: {
+      // Design tokens live in globals.css; other files can't see them.
+      'css/no-invalid-properties': ['error', { allowUnknownVariables: true }],
+      'css/use-baseline': ['error', { available: 'newly' }],
+    },
+  },
+  {
+    // Tailwind's @theme/@source/@utility are not standard CSS at-rules.
+    files: ['src/app/globals.css'],
+    rules: { 'css/no-invalid-at-rules': 'off' },
+  },
   prettierConfig,
   {
     files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],

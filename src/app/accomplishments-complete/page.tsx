@@ -12,7 +12,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import Welcome from './_assets/encourage-message.svg';
 
-import styles from '@/app/accomplishments/_styles/page.module.sass';
+import styles from '@/app/accomplishments/_styles/page.module.css';
 import app from '@/config';
 
 function AddEncouragement() {

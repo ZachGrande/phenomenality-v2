@@ -2,7 +2,7 @@ import React from 'react';
 
 import Image from 'next/image';
 
-import styles from '../_styles/page.module.sass';
+import styles from '../_styles/page.module.css';
 
 import perfectionist from '@/app/_assets/imposter-types/perfectionist.svg';
 
