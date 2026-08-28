@@ -1,15 +1,15 @@
 import Image from 'next/image';
 
-import styles from '../_styles/page.module.css';
+import ImposterContent from '../_components/ImposterContent';
 
 import soloist from '@/app/_assets/imposter-types/soloist.svg';
 
 function Soloist() {
   return (
-    <div className={styles['imposter-content']}>
+    <ImposterContent>
       <h1>the soloist</h1>
       <Image
-        className={styles['page-image']}
+        className="mx-auto block h-auto max-w-[50%] md:max-w-[40%] lg:max-w-[30%]"
         src={soloist}
         alt="soloist icon"
       />
@@ -21,7 +21,7 @@ function Soloist() {
         through their individual productivity.
       </p>
       <pre></pre>
-      <div className={styles['float-video']}>
+      <div className="m-4 lg:float-right">
         <iframe
           aria-label="Soloist overview"
           width="560"
@@ -76,7 +76,7 @@ function Soloist() {
       <cite>
         — Lady Gaga, Grammy and Oscar Winning Singer-Songwriter and Actress
       </cite>
-    </div>
+    </ImposterContent>
   );
 }
 

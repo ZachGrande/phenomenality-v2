@@ -1,15 +1,15 @@
 import Image from 'next/image';
 
-import styles from '../_styles/page.module.css';
+import ImposterContent from '../_components/ImposterContent';
 
 import perfectionist from '@/app/_assets/imposter-types/perfectionist.svg';
 
 function Perfectionist() {
   return (
-    <div className={styles['imposter-content']}>
+    <ImposterContent>
       <h1>the perfectionist</h1>
       <Image
-        className={styles['page-image']}
+        className="mx-auto block h-auto max-w-[50%] md:max-w-[40%] lg:max-w-[30%]"
         src={perfectionist}
         alt="pefectionist icon"
       />
@@ -21,7 +21,7 @@ function Perfectionist() {
         set impossibly high standards for themselves.
       </p>
       <pre></pre>
-      <div className={styles['float-video']}>
+      <div className="m-4 lg:float-right">
         <iframe
           aria-label="Perfectionist overview"
           width="560"
@@ -84,7 +84,7 @@ function Perfectionist() {
         own particular set of reasons.&quot;
       </blockquote>
       <cite>— Natalie Portman, Academy Award Winning Actress</cite>
-    </div>
+    </ImposterContent>
   );
 }
 

@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo } from 'react';
 
-import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Survey, Model } from 'survey-react-ui';
@@ -10,7 +9,6 @@ import { Survey, Model } from 'survey-react-ui';
 import 'survey-core/survey-core.min.css';
 
 import surveyJSON from './_assets/quiz.json';
-import styles from './_styles/page.module.css';
 
 // Dynamically import CanvasJS to avoid SSR issues (document is not defined)
 const CanvasJSChart = dynamic(
@@ -265,26 +263,13 @@ function QuizContent() {
 
     console.log(path);
     return (
-      <div className={styles.results}>
-        <h2>
-          You got{' '}
-          <Link
-            className={clsx(styles['navbar-link'], styles['link-font'])}
-            href={path}
-          >
-            {topName}
-          </Link>
-          !
+      <div className="text-center font-sans">
+        <h2 className="font-light">
+          You got <Link href={path}>{topName}</Link>!
         </h2>
-        <p>
-          Click{' '}
-          <Link
-            className={clsx(styles['navbar-link'], styles['link-font'])}
-            href="../more-info"
-          >
-            here
-          </Link>{' '}
-          to learn more about the {topName} and other imposter types!{' '}
+        <p className="font-normal">
+          Click <Link href="../more-info">here</Link> to learn more about the{' '}
+          {topName} and other imposter types!{' '}
         </p>
       </div>
     );
@@ -294,12 +279,16 @@ function QuizContent() {
   if (!isMounted || !survey) {
     return (
       <div>
-        <div className={styles.headerPadding}>
-          <h1 className={styles['quiz-title']}>imposter phenomenon quiz</h1>
+        <div className="mr-40 pb-2">
+          <h1 className="float-left m-2 font-display text-4xl font-normal">
+            imposter phenomenon quiz
+          </h1>
         </div>
-        <div className={styles['quiz-page']}>
+        <div className="px-18.75">
           <br></br>
-          <p className={styles.instructions}>Loading quiz...</p>
+          <p className="px-20 pt-10 text-center font-sans text-xl">
+            Loading quiz...
+          </p>
         </div>
       </div>
     );
@@ -308,12 +297,14 @@ function QuizContent() {
   if (!displayResults) {
     return (
       <div>
-        <div className={styles.headerPadding}>
-          <h1 className={styles['quiz-title']}>imposter phenomenon quiz</h1>
+        <div className="mr-40 pb-2">
+          <h1 className="float-left m-2 font-display text-4xl font-normal">
+            imposter phenomenon quiz
+          </h1>
         </div>
-        <div className={styles['quiz-page']}>
+        <div className="px-18.75">
           <br></br>
-          <p className={styles.instructions}>
+          <p className="px-20 pt-10 text-center font-sans text-xl">
             complete this 30-question quiz to determine which types of imposter
             phenomenon you identify with most! determine how you feel about each
             statement, <b> from 1 (strongly disagree) to 5 (strongly agree).</b>
@@ -324,17 +315,15 @@ function QuizContent() {
     );
   } else {
     return (
-      <div className={styles.content}>
-        <div className={styles['results-flex-container']}>
-          <h1>imposter phenomenon results</h1>
-          <span className={clsx(styles['flex-item'], styles['top-result'])}>
-            {showTopResult(results)}
-          </span>
-          <div className={styles['barChart-flex-item']}>
-            {renderChart(results)}
-          </div>
+      <div>
+        <div>
+          <h1 className="text-center font-display">
+            imposter phenomenon results
+          </h1>
+          <span>{showTopResult(results)}</span>
+          <div>{renderChart(results)}</div>
         </div>
-        <p className={styles.disclaimer}>
+        <p className="p-6.25 text-right font-sans">
           DISCLAIMER: this is not medical advice. these results are meant to be
           used as a general guideline.
         </p>

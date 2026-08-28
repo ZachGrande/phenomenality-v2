@@ -1,14 +1,18 @@
 import Image from 'next/image';
 
-import styles from '../_styles/page.module.css';
+import ImposterContent from '../_components/ImposterContent';
 
 import expert from '@/app/_assets/imposter-types/expert.svg';
 
 function Expert() {
   return (
-    <div className={styles['imposter-content']}>
+    <ImposterContent>
       <h1>the expert</h1>
-      <Image className={styles['page-image']} src={expert} alt="expert icon" />
+      <Image
+        className="mx-auto block h-auto max-w-[50%] md:max-w-[40%] lg:max-w-[30%]"
+        src={expert}
+        alt="expert icon"
+      />
       <h2>overview</h2>
       <p>
         The expert represents a person with imposter phenomenon that never feels
@@ -17,7 +21,7 @@ function Expert() {
         or have knowledge on certain topics.
       </p>
       <pre></pre>
-      <div className={styles['float-video']}>
+      <div className="m-4 lg:float-right">
         <iframe
           aria-label="Expert overview"
           width="560"
@@ -75,7 +79,7 @@ function Expert() {
         soon, the jig would be up...&quot;
       </blockquote>
       <cite>— Sheryl Sandberg, Chief Operating Officer of Facebook</cite>
-    </div>
+    </ImposterContent>
   );
 }
 

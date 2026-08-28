@@ -1,16 +1,16 @@
 import Image from 'next/image';
 
-import styles from '../_styles/page.module.css';
+import ImposterContent from '../_components/ImposterContent';
 
 import superhero from '@/app/_assets/imposter-types/superhero.svg';
 
 // Function returns all of page's content
 function Superhuman() {
   return (
-    <div className={styles['imposter-content']}>
+    <ImposterContent>
       <h1>the superhuman</h1>
       <Image
-        className={styles['page-image']}
+        className="mx-auto block h-auto max-w-[50%] md:max-w-[40%] lg:max-w-[30%]"
         src={superhero}
         alt="superhero icon"
       />
@@ -22,7 +22,7 @@ function Superhuman() {
         consequences on mental, physical and emotional health.
       </p>
       <pre></pre>
-      <div className={styles['float-video']}>
+      <div className="m-4 lg:float-right">
         <iframe
           aria-label="Superhero overview"
           width="560"
@@ -78,7 +78,7 @@ function Superhuman() {
         — Sonia Sotomayer, Associate Justice of the Supreme Court of the United
         States
       </cite>
-    </div>
+    </ImposterContent>
   );
 }
 

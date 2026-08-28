@@ -1,14 +1,18 @@
 import Image from 'next/image';
 
-import styles from '../_styles/page.module.css';
+import ImposterContent from '../_components/ImposterContent';
 
 import genius from '@/app/_assets/imposter-types/genius.svg';
 
 function Genius() {
   return (
-    <div className={styles['imposter-content']}>
+    <ImposterContent>
       <h1>the genius</h1>
-      <Image className={styles['page-image']} src={genius} alt="genius icon" />
+      <Image
+        className="mx-auto block h-auto max-w-[50%] md:max-w-[40%] lg:max-w-[30%]"
+        src={genius}
+        alt="genius icon"
+      />
       <h2>overview</h2>
       <p>
         “The natural genius represents a person with imposter phenomenon that
@@ -18,7 +22,7 @@ function Genius() {
         go.
       </p>
       <pre></pre>
-      <div className={styles['float-video']}>
+      <div className="m-4 lg:float-right">
         <iframe
           aria-label="Genius overview"
           width="560"
@@ -72,7 +76,7 @@ function Genius() {
         — Maya Angelou, Presidential Medal of Freedom Award Winning American
         Poet, Memoirist, and Civil Rights Activist
       </cite>
-    </div>
+    </ImposterContent>
   );
 }
 
