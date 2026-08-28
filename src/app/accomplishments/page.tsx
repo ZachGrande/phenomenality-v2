@@ -142,20 +142,11 @@ function AddAccomplishment() {
   }*/
 
   const toggleTag = (value: string) => {
-    // console.log("Value", value);
-    const newTags = accomplishmentTags;
-    if (!accomplishmentTags.includes(value)) {
-      newTags.push(value);
-    } else {
-      const index = newTags.indexOf(value);
-      if (index > -1) {
-        newTags.splice(index, 1);
-      }
-    }
-
-    const idName = value.toLowerCase().replace(/\s+/g, '-');
-    document.getElementsByClassName(idName)[0].classList.toggle('active');
-    setAccomplishmentTags(newTags);
+    setAccomplishmentTags((prev) =>
+      prev.includes(value)
+        ? prev.filter((tag) => tag !== value)
+        : [...prev, value],
+    );
   };
 
   function advancePage() {

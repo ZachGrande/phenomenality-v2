@@ -117,26 +117,7 @@ function Bank() {
   };
 
   const toggleFilter = (value: string) => {
-    if (filter === 'none') {
-      // first time tagging
-      const idName = value.toLowerCase().replace(/\s+/g, '-');
-      document.getElementsByClassName(idName)[0].classList.toggle('active');
-      setFilter(value);
-    } else if (filter === value) {
-      // turn off same tag
-      const idName = value.toLowerCase().replace(/\s+/g, '-');
-      document.getElementsByClassName(idName)[0].classList.toggle('active');
-      setFilter('none');
-    } else {
-      // switch tag
-      const idName = value.toLowerCase().replace(/\s+/g, '-');
-      document.getElementsByClassName(idName)[0].classList.toggle('active');
-      const existingIdName = filter.toLowerCase().replace(/\s+/g, '-');
-      document
-        .getElementsByClassName(existingIdName)[0]
-        .classList.toggle('active');
-      setFilter(value);
-    }
+    setFilter((current) => (current === value ? 'none' : value));
   };
 
   function closeEditForm() {
@@ -195,7 +176,7 @@ function Bank() {
         </p>
         <TagButtonList
           items={allTags}
-          activeTags={existingTags}
+          activeTags={filter === 'none' ? [] : [filter]}
           toggleTag={toggleFilter}
         />
       </div>
@@ -354,7 +335,7 @@ function Bank() {
           </p>
           <TagButtonList
             items={allTags}
-            activeTags={existingTags}
+            activeTags={filter === 'none' ? [] : [filter]}
             toggleTag={toggleFilter}
           />
         </div>
