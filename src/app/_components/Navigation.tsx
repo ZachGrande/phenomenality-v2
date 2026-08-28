@@ -46,37 +46,26 @@ function Navigation() {
 
   return (
     <nav>
-      <div className={clsx(styles.navigation, 'w-full p-4')}>
-        <ul className="mb-0 px-0">
+      <div className="w-full bg-cream p-4">
+        <ul className="mb-0 px-0 leading-11.5">
           <Link
-            className={clsx(
-              styles.keepStrengthen,
-              styles['navbar-link'],
-              styles['home-font'],
-            )}
+            className="hidden font-display text-2xl text-ink no-underline md:inline"
             href="/"
           >
             phenomenality | strengthen your mentality
           </Link>
           <Link
-            className={clsx(
-              styles.dropStrengthen,
-              styles['navbar-link'],
-              styles['home-font'],
-            )}
+            className="inline font-display text-2xl text-ink no-underline md:hidden"
             href="/"
           >
             phenomenality
           </Link>
           {showDropDownMenu ? (
-            <div
-              className={clsx(styles.dropDown, styles.dropDownContainer)}
-              id="popupForm"
-            >
+            <div className={styles.dropDown} id="popupForm">
               <ul className="px-4">
                 <li className={clsx(styles.navvy, 'inline')}>
                   <Link
-                    className={clsx(styles['navbar-link'], styles['link-font'])}
+                    className="font-sans text-ink no-underline"
                     href="/accomplishments"
                   >
                     accomplishments
@@ -86,7 +75,7 @@ function Navigation() {
                 </li>
                 <li className={clsx(styles.navvy, 'inline')}>
                   <Link
-                    className={clsx(styles['navbar-link'], styles['link-font'])}
+                    className="font-sans text-ink no-underline"
                     href="/bank"
                   >
                     your bank
@@ -95,10 +84,7 @@ function Navigation() {
                   <br />
                 </li>
                 <li className={clsx(styles.navvy, 'inline')}>
-                  <Link
-                    className={clsx(styles['navbar-link'], styles['link-font'])}
-                    href="quiz"
-                  >
+                  <Link className="font-sans text-ink no-underline" href="quiz">
                     quiz
                   </Link>
                   <br />
@@ -106,7 +92,7 @@ function Navigation() {
                 </li>
                 <li className={clsx(styles.navvy, 'inline')}>
                   <Link
-                    className={clsx(styles['navbar-link'], styles['link-font'])}
+                    className="font-sans text-ink no-underline"
                     href="more-info"
                   >
                     imposter phenomenon
@@ -115,17 +101,15 @@ function Navigation() {
                 </li>
                 <br />
                 <br />
-                <li className={clsx(styles.dropdownInitials, 'inline')}>
+                <li className="inline text-center">
                   <Link
-                    className={clsx(
-                      styles['navbar-link'],
-                      styles['link-font'],
-                      styles.dropdownInitials,
-                    )}
+                    className="font-sans text-center text-ink no-underline"
                     href="/authentication"
                   >
                     {initials ? (
-                      <div className={styles.initials}>{initials}</div>
+                      <div className="mr-4 inline-flex size-11.5 items-center justify-center rounded-full border-[3px] border-solid border-accent p-0 align-middle text-base font-semibold leading-none">
+                        {initials}
+                      </div>
                     ) : (
                       <Image
                         src={profileButton}
@@ -139,52 +123,48 @@ function Navigation() {
                   </Link>
                 </li>
               </ul>
-              <div className={styles['popup-btn-center']}>
+              <div className="flex flex-wrap justify-center text-center">
                 {/* <button type="button" className="btn cancel"
                       onClick={closeDropDownMenu}>close</button> */}
               </div>
             </div>
           ) : (
-            <div className={clsx(styles['nav-left'])}>
+            <div className="relative float-right hidden text-xl xl:block">
               <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
                 <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
+                  className="font-sans text-ink no-underline"
                   href="/accomplishments"
                 >
                   accomplishments
                 </Link>
               </li>
               <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
-                <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
-                  href="/bank"
-                >
+                <Link className="font-sans text-ink no-underline" href="/bank">
                   your bank
                 </Link>
               </li>
               <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
-                <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
-                  href="quiz"
-                >
+                <Link className="font-sans text-ink no-underline" href="quiz">
                   quiz
                 </Link>
               </li>
               <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
                 <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
+                  className="font-sans text-ink no-underline"
                   href="more-info"
                 >
                   imposter phenomenon
                 </Link>
               </li>
-              <li className="inline mx-2">
+              <li className="mx-2 inline">
                 <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
+                  className="font-sans text-ink no-underline"
                   href="/authentication"
                 >
                   {initials ? (
-                    <div className={styles.initials}>{initials}</div>
+                    <div className="mr-4 inline-flex size-11.5 items-center justify-center rounded-full border-[3px] border-solid border-accent p-0 align-middle text-base font-semibold leading-none">
+                      {initials}
+                    </div>
                   ) : (
                     <Image
                       src={profileButton}
@@ -201,23 +181,17 @@ function Navigation() {
           )}
           <button
             type="button"
-            className={styles['carrot-menu']}
+            className="relative float-right z-100 cursor-pointer bg-transparent text-xl hover:shadow-none xl:hidden"
             onClick={toggleDropDown}
           >
-            <div className={styles.menu}>
-              <p
-                className={clsx(
-                  styles['link-font'],
-                  'mb-0 inline-block align-top',
-                )}
-              >
+            <div>
+              <p className="mb-0 inline-block align-top font-sans font-extralight">
                 menu
               </p>
               <Image
                 className={clsx(
-                  styles['carrot-icon'],
-                  'inline-block',
-                  !showDropDownMenu ? styles.rotated : '',
+                  'inline-block float-right -ml-12.5 mt-2.25',
+                  !showDropDownMenu ? '-rotate-90' : '',
                 )}
                 src={downCarrot}
                 alt="menu"
