@@ -13,7 +13,6 @@ import allTags from '../accomplishments/_components/tags';
 
 import CardList from './_components/Card';
 import TagList from './_components/Tag';
-import styles from './_styles/page.module.css';
 import popupStyles from './_styles/Popup.module.css';
 
 import type { Accomplishment } from '@/types/accomplishment';
@@ -186,8 +185,10 @@ function Bank() {
   function tagListContainer() {
     return (
       <div>
-        <h2 className={clsx(styles['tag-title'], 'mx-3')}>filter tags</h2>
-        <p className={styles['tag-desc']}>
+        <h2 className="mx-3 font-display text-[1.75rem] font-normal">
+          filter tags
+        </h2>
+        <p className="-mt-2.5 ml-12.5 flex justify-center font-sans text-xl">
           {' '}
           select a tag you would like to filter through your accomplishments
           with!
@@ -251,7 +252,9 @@ function Bank() {
             </div>
           </form>
         </div>
-        <h1 className={styles['bank-h1']}>all accomplishments</h1>
+        <h1 className="font-display text-4xl font-normal">
+          all accomplishments
+        </h1>
         {tagListContainer()}
         <CardList
           items={entriesToShow}
@@ -302,7 +305,9 @@ function Bank() {
             </div>
           </form>
         </div>
-        <h1 className={styles['bank-h1']}>all accomplishments</h1>
+        <h1 className="font-display text-4xl font-normal">
+          all accomplishments
+        </h1>
         {tagListContainer()}
         <CardList
           items={entriesToShow}
@@ -315,8 +320,10 @@ function Bank() {
   } else if (items.length > 0) {
     return (
       <div className="mx-auto w-full max-w-6xl px-3">
-        <div className={styles['card-list']}>
-          <h1 className={styles['bank-h1']}>all accomplishments</h1>
+        <div className="justify-center">
+          <h1 className="font-display text-4xl font-normal">
+            all accomplishments
+          </h1>
           {tagListContainer()}
           <CardList
             items={entriesToShow}
@@ -332,13 +339,15 @@ function Bank() {
   } else {
     return (
       <div className="mx-auto w-full max-w-6xl px-3">
-        <h1 className={styles['bank-h1']}>
+        <h1 className="font-display text-4xl font-normal">
           You have not added to your accomplishment bank!
         </h1>
         {/* TODO: This should not be visible if no accomplishments are present */}
         <div>
-          <h2 className={clsx(styles['tag-title'], 'mx-4')}>filter tags</h2>
-          <p className={styles['tag-desc']}>
+          <h2 className="mx-4 font-display text-[1.75rem] font-normal">
+            filter tags
+          </h2>
+          <p className="-mt-2.5 ml-12.5 flex justify-center font-sans text-xl">
             {' '}
             select a tag you would like to filter through your accomplishments
             with!
