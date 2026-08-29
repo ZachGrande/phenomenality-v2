@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import app from '../../config';
@@ -27,6 +28,7 @@ function AddAccomplishment() {
   const auth = getAuth(app);
   const database = getDatabase(app);
   const [user] = useAuthState(auth);
+  const router = useRouter();
 
   const current = new Date();
   const date = `${current.getMonth() + 1}/${current.getDate()}/${current.getFullYear()}`;
@@ -43,6 +45,7 @@ function AddAccomplishment() {
 
   const [showWelcome, setShowWelcome] = useState(true);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -118,9 +121,21 @@ function AddAccomplishment() {
     setItems(newItems);
     setTitle('');
     setAccomplishment('');
-    update(ref(database, 'users/' + user.uid), {
+    await update(ref(database, 'users/' + user.uid), {
       data: newItems,
     });
+  };
+
+  const submitAccomplishment = async (
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => {
+    event.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+
+    await addNewAccomplishment();
+    setIsSubmitting(true);
   };
 
   /*const editTag = value => {
@@ -230,7 +245,14 @@ function AddAccomplishment() {
   }
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence
+      mode="wait"
+      onExitComplete={() => {
+        if (isSubmitting) {
+          router.push('/accomplishments-complete');
+        }
+      }}
+    >
       {showWelcome && hasLoggedToday ? (
         <motion.div
           key="already-logged"
@@ -300,7 +322,7 @@ function AddAccomplishment() {
             next
           </motion.button>
         </motion.div>
-      ) : (
+      ) : !isSubmitting ? (
         <motion.div
           key="form"
           className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle"
@@ -356,7 +378,7 @@ function AddAccomplishment() {
               <LinkButton
                 aria-label="Next"
                 href="/accomplishments-complete"
-                onClick={addNewAccomplishment}
+                onClick={submitAccomplishment}
                 className="w-fit self-end"
               >
                 next
@@ -364,7 +386,7 @@ function AddAccomplishment() {
             </form>
           </div>
         </motion.div>
-      )}
+      ) : null}
     </AnimatePresence>
   );
 }
