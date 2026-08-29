@@ -1,7 +1,4 @@
-.label {
-  font-family: var(--font-display);
-}
-
+/* Kept as a module: fixed-position popup shell with a centering translate. */
 .formPopup {
   display: block;
   position: fixed;
@@ -14,50 +11,4 @@
   max-width: 500px;
   outline: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-panel);
-}
-
-.formContainer {
-  border-radius: var(--radius-panel);
-  max-width: 500px;
-  padding: 20px;
-  background-color: var(--color-surface);
-}
-
-.formContainer input[type=text],
-.formContainer input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 20px 0;
-  border: none;
-  background: var(--color-field);
-}
-
-.formContainer input[type=text]:focus,
-.formContainer input[type=password]:focus {
-  background-color: var(--color-field-focus);
-}
-
-.formContainer .btn {
-  border: none;
-  background-color: var(--color-brand);
-  color: var(--color-brand-contrast);
-  cursor: pointer;
-  width: fit-content;
-  padding: 10px 20px;
-  margin: 1em;
-}
-
-.popup-btn-center {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
-}
-
-.formContainer .cancel {
-  background-color: var(--color-muted);
-}
-
-.formContainer .btn:hover {
-  opacity: 1;
 }

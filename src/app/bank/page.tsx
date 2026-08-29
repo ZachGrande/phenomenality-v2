@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-import clsx from 'clsx';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -188,12 +187,16 @@ function Bank() {
     return (
       <div className="mx-auto w-full max-w-6xl px-3">
         <div className={popupStyles.formPopup} id="popupForm">
-          <form action="/action_page.php" className={popupStyles.formContainer}>
+          <form
+            action="/action_page.php"
+            className="max-w-125 rounded-panel bg-surface p-5"
+          >
             <h3>edit accomplishment {currentEditId}</h3>
-            <label className={popupStyles.label} htmlFor="editTitle">
+            <label className="font-display" htmlFor="editTitle">
               title
             </label>
             <input
+              className="mt-1.25 mb-5 w-full border-none bg-field p-3.75 focus:bg-field-focus"
               type="text"
               id="editTitle"
               value={existingTitle}
@@ -202,10 +205,11 @@ function Bank() {
               }}
               name="editTitle"
             ></input>
-            <label className={popupStyles.label} htmlFor="editDescription">
+            <label className="font-display" htmlFor="editDescription">
               description
             </label>
             <input
+              className="mt-1.25 mb-5 w-full border-none bg-field p-3.75 focus:bg-field-focus"
               type="text"
               id="editDescription"
               value={existingDescription}
@@ -215,17 +219,17 @@ function Bank() {
               name="editDescription"
             ></input>
             <TagList items={existingTags} />
-            <div className={popupStyles['popup-btn-center']}>
+            <div className="flex flex-wrap justify-center text-center">
               <button
                 type="button"
-                className={popupStyles.btn}
+                className="m-4 w-fit cursor-pointer border-none bg-brand px-5 py-2.5 text-brand-contrast"
                 onClick={submitForm}
               >
                 update
               </button>
               <button
                 type="button"
-                className={clsx(popupStyles.btn, popupStyles.cancel)}
+                className="m-4 w-fit cursor-pointer border-none bg-muted px-5 py-2.5 text-brand-contrast"
                 onClick={closeEditForm}
               >
                 cancel
@@ -249,9 +253,9 @@ function Bank() {
     return (
       <div>
         <div className={popupStyles.formPopup} id="popupForm">
-          <form className={popupStyles.formContainer}>
+          <form className="max-w-125 rounded-panel bg-surface p-5">
             <h3>expanded view</h3>
-            <label className={popupStyles.label} htmlFor="viewTitle">
+            <label className="font-display" htmlFor="viewTitle">
               title
             </label>
             <p
@@ -260,7 +264,7 @@ function Bank() {
             >
               {existingTitle}
             </p>
-            <label className={popupStyles.label} htmlFor="viewDescription">
+            <label className="font-display" htmlFor="viewDescription">
               description
             </label>
             <p
@@ -269,16 +273,16 @@ function Bank() {
             >
               {existingDescription}
             </p>
-            <label className={popupStyles.label} htmlFor="viewTags">
+            <label className="font-display" htmlFor="viewTags">
               tags
             </label>
             <div className="tags-background">
               <TagList items={existingTags} />
             </div>
-            <div className={popupStyles['popup-btn-center']}>
+            <div className="flex flex-wrap justify-center text-center">
               <button
                 type="button"
-                className={clsx(popupStyles.btn, popupStyles.cancel)}
+                className="m-4 w-fit cursor-pointer border-none bg-muted px-5 py-2.5 text-brand-contrast"
                 onClick={closeViewForm}
               >
                 close
