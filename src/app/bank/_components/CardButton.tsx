@@ -21,9 +21,10 @@ function CardButton({
       onClick={onClick}
       aria-label={ariaLabel}
       className={clsx(
-        'm-1.25 inline',
+        variant === 'action' &&
+          'border border-brand bg-transparent px-4 py-1.5 text-sm text-brand hover:bg-brand hover:text-brand-contrast hover:shadow-none',
         variant === 'delete' &&
-          'absolute top-0 right-0 border border-cream bg-cream p-3.75 text-center text-ink',
+          'absolute top-3 right-3 h-8 w-8 rounded-full bg-transparent p-0 text-lg leading-none text-inactive-text hover:bg-black/5 hover:text-ink hover:shadow-none',
       )}
     >
       {children}

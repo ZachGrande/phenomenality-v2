@@ -40,29 +40,31 @@ function Card(props: CardProps) {
     };
 
     return (
-      <div className="relative m-4 w-3/5 min-w-100 max-w-100 rounded-card bg-cream p-5 text-center font-sans shadow-card">
-        <div>
-          <p className="flex justify-center font-sans">{thisItem.date}</p>
-          <h2>{thisItem.title}</h2>
-        </div>
+      <div className="relative flex h-full flex-col rounded-card bg-cream p-5 font-sans shadow-card transition-shadow duration-150 hover:shadow-elevate">
         <CardButton
           variant="delete"
           aria-label="Delete accomplishment"
           onClick={handleClick}
         >
-          x
+          ×
         </CardButton>
-        <p className="flex flex-wrap justify-center font-sans">
+        <p className="pr-8 font-sans text-sm text-inactive-text">
+          {thisItem.date}
+        </p>
+        <h2 className="pr-8 text-xl">{thisItem.title}</h2>
+        <p className="mt-2 grow font-sans text-sm">
           {thisItem.descriptionDisplay}
         </p>
         <TagList items={thisItem.tags} />
-        <CardButton onClick={handleEdit}>edit</CardButton>
-        <CardButton onClick={handleView}>view more</CardButton>
+        <div className="-mx-1.25 mt-4 flex justify-center gap-2 border-t border-border-subtle/20 pt-4">
+          <CardButton onClick={handleEdit}>edit</CardButton>
+          <CardButton onClick={handleView}>view more</CardButton>
+        </div>
       </div>
     );
   }
 
-  return <div>{renderItem()}</div>;
+  return renderItem();
 }
 
 function CardList(props: CardListProps) {
@@ -80,7 +82,7 @@ function CardList(props: CardListProps) {
   });
 
   return (
-    <div className="flex flex-row flex-wrap content-between items-center justify-center p-12">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-6 p-6">
       {cardComponents}
     </div>
   );

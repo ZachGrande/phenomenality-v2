@@ -66,7 +66,11 @@ function Bank() {
   }, [isLoading, database, user]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="mx-auto w-full max-w-6xl px-3 py-12 text-center">
+        <p className="text-inactive-text">Loading...</p>
+      </div>
+    );
   }
 
   const deleteCard = (id: number) => {
@@ -164,12 +168,9 @@ function Bank() {
 
   function tagListContainer() {
     return (
-      <div>
-        <h2 className="mx-3 font-display text-[1.75rem] font-normal">
-          filter tags
-        </h2>
-        <p className="-mt-2.5 ml-12.5 flex justify-center font-sans text-xl">
-          {' '}
+      <div className="rounded-panel bg-surface p-5 shadow-card">
+        <h2 className="font-display text-[1.75rem] font-normal">filter tags</h2>
+        <p className="mt-1 mb-4 text-center font-sans text-base text-inactive-text">
           select a tag you would like to filter through your accomplishments
           with!
         </p>
@@ -186,6 +187,7 @@ function Bank() {
     // TODO: Place form popup in a separate component
     return (
       <div className="mx-auto w-full max-w-6xl px-3">
+        <div className={popupStyles.overlay} onClick={closeEditForm} />
         <div className={popupStyles.formPopup} id="popupForm">
           <form
             action="/action_page.php"
@@ -236,7 +238,7 @@ function Bank() {
         <h1 className="font-display text-4xl font-normal">
           all accomplishments
         </h1>
-        {tagListContainer()}
+        <div className="mt-4">{tagListContainer()}</div>
         <CardList
           items={entriesToShow}
           deleteCard={deleteCard}
@@ -248,6 +250,7 @@ function Bank() {
   } else if (items.length > 0 && showViewPopup) {
     return (
       <div>
+        <div className={popupStyles.overlay} onClick={closeViewForm} />
         <div className={popupStyles.formPopup} id="popupForm">
           <form className="max-w-125 rounded-panel bg-surface p-5">
             <h3>expanded view</h3>
@@ -286,26 +289,11 @@ function Bank() {
             </div>
           </form>
         </div>
-        <h1 className="font-display text-4xl font-normal">
-          all accomplishments
-        </h1>
-        {tagListContainer()}
-        <CardList
-          items={entriesToShow}
-          deleteCard={deleteCard}
-          editCard={editCard}
-          viewCard={viewCard}
-        />
-      </div>
-    );
-  } else if (items.length > 0) {
-    return (
-      <div className="mx-auto w-full max-w-6xl px-3">
-        <div className="justify-center">
+        <div className="mx-auto w-full max-w-6xl px-3">
           <h1 className="font-display text-4xl font-normal">
             all accomplishments
           </h1>
-          {tagListContainer()}
+          <div className="mt-4">{tagListContainer()}</div>
           <CardList
             items={entriesToShow}
             deleteCard={deleteCard}
@@ -315,30 +303,35 @@ function Bank() {
         </div>
       </div>
     );
+  } else if (items.length > 0) {
+    return (
+      <div className="mx-auto w-full max-w-6xl px-3 py-6">
+        <h1 className="font-display text-4xl font-normal">
+          all accomplishments
+        </h1>
+        <div className="mt-4">{tagListContainer()}</div>
+        <CardList
+          items={entriesToShow}
+          deleteCard={deleteCard}
+          editCard={editCard}
+          viewCard={viewCard}
+        />
+      </div>
+    );
   } else if (loading) {
-    return <p>Loading your card list.</p>;
+    return (
+      <div className="mx-auto w-full max-w-6xl px-3 py-12 text-center">
+        <p className="text-inactive-text">Loading your card list.</p>
+      </div>
+    );
   } else {
     return (
-      <div className="mx-auto w-full max-w-6xl px-3">
+      <div className="mx-auto w-full max-w-6xl px-3 py-6">
         <h1 className="font-display text-4xl font-normal">
           You have not added to your accomplishment bank!
         </h1>
         {/* TODO: This should not be visible if no accomplishments are present */}
-        <div>
-          <h2 className="mx-4 font-display text-[1.75rem] font-normal">
-            filter tags
-          </h2>
-          <p className="-mt-2.5 ml-12.5 flex justify-center font-sans text-xl">
-            {' '}
-            select a tag you would like to filter through your accomplishments
-            with!
-          </p>
-          <TagButtonList
-            items={allTags}
-            activeTags={filter === 'none' ? [] : [filter]}
-            toggleTag={toggleFilter}
-          />
-        </div>
+        <div className="mt-4">{tagListContainer()}</div>
       </div>
     );
   }
