@@ -146,8 +146,7 @@
     outline-offset: 2px;
   }
 
-  button,
-  .button {
+  button {
     background-color: var(--color-brand);
     border-color: transparent;
     color: var(--color-brand-contrast);
@@ -158,13 +157,7 @@
     border-radius: var(--radius-control);
   }
 
-  .button-box,
-  .button {
-    display: block;
-  }
-
-  button:hover,
-  .button:hover {
+  button:hover {
     box-shadow: var(--shadow-elevate);
   }
 }

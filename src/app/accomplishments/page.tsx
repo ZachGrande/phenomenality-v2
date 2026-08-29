@@ -1,15 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import clsx from 'clsx';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import app from '../../config';
+import LinkButton from '../_components/LinkButton';
 
 import WelcomeMessage from './_assets/accomplishment-demo/accomplishment-1.png';
 import DailyAccomplishment from './_assets/accomplishment-demo/accomplishment-2.png';
@@ -20,7 +19,6 @@ import SampleBankFilter from './_assets/accomplishment-demo/accomplishment-6.png
 import Welcome from './_assets/welcome-message.svg';
 import TagButtonList from './_components/TagButton';
 import tags from './_components/tags';
-import styles from './_styles/page.module.css';
 
 import type { Accomplishment } from '@/types/accomplishment';
 
@@ -95,8 +93,7 @@ function AddAccomplishment() {
     setAccomplishmentDescription(shortAccomp);
   }, [accomplishment]);
 
-  const addNewAccomplishment = async (event: React.MouseEvent) => {
-    event.preventDefault();
+  const addNewAccomplishment = async () => {
     if (!user) {
       return;
     }
@@ -159,30 +156,31 @@ function AddAccomplishment() {
   };
 
   if (isLoading) {
-    return <p className={styles.p}>Loading...</p>;
+    return <p className="font-sans font-light">Loading...</p>;
   }
 
   if (!user) {
     return (
-      <div className={styles.accomplishmentsSignedOut}>
-        <h1 className={styles.h1}>you haven&apos;t logged in yet!</h1>
-        <p className={styles.p}>
+      <div className="mx-8 flex flex-col justify-center">
+        <h1 className="font-display text-base font-normal">
+          you haven&apos;t logged in yet!
+        </h1>
+        <p className="font-sans font-light">
           sign in to begin logging your accomplishments.
         </p>
-        <Link
+        <LinkButton
           aria-label="Sign in"
-          className={clsx('button', styles.button, styles['rmv-underline'])}
-          role="button"
           href="/authentication"
+          className="w-fit"
         >
           sign in
-        </Link>
-        <h2 className={clsx(styles.photoHeader, styles.bloop)}>
+        </LinkButton>
+        <h2 className="text-center font-display">
           here&apos;s what phenomenality can offer you!
         </h2>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.odd)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={WelcomeMessage}
             alt="welcome-message"
             width={2876}
@@ -191,7 +189,7 @@ function AddAccomplishment() {
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.even)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={DailyAccomplishment}
             alt="daily-accomplishment"
             width={2872}
@@ -200,28 +198,28 @@ function AddAccomplishment() {
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.odd)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={WonderfulAccomplishment}
             alt="wonderful-accomplishment"
           />
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.even)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={AccomplishmentComplete}
             alt="accomplishment-complete"
           />
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.odd)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={SampleBank}
             alt="sample-bank"
           />
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.odd)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={SampleBankFilter}
             alt="sample-bank-filter"
           />
@@ -232,33 +230,28 @@ function AddAccomplishment() {
 
   if (showWelcome && hasLoggedToday) {
     return (
-      <div className={styles.outlineBox}>
-        <h1 className={clsx(styles.h1, styles.h1Accomp)}>
+      <div className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle">
+        <h1 className="ml-[0.5em] font-display text-4xl font-normal">
           you&apos;ve already logged an accomplishment today!
         </h1>
         <div className="flex flex-row">
           <div className="flex flex-col items-center">
-            <p className={clsx(styles['encrg-p'], styles.p)}>
+            <p className="m-5 font-sans font-light">
               visit your bank to view your accomplishments.
             </p>
-            <Link
+            <LinkButton
               aria-label="View Accomplishments"
-              className={clsx(
-                'button',
-                styles['rmv-underline'],
-                'ml-8 h-[45px] w-fit',
-              )}
-              role="button"
               href="/bank"
+              className="ml-8 h-11.25 w-fit"
             >
               view accomplishments
-            </Link>
+            </LinkButton>
           </div>
           <div className="flex flex-col items-center">
-            <p className={clsx(styles['encrg-p'], styles.p)}>
+            <p className="m-5 font-sans font-light">
               or add another accomplishment for today.
             </p>
-            <button className="ml-8 h-[45px]" onClick={toggleHasLoggedToday}>
+            <button className="ml-8 h-11.25" onClick={toggleHasLoggedToday}>
               add new accomplishment
             </button>
           </div>
@@ -267,37 +260,39 @@ function AddAccomplishment() {
     );
   } else if (showWelcome) {
     return (
-      <div className={clsx(styles.accomplishments, styles.outlineBox)}>
-        <h1 className={clsx(styles.h1, styles.h1Accomp)}>hello, {name}!</h1>
-        <p className={clsx(styles['encrg-p'], styles.p)}>
+      <div className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle">
+        <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+          hello, {name}!
+        </h1>
+        <p className="m-5 font-sans text-2xl font-light">
           great work today! keep moving forward and record an accomplishment!
         </p>
         <Image
-          className={clsx(styles.centerImg, 'h-auto w-[30%]')}
+          className="mx-auto block h-auto w-[30%]"
           src={Welcome}
           alt="Person sitting in chair reading book"
         />
-        <br></br>
-        <button className={styles.accomplishmentNext} onClick={advancePage}>
+        <button className="float-right mt-4" onClick={advancePage}>
           next
         </button>
-        <br></br>
-        <br></br>
       </div>
     );
   } else {
     return (
-      <div className={clsx(styles.outlineBox, styles.addAccomp)}>
-        <h1 className={clsx(styles.h1, styles.h1Accomp)}>
+      <div className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle">
+        <h1 className="ml-[0.5em] font-display text-4xl font-normal">
           daily accomplishment
         </h1>
-        <p className={clsx(styles['encrg-p'], styles.p)}>
+        <p className="m-5 font-sans font-light">
           what would you like to record?
         </p>
-        <div className="padding">
-          <form>
+        <div>
+          <form className="flex flex-col items-center gap-4">
             <textarea
-              className={styles.accompTextarea}
+              className="w-4/5 rounded-panel border border-border-subtle p-3 font-sans text-base"
+              id="accomplishment-title"
+              name="title"
+              aria-label="Accomplishment title"
               placeholder={titlePlaceholder}
               value={title}
               onChange={(event) => {
@@ -306,10 +301,11 @@ function AddAccomplishment() {
               rows={2}
               cols={45}
             ></textarea>
-            <br></br>
-            <br></br>
             <textarea
-              className={styles.accompTextarea}
+              className="w-4/5 rounded-panel border border-border-subtle p-3 font-sans text-base"
+              id="accomplishment-description"
+              name="description"
+              aria-label="Accomplishment description"
               placeholder="description"
               value={accomplishment}
               onChange={(event) => {
@@ -318,11 +314,8 @@ function AddAccomplishment() {
               rows={10}
               cols={45}
             ></textarea>
-            <br></br>
-            <br></br>
-            <br></br>
             <div id="tagSection">
-              <p className={clsx(styles['tag-title'], styles.p)}>
+              <p className="text-left font-sans text-[1.75rem] font-normal">
                 add a tag to your post so you can find it later!
               </p>
               <TagButtonList
@@ -331,26 +324,14 @@ function AddAccomplishment() {
                 toggleTag={toggleTag}
               />
             </div>
-            <br></br>
-            <br></br>
-            {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
-            {/* this button is strange */}
-            <button className={styles.nextBtn} onClick={addNewAccomplishment}>
-              <Link
-                aria-label="Next"
-                className={clsx(
-                  styles.nextButton,
-                  styles['rmv-underline'],
-                  styles.nextBtn,
-                )}
-                role="button"
-                href="/accomplishments-complete"
-              >
-                next
-              </Link>
-            </button>
-            <br></br>
-            <br></br>
+            <LinkButton
+              aria-label="Next"
+              href="/accomplishments-complete"
+              onClick={addNewAccomplishment}
+              className="w-fit self-end"
+            >
+              next
+            </LinkButton>
           </form>
         </div>
       </div>

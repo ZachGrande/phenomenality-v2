@@ -2,18 +2,16 @@
 
 import React, { useState, useEffect } from 'react';
 
-import clsx from 'clsx';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import Welcome from './_assets/encourage-message.svg';
 
 import type { EncouragingMessage } from '@/types/accomplishment';
 
-import styles from '@/app/accomplishments/_styles/page.module.css';
+import LinkButton from '@/app/_components/LinkButton';
 import app from '@/config';
 
 function AddEncouragement() {
@@ -77,18 +75,17 @@ function AddEncouragement() {
 
   if (showEncouragingMessageInput) {
     return (
-      <div className={styles.outlineBox}>
-        <h1 className={styles.h1Accomp}>wonderful accomplishment!</h1>
-        <p className={styles['encrg-p']}>
+      <div className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle">
+        <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+          wonderful accomplishment!
+        </h1>
+        <p className="m-5 font-sans">
           now write yourself an encouraging message that will be shown you to
           randomly.
         </p>
-        <form className={styles.encrgCenter}>
+        <form className="m-8 text-center">
           <textarea
-            className={clsx(
-              styles.accompTextarea,
-              styles['encrg-bottom-padding'],
-            )}
+            className="mb-8 w-4/5 rounded-panel p-3 font-sans text-base"
             placeholder="example: you've got this!"
             value={encouragingMessage}
             onChange={(event) => {
@@ -98,10 +95,7 @@ function AddEncouragement() {
             cols={45}
           />
           <div>
-            <button
-              className={styles.accomplishmentNext}
-              onClick={addNewEncouragingMessage}
-            >
+            <button className="float-right" onClick={addNewEncouragingMessage}>
               next
             </button>
           </div>
@@ -110,31 +104,25 @@ function AddEncouragement() {
     );
   } else {
     return (
-      <div className={styles.outlineBox}>
-        <h1 className={styles.h1Accomp}>have a lovely day!</h1>
-        <p className={styles['encrg-p']}>
+      <div className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle">
+        <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+          have a lovely day!
+        </h1>
+        <p className="m-5 font-sans">
           come back tomorrow to add another accomplishment!
         </p>
         <Image
-          className={clsx(styles.centerImg, 'h-auto w-2/5')}
+          className="mx-auto block h-auto w-2/5"
           src={Welcome}
           alt="Two people high fiving"
         />
-        <br></br>
-        <Link
+        <LinkButton
           aria-label="View Accomplishments"
-          className={clsx(
-            styles.button,
-            styles['rmv-underline'],
-            styles.viewAccompBtn,
-            styles.nextButton,
-          )}
-          role="button"
           href="/bank"
+          className="mt-4 w-fit self-end"
         >
           view accomplishments
-        </Link>
-        <br></br>
+        </LinkButton>
       </div>
     );
   }
