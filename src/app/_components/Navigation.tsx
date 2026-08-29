@@ -47,7 +47,7 @@ function Navigation() {
   return (
     <nav>
       <div className="w-full bg-cream p-4">
-        <ul className="mb-0 px-0 leading-11.5">
+        <ul className="mb-0 flex items-center justify-between px-0 leading-11.5">
           <Link
             className="hidden font-display text-2xl text-ink no-underline md:inline"
             href="/"
@@ -129,7 +129,7 @@ function Navigation() {
               </div>
             </div>
           ) : (
-            <div className="relative float-right hidden text-xl xl:block">
+            <div className="relative hidden text-xl xl:block">
               <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
                 <Link
                   className="font-sans text-ink no-underline"
@@ -181,18 +181,15 @@ function Navigation() {
           )}
           <button
             type="button"
-            className="relative float-right z-100 cursor-pointer bg-transparent text-xl hover:shadow-none xl:hidden"
+            className="relative z-100 cursor-pointer bg-transparent text-xl hover:shadow-none xl:hidden"
             onClick={toggleDropDown}
           >
-            <div>
+            <div className="flex items-center gap-1">
               <p className="mb-0 inline-block align-top font-sans font-extralight">
                 menu
               </p>
               <Image
-                className={clsx(
-                  'inline-block float-right -ml-12.5 mt-2.25',
-                  !showDropDownMenu ? '-rotate-90' : '',
-                )}
+                className={clsx(!showDropDownMenu ? '-rotate-90' : '')}
                 src={downCarrot}
                 alt="menu"
                 style={{ width: '12%', height: 'auto' }}

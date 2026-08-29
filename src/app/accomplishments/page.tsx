@@ -272,7 +272,7 @@ function AddAccomplishment() {
           src={Welcome}
           alt="Person sitting in chair reading book"
         />
-        <button className="float-right mt-4" onClick={advancePage}>
+        <button className="mt-4" onClick={advancePage}>
           next
         </button>
       </div>

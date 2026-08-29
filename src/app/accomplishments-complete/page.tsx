@@ -94,10 +94,8 @@ function AddEncouragement() {
             rows={2}
             cols={45}
           />
-          <div>
-            <button className="float-right" onClick={addNewEncouragingMessage}>
-              next
-            </button>
+          <div className="flex justify-end">
+            <button onClick={addNewEncouragingMessage}>next</button>
           </div>
         </form>
       </div>

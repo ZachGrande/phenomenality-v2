@@ -280,7 +280,7 @@ function QuizContent() {
     return (
       <div>
         <div className="mr-40 pb-2">
-          <h1 className="float-left m-2 font-display text-4xl font-normal">
+          <h1 className="m-2 font-display text-4xl font-normal">
             imposter phenomenon quiz
           </h1>
         </div>
@@ -298,7 +298,7 @@ function QuizContent() {
     return (
       <div>
         <div className="mr-40 pb-2">
-          <h1 className="float-left m-2 font-display text-4xl font-normal">
+          <h1 className="m-2 font-display text-4xl font-normal">
             imposter phenomenon quiz
           </h1>
         </div>
