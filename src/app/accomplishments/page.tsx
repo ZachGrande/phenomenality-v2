@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
+import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -228,115 +229,144 @@ function AddAccomplishment() {
     );
   }
 
-  if (showWelcome && hasLoggedToday) {
-    return (
-      <div className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle">
-        <h1 className="ml-[0.5em] font-display text-4xl font-normal">
-          you&apos;ve already logged an accomplishment today!
-        </h1>
-        <div className="flex flex-row">
-          <div className="flex flex-col items-center">
-            <p className="m-5 font-sans font-light">
-              visit your bank to view your accomplishments.
-            </p>
-            <LinkButton
-              aria-label="View Accomplishments"
-              href="/bank"
-              className="ml-8 h-11.25 w-fit"
-            >
-              view accomplishments
-            </LinkButton>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="m-5 font-sans font-light">
-              or add another accomplishment for today.
-            </p>
-            <button className="ml-8 h-11.25" onClick={toggleHasLoggedToday}>
-              add new accomplishment
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  } else if (showWelcome) {
-    return (
-      <div className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle">
-        <h1 className="ml-[0.5em] font-display text-4xl font-normal">
-          hello, {name}!
-        </h1>
-        <p className="m-5 font-sans text-2xl font-light">
-          great work today! keep moving forward and record an accomplishment!
-        </p>
-        <Image
-          className="mx-auto block h-auto w-[30%]"
-          src={Welcome}
-          alt="Person sitting in chair reading book"
-        />
-        <button className="mt-4" onClick={advancePage}>
-          next
-        </button>
-      </div>
-    );
-  } else {
-    return (
-      <div className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle">
-        <h1 className="ml-[0.5em] font-display text-4xl font-normal">
-          daily accomplishment
-        </h1>
-        <p className="m-5 font-sans font-light">
-          what would you like to record?
-        </p>
-        <div>
-          <form className="flex flex-col items-center gap-4">
-            <textarea
-              className="w-4/5 rounded-panel border border-border-subtle p-3 font-sans text-base"
-              id="accomplishment-title"
-              name="title"
-              aria-label="Accomplishment title"
-              placeholder={titlePlaceholder}
-              value={title}
-              onChange={(event) => {
-                setTitle(event.target.value);
-              }}
-              rows={2}
-              cols={45}
-            ></textarea>
-            <textarea
-              className="w-4/5 rounded-panel border border-border-subtle p-3 font-sans text-base"
-              id="accomplishment-description"
-              name="description"
-              aria-label="Accomplishment description"
-              placeholder="description"
-              value={accomplishment}
-              onChange={(event) => {
-                setAccomplishment(event.target.value);
-              }}
-              rows={10}
-              cols={45}
-            ></textarea>
-            <div id="tagSection">
-              <p className="text-left font-sans text-[1.75rem] font-normal">
-                add a tag to your post so you can find it later!
+  return (
+    <AnimatePresence mode="wait">
+      {showWelcome && hasLoggedToday ? (
+        <motion.div
+          key="already-logged"
+          className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+        >
+          <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+            you&apos;ve already logged an accomplishment today!
+          </h1>
+          <div className="flex flex-row">
+            <div className="flex flex-col items-center">
+              <p className="m-5 font-sans font-light">
+                visit your bank to view your accomplishments.
               </p>
-              <TagButtonList
-                items={tags}
-                activeTags={accomplishmentTags}
-                toggleTag={toggleTag}
-              />
+              <LinkButton
+                aria-label="View Accomplishments"
+                href="/bank"
+                className="ml-8 h-11.25 w-fit"
+              >
+                view accomplishments
+              </LinkButton>
             </div>
-            <LinkButton
-              aria-label="Next"
-              href="/accomplishments-complete"
-              onClick={addNewAccomplishment}
-              className="w-fit self-end"
-            >
-              next
-            </LinkButton>
-          </form>
-        </div>
-      </div>
-    );
-  }
+            <div className="flex flex-col items-center">
+              <p className="m-5 font-sans font-light">
+                or add another accomplishment for today.
+              </p>
+              <motion.button
+                className="ml-8 h-11.25"
+                onClick={toggleHasLoggedToday}
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                add new accomplishment
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
+      ) : showWelcome ? (
+        <motion.div
+          key="welcome"
+          className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+        >
+          <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+            hello, {name}!
+          </h1>
+          <p className="m-5 font-sans text-2xl font-light">
+            great work today! keep moving forward and record an accomplishment!
+          </p>
+          <Image
+            className="mx-auto block h-auto w-[30%]"
+            src={Welcome}
+            alt="Person sitting in chair reading book"
+          />
+          <motion.button
+            className="mt-4"
+            onClick={advancePage}
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            next
+          </motion.button>
+        </motion.div>
+      ) : (
+        <motion.div
+          key="form"
+          className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+        >
+          <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+            daily accomplishment
+          </h1>
+          <p className="m-5 font-sans font-light">
+            what would you like to record?
+          </p>
+          <div>
+            <form className="flex flex-col items-center gap-4">
+              <textarea
+                className="w-4/5 rounded-panel border border-border-subtle p-3 font-sans text-base"
+                id="accomplishment-title"
+                name="title"
+                aria-label="Accomplishment title"
+                placeholder={titlePlaceholder}
+                value={title}
+                onChange={(event) => {
+                  setTitle(event.target.value);
+                }}
+                rows={2}
+                cols={45}
+              ></textarea>
+              <textarea
+                className="w-4/5 rounded-panel border border-border-subtle p-3 font-sans text-base"
+                id="accomplishment-description"
+                name="description"
+                aria-label="Accomplishment description"
+                placeholder="description"
+                value={accomplishment}
+                onChange={(event) => {
+                  setAccomplishment(event.target.value);
+                }}
+                rows={10}
+                cols={45}
+              ></textarea>
+              <div id="tagSection">
+                <p className="text-left font-sans text-[1.75rem] font-normal">
+                  add a tag to your post so you can find it later!
+                </p>
+                <TagButtonList
+                  items={tags}
+                  activeTags={accomplishmentTags}
+                  toggleTag={toggleTag}
+                />
+              </div>
+              <LinkButton
+                aria-label="Next"
+                href="/accomplishments-complete"
+                onClick={addNewAccomplishment}
+                className="w-fit self-end"
+              >
+                next
+              </LinkButton>
+            </form>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 }
 
 export default AddAccomplishment;
