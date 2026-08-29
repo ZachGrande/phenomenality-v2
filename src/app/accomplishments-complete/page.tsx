@@ -85,7 +85,7 @@ function AddEncouragement() {
         </p>
         <form className="m-8 text-center">
           <textarea
-            className="mb-8 w-4/5 rounded-panel p-3 font-sans text-base"
+            className="mb-8 w-4/5 border border-border-subtle rounded-panel p-3 font-sans text-base"
             placeholder="example: you've got this!"
             value={encouragingMessage}
             onChange={(event) => {
