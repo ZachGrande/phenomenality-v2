@@ -220,16 +220,12 @@ function Bank() {
             ></input>
             <TagList items={existingTags} />
             <div className="flex flex-wrap justify-center text-center">
-              <button
-                type="button"
-                className="m-4 w-fit cursor-pointer border-none bg-brand px-5 py-2.5 text-brand-contrast"
-                onClick={submitForm}
-              >
+              <button type="button" className="m-4 w-fit" onClick={submitForm}>
                 update
               </button>
               <button
                 type="button"
-                className="m-4 w-fit cursor-pointer border-none bg-muted px-5 py-2.5 text-brand-contrast"
+                className="m-4 w-fit bg-muted"
                 onClick={closeEditForm}
               >
                 cancel
@@ -282,7 +278,7 @@ function Bank() {
             <div className="flex flex-wrap justify-center text-center">
               <button
                 type="button"
-                className="m-4 w-fit cursor-pointer border-none bg-muted px-5 py-2.5 text-brand-contrast"
+                className="m-4 w-fit bg-muted"
                 onClick={closeViewForm}
               >
                 close

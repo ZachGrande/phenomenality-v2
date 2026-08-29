@@ -25,7 +25,7 @@ export default function LinkButton({
       role="button"
       onClick={onClick}
       className={clsx(
-        'block rounded-control bg-brand p-2.5 text-center font-sans text-base font-normal text-brand-contrast no-underline hover:shadow-elevate',
+        'block rounded-control bg-brand px-5 py-2.5 text-center font-sans text-base font-normal text-brand-contrast no-underline hover:shadow-elevate',
         className,
       )}
     >

@@ -147,6 +147,7 @@
   }
 
   button {
+    padding: 0.625rem 1.25rem;
     background-color: var(--color-brand);
     border-color: transparent;
     color: var(--color-brand-contrast);
@@ -155,9 +156,17 @@
     font-weight: 400;
     text-align: center;
     border-radius: var(--radius-control);
+    cursor: pointer;
+    transition: box-shadow 0.15s ease-in-out;
   }
 
   button:hover {
     box-shadow: var(--shadow-elevate);
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
   }
 }
