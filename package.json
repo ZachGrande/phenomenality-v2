@@ -19,7 +19,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-firebase-hooks": "^5.1.1",
-    "survey-core": "^2.5.3",
+    "survey-core": "^3.0.2",
     "survey-react-ui": "^2.5.39"
   },
   "devDependencies": {
