@@ -34,7 +34,6 @@ function Bank() {
   const [filter, setFilter] = useState('none');
 
   const [showEditPopup, setShowEditPopup] = useState(false);
-  const [showViewPopup, setShowViewPopup] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState('');
   const [existingTitle, setExistingTitle] = useState('');
@@ -106,29 +105,12 @@ function Bank() {
     setExistingTags(editItem[0].tags);
   };
 
-  const viewCard = (id: number) => {
-    setShowViewPopup(true);
-    const viewItem = items.filter((currentItem) => {
-      if (currentItem.id === id) {
-        return currentItem;
-      }
-      return null;
-    });
-    setExistingDescription(viewItem[0].description);
-    setExistingTitle(viewItem[0].title);
-    setExistingTags(viewItem[0].tags);
-  };
-
   const toggleFilter = (value: string) => {
     setFilter((current) => (current === value ? 'none' : value));
   };
 
   function closeEditForm() {
     setShowEditPopup(false);
-  }
-
-  function closeViewForm() {
-    setShowViewPopup(false);
   }
 
   function submitForm() {
@@ -243,64 +225,7 @@ function Bank() {
           items={entriesToShow}
           deleteCard={deleteCard}
           editCard={editCard}
-          viewCard={viewCard}
         />
-      </div>
-    );
-  } else if (items.length > 0 && showViewPopup) {
-    return (
-      <div>
-        <div className={popupStyles.overlay} onClick={closeViewForm} />
-        <div className={popupStyles.formPopup} id="popupForm">
-          <form className="max-w-125 rounded-panel bg-surface p-5">
-            <h3>expanded view</h3>
-            <label className="font-display" htmlFor="viewTitle">
-              title
-            </label>
-            <p
-              className="rounded-panel bg-surface p-2 outline-1 outline-border-subtle"
-              id="viewTitle"
-            >
-              {existingTitle}
-            </p>
-            <label className="font-display" htmlFor="viewDescription">
-              description
-            </label>
-            <p
-              className="rounded-panel bg-surface p-2 outline-1 outline-border-subtle"
-              id="viewDescription"
-            >
-              {existingDescription}
-            </p>
-            <label className="font-display" htmlFor="viewTags">
-              tags
-            </label>
-            <div className="tags-background">
-              <TagList items={existingTags} />
-            </div>
-            <div className="flex flex-wrap justify-center text-center">
-              <button
-                type="button"
-                className="m-4 w-fit bg-muted"
-                onClick={closeViewForm}
-              >
-                close
-              </button>
-            </div>
-          </form>
-        </div>
-        <div className="mx-auto w-full max-w-6xl px-3">
-          <h1 className="font-display text-4xl font-normal">
-            all accomplishments
-          </h1>
-          <div className="mt-4">{tagListContainer()}</div>
-          <CardList
-            items={entriesToShow}
-            deleteCard={deleteCard}
-            editCard={editCard}
-            viewCard={viewCard}
-          />
-        </div>
       </div>
     );
   } else if (items.length > 0) {
@@ -314,7 +239,6 @@ function Bank() {
           items={entriesToShow}
           deleteCard={deleteCard}
           editCard={editCard}
-          viewCard={viewCard}
         />
       </div>
     );
