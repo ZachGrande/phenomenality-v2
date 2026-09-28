@@ -1,5 +1,10 @@
-import React from 'react';
-import './Tag.sass';
+import clsx from 'clsx';
+
+import {
+  tagActiveClass,
+  tagColorClass,
+  tagItemBase,
+} from '@/app/_components/tagStyles';
 
 interface TagButtonItem {
   class: string;
@@ -8,6 +13,7 @@ interface TagButtonItem {
 
 interface TagButtonProps {
   item: TagButtonItem;
+  isActive: boolean;
   toggleTag: (description: string) => void;
 }
 
@@ -17,43 +23,41 @@ interface TagButtonListProps {
   toggleTag: (description: string) => void;
 }
 
-function TagButton(props: TagButtonProps) {
-  const thisItem = props.item;
-
-  const getClassName = () => {
-    return 'tagBtnItem tag-item ' + thisItem.class;
-  };
-
-  function renderTagButton() {
-    const handleClick = () => {
-      props.toggleTag(thisItem.description);
-    };
-
-    return (
-      <div>
-        <input
-          className={getClassName()}
-          type="button"
-          value={thisItem.description}
-          onClick={handleClick}
-        />
-      </div>
-    );
-  }
-
-  return <div>{renderTagButton(thisItem)}</div>;
+function TagButton({ item, isActive, toggleTag }: TagButtonProps) {
+  return (
+    <div>
+      <input
+        className={clsx(
+          'm-2 content-center',
+          tagItemBase,
+          tagColorClass(item.class),
+          isActive && tagActiveClass,
+        )}
+        type="button"
+        value={item.description}
+        onClick={() => toggleTag(item.description)}
+      />
+    </div>
+  );
 }
 
-function TagButtonList(props: TagButtonListProps) {
-  const items = props.items;
-
-  const tagBtnComponenets = items?.map((currentItem, index) => {
-    return (
-      <TagButton key={index} item={currentItem} toggleTag={props.toggleTag} />
-    );
-  });
-
-  return <div className="tag-btn-list">{tagBtnComponenets}</div>;
+function TagButtonList({
+  items,
+  activeTags = [],
+  toggleTag,
+}: TagButtonListProps) {
+  return (
+    <div className="flex flex-wrap justify-center px-24">
+      {items?.map((currentItem, index) => (
+        <TagButton
+          key={index}
+          item={currentItem}
+          isActive={activeTags.includes(currentItem.description)}
+          toggleTag={toggleTag}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default TagButtonList;

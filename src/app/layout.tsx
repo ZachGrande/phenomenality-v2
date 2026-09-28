@@ -2,32 +2,26 @@ import React from 'react';
 
 import clsx from 'clsx';
 import {
-  Geist,
-  Geist_Mono as GeistMono,
   Playfair_Display as PlayfairDisplay,
   Source_Sans_3 as SourceSans3,
 } from 'next/font/google';
-import 'bootstrap/dist/css/bootstrap.css';
-import './globals.sass';
 
 import Navigation from './_components/Navigation';
 
+import './globals.css';
+
 import type { Metadata } from 'next';
-
-const geistSans = Geist({
-  subsets: ['latin'],
-});
-
-const geistMono = GeistMono({
-  subsets: ['latin'],
-});
 
 const playfairDisplay = PlayfairDisplay({
   subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair-display',
 });
 
 const sourceSans3 = SourceSans3({
   subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-source-sans-3',
 });
 
 export const metadata: Metadata = {
@@ -43,12 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={clsx(
-        geistSans.className,
-        geistMono.className,
-        playfairDisplay.className,
-        sourceSans3.className,
-      )}
+      className={clsx(playfairDisplay.variable, sourceSans3.variable)}
     >
       <body>
         <Navigation />

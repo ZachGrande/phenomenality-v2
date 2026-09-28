@@ -1,5 +1,10 @@
-import React from 'react';
-import './Tag.sass';
+import clsx from 'clsx';
+
+import {
+  tagColorClass,
+  tagItemBase,
+  tagSlug,
+} from '@/app/_components/tagStyles';
 
 interface TagProps {
   item: string;
@@ -9,32 +14,30 @@ interface TagListProps {
   items: string[];
 }
 
-function Tag(props: TagProps) {
-  const thisItem = props.item;
-
-  const getClassName = () => {
-    return 'tag-list tag-item ' + thisItem.toLowerCase().replace(/\s+/g, '-');
-  };
-
-  function renderItem() {
-    return (
-      <div>
-        <div className={getClassName()}>{thisItem}</div>
+function Tag({ item }: TagProps) {
+  return (
+    <div>
+      <div
+        className={clsx(
+          'm-[0.2rem]',
+          tagItemBase,
+          tagColorClass(tagSlug(item)),
+        )}
+      >
+        {item}
       </div>
-    );
-  }
-
-  return <div>{renderItem(thisItem)}</div>;
+    </div>
+  );
 }
 
-function TagList(props: TagListProps) {
-  const items = props.items;
-  let index = -1;
-  const tagComponents = items?.map((currentItem) => {
-    index++;
-    return <Tag item={currentItem} key={index} />;
-  });
-  return <div className="tag-list">{tagComponents}</div>;
+function TagList({ items }: TagListProps) {
+  return (
+    <div className="flex flex-wrap justify-center">
+      {items?.map((currentItem, index) => (
+        <Tag item={currentItem} key={index} />
+      ))}
+    </div>
+  );
 }
 
 export default TagList;

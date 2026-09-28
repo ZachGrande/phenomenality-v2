@@ -1,16 +1,16 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import { map } from '@firebase/util';
-import clsx from 'clsx';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, ref, onValue, update } from 'firebase/database';
+import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import app from '../../config';
+import LinkButton from '../_components/LinkButton';
 
 import WelcomeMessage from './_assets/accomplishment-demo/accomplishment-1.png';
 import DailyAccomplishment from './_assets/accomplishment-demo/accomplishment-2.png';
@@ -21,28 +21,31 @@ import SampleBankFilter from './_assets/accomplishment-demo/accomplishment-6.png
 import Welcome from './_assets/welcome-message.svg';
 import TagButtonList from './_components/TagButton';
 import tags from './_components/tags';
-import styles from './_styles/page.module.sass';
+
+import type { Accomplishment } from '@/types/accomplishment';
 
 function AddAccomplishment() {
   const auth = getAuth(app);
   const database = getDatabase(app);
   const [user] = useAuthState(auth);
+  const router = useRouter();
 
   const current = new Date();
   const date = `${current.getMonth() + 1}/${current.getDate()}/${current.getFullYear()}`;
   const titlePlaceholder = 'accomplishment for ' + date;
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Accomplishment[]>([]);
   const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState('');
   const [accomplishment, setAccomplishment] = useState('');
-  const [accomplishmentTags, setAccomplishmentTags] = useState([]);
+  const [accomplishmentTags, setAccomplishmentTags] = useState<string[]>([]);
   const [accomplishmentDescription, setAccomplishmentDescription] =
     useState('');
 
   const [showWelcome, setShowWelcome] = useState(true);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   onAuthStateChanged(auth, () => {
     setIsLoading(false);
@@ -94,34 +97,45 @@ function AddAccomplishment() {
     setAccomplishmentDescription(shortAccomp);
   }, [accomplishment]);
 
-  const addNewAccomplishment = async (event) => {
-    event.preventDefault();
+  const addNewAccomplishment = async () => {
+    if (!user) {
+      return;
+    }
+
     const thisAccomplishment = {
       title: title,
       description: accomplishment,
       descriptionDisplay: accomplishmentDescription,
-      id: items.length + 1,
-      key: items.length + '',
       tags: accomplishmentTags,
       date: date,
     };
 
-    // console.log(accomplishmentTags) //tags spits out array based on order on selection of tag
-
-    let newItems = items.push(thisAccomplishment);
-    newItems = map((currentItem, index = 0) => {
-      currentItem.id = index + 1;
-      currentItem.key = index + '';
-      index = index + 1;
-      return currentItem;
-    });
+    const newItems = [...items, thisAccomplishment].map(
+      (currentItem, index) => ({
+        ...currentItem,
+        id: index + 1,
+        key: index + '',
+      }),
+    );
 
     setItems(newItems);
     setTitle('');
     setAccomplishment('');
-    update(ref(database, 'users/' + user.uid), {
-      data: items,
+    await update(ref(database, 'users/' + user.uid), {
+      data: newItems,
     });
+  };
+
+  const submitAccomplishment = async (
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => {
+    event.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+
+    await addNewAccomplishment();
+    setIsSubmitting(true);
   };
 
   /*const editTag = value => {
@@ -140,21 +154,12 @@ function AddAccomplishment() {
     setAccomplishmentTags(newTags);
   }*/
 
-  const toggleTag = (value) => {
-    // console.log("Value", value);
-    const newTags = accomplishmentTags;
-    if (!accomplishmentTags.includes(value)) {
-      newTags.push(value);
-    } else {
-      const index = newTags.indexOf(value);
-      if (index > -1) {
-        newTags.splice(index, 1);
-      }
-    }
-
-    const idName = value.toLowerCase().replace(/\s+/g, '-');
-    document.getElementsByClassName(idName)[0].classList.toggle('active');
-    setAccomplishmentTags(newTags);
+  const toggleTag = (value: string) => {
+    setAccomplishmentTags((prev) =>
+      prev.includes(value)
+        ? prev.filter((tag) => tag !== value)
+        : [...prev, value],
+    );
   };
 
   function advancePage() {
@@ -167,30 +172,31 @@ function AddAccomplishment() {
   };
 
   if (isLoading) {
-    return <p className={styles.p}>Loading...</p>;
+    return <p className="font-sans font-light">Loading...</p>;
   }
 
   if (!user) {
     return (
-      <div className={styles.accomplishmentsSignedOut}>
-        <h1 className={styles.h1}>you haven&apos;t logged in yet!</h1>
-        <p className={styles.p}>
+      <div className="mx-8 flex flex-col justify-center">
+        <h1 className="font-display text-base font-normal">
+          you haven&apos;t logged in yet!
+        </h1>
+        <p className="font-sans font-light">
           sign in to begin logging your accomplishments.
         </p>
-        <Link
+        <LinkButton
           aria-label="Sign in"
-          className={clsx('button', styles.button, styles['rmv-underline'])}
-          role="button"
           href="/authentication"
+          className="w-fit"
         >
           sign in
-        </Link>
-        <h2 className={clsx(styles.photoHeader, styles.bloop)}>
+        </LinkButton>
+        <h2 className="text-center font-display">
           here&apos;s what phenomenality can offer you!
         </h2>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.odd)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={WelcomeMessage}
             alt="welcome-message"
             width={2876}
@@ -199,7 +205,7 @@ function AddAccomplishment() {
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.even)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={DailyAccomplishment}
             alt="daily-accomplishment"
             width={2872}
@@ -208,28 +214,28 @@ function AddAccomplishment() {
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.odd)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={WonderfulAccomplishment}
             alt="wonderful-accomplishment"
           />
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.even)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={AccomplishmentComplete}
             alt="accomplishment-complete"
           />
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.odd)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={SampleBank}
             alt="sample-bank"
           />
         </div>
         <div>
           <Image
-            className={clsx(styles.demoPhoto, styles.odd)}
+            className="mx-auto block h-auto w-full max-w-375 bg-transparent p-4 md:p-8"
             src={SampleBankFilter}
             alt="sample-bank-filter"
           />
@@ -238,130 +244,151 @@ function AddAccomplishment() {
     );
   }
 
-  if (showWelcome && hasLoggedToday) {
-    return (
-      <div className={styles.outlineBox}>
-        <h1 className={clsx(styles.h1, styles.h1Accomp)}>
-          you&apos;ve already logged an accomplishment today!
-        </h1>
-        <div className="accompText">
-          <div className="backToBank">
-            <p className={clsx(styles['encrg-p'], styles.p)}>
-              visit your bank to view your accomplishments.
-            </p>
-            <Link
-              aria-label="View Accomplishments"
-              className="button rmv-underline viewAccompBtn2"
-              role="button"
-              href="/bank"
-            >
-              view accomplishments
-            </Link>
-          </div>
-          <div className="addNewAccomp">
-            <p className={clsx(styles['encrg-p'], styles.p)}>
-              or add another accomplishment for today.
-            </p>
-            <button className="clickHereBtn" onClick={toggleHasLoggedToday}>
-              add new accomplishment
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  } else if (showWelcome) {
-    return (
-      <div className={clsx(styles.accomplishments, styles.outlineBox)}>
-        <h1 className={clsx(styles.h1, styles.h1Accomp)}>hello, {name}!</h1>
-        <p className={clsx(styles['encrg-p'], styles.p)}>
-          great work today! keep moving forward and record an accomplishment!
-        </p>
-        <Image
-          className={styles.centerImg}
-          src={Welcome}
-          alt="Person sitting in chair reading book"
-          width="30%"
-          height="30%"
-        />
-        <br></br>
-        <button className={styles.accomplishmentNext} onClick={advancePage}>
-          next
-        </button>
-        <br></br>
-        <br></br>
-      </div>
-    );
-  } else {
-    return (
-      <div className={clsx(styles.outlineBox, styles.addAccomp)}>
-        <h1 className={clsx(styles.h1, styles.h1Accomp)}>
-          daily accomplishment
-        </h1>
-        <p className={clsx(styles['encrg-p'], styles.p)}>
-          what would you like to record?
-        </p>
-        <div className="padding">
-          <form>
-            <textarea
-              className={styles.accompTextarea}
-              placeholder={titlePlaceholder}
-              value={title}
-              onChange={(event) => {
-                setTitle(event.target.value);
-              }}
-              rows="2"
-              cols="45"
-            ></textarea>
-            <br></br>
-            <br></br>
-            <textarea
-              className={styles.accompTextarea}
-              placeholder="description"
-              value={accomplishment}
-              onChange={(event) => {
-                setAccomplishment(event.target.value);
-              }}
-              rows="10"
-              cols="45"
-            ></textarea>
-            <br></br>
-            <br></br>
-            <br></br>
-            <div id="tagSection">
-              <p className={clsx(styles['tag-title'], styles.p)}>
-                add a tag to your post so you can find it later!
+  return (
+    <AnimatePresence
+      mode="wait"
+      onExitComplete={() => {
+        if (isSubmitting) {
+          router.push('/accomplishments-complete');
+        }
+      }}
+    >
+      {showWelcome && hasLoggedToday ? (
+        <motion.div
+          key="already-logged"
+          className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+        >
+          <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+            you&apos;ve already logged an accomplishment today!
+          </h1>
+          <div className="flex flex-row">
+            <div className="flex flex-col items-center">
+              <p className="m-5 font-sans font-light">
+                visit your bank to view your accomplishments.
               </p>
-              <TagButtonList
-                items={tags}
-                activeTags={accomplishmentTags}
-                toggleTag={toggleTag}
-              />
+              <LinkButton
+                aria-label="View Accomplishments"
+                href="/bank"
+                className="ml-8 h-11.25 w-fit"
+              >
+                view accomplishments
+              </LinkButton>
             </div>
-            <br></br>
-            <br></br>
-            {/* <button onClick={addNewAccomplishment}>Add accomplishment</button> */}
-            {/* this button is strange */}
-            <button className={styles.nextBtn} onClick={addNewAccomplishment}>
-              <Link
+            <div className="flex flex-col items-center">
+              <p className="m-5 font-sans font-light">
+                or add another accomplishment for today.
+              </p>
+              <motion.button
+                className="ml-8 h-11.25"
+                onClick={toggleHasLoggedToday}
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                add new accomplishment
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
+      ) : showWelcome ? (
+        <motion.div
+          key="welcome"
+          className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+        >
+          <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+            hello, {name}!
+          </h1>
+          <p className="m-5 font-sans text-2xl font-light">
+            great work today! keep moving forward and record an accomplishment!
+          </p>
+          <Image
+            className="mx-auto block h-auto w-[30%]"
+            src={Welcome}
+            alt="Person sitting in chair reading book"
+          />
+          <motion.button
+            className="mt-4"
+            onClick={advancePage}
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            next
+          </motion.button>
+        </motion.div>
+      ) : !isSubmitting ? (
+        <motion.div
+          key="form"
+          className="m-12.5 flex flex-col items-center px-18.75 py-12.5 outline-1 outline-border-subtle"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+        >
+          <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+            daily accomplishment
+          </h1>
+          <p className="m-5 font-sans font-light">
+            what would you like to record?
+          </p>
+          <div>
+            <form className="flex flex-col items-center gap-4">
+              <textarea
+                className="w-4/5 rounded-panel border border-border-subtle p-3 font-sans text-base"
+                id="accomplishment-title"
+                name="title"
+                aria-label="Accomplishment title"
+                placeholder={titlePlaceholder}
+                value={title}
+                onChange={(event) => {
+                  setTitle(event.target.value);
+                }}
+                rows={2}
+                cols={45}
+              ></textarea>
+              <textarea
+                className="w-4/5 rounded-panel border border-border-subtle p-3 font-sans text-base"
+                id="accomplishment-description"
+                name="description"
+                aria-label="Accomplishment description"
+                placeholder="description"
+                value={accomplishment}
+                onChange={(event) => {
+                  setAccomplishment(event.target.value);
+                }}
+                rows={10}
+                cols={45}
+              ></textarea>
+              <div id="tagSection">
+                <p className="text-left font-sans text-[1.75rem] font-normal">
+                  add a tag to your post so you can find it later!
+                </p>
+                <TagButtonList
+                  items={tags}
+                  activeTags={accomplishmentTags}
+                  toggleTag={toggleTag}
+                />
+              </div>
+              <LinkButton
                 aria-label="Next"
-                className={clsx(
-                  styles.nextButton,
-                  styles['rmv-underline'],
-                  styles.nextBtn,
-                )}
-                role="button"
                 href="/accomplishments-complete"
+                onClick={submitAccomplishment}
+                className="w-fit self-end"
               >
                 next
-              </Link>
-            </button>
-            <br></br>
-            <br></br>
-          </form>
-        </div>
-      </div>
-    );
-  }
+              </LinkButton>
+            </form>
+          </div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+  );
 }
 
 export default AddAccomplishment;

@@ -1,42 +1,172 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@source '../';
+
+/* `static` forces every token to be emitted, since the CSS modules reference
+   them via var() and Tailwind cannot detect that usage. */
+@theme static {
+  --font-display: var(--font-playfair-display), Georgia, 'Times New Roman',
+    serif;
+  --font-sans: var(--font-source-sans-3), system-ui, -apple-system, sans-serif;
+
+  --color-brand: #437557;
+  --color-brand-contrast: #ffffff;
+  --color-cream: #fdedde;
+  --color-surface: #ffffff;
+  --color-ink: #000000;
+  --color-text: #212529;
+  --color-link: #0d6efd;
+
+  --color-accent: #4698ed;
+  --color-focus-ring: #6eb6ff;
+
+  --color-muted: #a9a9a9;
+  --color-border-subtle: #808080;
+  --color-field: #eeeeee;
+  --color-field-focus: #dddddd;
+  --color-inactive: #eaeaea;
+  --color-inactive-text: #7f7f81;
+
+  --color-tag-technical: #cdebd2;
+  --color-tag-technical-text: #3d6c3d;
+  --color-tag-soft-skills: #e4d7ff;
+  --color-tag-soft-skills-text: #9b6cfe;
+  --color-tag-kudos: #dadeff;
+  --color-tag-kudos-text: #6f79db;
+  --color-tag-award: #f2c7c7;
+  --color-tag-training: #fedce9;
+  --color-tag-special-projects: #c7def7;
+  --color-tag-volunteer: #bdedff;
+  --color-tag-promotion: #fff8d2;
+  --color-tag-idea: #cbddff;
+  --color-tag-innovation: #e5c8ff;
+  --color-tag-miscellaneous: #d4fdd8;
+
+  --radius-control: 12px;
+  --radius-panel: 10px;
+  --radius-card: 25px;
+
+  /* Fluid display scale. The vw term preserves the existing desktop sizing;
+     the clamp bounds stop headings collapsing on phones or ballooning on
+     ultrawide, and keep text responsive to user zoom. */
+  --text-display-xl: clamp(2rem, 4.5vw, 4.5rem);
+  --text-display-lg: clamp(1.75rem, 4vw, 4rem);
+  --text-display-md: clamp(1.25rem, 2.75vw, 2.5rem);
+  --text-display-sm: clamp(1.125rem, 2.25vw, 2rem);
+  --text-fluid-lg: clamp(1rem, 2vw, 1.75rem);
+  --text-fluid-md: clamp(0.875rem, 1.6vw, 1.375rem);
+
+  --shadow-elevate: 0 12px 16px 0 rgb(0 0 0 / 0.16),
+    0 17px 50px 0 rgb(0 0 0 / 0.12);
+  --shadow-popup: 0 50px 500px 0 rgb(0 0 0 / 0.12),
+    0 6px 20px 0 rgb(0 0 0 / 0.12);
+  --shadow-card: 0 2px 6px rgb(0 0 0 / 0.15);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Fluid heading scale. Replaces the Bootstrap reboot typography the pages were
+   written against; Tailwind's preflight strips heading sizing entirely. */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-surface);
   }
-}
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-block: 0 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  h1 {
+    font-size: clamp(2rem, 1.375rem + 1.5vw, 2.5rem);
+  }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+  h2 {
+    font-size: clamp(1.5rem, 1.325rem + 0.9vw, 2rem);
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  h3 {
+    font-size: clamp(1.375rem, 1.3rem + 0.6vw, 1.75rem);
+  }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  h4 {
+    font-size: clamp(1.3rem, 1.275rem + 0.3vw, 1.5rem);
+  }
+
+  h5 {
+    font-size: 1.25rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+
+  p {
+    margin-block: 0 1rem;
+  }
+
+  ul,
+  ol {
+    margin-block: 0 1rem;
+    padding-left: 2rem;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  button {
+    padding: 0.625rem 1.25rem;
+    background-color: var(--color-brand);
+    border-color: transparent;
+    color: var(--color-brand-contrast);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    border-radius: var(--radius-control);
+    cursor: pointer;
+    transition: box-shadow 0.15s ease-in-out;
+  }
+
+  button:hover {
+    box-shadow: var(--shadow-elevate);
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
   }
 }

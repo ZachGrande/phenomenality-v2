@@ -1,0 +1,12 @@
+.jackjack {
+  animation: jackjack-animation 15s linear infinite alternate;
+}
+
+@keyframes jackjack-animation {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(30vw) rotate(720deg);
+  }
+}
