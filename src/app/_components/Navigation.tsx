@@ -45,7 +45,7 @@ function Navigation() {
   }
 
   return (
-    <nav>
+    <nav style={{ viewTransitionName: 'site-header' }}>
       <div className="w-full bg-cream p-4">
         <ul className="mb-0 flex items-center justify-between px-0 leading-11.5">
           <Link
@@ -61,7 +61,10 @@ function Navigation() {
             phenomenality
           </Link>
           {showDropDownMenu ? (
-            <div className={styles.dropDown} id="popupForm">
+            <div
+              className="fixed top-[8%] right-[-90px] z-9 w-57.5 max-w-125 -translate-x-1/2 translate-y-[5%] rounded-panel bg-surface p-1.25 pb-5 text-left no-underline shadow-popup outline-1 outline-border-subtle"
+              id="popupForm"
+            >
               <ul className="px-4">
                 <li className={clsx(styles.navvy, 'inline')}>
                   <Link
@@ -84,7 +87,10 @@ function Navigation() {
                   <br />
                 </li>
                 <li className={clsx(styles.navvy, 'inline')}>
-                  <Link className="font-sans text-ink no-underline" href="quiz">
+                  <Link
+                    className="font-sans text-ink no-underline"
+                    href="/quiz"
+                  >
                     quiz
                   </Link>
                   <br />
@@ -93,7 +99,7 @@ function Navigation() {
                 <li className={clsx(styles.navvy, 'inline')}>
                   <Link
                     className="font-sans text-ink no-underline"
-                    href="more-info"
+                    href="/more-info"
                   >
                     imposter phenomenon
                   </Link>
@@ -144,14 +150,14 @@ function Navigation() {
                 </Link>
               </li>
               <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
-                <Link className="font-sans text-ink no-underline" href="quiz">
+                <Link className="font-sans text-ink no-underline" href="/quiz">
                   quiz
                 </Link>
               </li>
               <li className={clsx(styles.navvy, 'inline', 'mx-2')}>
                 <Link
                   className="font-sans text-ink no-underline"
-                  href="more-info"
+                  href="/more-info"
                 >
                   imposter phenomenon
                 </Link>

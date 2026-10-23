@@ -6,8 +6,8 @@
 
 @source '../';
 
-/* `static` forces every token to be emitted, since the CSS modules reference
-   them via var() and Tailwind cannot detect that usage. */
+/* `static` forces every token to be emitted so they remain available as
+   plain CSS variables outside of Tailwind utilities. */
 @theme static {
   --font-display: var(--font-playfair-display), Georgia, 'Times New Roman',
     serif;
@@ -32,11 +32,8 @@
   --color-inactive-text: #7f7f81;
 
   --color-tag-technical: #cdebd2;
-  --color-tag-technical-text: #3d6c3d;
   --color-tag-soft-skills: #e4d7ff;
-  --color-tag-soft-skills-text: #9b6cfe;
   --color-tag-kudos: #dadeff;
-  --color-tag-kudos-text: #6f79db;
   --color-tag-award: #f2c7c7;
   --color-tag-training: #fedce9;
   --color-tag-special-projects: #c7def7;
@@ -170,3 +167,120 @@
     opacity: 0.6;
   }
 }
+
+/* eslint-disable css/use-baseline, css/no-important -- View transitions are a
+   progressive enhancement: unsupported browsers just swap pages instantly. The
+   reduced-motion override must beat the per-class animation shorthands. */
+
+/* Route transitions. PageTransition (via template.tsx) tags each page with
+   `nav-forward`, `nav-back`, or `page` (untyped navigations crossfade). */
+:root {
+  --duration-exit: 150ms;
+  --duration-enter: 210ms;
+  --duration-move: 400ms;
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.page) {
+  animation: var(--duration-exit) ease-in both fade reverse;
+}
+
+::view-transition-new(.page) {
+  animation: var(--duration-enter) ease-out var(--duration-exit) both fade;
+}
+
+::view-transition-old(.nav-forward) {
+  --slide-offset: -60px;
+
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) ease-in-out both slide reverse;
+}
+
+::view-transition-new(.nav-forward) {
+  --slide-offset: 60px;
+
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) ease-in-out both slide;
+}
+
+::view-transition-old(.nav-back) {
+  --slide-offset: 60px;
+
+  animation:
+    var(--duration-exit) ease-in both fade reverse,
+    var(--duration-move) ease-in-out both slide reverse;
+}
+
+::view-transition-new(.nav-back) {
+  --slide-offset: -60px;
+
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both fade,
+    var(--duration-move) ease-in-out both slide;
+}
+
+::view-transition-group(.morph) {
+  animation-duration: var(--duration-move);
+}
+
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+
+/* The header is named in Navigation.tsx so it stays put while pages move. */
+::view-transition-group(site-header) {
+  z-index: 100;
+  animation: none;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+@keyframes fade {
+  from {
+    filter: blur(3px);
+    opacity: 0;
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide {
+  from {
+    translate: var(--slide-offset);
+  }
+
+  to {
+    translate: 0;
+  }
+}
+
+@keyframes via-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* eslint-enable css/use-baseline, css/no-important */

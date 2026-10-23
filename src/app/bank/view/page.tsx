@@ -21,7 +21,7 @@ function AccomplishmentViewContent() {
   const searchParams = useSearchParams();
   const accomplishmentKey = searchParams.get('key');
   const cachedAccomplishment = accomplishmentKey
-    ? getCachedAccomplishment(accomplishmentKey)
+    ? getCachedAccomplishment(user?.uid, accomplishmentKey)
     : null;
   const [accomplishment, setAccomplishment] = useState<Accomplishment | null>(
     cachedAccomplishment,

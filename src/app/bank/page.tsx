@@ -2,17 +2,21 @@
 
 import { useEffect, useState } from 'react';
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getDatabase, ref, onValue, update } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, update } from 'firebase/database';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import app from '../../config';
+import useUserCollection from '../_lib/useUserCollection';
 import TagButtonList from '../accomplishments/_components/TagButton';
 import allTags from '../accomplishments/_components/tags';
 
+import {
+  cacheAccomplishments,
+  getCachedAccomplishments,
+} from './_components/accomplishmentCache';
 import CardList from './_components/Card';
 import TagList from './_components/Tag';
-import popupStyles from './_styles/Popup.module.css';
 
 import type { Accomplishment } from '@/types/accomplishment';
 
@@ -26,9 +30,14 @@ function Bank() {
   //  'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
 
   // const [user, loading, error] = useAuthState(auth);
-  const [user, loading] = useAuthState(auth);
-  const [items, setItems] = useState<Accomplishment[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, isLoading] = useAuthState(auth);
+  // Seeding from the cache lets the cards render in the navigation commit, so
+  // returning from /bank/view can reverse the card morph.
+  const [items, setItems] = useUserCollection<Accomplishment>(
+    user,
+    'data',
+    getCachedAccomplishments(user?.uid) ?? [],
+  );
 
   //NEED TO CHANGE FILTER TYPE TO ARRAY ??
   const [filter, setFilter] = useState('none');
@@ -39,30 +48,11 @@ function Bank() {
   const [existingTitle, setExistingTitle] = useState('');
   const [existingTags, setExistingTags] = useState<string[]>([]);
 
-  onAuthStateChanged(auth, () => {
-    setIsLoading(false);
-  });
-
   useEffect(() => {
-    const dbRef = ref(database, 'users/' + user?.uid + '/data');
-    onValue(dbRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data === null) {
-        setItems([]);
-        return null;
-      }
-      const keys = Object.keys(data);
-      const newItems = keys.map((key) => {
-        const currentItem = data[key];
-        currentItem.key = key;
-        return currentItem;
-      });
-      setItems(newItems);
-    });
-    /*} else {
-    console.log("Did not retrieve user location from database");
-    }*/
-  }, [isLoading, database, user]);
+    if (user) {
+      cacheAccomplishments(user.uid, items);
+    }
+  }, [user, items]);
 
   if (isLoading) {
     return (
@@ -169,11 +159,20 @@ function Bank() {
     // TODO: Place form popup in a separate component
     return (
       <div className="mx-auto w-full max-w-6xl px-3">
-        <div className={popupStyles.overlay} onClick={closeEditForm} />
-        <div className={popupStyles.formPopup} id="popupForm">
+        <div
+          className="fixed inset-0 z-9 bg-black/25"
+          onClick={closeEditForm}
+        />
+        <div
+          className="fixed top-[24%] left-1/2 z-10 w-1/2 max-w-125 -translate-x-1/2 translate-y-[5%] rounded-panel shadow-popup outline-1 outline-border-subtle"
+          id="popupForm"
+        >
           <form
-            action="/action_page.php"
             className="max-w-125 rounded-panel bg-surface p-5"
+            onSubmit={(event) => {
+              event.preventDefault();
+              submitForm();
+            }}
           >
             <h3>edit accomplishment {currentEditId}</h3>
             <label className="font-display" htmlFor="editTitle">
@@ -204,7 +203,7 @@ function Bank() {
             ></input>
             <TagList items={existingTags} />
             <div className="flex flex-wrap justify-center text-center">
-              <button type="button" className="m-4 w-fit" onClick={submitForm}>
+              <button type="submit" className="m-4 w-fit">
                 update
               </button>
               <button
@@ -240,12 +239,6 @@ function Bank() {
           deleteCard={deleteCard}
           editCard={editCard}
         />
-      </div>
-    );
-  } else if (loading) {
-    return (
-      <div className="mx-auto w-full max-w-6xl px-3 py-12 text-center">
-        <p className="text-inactive-text">Loading your card list.</p>
       </div>
     );
   } else {

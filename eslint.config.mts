@@ -10,6 +10,8 @@ import pluginReact from 'eslint-plugin-react';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
+const scriptFiles = ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'];
+
 export default defineConfig([
   globalIgnores([
     '.next/',
@@ -20,23 +22,23 @@ export default defineConfig([
     'next-env.d.ts',
   ]),
   {
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
     plugins: { js },
     extends: ['js/recommended'],
     languageOptions: { globals: globals.browser },
   },
   ...tseslint.configs.recommended.map((config) => ({
     ...config,
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
   })),
   {
     ...pluginReact.configs.flat.recommended,
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
   },
   {
     // React 19's automatic JSX runtime; React need not be in scope.
     ...pluginReact.configs.flat['jsx-runtime'],
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
   },
   {
     settings: {
@@ -67,7 +69,7 @@ export default defineConfig([
   },
   prettierConfig,
   {
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
     plugins: { prettier },
     rules: {
       'prettier/prettier': [
@@ -77,7 +79,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
     plugins: { import: pluginImport },
     rules: {
       'import/order': [

@@ -20,11 +20,7 @@ export default function Page() {
             log your daily accomplishments and mitigate the effects of imposter
             phenomemon.
           </p>
-          <LinkButton
-            href="/authentication"
-            aria-label="Sign in"
-            className="w-24"
-          >
+          <LinkButton href="/authentication" className="w-24">
             sign in
           </LinkButton>
         </div>
@@ -50,11 +46,7 @@ export default function Page() {
             reviewing your accomplishments and cataloging resume-worthy
             achievements for easy reference.
           </p>
-          <LinkButton
-            href="/accomplishments"
-            aria-label="Add an Accomplishment"
-            className="w-fit"
-          >
+          <LinkButton href="/accomplishments" className="w-fit">
             add an accomplishment
           </LinkButton>
         </div>
@@ -73,7 +65,7 @@ export default function Page() {
             a subsitute for professional care. if you are experiencing mental
             health challenges, we encourage you to seek out professional help.
           </p>
-          <LinkButton href="/quiz" aria-label="Take the Quiz" className="w-fit">
+          <LinkButton href="/quiz" className="w-fit">
             take the quiz
           </LinkButton>
         </div>

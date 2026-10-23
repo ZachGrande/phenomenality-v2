@@ -6,6 +6,7 @@ import {
   Source_Sans_3 as SourceSans3,
 } from 'next/font/google';
 
+import MotionProvider from './_components/MotionProvider';
 import Navigation from './_components/Navigation';
 
 import './globals.css';
@@ -40,8 +41,10 @@ export default function RootLayout({
       className={clsx(playfairDisplay.variable, sourceSans3.variable)}
     >
       <body>
-        <Navigation />
-        {children}
+        <MotionProvider>
+          <Navigation />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

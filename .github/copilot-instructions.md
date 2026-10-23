@@ -13,9 +13,9 @@
 - **Framework**: Next.js with App Router
 - **React**: 19
 - **TypeScript**: Strict mode enabled
-- **Styling**: SASS with CSS Modules (`.module.sass` files)
+- **Styling**: Tailwind CSS v4 utilities; design tokens in `globals.css` (`@theme`)
 - **Backend**: Firebase (Authentication, Realtime Database, Hosting)
-- **UI Components**: Bootstrap 5 for layout utilities, custom components
+- **Motion**: React `<ViewTransition>` for route transitions, `motion` for in-page animation
 - **Charts**: CanvasJS React Charts
 - **Surveys**: SurveyJS for the quiz functionality
 - **State Management**: React hooks (`useState`, `useEffect`) and Firebase hooks (`react-firebase-hooks`)
@@ -27,10 +27,12 @@
 src/
 ├── config.ts                     # Firebase configuration and initialization
 ├── app/
-│   ├── layout.tsx                # Root layout with fonts and navigation
-│   ├── globals.sass              # Global styles
+│   ├── layout.tsx                # Root layout with fonts, navigation, MotionProvider
+│   ├── template.tsx              # Wraps every page in PageTransition
+│   ├── globals.css               # Tailwind setup, tokens, base styles, view-transition CSS
 │   ├── _assets/                  # Shared assets (icons, images)
-│   ├── _components/              # Shared components (Navigation)
+│   ├── _components/              # Shared components (Navigation, LinkButton, StepPanel)
+│   ├── _lib/                     # Shared hooks and motion presets
 │   ├── (root)/                   # Landing page route group
 │   ├── (types)/                  # IP type pages route group (type-1 through type-5)
 │   ├── accomplishments/          # Add accomplishment page
@@ -46,9 +48,9 @@ src/
 ### File Naming
 - **Pages**: `page.tsx` (Next.js App Router convention)
 - **Components**: PascalCase (e.g., `Navigation.tsx`, `TagButton.tsx`)
-- **Styles**: `[name].module.sass` for component styles, `page.module.sass` for page styles
+- **Styles**: Tailwind classes inline; a `[name].module.css` only when utilities can't express it
 - **Assets**: Store in `_assets/` folders within the relevant route directory
-- **Private folders**: Prefix with underscore (`_components/`, `_styles/`, `_assets/`)
+- **Private folders**: Prefix with underscore (`_components/`, `_lib/`, `_assets/`)
 
 ### Component Patterns
 - Use functional components with hooks
@@ -61,12 +63,10 @@ src/
 - Use `clsx` for conditional className composition
 
 ### Styling Guidelines
-- Use SASS with CSS Modules for component-scoped styles
-- Import styles as: `import styles from './_styles/page.module.sass'`
-- Use Bootstrap utility classes for layout (e.g., `p-3`, `d-inline`, `mb-0`)
-- Combine module styles with Bootstrap using `clsx`: `clsx(styles.myClass, 'p-3')`
-- Primary brand color: `#437557` (green)
-- Secondary color: `#FDEDDE` (cream/peach)
+- Use Tailwind utility classes; compose conditionals with `clsx`
+- Use theme tokens (`bg-brand`, `bg-cream`, `rounded-panel`, `shadow-popup`, …) rather than raw values; add new tokens to `@theme` in `globals.css`
+- Primary brand color: `#437557` (`brand`)
+- Secondary color: `#FDEDDE` (`cream`)
 - Font families: 
   - Headings: `Playfair Display`
   - Body: `Source Sans 3`
@@ -90,7 +90,7 @@ import Link from 'next/link';
 
 import app from '../../config';
 
-import styles from './_styles/page.module.sass';
+import styles from './Navigation.module.css';
 
 import type { User } from 'firebase/auth';
 ```
@@ -99,11 +99,12 @@ import type { User } from 'firebase/auth';
 - Strict mode enabled
 - Use path alias `@/*` for imports from `src/`
 - Define prop types inline or with interfaces
-- Avoid `any` when possible (currently `ignoreBuildErrors: true` for migration)
+- Avoid `any`; `npm run typecheck` must pass
 
 ### Firebase Patterns
 - Initialize Firebase in `src/config.ts`
-- Use `react-firebase-hooks` for auth state: `useAuthState(auth)`
+- Use `react-firebase-hooks` for auth state: `useAuthState(auth)`; its `loading` flag is the auth-ready signal
+- Subscribe to user lists with `useUserCollection(user, path)` (`_lib/useUserCollection.ts`), which unsubscribes on cleanup
 - Database paths follow pattern: `users/{uid}/data` for accomplishments
 - Always check for client-side rendering before using Firebase Analytics
 
@@ -116,12 +117,19 @@ const CanvasJSChart = dynamic(
 );
 ```
 
+### Motion
+- Route transitions: `template.tsx` wraps each page in `PageTransition`. Untyped navigations crossfade; pass `transitionTypes={['nav-forward']}` or `['nav-back']` on `<Link>` for directional slides. CSS lives in `globals.css`.
+- Multi-step flows: render `<StepPanel key=…>` inside `<AnimatePresence mode="wait">`
+- Interactive `motion` controls: spread `{...pressable}` from `_lib/motion.ts`
+- `MotionProvider` (root layout) applies the shared timing and honours `prefers-reduced-motion`
+
 ## Development Commands
 
 ```bash
 npm run dev          # Start development server with Turbopack
 npm run build        # Build static export to /build directory
 npm run start        # Start production server
+npm run typecheck    # Type-check with tsc
 npm run lint         # Run ESLint
 npm run lint:fix     # Fix linting issues
 npm run format       # Format code (runs lint:fix)
@@ -154,7 +162,7 @@ npm run format       # Format code (runs lint:fix)
 
 1. **Prefer Server Components** - Only add `'use client'` when necessary
 2. **Static Export** - The app uses `output: 'export'`, so avoid server-side features like API routes or middleware
-3. **SASS over CSS** - Use `.sass` files (indented syntax) not `.scss`
-4. **Bootstrap Integration** - Bootstrap CSS is imported globally; use its utility classes
+3. **Tailwind first** - Prefer utilities and theme tokens over new CSS
+4. **Absolute hrefs** - Use `/route` in links; relative hrefs break from nested routes like `/bank/view`
 5. **Image Handling** - Images are unoptimized due to static export; use `next/image` with `unoptimized: true`
 6. **Code Quality** - ESLint and Prettier are configured; run `npm run format` before committing
