@@ -20,7 +20,9 @@ jobs:
       - name: Build project
         run: npm run build
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: |
+          npm install -g firebase-tools
+          echo "firebase-tools version: $(firebase --version)"
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v2
         with:
@@ -31,11 +33,28 @@ jobs:
           SHORT_SHA=$(echo "${{ github.event.pull_request.head.sha }}" | cut -c1-7)
           CHANNEL_NAME="pr-${{ github.event.number }}-${SHORT_SHA}"
           
-          output=$(firebase hosting:channel:deploy "${CHANNEL_NAME}" --expires 7d --project phenomenality-v2)
-          echo "$output"
+          echo "Deploying to preview channel: ${CHANNEL_NAME}"
+          
+          # Stream CLI output (stdout + stderr) to the log while keeping a copy for parsing.
+          # Capturing with $(...) under `bash -e` hides the error message when the deploy fails.
+          set +e
+          set -o pipefail
+          firebase hosting:channel:deploy "${CHANNEL_NAME}" --expires 7d --project phenomenality-v2 2>&1 | tee "$RUNNER_TEMP/deploy-output.log"
+          deploy_status=$?
+          set -e +o pipefail
+          output=$(cat "$RUNNER_TEMP/deploy-output.log")
+          
+          if [ $deploy_status -ne 0 ]; then
+            error_line=$(echo "$output" | sed -E 's/\x1B\[[0-9;]*[mK]//g' | grep -m1 -i 'error' || true)
+            echo "::error title=Firebase preview deploy failed::Exit code ${deploy_status} for channel ${CHANNEL_NAME}. ${error_line:-See the step log above for details.}"
+            exit $deploy_status
+          fi
           
           # Extract the preview URL from the output
           preview_url=$(echo "$output" | grep -o 'https://[^[:space:]]*\.web\.app' | tail -1)
+          if [ -z "$preview_url" ]; then
+            echo "::warning title=Preview URL not found::Deploy succeeded but no *.web.app URL was found in the CLI output; the PR comment will be skipped."
+          fi
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
           
           # Extract expiration date
