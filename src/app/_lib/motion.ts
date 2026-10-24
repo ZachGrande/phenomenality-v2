@@ -24,6 +24,13 @@ export const stepVariants: Variants = {
   exit: { opacity: 0, y: -8 },
 };
 
+/** Panels that drop down from the element above them (e.g. the mobile menu). */
+export const dropVariants: Variants = {
+  initial: { opacity: 0, y: -8 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+};
+
 /** Spread onto any `motion` element that acts as a control. */
 export const pressable = {
   whileHover: { y: -1 },

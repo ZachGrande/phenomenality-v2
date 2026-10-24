@@ -89,8 +89,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import app from '../../config';
-
-import styles from './Navigation.module.css';
+import Navigation from '../_components/Navigation';
 
 import type { User } from 'firebase/auth';
 ```
