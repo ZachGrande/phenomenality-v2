@@ -6,11 +6,11 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
   updateProfile,
 } from 'firebase/auth';
 import { getDatabase, ref, set, update, onValue } from 'firebase/database';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import type { User } from 'firebase/auth';
 
@@ -32,9 +32,7 @@ function Authentication() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  const [user, setUser] = useState<User | null>(null);
-
-  const [loading, setLoading] = useState(true);
+  const [user, loading] = useAuthState(auth);
 
   const [loginPage, setLoginPage] = useState(true);
   const [firstTimeUser, setFirstTimeUser] = useState(false);
@@ -44,15 +42,12 @@ function Authentication() {
   const [position, setPosition] = useState('');
   const [welcomeName, setWelcomeName] = useState<string | null>(null);
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-    setLoading(false);
-  });
-
   useEffect(() => {
-    setLoading(true);
-    const dbRef = ref(database, 'users/' + user?.uid + '/user');
-    onValue(dbRef, (snapshot) => {
+    if (!user) {
+      return;
+    }
+    const dbRef = ref(database, 'users/' + user.uid + '/user');
+    return onValue(dbRef, (snapshot) => {
       const data = snapshot.val();
       if (data?.firstName) {
         setWelcomeName(data.firstName);
@@ -61,9 +56,7 @@ function Authentication() {
   }, [user]);
 
   const register = async () => {
-    setLoading(true);
     try {
-      // setLoading(true);
       setFirstTimeUser(true);
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -77,9 +70,7 @@ function Authentication() {
   };
 
   const login = async () => {
-    setLoading(true);
     try {
-      // setLoading(true);
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     } catch (error) {
       console.log('Authentication error', error);
@@ -87,7 +78,6 @@ function Authentication() {
   };
 
   const logout = async () => {
-    setLoading(true);
     await signOut(auth);
   };
 
@@ -104,7 +94,6 @@ function Authentication() {
   // }
 
   const buildProfile = async () => {
-    setLoading(true);
     toggleFirstTimeUser();
 
     const currentInitials =
