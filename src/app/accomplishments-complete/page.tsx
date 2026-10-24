@@ -1,144 +1,121 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { map } from '@firebase/util';
-import clsx from 'clsx';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getDatabase, ref, onValue, update } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, update } from 'firebase/database';
+import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import Welcome from './_assets/encourage-message.svg';
 
-import styles from '@/app/accomplishments/_styles/page.module.sass';
+import type { EncouragingMessage } from '@/types/accomplishment';
+
+import LinkButton from '@/app/_components/LinkButton';
+import StepPanel from '@/app/_components/StepPanel';
+import { pressable } from '@/app/_lib/motion';
+import useUserCollection from '@/app/_lib/useUserCollection';
 import app from '@/config';
 
 function AddEncouragement() {
   const auth = getAuth(app);
   const database = getDatabase(app);
-  const [user] = useAuthState(auth);
+  const [user, isLoading] = useAuthState(auth);
 
-  const [isLoading, setIsLoading] = useState(true);
   const [showEncouragingMessageInput, setShowEncouragingMessageInput] =
     useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [encouragingMessage, setEncouragingMessage] = useState('');
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useUserCollection<EncouragingMessage>(
+    user,
+    'messages',
+  );
 
-  onAuthStateChanged(auth, () => {
-    setIsLoading(false);
-  });
-
-  useEffect(() => {
-    const dbRef = ref(database, 'users/' + user?.uid + '/messages');
-    onValue(dbRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data === null) {
-        setItems([]);
-        return null;
-      }
-      const keys = Object.keys(data);
-      const newItems = keys.map((key) => {
-        const currentItem = data[key];
-        currentItem.key = key;
-        return currentItem;
-      });
-      setItems(newItems);
-    });
-  }, [isLoading, database, user]);
-
-  const addNewEncouragingMessage = async (event) => {
+  const addNewEncouragingMessage = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
-    const thisEncouragingMessage = {
-      description: encouragingMessage,
-    };
+    if (!user) {
+      return;
+    }
 
-    let newItems = items.push(thisEncouragingMessage);
-    newItems = map((currentItem, index = 0) => {
-      currentItem.id = index + 1;
-      currentItem.key = index + '';
-      index = index + 1;
-      return currentItem;
-    });
+    const newItems = [...items, { description: encouragingMessage }].map(
+      (currentItem, index) => ({
+        ...currentItem,
+        id: index + 1,
+        key: index + '',
+      }),
+    );
 
     setItems(newItems);
     setEncouragingMessage('');
-    update(ref(database, 'users/' + user.uid), {
-      messages: items,
+    await update(ref(database, 'users/' + user.uid), {
+      messages: newItems,
     });
-    setShowEncouragingMessageInput(false);
+    setIsSubmitting(true);
   };
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  if (showEncouragingMessageInput) {
-    return (
-      <div className={styles.outlineBox}>
-        <h1 className={styles.h1Accomp}>wonderful accomplishment!</h1>
-        <p className={styles['encrg-p']}>
-          now write yourself an encouraging message that will be shown you to
-          randomly.
-        </p>
-        <form className={styles.encrgCenter}>
-          <textarea
-            className={clsx(
-              styles.accompTextarea,
-              styles['encrg-bottom-padding'],
-            )}
-            placeholder="example: you've got this!"
-            value={encouragingMessage}
-            onChange={(event) => {
-              setEncouragingMessage(event.target.value);
-            }}
-            rows="2"
-            cols="45"
+  return (
+    <AnimatePresence
+      mode="wait"
+      onExitComplete={() => {
+        if (isSubmitting) {
+          setShowEncouragingMessageInput(false);
+        }
+      }}
+    >
+      {showEncouragingMessageInput && !isSubmitting ? (
+        <StepPanel key="encouragement-form">
+          <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+            wonderful accomplishment!
+          </h1>
+          <p className="m-5 font-sans">
+            now write yourself an encouraging message that will be shown you to
+            randomly.
+          </p>
+          <form className="m-8 text-center" onSubmit={addNewEncouragingMessage}>
+            <textarea
+              className="mb-8 w-4/5 border border-border-subtle rounded-panel p-3 font-sans text-base"
+              placeholder="example: you've got this!"
+              value={encouragingMessage}
+              onChange={(event) => {
+                setEncouragingMessage(event.target.value);
+              }}
+              rows={2}
+              cols={45}
+            />
+            <div className="flex justify-end">
+              <motion.button type="submit" {...pressable}>
+                next
+              </motion.button>
+            </div>
+          </form>
+        </StepPanel>
+      ) : !showEncouragingMessageInput ? (
+        <StepPanel key="closing-message">
+          <h1 className="ml-[0.5em] font-display text-4xl font-normal">
+            have a lovely day!
+          </h1>
+          <p className="m-5 font-sans">
+            come back tomorrow to add another accomplishment!
+          </p>
+          <Image
+            className="mx-auto block h-auto w-2/5"
+            src={Welcome}
+            alt="Two people high fiving"
           />
-          <div>
-            <button
-              className={styles.accomplishmentNext}
-              onClick={addNewEncouragingMessage}
-            >
-              next
-            </button>
-          </div>
-        </form>
-      </div>
-    );
-  } else {
-    return (
-      <div className={styles.outlineBox}>
-        <h1 className={styles.h1Accomp}>have a lovely day!</h1>
-        <p className={styles['encrg-p']}>
-          come back tomorrow to add another accomplishment!
-        </p>
-        <Image
-          className={styles.centerImg}
-          src={Welcome}
-          alt="Two people high fiving"
-          width="40%"
-          height="40%"
-        />
-        <br></br>
-        <Link
-          aria-label="View Accomplishments"
-          className={clsx(
-            styles.button,
-            styles['rmv-underline'],
-            styles.viewAccompBtn,
-            styles.nextButton,
-          )}
-          role="button"
-          href="/bank"
-        >
-          view accomplishments
-        </Link>
-        <br></br>
-      </div>
-    );
-  }
+          <LinkButton href="/bank" className="mt-4 w-fit self-end">
+            view accomplishments
+          </LinkButton>
+        </StepPanel>
+      ) : null}
+    </AnimatePresence>
+  );
 }
 
 export default AddEncouragement;

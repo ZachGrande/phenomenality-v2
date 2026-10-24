@@ -1,25 +1,25 @@
 'use client';
 
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
   updateProfile,
 } from 'firebase/auth';
 import { getDatabase, ref, set, update, onValue } from 'firebase/database';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-import styles from './_styles/page.module.sass';
+import type { User } from 'firebase/auth';
 
 import app from '@/config';
 
 const auth = getAuth(app);
 const database = getDatabase(app);
 
-function createEntryForUserInDatabase(user) {
+function createEntryForUserInDatabase(user: User) {
   set(ref(database, 'users/' + user.uid), {
     email: user.email,
   });
@@ -32,9 +32,7 @@ function Authentication() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  const [user, setUser] = useState({});
-
-  const [loading, setLoading] = useState(true);
+  const [user, loading] = useAuthState(auth);
 
   const [loginPage, setLoginPage] = useState(true);
   const [firstTimeUser, setFirstTimeUser] = useState(false);
@@ -42,17 +40,14 @@ function Authentication() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [position, setPosition] = useState('');
-  const [welcomeName, setWelcomeName] = useState(null);
-
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-    setLoading(false);
-  });
+  const [welcomeName, setWelcomeName] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
-    const dbRef = ref(database, 'users/' + user?.uid + '/user');
-    onValue(dbRef, (snapshot) => {
+    if (!user) {
+      return;
+    }
+    const dbRef = ref(database, 'users/' + user.uid + '/user');
+    return onValue(dbRef, (snapshot) => {
       const data = snapshot.val();
       if (data?.firstName) {
         setWelcomeName(data.firstName);
@@ -61,9 +56,7 @@ function Authentication() {
   }, [user]);
 
   const register = async () => {
-    setLoading(true);
     try {
-      // setLoading(true);
       setFirstTimeUser(true);
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -72,22 +65,19 @@ function Authentication() {
       );
       createEntryForUserInDatabase(user.user);
     } catch (error) {
-      console.log('Authentication error', error.message);
+      console.log('Authentication error', error);
     }
   };
 
   const login = async () => {
-    setLoading(true);
     try {
-      // setLoading(true);
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     } catch (error) {
-      console.log('Authentication error', error.message);
+      console.log('Authentication error', error);
     }
   };
 
   const logout = async () => {
-    setLoading(true);
     await signOut(auth);
   };
 
@@ -104,13 +94,16 @@ function Authentication() {
   // }
 
   const buildProfile = async () => {
-    setLoading(true);
     toggleFirstTimeUser();
 
     const currentInitials =
       firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
 
     // setInitials(currentInitials);
+
+    if (!auth.currentUser || !user) {
+      return;
+    }
 
     updateProfile(auth.currentUser, {
       displayName: currentInitials,
@@ -138,7 +131,7 @@ function Authentication() {
 
   if (loading) {
     return (
-      <div className={styles.auth}>
+      <div className="text-center">
         <h1>LOADING ASSETS</h1>
       </div>
     );
@@ -147,7 +140,7 @@ function Authentication() {
   if (!user) {
     if (loginPage) {
       return (
-        <div className={styles.auth}>
+        <div className="text-center">
           <h3>Welcome Back</h3>
           <input
             placeholder="Email..."
@@ -173,7 +166,7 @@ function Authentication() {
       );
     } else {
       return (
-        <div className={styles.auth}>
+        <div className="text-center">
           <h3>Register</h3>
           <input
             placeholder="Email..."
@@ -201,7 +194,7 @@ function Authentication() {
   } else {
     if (firstTimeUser) {
       return (
-        <div className={styles.auth}>
+        <div className="text-center">
           <h1>Build Profile</h1>
           <h4>First Name</h4>
           <input
@@ -235,7 +228,7 @@ function Authentication() {
       );
     }
     return (
-      <div className={styles.auth}>
+      <div className="text-center">
         {/* {welcomeName ?
           <h2>Welcome back, {welcomeName}</h2> :
           <h2></h2>} */}

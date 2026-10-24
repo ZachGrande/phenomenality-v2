@@ -1,20 +1,24 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import clsx from 'clsx';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getDatabase, ref, onValue, update } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, update } from 'firebase/database';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import app from '../../config';
+import useUserCollection from '../_lib/useUserCollection';
 import TagButtonList from '../accomplishments/_components/TagButton';
 import allTags from '../accomplishments/_components/tags';
 
+import {
+  cacheAccomplishments,
+  getCachedAccomplishments,
+} from './_components/accomplishmentCache';
 import CardList from './_components/Card';
 import TagList from './_components/Tag';
-import styles from './_styles/page.module.sass';
-import popupStyles from './_styles/Popup.module.sass';
+
+import type { Accomplishment } from '@/types/accomplishment';
 
 import 'firebase/auth';
 import 'firebase/database';
@@ -26,50 +30,42 @@ function Bank() {
   //  'Training', 'Special Projects', 'Volunteer', 'Promotion','Idea', 'Innovation', 'Other'];
 
   // const [user, loading, error] = useAuthState(auth);
-  const [user, loading] = useAuthState(auth);
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, isLoading] = useAuthState(auth);
+  // Seeding from the cache lets the cards render in the navigation commit, so
+  // returning from /bank/view can reverse the card morph.
+  const [items, setItems] = useUserCollection<Accomplishment>(
+    user,
+    'data',
+    getCachedAccomplishments(user?.uid) ?? [],
+  );
 
   //NEED TO CHANGE FILTER TYPE TO ARRAY ??
   const [filter, setFilter] = useState('none');
 
   const [showEditPopup, setShowEditPopup] = useState(false);
-  const [showViewPopup, setShowViewPopup] = useState(false);
   const [currentEditId, setCurrentEditId] = useState(-1);
   const [existingDescription, setExistingDescription] = useState('');
   const [existingTitle, setExistingTitle] = useState('');
-  const [existingTags, setExistingTags] = useState('');
-
-  onAuthStateChanged(auth, () => {
-    setIsLoading(false);
-  });
+  const [existingTags, setExistingTags] = useState<string[]>([]);
 
   useEffect(() => {
-    const dbRef = ref(database, 'users/' + user?.uid + '/data');
-    onValue(dbRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data === null) {
-        setItems([]);
-        return null;
-      }
-      const keys = Object.keys(data);
-      const newItems = keys.map((key) => {
-        const currentItem = data[key];
-        currentItem.key = key;
-        return currentItem;
-      });
-      setItems(newItems);
-    });
-    /*} else {
-    console.log("Did not retrieve user location from database");
-    }*/
-  }, [isLoading, database, user]);
+    if (user) {
+      cacheAccomplishments(user.uid, items);
+    }
+  }, [user, items]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="mx-auto w-full max-w-6xl px-3 py-12 text-center">
+        <p className="text-inactive-text">Loading...</p>
+      </div>
+    );
   }
 
-  const deleteCard = (id) => {
+  const deleteCard = (id: number) => {
+    if (!user) {
+      return;
+    }
     let newItems = items.filter((currentItem) => {
       return currentItem.id !== id;
     });
@@ -85,7 +81,7 @@ function Bank() {
     });
   };
 
-  const editCard = (id) => {
+  const editCard = (id: number) => {
     setShowEditPopup(true);
     setCurrentEditId(id);
     const editItem = items.filter((currentItem) => {
@@ -99,51 +95,19 @@ function Bank() {
     setExistingTags(editItem[0].tags);
   };
 
-  const viewCard = (id) => {
-    setShowViewPopup(true);
-    const viewItem = items.filter((currentItem) => {
-      if (currentItem.id === id) {
-        return currentItem;
-      }
-      return null;
-    });
-    setExistingDescription(viewItem[0].description);
-    setExistingTitle(viewItem[0].title);
-    setExistingTags(viewItem[0].tags);
-  };
-
-  const toggleFilter = (value) => {
-    if (filter === 'none') {
-      // first time tagging
-      const idName = value.toLowerCase().replace(/\s+/g, '-');
-      document.getElementsByClassName(idName)[0].classList.toggle('active');
-      setFilter(value);
-    } else if (filter === value) {
-      // turn off same tag
-      const idName = value.toLowerCase().replace(/\s+/g, '-');
-      document.getElementsByClassName(idName)[0].classList.toggle('active');
-      setFilter('none');
-    } else {
-      // switch tag
-      const idName = value.toLowerCase().replace(/\s+/g, '-');
-      document.getElementsByClassName(idName)[0].classList.toggle('active');
-      const existingIdName = filter.toLowerCase().replace(/\s+/g, '-');
-      document
-        .getElementsByClassName(existingIdName)[0]
-        .classList.toggle('active');
-      setFilter(value);
-    }
+  const toggleFilter = (value: string) => {
+    setFilter((current) => (current === value ? 'none' : value));
   };
 
   function closeEditForm() {
     setShowEditPopup(false);
   }
 
-  function closeViewForm() {
-    setShowViewPopup(false);
-  }
-
   function submitForm() {
+    if (!user) {
+      return;
+    }
+
     let shortAccomp = existingDescription.substring(0, 100);
     if (existingDescription.length > 100) {
       shortAccomp += '...';
@@ -176,16 +140,15 @@ function Bank() {
 
   function tagListContainer() {
     return (
-      <div>
-        <h2 className={clsx(styles['tag-title'], 'mx-3')}>filter tags</h2>
-        <p className={styles['tag-desc']}>
-          {' '}
+      <div className="rounded-panel bg-surface p-5 shadow-card">
+        <h2 className="font-display text-[1.75rem] font-normal">filter tags</h2>
+        <p className="mt-1 mb-4 text-center font-sans text-base text-inactive-text">
           select a tag you would like to filter through your accomplishments
           with!
         </p>
         <TagButtonList
           items={allTags}
-          activeTags={existingTags}
+          activeTags={filter === 'none' ? [] : [filter]}
           toggleTag={toggleFilter}
         />
       </div>
@@ -195,14 +158,28 @@ function Bank() {
   if (items.length > 0 && showEditPopup) {
     // TODO: Place form popup in a separate component
     return (
-      <div className="container">
-        <div className={popupStyles.formPopup} id="popupForm">
-          <form action="/action_page.php" className={popupStyles.formContainer}>
+      <div className="mx-auto w-full max-w-6xl px-3">
+        <div
+          className="fixed inset-0 z-9 bg-black/25"
+          onClick={closeEditForm}
+        />
+        <div
+          className="fixed top-[24%] left-1/2 z-10 w-1/2 max-w-125 -translate-x-1/2 translate-y-[5%] rounded-panel shadow-popup outline-1 outline-border-subtle"
+          id="popupForm"
+        >
+          <form
+            className="max-w-125 rounded-panel bg-surface p-5"
+            onSubmit={(event) => {
+              event.preventDefault();
+              submitForm();
+            }}
+          >
             <h3>edit accomplishment {currentEditId}</h3>
-            <label className={popupStyles.label} htmlFor="editTitle">
+            <label className="font-display" htmlFor="editTitle">
               title
             </label>
             <input
+              className="mt-1.25 mb-5 w-full border-none bg-field p-3.75 focus:bg-field-focus"
               type="text"
               id="editTitle"
               value={existingTitle}
@@ -211,10 +188,11 @@ function Bank() {
               }}
               name="editTitle"
             ></input>
-            <label className={popupStyles.label} htmlFor="editDescription">
+            <label className="font-display" htmlFor="editDescription">
               description
             </label>
             <input
+              className="mt-1.25 mb-5 w-full border-none bg-field p-3.75 focus:bg-field-focus"
               type="text"
               id="editDescription"
               value={existingDescription}
@@ -224,17 +202,13 @@ function Bank() {
               name="editDescription"
             ></input>
             <TagList items={existingTags} />
-            <div className={popupStyles['popup-btn-center']}>
-              <button
-                type="button"
-                className={popupStyles.btn}
-                onClick={submitForm}
-              >
+            <div className="flex flex-wrap justify-center text-center">
+              <button type="submit" className="m-4 w-fit">
                 update
               </button>
               <button
                 type="button"
-                className={clsx(popupStyles.btn, popupStyles.cancel)}
+                className="m-4 w-fit bg-muted"
                 onClick={closeEditForm}
               >
                 cancel
@@ -242,98 +216,39 @@ function Bank() {
             </div>
           </form>
         </div>
-        <h1 className={styles['bank-h1']}>all accomplishments</h1>
-        {tagListContainer()}
+        <h1 className="font-display text-4xl font-normal">
+          all accomplishments
+        </h1>
+        <div className="mt-4">{tagListContainer()}</div>
         <CardList
           items={entriesToShow}
           deleteCard={deleteCard}
           editCard={editCard}
-          viewCard={viewCard}
-        />
-      </div>
-    );
-  } else if (items.length > 0 && showViewPopup) {
-    return (
-      <div>
-        <div className={popupStyles.formPopup} id="popupForm">
-          <form className={popupStyles.formContainer}>
-            <h3>expanded view</h3>
-            <label className={popupStyles.label} htmlFor="viewTitle">
-              title
-            </label>
-            <p className="p-background" id="viewTitle">
-              {existingTitle}
-            </p>
-            <label className={popupStyles.label} htmlFor="viewDescription">
-              description
-            </label>
-            <p className="p-background" id="viewDescription">
-              {existingDescription}
-            </p>
-            <label className={popupStyles.label} htmlFor="viewTags">
-              tags
-            </label>
-            <div className="tags-background">
-              <TagList items={existingTags} />
-            </div>
-            <div className={popupStyles['popup-btn-center']}>
-              <button
-                type="button"
-                className={clsx(popupStyles.btn, popupStyles.cancel)}
-                onClick={closeViewForm}
-              >
-                close
-              </button>
-            </div>
-          </form>
-        </div>
-        <h1 className={styles['bank-h1']}>all accomplishments</h1>
-        {tagListContainer()}
-        <CardList
-          items={entriesToShow}
-          deleteCard={deleteCard}
-          editCard={editCard}
-          viewCard={viewCard}
         />
       </div>
     );
   } else if (items.length > 0) {
     return (
-      <div className="container">
-        <div className={styles['card-list']}>
-          <h1 className={styles['bank-h1']}>all accomplishments</h1>
-          {tagListContainer()}
-          <CardList
-            items={entriesToShow}
-            deleteCard={deleteCard}
-            editCard={editCard}
-            viewCard={viewCard}
-          />
-        </div>
+      <div className="mx-auto w-full max-w-6xl px-3 py-6">
+        <h1 className="font-display text-4xl font-normal">
+          all accomplishments
+        </h1>
+        <div className="mt-4">{tagListContainer()}</div>
+        <CardList
+          items={entriesToShow}
+          deleteCard={deleteCard}
+          editCard={editCard}
+        />
       </div>
     );
-  } else if (loading) {
-    return <p>Loading your card list.</p>;
   } else {
     return (
-      <div className="container-xl">
-        <h1 className={styles['bank-h1']}>
+      <div className="mx-auto w-full max-w-6xl px-3 py-6">
+        <h1 className="font-display text-4xl font-normal">
           You have not added to your accomplishment bank!
         </h1>
         {/* TODO: This should not be visible if no accomplishments are present */}
-        <div>
-          <h2 className={clsx(styles['tag-title'], 'mx-3')}>filter tags</h2>
-          <p className={styles['tag-desc']}>
-            {' '}
-            select a tag you would like to filter through your accomplishments
-            with!
-          </p>
-          <TagButtonList
-            items={allTags}
-            activeTags={existingTags}
-            toggleTag={toggleFilter}
-          />
-        </div>
+        <div className="mt-4">{tagListContainer()}</div>
       </div>
     );
   }

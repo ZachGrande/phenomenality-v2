@@ -1,5 +1,6 @@
 import { version as reactVersion } from 'react';
 
+import css from '@eslint/css';
 import js from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import prettierConfig from 'eslint-config-prettier';
@@ -8,6 +9,8 @@ import prettier from 'eslint-plugin-prettier';
 import pluginReact from 'eslint-plugin-react';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+
+const scriptFiles = ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'];
 
 export default defineConfig([
   globalIgnores([
@@ -19,13 +22,24 @@ export default defineConfig([
     'next-env.d.ts',
   ]),
   {
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
     plugins: { js },
     extends: ['js/recommended'],
     languageOptions: { globals: globals.browser },
   },
-  tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+  ...tseslint.configs.recommended.map((config) => ({
+    ...config,
+    files: scriptFiles,
+  })),
+  {
+    ...pluginReact.configs.flat.recommended,
+    files: scriptFiles,
+  },
+  {
+    // React 19's automatic JSX runtime; React need not be in scope.
+    ...pluginReact.configs.flat['jsx-runtime'],
+    files: scriptFiles,
+  },
   {
     settings: {
       react: {
@@ -37,10 +51,25 @@ export default defineConfig([
   // { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
   // { files: ["**/*.json5"], plugins: { json }, language: "json/json5", extends: ["json/recommended"] },
   // { files: ["**/*.md"], plugins: { markdown }, language: "markdown/gfm", extends: ["markdown/recommended"] },
-  // { files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },
+  {
+    files: ['**/*.css'],
+    plugins: { css },
+    language: 'css/css',
+    extends: ['css/recommended'],
+    rules: {
+      // Design tokens live in globals.css; other files can't see them.
+      'css/no-invalid-properties': ['error', { allowUnknownVariables: true }],
+      'css/use-baseline': ['error', { available: 'newly' }],
+    },
+  },
+  {
+    // Tailwind's @theme/@source/@utility are not standard CSS at-rules.
+    files: ['src/app/globals.css'],
+    rules: { 'css/no-invalid-at-rules': 'off' },
+  },
   prettierConfig,
   {
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
     plugins: { prettier },
     rules: {
       'prettier/prettier': [
@@ -50,7 +79,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['**/*.{js,mjs,cjs,mts,cts,jsx,ts,tsx}'],
+    files: scriptFiles,
     plugins: { import: pluginImport },
     rules: {
       'import/order': [

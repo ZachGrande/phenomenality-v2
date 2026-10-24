@@ -1,232 +1,61 @@
 'use client';
 
-import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import clsx from 'clsx';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
-import Image from 'next/image';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import app from '../../config';
-import downCarrot from '../_assets/icons/down-carrot.svg';
-import leafActive from '../_assets/icons/leaf-active.svg';
-import leafInactive from '../_assets/icons/leaf-inactive.svg';
 
-import styles from './Navigation.module.sass';
+import MobileMenu from './MobileMenu';
+import { isActiveLink, navLinks } from './navLinks';
+import ProfileAvatar from './ProfileAvatar';
+
+import type { User } from 'firebase/auth';
 
 const auth = getAuth(app);
 
 function Navigation() {
+  const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
-  const [initials, setInitials] = useState('');
-  const [profileButton, setProfileButton] = useState(leafInactive);
-  const [showDropDownMenu, setShowDropDownMenu] = useState(false);
+  const initials = user?.displayName ?? '';
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-  }, []);
-
-  useEffect(() => {
-    setInitials(user?.displayName ?? '');
-  }, [user]);
-
-  const toggleProfileButton = () => {
-    if (profileButton === leafInactive) {
-      setProfileButton(leafActive);
-    } else {
-      setProfileButton(leafInactive);
-    }
-  };
-
-  function toggleDropDown() {
-    setShowDropDownMenu(!showDropDownMenu);
-  }
+  useEffect(() => onAuthStateChanged(auth, setUser), []);
 
   return (
-    <nav>
-      <div className={clsx(styles.navigation, 'w-100 p-3')}>
-        <ul className="mb-0 px-0">
-          <Link
-            className={clsx(
-              styles.keepStrengthen,
-              styles['navbar-link'],
-              styles['home-font'],
-            )}
-            href="/"
-          >
+    <nav
+      className="relative z-40 bg-cream px-4 py-2"
+      style={{ viewTransitionName: 'site-header' }}
+    >
+      <div className="flex items-center justify-between">
+        <Link className="font-display text-2xl text-ink no-underline" href="/">
+          <span className="hidden md:inline">
             phenomenality | strengthen your mentality
-          </Link>
-          <Link
-            className={clsx(
-              styles.dropStrengthen,
-              styles['navbar-link'],
-              styles['home-font'],
-            )}
-            href="/"
-          >
-            phenomenality
-          </Link>
-          {showDropDownMenu ? (
-            <div
-              className={clsx(styles.dropDown, styles.dropDownContainer)}
-              id="popupForm"
-            >
-              <ul className="px-4">
-                <li className={clsx(styles.navvy, 'd-inline')}>
-                  <Link
-                    className={clsx(styles['navbar-link'], styles['link-font'])}
-                    href="/accomplishments"
-                  >
-                    accomplishments
-                  </Link>
-                  <br />
-                  <br />
-                </li>
-                <li className={clsx(styles.navvy, 'd-inline')}>
-                  <Link
-                    className={clsx(styles['navbar-link'], styles['link-font'])}
-                    href="/bank"
-                  >
-                    your bank
-                  </Link>
-                  <br />
-                  <br />
-                </li>
-                <li className={clsx(styles.navvy, 'd-inline')}>
-                  <Link
-                    className={clsx(styles['navbar-link'], styles['link-font'])}
-                    href="quiz"
-                  >
-                    quiz
-                  </Link>
-                  <br />
-                  <br />
-                </li>
-                <li className={clsx(styles.navvy, 'd-inline')}>
-                  <Link
-                    className={clsx(styles['navbar-link'], styles['link-font'])}
-                    href="more-info"
-                  >
-                    imposter phenomenon
-                  </Link>
-                  <br />
-                </li>
-                <br />
-                <br />
-                <li className={clsx(styles.dropdownInitials, 'd-inline')}>
-                  <Link
-                    className={clsx(
-                      styles['navbar-link'],
-                      styles['link-font'],
-                      styles.dropdownInitials,
-                    )}
-                    href="/authentication"
-                  >
-                    {initials ? (
-                      <div className={styles.initials}>{initials}</div>
-                    ) : (
-                      <Image
-                        src={profileButton}
-                        onMouseOver={toggleProfileButton}
-                        onMouseLeave={toggleProfileButton}
-                        width="50"
-                        height="50"
-                        alt="profile"
-                      />
-                    )}
-                  </Link>
-                </li>
-              </ul>
-              <div className={styles['popup-btn-center']}>
-                {/* <button type="button" className="btn cancel"
-                      onClick={closeDropDownMenu}>close</button> */}
-              </div>
-            </div>
-          ) : (
-            <div className={clsx(styles['nav-left'])}>
-              <li className={clsx(styles.navvy, 'd-inline', 'mx-2')}>
-                <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
-                  href="/accomplishments"
-                >
-                  accomplishments
-                </Link>
-              </li>
-              <li className={clsx(styles.navvy, 'd-inline', 'mx-2')}>
-                <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
-                  href="/bank"
-                >
-                  your bank
-                </Link>
-              </li>
-              <li className={clsx(styles.navvy, 'd-inline', 'mx-2')}>
-                <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
-                  href="quiz"
-                >
-                  quiz
-                </Link>
-              </li>
-              <li className={clsx(styles.navvy, 'd-inline', 'mx-2')}>
-                <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
-                  href="more-info"
-                >
-                  imposter phenomenon
-                </Link>
-              </li>
-              <li className="d-inline mx-2">
-                <Link
-                  className={clsx(styles['navbar-link'], styles['link-font'])}
-                  href="/authentication"
-                >
-                  {initials ? (
-                    <div className={styles.initials}>{initials}</div>
-                  ) : (
-                    <Image
-                      src={profileButton}
-                      onMouseOver={toggleProfileButton}
-                      onMouseLeave={toggleProfileButton}
-                      width="46"
-                      height="46"
-                      alt="profile"
-                    />
-                  )}
-                </Link>
-              </li>
-            </div>
-          )}
-          <button
-            type="button"
-            className={styles['carrot-menu']}
-            onClick={toggleDropDown}
-          >
-            <div className={styles.menu}>
-              <p
-                className={clsx(
-                  styles['link-font'],
-                  'mb-0 d-inline-block align-top',
-                )}
+          </span>
+          <span className="md:hidden">phenomenality</span>
+        </Link>
+
+        <ul className="mb-0 hidden list-none items-center p-0 text-xl xl:flex">
+          {navLinks.map(({ href, label }) => (
+            <li key={href} className="mx-3">
+              <Link
+                className="relative block py-1 font-sans text-ink no-underline after:absolute after:inset-x-0 after:-bottom-1 after:h-[3px] after:origin-center after:scale-x-0 after:rounded-full after:bg-brand after:transition-transform after:duration-200 hover:after:scale-x-100 focus-visible:after:scale-x-100 aria-[current=page]:after:scale-x-100 motion-reduce:after:transition-none"
+                href={href}
+                aria-current={isActiveLink(pathname, href) ? 'page' : undefined}
               >
-                menu
-              </p>
-              <Image
-                className={clsx(
-                  styles['carrot-icon'],
-                  'd-inline-block',
-                  !showDropDownMenu ? styles.rotated : '',
-                )}
-                src={downCarrot}
-                alt="menu"
-                style={{ width: '12%', height: 'auto' }}
-              />
-            </div>
-          </button>
+                {label}
+              </Link>
+            </li>
+          ))}
+          <li className="mx-2">
+            <Link href="/authentication" className="no-underline">
+              <ProfileAvatar initials={initials} size={46} />
+            </Link>
+          </li>
         </ul>
+
+        <MobileMenu initials={initials} />
       </div>
     </nav>
   );
